@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+.home_navbar {
+   width: 100%;
+   height: 100%;
+}
+
+
+.home_navbar .navbar_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+
+}
+.home_navbar .navbar_config {
+  display: flex;
+  align-items: center;
+}
+
+.navbar_config .logo {
+  width: 150px;
+}
+.home_navbar .navbar_links {
+  width: 400px;
+  height: 46px;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 200px;
+}
+
+.home_navbar .hover_line a {
+  text-decoration: none;
+  color: black;
+}
+
+.home_navbar .hover_line {
+  font-weight: 800;
+  font-size: 19px;
+  text-transform: capitalize;
+  text-decoration: none;
+  padding: 10px 0px;
+  margin: 0px 20px;
+  font-family: "EB Garamond", serif;
+  display: inline-block;
+  position: relative;
+  opacity: 0.75;
+}
+.hover_line:hover {
+  opacity: 1;
+}
+
+.hover_line::before {
+  transition: all 0.4s linear;
+  height: 2px;
+  content: "";
+  position: absolute;
+  background-color: #f7ab42;
+}
+
+.nav-link-ltr::before {
+  width: 0%;
+  bottom: 10px;
+}
+
+.nav-link-ltr:hover::before {
+  width: 100%;
+}
+
+.nav-link-ltr:hover a {
+  color: #f7ab42;
+  transition: all 0.3s linear;
+}
+
+.home_navbar .head_information {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 700px;
+  background:#504a48;
+}
+
+.home_navbar .define_text {
+  width: 620px;
+  font-size: 50px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: white;
+}
+
+/* .home_navbar .slide-right {
+   animation: 3.5s slide-right;
+ }
+ @keyframes slide-right {
+   from {
+     margin-right: -100%;
+   }
+   to {
+     margin-right: 0%;
+   }
+ } */
+
+.home_navbar .define_shop {
+  position: relative;
+  width: 484px;
+  font-size: 23px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  color: white;
+  margin-top: 15px;
+}
+.home_navbar .timeline_service {
+  position: relative;
+  width: 566px;
+  font-style: normal;
+  font-size: 20px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  margin-top: 18px;
+  color: white;
+}
+
+.home_navbar .main_btn {
+  width: 180px;
+  font-size: 20px;
+  font-family: "EB Garamond", serif;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: capitalize;
+  border: none;
+  background-color: #ffffff;
+  color: black;
+}
+.home_navbar .main_btn:hover {
+  color: white;
+  border: 1px solid white;
+  transition: all 0.3s linear;
+}
+.home_navbar .big_img {
+  position:relative;
+  width:800px;
+  height: 700px;
+  background-image: url("/public/home/fal.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
+.home_navbar .big_img2 {
+   position:absolute;
+  background-size: cover;
+   background-image: url("/public/home/lee.png");
+   background-repeat: no-repeat;
+   width: 700px;
+   height: 700px;
+ }
+
+ .home_navbar .head_information_second {
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   height: 700px;
+   background: #b6b6b4;
+ }
+
+ .home_navbar .big_img3 {
+   position:absolute;
+  background-size: cover;
+   background-image: url("/public/home/zhou.png");
+   background-repeat: no-repeat;
+   width: 700px;
+   height: 700px;
+ }
+
+ .home_navbar .head_information3 {
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   height: 700px;
+   background: #cd865c;
+ }
+
+.swiper {
+   width: 100%;
+   height: 100%;
+ 
+ }
+ 
+ .swiper-slide {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+
