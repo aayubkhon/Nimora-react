@@ -1,5 +1,12 @@
 import React from "react";
-import { Container, Stack, Box, Button } from "@mui/material";
+import {
+  Container,
+  Stack,
+  Box,
+  Button,
+  IconButton,
+  Badge,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -7,7 +14,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../../../css/costum-swiper.css";
-const NavbarHome = () => {
+const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
       <Container>
@@ -33,11 +40,57 @@ const NavbarHome = () => {
                 Home
               </NavLink>
             </Box>
-            <Box className="hover_line nav-link-ltr">
+            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
               <NavLink to="/shop">Shop</NavLink>
             </Box>
-            <Box className="hover_line nav-link-ltr">
+            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
+              <NavLink to="/service">Service</NavLink>
+            </Box>
+            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
               <NavLink to="/help">Help</NavLink>
+            </Box>
+            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
+              <NavLink to="/portfolio">Portfolio</NavLink>
+            </Box>
+            <Box>
+              <IconButton
+                aria-label="cart"
+                // id="basic-button"
+                aria-controls={undefined}
+                aria-haspopup="true"
+                aria-expanded={undefined}
+                color="warning"
+                className="shopin_cart"
+                // onClick={}
+              >
+                <Badge badgeContent={3}>
+                  <img src={"/icons/bag.svg"} alt="" />
+                </Badge>
+              </IconButton>
+            </Box>
+            <Box>
+              <Button variant="text" className="reg_btn">
+                Login
+              </Button>
+            </Box>
+            <span>/</span>
+            <Box>
+              <Button variant="text" className="reg_btn">
+                Register
+              </Button>
+            </Box>
+            <Box>
+              <IconButton
+                aria-label="cart"
+                // id="basic-button"
+                aria-controls={undefined}
+                aria-haspopup="true"
+                aria-expanded={undefined}
+                color="warning"
+                className="shopin_cart"
+              >
+                <img className="icon" src="/icons/icon.svg" alt="" />
+              </IconButton>
             </Box>
           </Stack>
         </Stack>
@@ -54,7 +107,7 @@ const NavbarHome = () => {
           pagination={{
             clickable: true,
           }}
-          modules={[Autoplay,Pagination, Navigation]}
+          modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
           <SwiperSlide>
@@ -85,9 +138,7 @@ const NavbarHome = () => {
                 justifyContent={"column"}
                 sx={{ marginTop: "176px", marginLeft: "69px" }}
               >
-                <Box className="define_text ">
-                NEW DESIGN WEDDING RINGS
-                </Box>
+                <Box className="define_text ">NEW DESIGN WEDDING RINGS</Box>
                 <Box className="define_shop ">Classy Design</Box>
                 <Box className="timeline_service ">
                   Viverra ipsum nunc aliquet bibendum enim facilisis. Egestas
@@ -113,7 +164,7 @@ const NavbarHome = () => {
               >
                 <Box className="define_shop ">Trendy Design</Box>
                 <Box className="define_text ">
-                  FASHIONABLE DESIGNING JEWELLARY 
+                  FASHIONABLE DESIGNING JEWELLARY
                 </Box>
                 <Box className="timeline_service ">
                   Saecenas ut orci hendrerit. Praesent maximus est a ligula

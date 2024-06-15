@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NavbarOthers = () => {
+const NavbarOthers = (props:any) => {
   return (
     <div>NavbarOthers</div>
   )

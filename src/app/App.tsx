@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import { Routes, Route,} from "react-router-dom";
@@ -11,14 +11,15 @@ import NavbarShop from "./components/header/shop";
 import NavbarOthers from "./components/header/others";
 function App() {
   const main_path = window.location.pathname;
+  const [path, setPath] = useState()
   return (
     <>
       {main_path === "/" ? (
-        <NavbarHome />
+        <NavbarHome setPath={setPath} />
       ) : main_path.includes("/shop") ? (
-        <NavbarShop />
+        <NavbarShop setPath={setPath} />
       ) : (
-        <NavbarOthers />
+        <NavbarOthers setPath={setPath} />
       )}
 
       <Routes>
