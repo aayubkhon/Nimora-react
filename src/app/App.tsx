@@ -8,7 +8,7 @@ import HelpPage from "./screens/HelpPage";
 import LoginPage from "./screens/LoginPage";
 import NavbarHome from "./components/header";
 import NavbarShop from "./components/header/shop";
-import NavbarOthers from "./components/header/others";
+import NavbarOthers from "./components/header/service";
 function App() {
   const main_path = window.location.pathname;
   const [path, setPath] = useState()

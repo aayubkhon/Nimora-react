@@ -7,7 +7,7 @@ import {
   IconButton,
   Badge,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -17,7 +17,7 @@ import "../../../css/costum-swiper.css";
 const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
-      <Container>
+      <Container className="container">
         <Stack flexDirection={"row"} className="navbar_container">
           <Stack flexDirection={"row"} className="navbar_config">
             <Box>
@@ -32,6 +32,7 @@ const NavbarHome = (props: any) => {
           >
             <Box className="hover_line nav-link-ltr">
               <NavLink
+                onClick={props.setPath}
                 style={(isActive) => ({
                   color: isActive ? "#f7ab42" : "black",
                 })}
@@ -94,91 +95,94 @@ const NavbarHome = (props: any) => {
             </Box>
           </Stack>
         </Stack>
-      </Container>
 
-      <Stack>
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Stack className="head_information_second">
-              <Box>
-                <div className="big_img2"></div>
-              </Box>
-              <Stack
-                justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "800px" }}
-              >
-                <Box className="define_shop">Special Occasion Jewellery</Box>
-                <Box className="define_text ">AMAZING JEWELLERY COLLECTION</Box>
-                <Box className="timeline_service">
-                  Maecenas ut orci hendrerit. Praesent maximus est a ligula
-                  ultricies, sit amet ornare dui mattis. Donec ac mi dui. Donec
-                  commodo ultrices elit eu sodales.
+        <Stack sx={{ border: "1px solid blue" }}>
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <Stack className="head_information_second">
+                <Box>
+                  <div className="big_img2"></div>
                 </Box>
-                <Box sx={{ mt: "20px" }}>
-                  <Button className="main_btn ">Shop now</Button>
+                <Stack
+                  justifyContent={"column"}
+                  sx={{ marginTop: "176px", marginLeft: "800px" }}
+                >
+                  <Box className="define_shop">Special Occasion Jewellery</Box>
+                  <Box className="define_text ">
+                    AMAZING JEWELLERY COLLECTION
+                  </Box>
+                  <Box className="timeline_service">
+                    Maecenas ut orci hendrerit. Praesent maximus est a ligula
+                    ultricies, sit amet ornare dui mattis. Donec ac mi dui.
+                    Donec commodo ultrices elit eu sodales.
+                  </Box>
+                  <Box sx={{ mt: "20px" }}>
+                    <Button className="main_btn ">Shop now</Button>
+                  </Box>
+                </Stack>
+              </Stack>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Stack className="head_information">
+                <Stack
+                  justifyContent={"column"}
+                  sx={{ marginTop: "176px", marginLeft: "69px" }}
+                >
+                  <Box className="define_text ">NEW DESIGN WEDDING RINGS</Box>
+                  <Box className="define_shop ">Classy Design</Box>
+                  <Box className="timeline_service ">
+                    Viverra ipsum nunc aliquet bibendum enim facilisis. Egestas
+                    erat imperdiet sed euismod nisi porta lorem mollis.
+                  </Box>
+                  <Box sx={{ mt: "20px" }}>
+                    <Button className="main_btn ">Shop now</Button>
+                  </Box>
+                </Stack>
+                <Box>
+                  <div className="big_img"></div>
                 </Box>
               </Stack>
-            </Stack>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Stack className="head_information">
-              <Stack
-                justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "69px" }}
-              >
-                <Box className="define_text ">NEW DESIGN WEDDING RINGS</Box>
-                <Box className="define_shop ">Classy Design</Box>
-                <Box className="timeline_service ">
-                  Viverra ipsum nunc aliquet bibendum enim facilisis. Egestas
-                  erat imperdiet sed euismod nisi porta lorem mollis.
+            </SwiperSlide>
+            <SwiperSlide>
+              <Stack className="head_information3">
+                <Box>
+                  <div className="big_img3"></div>
                 </Box>
-                <Box sx={{ mt: "20px" }}>
-                  <Button className="main_btn ">Shop now</Button>
-                </Box>
+                <Stack
+                  justifyContent={"column"}
+                  sx={{ marginTop: "176px", marginLeft: "650px" }}
+                >
+                  <Box className="define_shop ">Trendy Design</Box>
+                  <Box className="define_text ">
+                    FASHIONABLE DESIGNING JEWELLARY
+                  </Box>
+                  <Box className="timeline_service ">
+                    Saecenas ut orci hendrerit. Praesent maximus est a ligula
+                    ultricies, sit amet ornare dui mattis. Donec ac mi dui.
+                    Donec commodo ultrices elit eu sodales.
+                  </Box>
+                  <Box sx={{ mt: "20px" }}>
+                    <Button className="main_btn ">Shop now</Button>
+                  </Box>
+                </Stack>
               </Stack>
-              <Box>
-                <div className="big_img"></div>
-              </Box>
-            </Stack>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Stack className="head_information3">
-              <Box>
-                <div className="big_img3"></div>
-              </Box>
-              <Stack
-                justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "650px" }}
-              >
-                <Box className="define_shop ">Trendy Design</Box>
-                <Box className="define_text ">
-                  FASHIONABLE DESIGNING JEWELLARY
-                </Box>
-                <Box className="timeline_service ">
-                  Saecenas ut orci hendrerit. Praesent maximus est a ligula
-                  ultricies, sit amet ornare dui mattis. Donec ac mi dui. Donec
-                  commodo ultrices elit eu sodales.
-                </Box>
-                <Box sx={{ mt: "20px" }}>
-                  <Button className="main_btn ">Shop now</Button>
-                </Box>
-              </Stack>
-            </Stack>
-          </SwiperSlide>
-        </Swiper>
-      </Stack>
+            </SwiperSlide>
+          </Swiper>
+        </Stack>
+      </Container>
+      <Outlet />
     </div>
   );
 };
