@@ -1,11 +1,11 @@
 import React from "react";
 import {
-  Container,
   Stack,
   Box,
   Button,
   IconButton,
   Badge,
+  Container,
 } from "@mui/material";
 import { NavLink, Outlet } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,9 +17,9 @@ import "../../../css/costum-swiper.css";
 const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
-      <Container className="container">
+        <Container>
         <Stack flexDirection={"row"} className="navbar_container">
-          <Stack flexDirection={"row"} className="navbar_config">
+          <Stack flexDirection={"row"} >
             <Box>
               <img className="logo" src="/icons/bossco.svg" alt="" />
             </Box>
@@ -45,13 +45,13 @@ const NavbarHome = (props: any) => {
               <NavLink to="/shop">Shop</NavLink>
             </Box>
             <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
+              <NavLink to="/store">Store</NavLink>
+            </Box>
+            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
               <NavLink to="/service">Service</NavLink>
             </Box>
             <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
               <NavLink to="/help">Help</NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/portfolio">Portfolio</NavLink>
             </Box>
             <Box>
               <IconButton
@@ -95,8 +95,9 @@ const NavbarHome = (props: any) => {
             </Box>
           </Stack>
         </Stack>
+        </Container>
 
-        <Stack sx={{ border: "1px solid blue" }}>
+        <Stack>
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -181,7 +182,6 @@ const NavbarHome = (props: any) => {
             </SwiperSlide>
           </Swiper>
         </Stack>
-      </Container>
       <Outlet />
     </div>
   );

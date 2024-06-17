@@ -8,10 +8,9 @@ import {
   Badge,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
-
-const NavbarShop = (props: any) => {
+const NavbarOthers = (props: any) => {
   return (
-    <div className="format_shop home_navbar">
+    <div className="format_others home_navbar">
       <Container>
         <Stack flexDirection={"row"} className="navbar_container">
           <Stack flexDirection={"row"} className="navbar_config">
@@ -85,8 +84,9 @@ const NavbarShop = (props: any) => {
           </Stack>
         </Stack>
       </Container>
+      sad
     </div>
   );
 };
 
-export default NavbarShop;
+export default NavbarOthers;
