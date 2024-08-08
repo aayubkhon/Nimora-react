@@ -17,11 +17,11 @@ import "../../../css/costum-swiper.css";
 const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
-        <Container>
+        <Container className="container">
         <Stack flexDirection={"row"} className="navbar_container">
           <Stack flexDirection={"row"} >
             <Box>
-              <img className="logo" src="/icons/bossco.svg" alt="" />
+              <img  className="logo" src="/icons/bossco.svg" alt="" />
             </Box>
           </Stack>
           <Stack
@@ -99,7 +99,7 @@ const NavbarHome = (props: any) => {
 
         <Stack>
           <Swiper
-            spaceBetween={30}
+            spaceBetween={0}
             centeredSlides={true}
             autoplay={{
               delay: 3500,
@@ -175,7 +175,7 @@ const NavbarHome = (props: any) => {
                     Donec commodo ultrices elit eu sodales.
                   </Box>
                   <Box sx={{ mt: "20px" }}>
-                    <Button className="main_btn ">Shop now</Button>
+                    <Button className="main_btn">Shop now</Button>
                   </Box>
                 </Stack>
               </Stack>

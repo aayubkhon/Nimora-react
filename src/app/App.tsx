@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-
 import { Routes, Route,} from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import ShopPage from "./screens/ShopPage";

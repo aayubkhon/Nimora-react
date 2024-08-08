@@ -10,7 +10,7 @@ export function Footer() {
           <Stack flexDirection={"row"} sx={{ height: "242px," }}>
             <Stack className="info" flexDirection={"column"}>
               <Box>
-                <img src="/icons/bossco.svg" alt="logo" />
+                <img className="home" src="/icons/bossco.svg" alt="logo" />
               </Box>
               <Box className="main_text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

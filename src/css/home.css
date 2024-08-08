@@ -1,0 +1,144 @@
+.home_collection {
+  display: flex;
+  width: 100%;
+  height: 450px;
+}
+
+.home_collection .contaier {
+  display: flex;
+  box-sizing: border-box;
+  margin-top: 80px;
+}
+
+.home_collection .cards {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+  border: 0.1px solid black;
+  box-sizing: border-box;
+
+}
+
+.earring {
+  width: 290px;
+  height: 350px;
+  background: url("/public/home/chubby.jpeg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.earring:hover {
+  background: url("/public/home/chubbiys.jpeg") no-repeat;
+  width: 290px;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+.bracelets {
+  width: 290px;
+  height: 350px;
+  background: url("/public/home/bracelets.jpeg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.bracelets:hover {
+  background: url("/public/home/braceletss.jpeg") no-repeat;
+  width: 290px;
+  height: 350px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.necklace {
+  width: 290px;
+  height: 350px;
+  background: url("/public/home/necklace.jpeg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.necklace:hover {
+  background: url("/public/home/necklaces.jpeg") no-repeat;
+  width: 290px;
+  height: 350px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.rings {
+  width: 290px;
+  height: 350px;
+  background: url("/public/home/ring.jpeg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.rings:hover {
+  background: url("/public/home/rings.jpeg") no-repeat;
+  width: 290px;
+  height: 350px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.chain {
+  width: 290px;
+  height: 350px;
+  background: url("/public/home/chain.jpeg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.chain:hover {
+  background: url("/public/home/chains.jpeg") no-repeat;
+  width: 290px;
+  height: 350px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.home_collection .navlink a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.home_collection .navlink {
+  color: #ffffff;
+  padding-left: 10px;
+  padding-top: 10px;
+  text-transform: uppercase;
+  background: #504a48;
+  height: 45px;
+  font-weight: 400;
+  font-size: 17px;
+  font-family: "Sora", sans-serif;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.navlink:hover {
+  opacity: 1;
+}
+
+.navlink::before {
+  transition: all 0.4s linear;
+  height: 1px;
+  content: "";
+  position: absolute;
+  background-color: #ffffff;
+}
+
+.line::before {
+  width: 0%;
+  bottom: 10px;
+}
+
+.line:hover::before {
+  width:35%;
+}
+
+.line:hover a {
+  color: #f7ab42;
+  transition: all 0.1s linear;
+}

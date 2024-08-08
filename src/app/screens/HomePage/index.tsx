@@ -1,8 +1,12 @@
 import React from 'react'
+import OurCollection from './OurCollection'
+import "../../../css/home.css";
 
 const HomePage = () => {
   return (
-    <div></div>
+    <div className='homepage'>
+      <OurCollection/>
+    </div>
   )
 }
 
