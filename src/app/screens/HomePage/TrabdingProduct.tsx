@@ -2,8 +2,6 @@ import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
-import { NavLink } from "react-router-dom";
-
 const TrabdingProduct = () => {
   return (
     <div className="TrandingProduct_frame">
@@ -15,68 +13,83 @@ const TrabdingProduct = () => {
           slidesPerView={4}
           cssMode={true}
           navigation={true}
-          pagination={true}
           mousewheel={true}
           keyboard={true}
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
           className="mySwiper"
         >
-          ß
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
-        <div className="earring"></div>
-            
+            <div className="image-container">
+            <img src="./home/crystal.jpeg" className="default-image" />
+            <img src="./home/ring.jpeg" className="hover-image" />
+            </div>
           </SwiperSlide>
-          <SwiperSlide>
-        <div className="earring"></div>
-            
-          </SwiperSlide>
-     
-  
-
         </Swiper>
       </Container>
     </div>

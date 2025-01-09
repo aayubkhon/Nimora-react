@@ -104,6 +104,8 @@
   font-weight: 500;
   font-style: normal;
   color: white;
+  cursor: default;
+
 }
 
 /* .home_navbar .slide-right {
@@ -127,6 +129,8 @@
   font-style: italic;
   color: white;
   margin-top: 15px;
+  cursor: default;
+
 }
 .home_navbar .timeline_service {
   position: relative;
