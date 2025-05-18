@@ -64,7 +64,7 @@ export function Footer() {
           </Stack>
           <Box className="liner"></Box>
           <Box className="copyrights">
-            Copyright Bassco 2024, All right reserved.
+            Copyright Bassco 2025, All right reserved.
           </Box>
         </Stack>
       </Container>

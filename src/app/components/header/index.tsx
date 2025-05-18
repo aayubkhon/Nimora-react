@@ -19,17 +19,7 @@ const NavbarHome = (props: any) => {
     <div className="home_navbar">
       <Container className="container">
         <Stack flexDirection={"row"} className="navbar_container">
-          <Stack flexDirection={"row"}>
-            <Box>
-              <img className="logo" src="/icons/bossco.svg" alt="" />
-            </Box>
-          </Stack>
-          <Stack
-            flexDirection={"row"}
-            justifyContent={"space-evenly"}
-            alignItems={"center"}
-            className="navbar_links"
-          >
+          <Stack className="navbar_links">
             <Box className="hover_line nav-link-ltr">
               <NavLink
                 onClick={props.setPath}
@@ -38,20 +28,47 @@ const NavbarHome = (props: any) => {
                 })}
                 to="/"
               >
-                Home
+                <Box className={"active"}>
+                  <img src="/icons/rectangle.svg" alt="" />
+                  <h3>Home</h3>
+                </Box>
               </NavLink>
             </Box>
             <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/shop">Shop</NavLink>
+              <NavLink to="/shop">
+                <h3>Shop</h3>
+              </NavLink>
             </Box>
             <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/store">Store</NavLink>
+              <NavLink to="/store">
+                <h3>Store</h3>
+              </NavLink>
             </Box>
             <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/service">Service</NavLink>
+              <NavLink to="/service">
+                <h3>Service</h3>
+              </NavLink>
             </Box>
             <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/help">Help</NavLink>
+              <NavLink to="/help">
+                <h3>Help</h3>
+              </NavLink>
+            </Box>
+            <Box>
+              <img className="logo" src="/icons/Clip.svg" alt="" />
+            </Box>
+            <Box>
+              <IconButton
+                aria-label="cart"
+                // id="basic-button"
+                aria-controls={undefined}
+                aria-haspopup="true"
+                aria-expanded={undefined}
+                color="warning"
+                className="shopin_cart"
+              >
+                <img className="icon" src="/icons/icons.svg" alt="" />
+              </IconButton>
             </Box>
             <Box>
               <IconButton
@@ -65,33 +82,14 @@ const NavbarHome = (props: any) => {
                 // onClick={}
               >
                 <Badge badgeContent={3}>
-                  <img src={"/icons/bag.svg"} alt="" />
+                  <img className="icon_bag" src={"/icons/bag.svg"} alt="" />
                 </Badge>
               </IconButton>
             </Box>
             <Box>
-              <Button variant="text" className="reg_btn">
+              <Button  className="login_btn">
                 Login
               </Button>
-            </Box>
-            <span>/</span>
-            <Box>
-              <Button variant="text" className="reg_btn">
-                Register
-              </Button>
-            </Box>
-            <Box>
-              <IconButton
-                aria-label="cart"
-                // id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                color="warning"
-                className="shopin_cart"
-              >
-                <img className="icon" src="/icons/icon.svg" alt="" />
-              </IconButton>
             </Box>
           </Stack>
         </Stack>

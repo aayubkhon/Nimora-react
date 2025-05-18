@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
 .home_navbar {
   width: 100%;
   height: 100%;
+  background: rgb(245, 237, 230);
 }
 
 
@@ -33,35 +34,38 @@
 }
 
 .logo {
-  width: 150px;
-  height: 150px;
-  cursor: pointer;
+ width: 180px;
+ height: 50px;
 
 }
 .home_navbar .navbar_links {
   width:100px;
   height: 46px;
   display: flex;
-  margin-top: 20px;
-  margin-left: 450px;
-}
+  flex-direction: row ;
+  justify-content: space-between;
+  }
 
 .home_navbar .hover_line a {
   text-decoration: none;
   color: #2d2d2d ;
 }
 
+.home_navbar .active{
+  display: flex;
+}
 .home_navbar .hover_line {
-  font-weight: 500;
-  font-size: 17px;
+  color: rgb(75, 61, 57);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0%;
   text-transform: capitalize;
-  text-decoration: none;
   padding: 10px 0px;
   margin: 0px 20px;
-  font-family: "Sora", sans-serif;
   display: inline-block;
   position: relative;
-  opacity: 0.75;
 }
 .hover_line:hover {
   opacity: 1;
@@ -213,26 +217,32 @@
   align-items: center;
 }
 
-.home_navbar .shopin_cart:hover {
-  color: #f7ab42;
-  transition: all 0.3s linear;
-}
-.home_navbar .reg_btn {
-  color: #2d2d2d;
-  font-size: 17px;
-  font-family: "Sora", sans-serif;
-  font-weight: 500;
-  text-transform: capitalize;
-  border: none;
+
+.home_navbar .login_btn{
+  color: rgb(255, 255, 255);
+font-family: Judson;
+font-size: 14px;
+font-weight: 700;
+line-height: 8px;
+letter-spacing: 15%;
+text-align: center;
+text-transform: uppercase;
+background-color: rgb(6, 6, 6);
+border: none;
 }
 
-.home_navbar .reg_btn:hover {
-  color: #f7ab42;
-}
+
 
 .home_navbar .icon{
-  color: #f7ab42;
+  cursor: pointer;
+  width: 15px;
+  height: 20px;
+
+}
+
+.home_navbar .icon_bag{
   cursor: pointer;
   width: 20px;
+  height: 20px;
 
 }
