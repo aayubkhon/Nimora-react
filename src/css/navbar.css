@@ -1,96 +1,120 @@
-
 .home_navbar {
   width: 100%;
-  height: 100%;
-  background: rgb(245, 237, 230);
+}
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 7%;
 }
 
+.logo {
+  width: 153px;
+  height: 53px;
+  left: 139px;
+  top: 74px;
+  cursor: pointer;
+}
+ul {
+  flex: 1;
+  list-style: none;
+  text-align: center;
+}
+ul li {
+  display: inline-block;
+  margin: 10px 20px;
+  color: rgb(75, 61, 57);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+ul li .nav-link-ltr {
+  list-style: none;
+  text-decoration: none;
+  color: rgb(75, 61, 57);
+}
 
-.format_shop .home_navbar{
+.icon_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 170px;
+}
+
+.home_navbar .navbar .login_btn {
+  background: rgb(6, 6, 6);
+  width: 75px;
+  height: 28px;
+  color: rgb(255, 255, 255);
+  font-family: Judson;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10%;
+}
+.home_navbar .login_btn:hover {
+  background: rgb(6, 6, 6);
+  color: rgb(255, 255, 255);
+}
+
+.format_shop .home_navbar {
   width: 100%;
   height: 100%;
 }
 
-.format_others .home_navbar{
+.format_others .home_navbar {
   width: 100%;
   height: 100%;
-  
 }
 .home_navbar .navbar_container {
   display: flex;
   align-items: center;
   width: 100%;
   height: 90px;
-
-
-
 }
 .home_navbar .navbar_config {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  
-
 }
 
-.logo {
- width: 180px;
- height: 50px;
-
-}
 .home_navbar .navbar_links {
-  width:100px;
+  width: 100px;
   height: 46px;
   display: flex;
-  flex-direction: row ;
+  flex-direction: row;
   justify-content: space-between;
-  }
+}
 
 .home_navbar .hover_line a {
   text-decoration: none;
-  color: #2d2d2d ;
+  color: #2d2d2d;
 }
 
-.home_navbar .active{
+.home_navbar .active {
   display: flex;
 }
 .home_navbar .hover_line {
-  color: rgb(75, 61, 57);
   font-family: Judson;
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 0%;
   text-transform: capitalize;
-  padding: 10px 0px;
-  margin: 0px 20px;
+  margin: 0px 15px;
   display: inline-block;
   position: relative;
 }
 .hover_line:hover {
-  opacity: 1;
-}
-
-.hover_line::before {
-  transition: all 0.4s linear;
-  height: 2px;
-  content: "";
-  position: absolute;
-  background-color: #f7ab42;
-}
-
-.nav-link-ltr::before {
-  width: 0%;
-  bottom: 10px;
-}
-
-.nav-link-ltr:hover::before {
-  width: 100%;
-}
-
-.nav-link-ltr:hover a {
   color: #f7ab42;
-  transition: all 0.3s linear;
+  transition: 0.3s;
 }
 
 .home_navbar .head_information {
@@ -103,57 +127,48 @@
 
 .home_navbar .define_text {
   width: 620px;
-  font-size: 50px;
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  color: white;
+  color: #fff;
+  font-family: Judson;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 69px;
+  letter-spacing: 0%;
+  text-transform: capitalize;
   cursor: default;
-
 }
-
-/* .home_navbar .slide-right {
-   animation: 3.5s slide-right;
- }
- @keyframes slide-right {
-   from {
-     margin-right: -100%;
-   }
-   to {
-     margin-right: 0%;
-   }
- } */
 
 .home_navbar .define_shop {
   position: relative;
   width: 484px;
-  font-size: 23px;
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-  color: white;
+  color: #fff;
+  font-family: Judson;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+  text-transform: uppercase;
   margin-top: 15px;
   cursor: default;
-
 }
 .home_navbar .timeline_service {
   position: relative;
   width: 566px;
-  font-style: normal;
-  font-size: 20px;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: Inter;
+  font-size: 18px;
   font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: justify;
   margin-top: 18px;
   color: white;
 }
 
 .home_navbar .main_btn {
   width: 180px;
-  font-size: 20px;
-  font-family: "EB Garamond", serif;
-  font-weight: 800;
-  font-style: italic;
-  text-transform: capitalize;
+  font-family: Judson;
+  font-size: 19px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
   border: none;
   background-color: #ffffff;
   color: black;
@@ -217,32 +232,14 @@
   align-items: center;
 }
 
-
-.home_navbar .login_btn{
-  color: rgb(255, 255, 255);
-font-family: Judson;
-font-size: 14px;
-font-weight: 700;
-line-height: 8px;
-letter-spacing: 15%;
-text-align: center;
-text-transform: uppercase;
-background-color: rgb(6, 6, 6);
-border: none;
+.home_navbar .icon {
+  cursor: pointer;
+  width: 15.43px;
+  height: 15.76px;
 }
 
-
-
-.home_navbar .icon{
+.home_navbar .icon_bag {
   cursor: pointer;
-  width: 15px;
-  height: 20px;
-
-}
-
-.home_navbar .icon_bag{
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-
+  width: 14.32px;
+  height: 15.76px;
 }

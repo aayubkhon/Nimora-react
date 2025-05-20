@@ -5,7 +5,6 @@ import {
   Button,
   IconButton,
   Badge,
-  Container,
 } from "@mui/material";
 import { NavLink, Outlet } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,47 +16,37 @@ import "../../../css/costum-swiper.css";
 const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
-      <Container className="container">
-        <Stack flexDirection={"row"} className="navbar_container">
-          <Stack className="navbar_links">
-            <Box className="hover_line nav-link-ltr">
-              <NavLink
-                onClick={props.setPath}
-                style={(isActive) => ({
-                  color: isActive ? "#f7ab42" : "black",
-                })}
-                to="/"
-              >
-                <Box className={"active"}>
-                  <img src="/icons/rectangle.svg" alt="" />
-                  <h3>Home</h3>
-                </Box>
-              </NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/shop">
-                <h3>Shop</h3>
-              </NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/store">
-                <h3>Store</h3>
-              </NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/service">
-                <h3>Service</h3>
-              </NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/help">
-                <h3>Help</h3>
-              </NavLink>
-            </Box>
-            <Box>
-              <img className="logo" src="/icons/Clip.svg" alt="" />
-            </Box>
-            <Box>
+      <div className="navbar">
+        <NavLink to="/">
+          <img className="logo" src="/icons/Clip.svg" alt="" />
+        </NavLink>
+        <ul>
+          <li>
+            <NavLink  className="nav-link-ltr"
+              to="/"
+              onClick={props.setPath}
+              style={(isActive) => ({
+                color: isActive ? "#f7ab42" : "black",
+              })}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li onClick={props.setPath}>
+            <NavLink   className="hover_line nav-link-ltr"to="/shop">Shop </NavLink>
+          </li>
+          <li onClick={props.setPath}>
+          <NavLink className="hover_line nav-link-ltr" to="/store">Store </NavLink>
+          </li>
+          <li onClick={props.setPath}> 
+          <NavLink className="hover_line nav-link-ltr" to="/service">Service </NavLink>
+          </li>
+          <li onClick={props.setPath}>
+          <NavLink className="hover_line nav-link-ltr" to="/help">Help </NavLink>
+          </li>
+        </ul>
+        <div className="icon_box">
+        <Box>
               <IconButton
                 aria-label="cart"
                 // id="basic-button"
@@ -81,20 +70,14 @@ const NavbarHome = (props: any) => {
                 className="shopin_cart"
                 // onClick={}
               >
-                <Badge badgeContent={3}>
+                <Badge badgeContent={1}>
                   <img className="icon_bag" src={"/icons/bag.svg"} alt="" />
                 </Badge>
               </IconButton>
             </Box>
-            <Box>
-              <Button  className="login_btn">
-                Login
-              </Button>
-            </Box>
-          </Stack>
-        </Stack>
-      </Container>
-
+          <Button variant="contained" className="login_btn">Login</Button>
+        </div>
+      </div>
       <Stack>
         <Swiper
           spaceBetween={0}

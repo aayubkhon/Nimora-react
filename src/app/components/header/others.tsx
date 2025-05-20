@@ -10,36 +10,49 @@ import {
 import { NavLink } from "react-router-dom";
 const NavbarOthers = (props: any) => {
   return (
-    <div className="format_others home_navbar">
-      <Container>
-        <Stack flexDirection={"row"} className="navbar_container">
-          <Stack flexDirection={"row"} className="navbar_config">
-            <Box>
-              <img className="logo" src="/icons/bossco.svg" alt="" />
-            </Box>
-          </Stack>
-          <Stack
-            flexDirection={"row"}
-            justifyContent={"space-evenly"}
-            alignItems={"center"}
-            className="navbar_links"
-          >
-            <Box className="hover_line nav-link-ltr">
-              <NavLink to="/" onClick={props.setPath}>
-                Home
-              </NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/shop">Shop</NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/store">Store</NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/service">Service</NavLink>
-            </Box>
-            <Box className="hover_line nav-link-ltr" onClick={props.setPath}>
-              <NavLink to="/help">Help</NavLink>
+    <div className="home_navbar">
+      <div className="navbar">
+        <NavLink to="/">
+          <img className="logo" src="/icons/Clip.svg" alt="" />
+        </NavLink>
+        <ul>
+          <li>
+            <NavLink className="nav-link-ltr"
+              to="/"
+              onClick={props.setPath}
+              style={(isActive) => ({
+                color: isActive ? "#f7ab42" : "black",
+              })}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li onClick={props.setPath}>
+            <NavLink className="hover_line nav-link-ltr"to="/shop">Shop</NavLink>
+          </li>
+          <li onClick={props.setPath}>
+          <NavLink className="hover_line nav-link-ltr" to="/store">Store </NavLink>
+          </li>
+          <li onClick={props.setPath}> 
+          <NavLink className="hover_line nav-link-ltr" to="/service">Service </NavLink>
+          </li>
+          <li onClick={props.setPath}>
+          <NavLink className="hover_line nav-link-ltr" to="/help">Help </NavLink>
+          </li>
+        </ul>
+        <div className="icon_box">
+        <Box>
+              <IconButton
+                aria-label="cart"
+                // id="basic-button"
+                aria-controls={undefined}
+                aria-haspopup="true"
+                aria-expanded={undefined}
+                color="warning"
+                className="shopin_cart"
+              >
+                <img className="icon" src="/icons/icons.svg" alt="" />
+              </IconButton>
             </Box>
             <Box>
               <IconButton
@@ -52,39 +65,14 @@ const NavbarOthers = (props: any) => {
                 className="shopin_cart"
                 // onClick={}
               >
-                <Badge badgeContent={3}>
-                  <img src={"/icons/bag.svg"} alt="" />
+                <Badge badgeContent={1}>
+                  <img className="icon_bag" src={"/icons/bag.svg"} alt="" />
                 </Badge>
               </IconButton>
             </Box>
-            <Box>
-              <Button variant="text" className="reg_btn">
-                Login
-              </Button>
-            </Box>
-            <span>/</span>
-            <Box>
-              <Button variant="text" className="reg_btn">
-                Register
-              </Button>
-            </Box>
-            <Box>
-              <IconButton
-                aria-label="cart"
-                // id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                color="warning"
-                className="shopin_cart"
-              >
-                <img className="icon" src="/icons/icon.svg" alt="" />
-              </IconButton>
-            </Box>
-          </Stack>
-        </Stack>
-      </Container>
-      sad
+          <Button className="login_btn">Login</Button>
+        </div>
+      </div>
     </div>
   );
 };

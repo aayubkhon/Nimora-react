@@ -28,14 +28,14 @@ const TrabdingProduct = () => {
         <Stack flexDirection={"column"}>
           <Box className="frame_name"> TOP 15 TRENDING PRODUCTS</Box>
         </Stack>
-        <Carousel responsive={responsive}>
+        {/* <Carousel responsive={responsive}>
           <div className="image-container">
             <img src="./home/crystal.jpeg" className="default-image" />
             <div className="overlay">
               <img src="./home/ring.jpeg" className="hover-image" />
             </div>
           </div>
-        </Carousel>
+        </Carousel> */}
       </Container>
     </div>
   );

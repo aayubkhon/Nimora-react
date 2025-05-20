@@ -3,7 +3,6 @@
   display: flex;
   width: 100%;
   height: 450px;
-  margin-top: 80px;
 }
 
 .home_collection .contaier {
@@ -27,6 +26,7 @@
   background: url("/public/home/chubby.jpeg") no-repeat;
   background-position: center;
   background-size: cover;
+
 }
 .earring:hover {
   background: url("/public/home/chubbiys.jpeg") no-repeat;
@@ -35,6 +35,7 @@
   background-size: cover;
   background-position: center;
   cursor: pointer;
+
 }
 .bracelets {
   width: 290px;
@@ -42,6 +43,8 @@
   background: url("/public/home/bracelets.jpeg") no-repeat;
   background-size: cover;
   background-position: center;
+  
+
 }
 .bracelets:hover {
   background: url("/public/home/braceletss.jpeg") no-repeat;
