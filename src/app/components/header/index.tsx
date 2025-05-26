@@ -92,7 +92,7 @@ const NavbarHome = (props: any) => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide>
+          <SwiperSlide >
             <Stack className="head_information_second">
               <Box>
                 <div className="big_img2"></div>
