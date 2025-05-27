@@ -20,48 +20,56 @@ const TrabdingProduct = () => {
   return (
     <div className="TrandingProduct_frame">
       <div className="back"></div>
+
       <Container>
         <Stack flexDirection={"column"}>
           <Box className="frame_name"> TOP 15 TRENDING PRODUCTS</Box>
         </Stack>
         <CssVarsProvider>
           <Card
-            color="neutral"
-            orientation="vertical"
+         
+            color="primary"
             variant="plain"
-            sx={{ width: "320px", height: "370px",borderRadius:0 }}
+            sx={{
+              width: "340px",
+              height: "420px",
+              borderRadius: 0,
+              background: "rgb(247, 245, 239)",
+              cursor: "pointer",
+              
+            }}
           >
-            <CardContent>
-              <CardCover className="ring" >
-                <img src="/home/birstone.jpeg" alt="" />
-              </CardCover>
-              <CardOverflow sx={{ marginTop: 44, marginLeft: 8, width: 130 }}>
-                <Button
-                  onClick={function () {}}
-                  size="md"
-                  variant="outlined"
-                  className="Add_cart"
+            <CardContent  className="Card">
+              <div className="wrap">
+                <CardCover className="ring">
+                  <img className="birst" src="/home/birstone.jpeg" alt="" />
+                </CardCover>
+                <CardOverflow
+                  className="crs"
+                  sx={{ marginTop: 45, marginLeft: 25, width: 100 }}
                 >
-                  Add to card
-                </Button>
-              </CardOverflow>
+                  <Button
+                    color="neutral"
+                    onClick={function () {}}
+                    size="sm"
+                    variant="plain"
+                    className="Add_cart"
+                  >
+                    Add to bag
+                  </Button>
+                </CardOverflow>
+              </div>
               <CardOverflow>
-                <IconButton
-                  aria-label="Like minimal photography"
-                  size="md"
-                  variant="solid"
-                  color="danger"
+                {/* <IconButton
                   sx={{
                     position: "absolute",
                     zIndex: 2,
-                    borderRadius: "50%",
-                    right: "1rem",
-                    bottom: 80,
+                    bottom: 30,
                     transform: "translateY(50%)",
                   }}
                 >
                   <Favorite />
-                </IconButton>
+                </IconButton> */}
               </CardOverflow>
             </CardContent>
           </Card>

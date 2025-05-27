@@ -6,6 +6,7 @@ import typography from "./typography";
 /**
  * LIGHT THEME (DEFAULT)
  */
+
 const light = {
   palette: {
     type: "light",
@@ -46,6 +47,8 @@ const light = {
   shadow,
   typography,
 };
+
+
 
 // A custom theme for this app
 let theme = createTheme(light);

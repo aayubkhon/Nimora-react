@@ -169,30 +169,37 @@
 }
 
 .TrandingProduct_frame .ring {
-  width: 320px;
-  height: 370px;
-  border: none;
+  width: 340px;
+  height: 380px;
+
+}
+
+
+
+.TrandingProduct_frame .Card:hover {
+   width: 340px;
+  height: 420px;
+  background: url("/public/home/chubby.jpeg") no-repeat;
+  background-size: cover;
 }
 
 .TrandingProduct_frame .Add_cart {
-  background: rgb(6, 6, 6);
-height: 30px;
- color: rgb(238, 238, 238);
-font-family: Judson;
-font-size: 14px;
-font-weight: 700;
-line-height: 8px;
-letter-spacing: 15%;
-text-align: center;
-text-transform: uppercase;
-  text-transform: uppercase;
-  border-radius: 0;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 9999px;
+  transform: translateY(-50%);
+  background: white;
   border: none;
-
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.wrap:hover .Add_cart{
   opacity: 1;
 }
-.TrandingProduct_frame .Add_cart:hover{
- 
-  background: rgb(6, 6, 6);
-  color: rgb(255, 255, 255);
-}
+
+
+
+
