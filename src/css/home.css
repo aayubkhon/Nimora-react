@@ -143,63 +143,99 @@
 /* Collection finish */
 
 /* TrandingProduct_frme start */
-.homepage .TrandingProduct_frame {
+.TrandingProduct_frame {
   width: 100%;
-  height: 852px;
-  background: rgba(195, 154, 112, 0.1);
+ height: 900px;
+  background: rgb(246, 245, 240);
 }
 
-.TrandingProduct_frame .back {
-  position: absolute;
-  background: url("/public/home/pattern.png") no-repeat;
-  width: 100%;
-  height: 500px;
-  background-size: cover;
-  background-position: 100%;
-}
+
 .TrandingProduct_frame .frame_name {
-  color: rgb(34, 34, 34);
-  font-family: Judson;
-  font-size: 50px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-align: left;
-  text-transform: capitalize;
-  margin-top: 30px;
-}
-
-.TrandingProduct_frame .ring {
-  width: 340px;
-  height: 380px;
-
+color: rgb(46, 46, 46);
+font-family: Judson;
+font-size: 55px;
+font-weight: 400;
+text-transform: capitalize;
+margin-top: 50px;
 }
 
 
 
-.TrandingProduct_frame .Card:hover {
-   width: 340px;
-  height: 420px;
-  background: url("/public/home/chubby.jpeg") no-repeat;
-  background-size: cover;
-}
-
-.TrandingProduct_frame .Add_cart {
+.TrandingProduct_frame .add_bag {
   height: 20px;
   font-size: 12px;
   font-weight: 400;
   text-align: center;
   border-radius: 9999px;
-  transform: translateY(-50%);
-  background: white;
   border: none;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background: #ffffff;
+  color: #000;
+  margin-left: auto;
 }
-.wrap:hover .Add_cart{
-  opacity: 1;
+.TrandingProduct_frame .add_box .add_bag:hover {
+height: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+    background: rgb(246, 245, 240);
+  color: #000;
 }
 
 
+
+.TrandingProduct_frame .product_name{
+color: rgb(46, 46, 46);
+font-family: Judson;
+font-size: 22px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0%;
+text-align: left;
+text-transform: capitalize;
+}
+.TrandingProduct_frame .product_price{
+color: rgb(46, 46, 46);
+font-family: Inter;
+font-size: 16px;
+font-weight: 400;
+line-height: 30px;
+letter-spacing: 0%;
+}
+
+.TrandingProduct_frame .swiper {
+  width: 100%;
+  height: 640px;
+  cursor: pointer;
+  margin-top: 50px;
+
+}
+
+.TrandingProduct_frame .swiper-slide {
+  width:100%;
+  height: 600px;
+
+}
+
+
+
+/* Pagination */
+.TrandingProduct_frame .swiper-pagination-bullet{
+  width: 30px;
+  height: 1px;
+  background-color:rgb(46, 46, 46) ;
+  border: 3px solid rgb(46, 46, 46);
+  border-radius: 14px;
+}
+.TrandingProduct_frame .swiper-pagination-bullet-active{
+  width: 30px;
+  border-radius: 14px;
+  background-color:rgb(46, 46, 46) ;
+  border: 3px solid rgb(46, 46, 46);
+  transition: all 0.8s ease-in-out;
+}
 
 
