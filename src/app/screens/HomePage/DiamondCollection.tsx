@@ -6,7 +6,7 @@ const DiamondCollection = () => {
     <div className="DiamondCollection_frame">
       <div className="container">
         <div className="first_img">
-          <div className="img_box ">
+          <div className="img_box">
             <h2 className="img_text">Play with color</h2>
             <p className="img_about">
               New Dôme pieces are here to define your summer palette

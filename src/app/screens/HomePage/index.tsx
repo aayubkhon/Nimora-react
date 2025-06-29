@@ -1,15 +1,17 @@
 import React from 'react'
 import OurCollection from './OurCollection'
 import "../../../css/home.css";
-import TrabdingProduct from './TrabdingProduct';
+import TradingProduct from './TradingProduct';
 import DiamondCollection from './DiamondCollection';
+import RecentProducts from './RecentProducts';
 
 const HomePage = () => {
   return (
     <div className='homepage'>
       <OurCollection/>
-      <TrabdingProduct/>
+      <TradingProduct/>
       <DiamondCollection/>
+      <RecentProducts/>
     </div>
   )
 }

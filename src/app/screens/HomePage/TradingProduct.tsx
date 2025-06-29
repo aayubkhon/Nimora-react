@@ -73,7 +73,6 @@ const TrabdingProduct = () => {
                       size="sm"
                       variant="solid"
                       color="danger"
-                      sx={{ bgcolor: "rgba(0 0 0 / 0.2)" }}
                     >
                       <Favorite />
                     </IconButton>

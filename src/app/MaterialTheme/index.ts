@@ -19,7 +19,7 @@ const light = {
       main: "#ffffff",
     },
     secondary: {
-      main: "#c40909",
+      main: "#000",
       // main: "#0383a3",
     },
     text: {
@@ -58,7 +58,7 @@ theme = createTheme(theme, {
       styleOverrides: {
         maxWidthLg: {
           [theme.breakpoints.up("lg")]: {
-            maxWidth: "1320px",
+            maxWidth: "1600px",
           },
         },
       },

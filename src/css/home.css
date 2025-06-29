@@ -9,7 +9,6 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  
 }
 .home_collection .ll {
   display: flex;
@@ -236,7 +235,8 @@
 
 .DiamondCollection_frame {
   width: 100%;
-  height: 920px;
+  height: 990px;
+  background: rgb(255, 255, 255);
 }
 
 .DiamondCollection_frame .container {
@@ -246,7 +246,7 @@
   justify-content: space-evenly;
 }
 
-.DiamondCollection_frame .logo_box{
+.DiamondCollection_frame .logo_box {
   width: 100%;
   display: flex;
 }
@@ -277,6 +277,7 @@
   flex-direction: column;
   position: relative;
   top: 70%;
+  
 }
 .DiamondCollection_frame .img_text {
   color: rgb(0, 0, 0);
@@ -314,7 +315,7 @@
   margin-top: 30px;
 }
 
-.DiamondCollection_frame .logo_box{
+.DiamondCollection_frame .logo_box {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -323,9 +324,9 @@
   margin-top: 40px;
 }
 
-.DiamondCollection_frame .vector{
- border: 0.8px solid rgb(0, 0, 0);
- height: 0;
+.DiamondCollection_frame .vector {
+  border: 0.8px solid rgb(0, 0, 0);
+  height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,5 +334,152 @@
   width: 80%;
   margin-left: 130px;
   margin-top: 30px;
+}
+
+/* DiamondCollection_frme finish */
+
+/* RecentProducts_frame start */
+
+.RecentProducts_frame {
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+}
+
+.RecentProducts_frame .wrap {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.RecentProducts_frame .btn_box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 59px;
+}
+
+.RecentProducts_frame .product_btn {
+  width: 210px;
+  height: 45px;
+  color: rgb(6, 6, 6);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 10%;
+  text-align: center;
+}
+
+.RecentProducts_frame .product_btn:hover {
+  background: rgb(75, 61, 57);
+  color: rgb(255, 255, 255);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 10%;
+  text-align: center;
+}
+.RecentProducts_frame .wrap_box{
+  display: grid;
+  align-items: center;
+  justify-content: space-around;
+  grid-template-columns: auto auto auto;
+  margin-top: 60px;
+}
+
+.RecentProducts_frame .ring {
+  width: 361px;
+  height: 371px;
+  background: url("/public/home/bridal.jpeg") no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* .RecentProducts_frame .ring:hover {
+  background: url("/public/home/rings.jpeg") no-repeat;
+  width: 361px;
+  height: 371px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  transition-timing-function: ease-in ;
+} */
+.RecentProducts_frame .btnn {
+  width: 200px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  font-family: Judson;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 15%;
+  text-align: left;
+  background: rgb(6, 6, 6);
+  color: #000;
+  opacity: 0;
+  position: relative;
+  top: 40%;
+}
+
+.RecentProducts_frame .btnn:hover {
+  width: 200px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  font-family: Judson;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 15%;
+  text-align: left;
+  background: rgb(6, 6, 6);
+  color: #000;
+  opacity: 1;
+}
+
+.RecentProducts_frame .ring:hover .btnn {
+  width: 200px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  font-family: Judson;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 15%;
+  text-align: left;
+  opacity: 1;
+  transition: 0.2s ease-out;
+
+}
+
+.RecentProducts_frame .product_name{
+  color: rgb(6, 6, 6);
+font-family: Judson;
+font-size: 24px;
+font-weight: 400;
+line-height: 28px;
+letter-spacing: 0%;
+text-align: left;
+text-transform: capitalize;
+margin-top: 10px;
+}
+
+.RecentProducts_frame .product_price{
+color: rgb(57, 57, 57);
+font-family: Inter;
+font-size: 16px;
+font-weight: 400;
+line-height: 19px;
+letter-spacing: 0%;
+text-align: left;
+margin-top: 10px;
 
 }
