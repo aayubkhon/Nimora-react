@@ -19,7 +19,7 @@ const OurCollection = (props: any) => {
             sx={{
               width: 320,
               borderRadius: "none",
-              border: "none",
+              border: "0.1px solid black",
               background: "#504a48",
             }}
           >
@@ -65,7 +65,7 @@ const OurCollection = (props: any) => {
             sx={{
               width: 320,
               borderRadius: "none",
-              border: "none",
+              border: "0.1px solid black",
               background: "#504a48",
             }}
           >
@@ -88,7 +88,7 @@ const OurCollection = (props: any) => {
             sx={{
               width: 320,
               borderRadius: "none",
-              border: "none",
+              border: "0.1px solid black",
               background: "#504a48",
             }}
           >
@@ -97,7 +97,6 @@ const OurCollection = (props: any) => {
                 <div className="rings"></div>
               </AspectRatio>
             </CardOverflow>
-
             <Typography level="body-xs" sx={{ fontWeight: "md" }}>
               <Box className="navlink line">
                 <NavLink className="nav" to="/">
@@ -111,7 +110,7 @@ const OurCollection = (props: any) => {
             sx={{
               width: 320,
               borderRadius: "none",
-              border: "none",
+              border: "0.1px solid black",
               background: "#504a48",
             }}
           >
