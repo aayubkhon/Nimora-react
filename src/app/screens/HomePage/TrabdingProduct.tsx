@@ -15,7 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Navigation,Pagination } from 'swiper/modules';
+import {Pagination } from 'swiper/modules';
 
 
 const TrabdingProduct = () => {
@@ -410,36 +410,3 @@ const TrabdingProduct = () => {
 
 export default TrabdingProduct;
 
-{
-  /* <Swiper
-effect={'coverflow'}
-grabCursor={true}
-centeredSlides={true}
-slidesPerView={'auto'}
-coverflowEffect={{
-  rotate: 10,
-  stretch: 0,
-  depth: 100,
-  modifier: 1,
-  slideShadows: true,
-}}
-pagination={true}
-modules={[EffectCoverflow, Pagination]}
-className="mySwiper">
-<SwiperSlide>
-<img className="swiper_img" src="/home/ring.jpeg" alt="" />
-</SwiperSlide>
-<SwiperSlide>
-<img className="swiper_img" src="/home/ring.jpeg" alt="" />
-</SwiperSlide>
-<SwiperSlide>
-<img className="swiper_img" src="/home/ring.jpeg" alt="" />
-</SwiperSlide>
-<SwiperSlide>
-<img className="swiper_img" src="/home/ring.jpeg" alt="" />
-</SwiperSlide>
-<SwiperSlide>
-<img className="swiper_img" src="/home/ring.jpeg" alt="" />
-</SwiperSlide>
-</Swiper> */
-}

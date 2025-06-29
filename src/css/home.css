@@ -4,22 +4,29 @@
   height: auto;
 }
 
-.home_collection .contaier {
+.home_collection .container {
+  width: 100%;
   display: flex;
+  align-items: center;
   box-sizing: border-box;
+}
+.home_collection .ll {
+  display: flex;
+  width: 100%;
 }
 
 .home_collection .cards {
+  width: 270px;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   flex-direction: column;
-  height: fit-content;
   border: 0.1px solid black;
   box-sizing: border-box;
 }
 
 .earring {
-  width: 290px;
+  width: 300px;
   height: 350px;
   background: url("/public/home/chubby.jpeg") no-repeat;
   background-position: center;
@@ -27,14 +34,15 @@
 }
 .earring:hover {
   background: url("/public/home/chubbiys.jpeg") no-repeat;
-  width: 290px;
+  width: 300px;
   height: 350px;
   background-size: cover;
   background-position: center;
   cursor: pointer;
 }
 .bracelets {
-  width: 290px;
+  width: 300px;
+
   height: 350px;
   background: url("/public/home/bracelets.jpeg") no-repeat;
   background-size: cover;
@@ -42,14 +50,15 @@
 }
 .bracelets:hover {
   background: url("/public/home/braceletss.jpeg") no-repeat;
-  width: 290px;
+  width: 300px;
+
   height: 350px;
   background-position: center;
   background-size: cover;
   cursor: pointer;
 }
 .necklace {
-  width: 290px;
+  width: 380px;
   height: 350px;
   background: url("/public/home/necklace.jpeg") no-repeat;
   background-size: cover;
@@ -57,14 +66,16 @@
 }
 .necklace:hover {
   background: url("/public/home/necklaces.jpeg") no-repeat;
-  width: 290px;
+  width: 300px;
+
   height: 350px;
   background-position: center;
   background-size: cover;
   cursor: pointer;
 }
 .rings {
-  width: 290px;
+  width: 300px;
+
   height: 350px;
   background: url("/public/home/ring.jpeg") no-repeat;
   background-size: cover;
@@ -72,14 +83,16 @@
 }
 .rings:hover {
   background: url("/public/home/rings.jpeg") no-repeat;
-  width: 290px;
+  width: 300px;
+
   height: 350px;
   background-position: center;
   background-size: cover;
   cursor: pointer;
 }
 .chain {
-  width: 290px;
+  width: 300px;
+
   height: 350px;
   background: url("/public/home/chain.jpeg") no-repeat;
   background-size: cover;
@@ -87,7 +100,7 @@
 }
 .chain:hover {
   background: url("/public/home/chains.jpeg") no-repeat;
-  width: 290px;
+  width: 300px;
   height: 350px;
   background-position: center;
   background-size: cover;
@@ -103,28 +116,16 @@
 .home_collection .navlink {
   color: #ffffff;
   padding-left: 10px;
-  padding-top: 10px;
   text-transform: uppercase;
   background: #504a48;
-  height: 45px;
   font-weight: 400;
   font-size: 17px;
   font-family: "Sora", sans-serif;
-  display: inline-block;
   position: relative;
-  width: 100%;
 }
 
 .navlink:hover {
   opacity: 1;
-}
-
-.navlink::before {
-  transition: all 0.4s linear;
-  height: 1px;
-  content: "";
-  position: absolute;
-  background-color: #ffffff;
 }
 
 .line::before {
@@ -145,21 +146,18 @@
 /* TrandingProduct_frme start */
 .TrandingProduct_frame {
   width: 100%;
- height: 900px;
+  height: 900px;
   background: rgb(246, 245, 240);
 }
 
-
 .TrandingProduct_frame .frame_name {
-color: rgb(46, 46, 46);
-font-family: Judson;
-font-size: 55px;
-font-weight: 400;
-text-transform: capitalize;
-margin-top: 50px;
+  color: rgb(46, 46, 46);
+  font-family: Judson;
+  font-size: 55px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-top: 50px;
 }
-
-
 
 .TrandingProduct_frame .add_bag {
   height: 20px;
@@ -174,36 +172,34 @@ margin-top: 50px;
   margin-left: auto;
 }
 .TrandingProduct_frame .add_box .add_bag:hover {
-height: 20px;
+  height: 20px;
   font-size: 12px;
   font-weight: 400;
   text-align: center;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
-    background: rgb(246, 245, 240);
+  background: rgb(246, 245, 240);
   color: #000;
 }
 
-
-
-.TrandingProduct_frame .product_name{
-color: rgb(46, 46, 46);
-font-family: Judson;
-font-size: 22px;
-font-weight: 400;
-line-height: 25px;
-letter-spacing: 0%;
-text-align: left;
-text-transform: capitalize;
+.TrandingProduct_frame .product_name {
+  color: rgb(46, 46, 46);
+  font-family: Judson;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-transform: capitalize;
 }
-.TrandingProduct_frame .product_price{
-color: rgb(46, 46, 46);
-font-family: Inter;
-font-size: 16px;
-font-weight: 400;
-line-height: 30px;
-letter-spacing: 0%;
+.TrandingProduct_frame .product_price {
+  color: rgb(46, 46, 46);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0%;
 }
 
 .TrandingProduct_frame .swiper {
@@ -211,31 +207,108 @@ letter-spacing: 0%;
   height: 640px;
   cursor: pointer;
   margin-top: 50px;
-
 }
 
 .TrandingProduct_frame .swiper-slide {
-  width:100%;
+  width: 100%;
   height: 600px;
-
 }
 
-
-
 /* Pagination */
-.TrandingProduct_frame .swiper-pagination-bullet{
+.TrandingProduct_frame .swiper-pagination-bullet {
   width: 30px;
   height: 1px;
-  background-color:rgb(46, 46, 46) ;
+  background-color: rgb(46, 46, 46);
   border: 3px solid rgb(46, 46, 46);
   border-radius: 14px;
 }
-.TrandingProduct_frame .swiper-pagination-bullet-active{
+.TrandingProduct_frame .swiper-pagination-bullet-active {
   width: 30px;
   border-radius: 14px;
-  background-color:rgb(46, 46, 46) ;
+  background-color: rgb(46, 46, 46);
   border: 3px solid rgb(46, 46, 46);
   transition: all 0.8s ease-in-out;
 }
+/* TrandingProduct_frme finish */
 
+/* DiamondCollection_frme start */
 
+.DiamondCollection_frame {
+  width: 100%;
+  height: 900px;
+}
+
+.DiamondCollection_frame .container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.DiamondCollection_frame .box {
+  width: 100%;
+  display: flex;
+}
+
+.DiamondCollection_frame .first_img {
+  width: 50%;
+  height: 850px;
+  background: url("/public/home/liu.jpeg") no-repeat;
+  background-size: cover;
+  border: 0.1px solid black;
+  border-bottom: none;
+  border-top: none;
+  background-position: center;
+}
+.DiamondCollection_frame .second_img {
+  width: 50%;
+  height: 850px;
+  border-top: none;
+  border-bottom: none;
+  background: url("/public/home/diamond.jpeg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.DiamondCollection_frame .img_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  top: 70%;
+}
+.DiamondCollection_frame .img_text {
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 69px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+}
+.DiamondCollection_frame .img_about {
+  color: rgb(0, 0, 0);
+  width: 50%;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 25px;
+  text-align: center;
+  text-transform: none;
+}
+
+.DiamondCollection_frame .btn_dome {
+  color: #000;
+  font-family: Judson;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: 15%;
+  text-align: center;
+  text-transform: uppercase;
+  width: 140px;
+  height: 50px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}

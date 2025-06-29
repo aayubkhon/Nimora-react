@@ -180,12 +180,12 @@ ul li .nav-link-ltr {
   transition: all 0.3s linear;
 }
 .home_navbar .big_img {
-  position: relative;
-  width: 755px;
-  height: 700px;
-  background-image: url("/public/home/fal.png");
+   position: absolute;
   background-size: cover;
+  background-image: url("/public/home/fal.png");
   background-repeat: no-repeat;
+  width: 1200px;
+  height: 700px;
 }
 
 .home_navbar .big_img2 {
@@ -193,7 +193,7 @@ ul li .nav-link-ltr {
   background-size: cover;
   background-image: url("/public/home/lee.png");
   background-repeat: no-repeat;
-  width: 700px;
+    width: 770px;
   height: 700px;
 }
 
