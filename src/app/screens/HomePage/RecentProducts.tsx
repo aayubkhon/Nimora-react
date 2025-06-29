@@ -2,8 +2,6 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 import React from "react";
 import Button from "@mui/material/Button";
 
-
-
 import { CssVarsProvider } from "@mui/joy/styles";
 
 const RecentProducts = () => {
@@ -48,72 +46,84 @@ const RecentProducts = () => {
         </Stack>
         <Stack>
           <Box className="wrap_box">
-           <Box>
-             <Box className="ring">
-              <Button className="btnn" color="secondary">
-               ADD TO CART
-              </Button>
-            </Box>
-            <div>
-          <Typography className="product_name">Elegant Gold Necklace</Typography>
-          <Typography className="product_price">$2,900</Typography>
-        </div>
-           </Box>
             <Box>
-             <Box className="ring">
-              <Button className="btnn" color="secondary">
-               ADD TO CART
-              </Button>
+              <Box className="ring">
+                <Button className="btnn" color="secondary">
+                  ADD TO CART
+                </Button>
+              </Box>
+              <div>
+                <Typography className="product_name">
+                  Elegant Gold Necklace
+                </Typography>
+                <Typography className="product_price">$2,900</Typography>
+              </div>
             </Box>
-            <div>
-          <Typography className="product_name">Elegant Gold Necklace</Typography>
-          <Typography className="product_price">$2,900</Typography>
-        </div>
-           </Box>
             <Box>
-             <Box className="ring">
-              <Button className="btnn" color="secondary">
-               ADD TO CART
-              </Button>
+              <Box className="ring">
+                <Button className="btnn" color="secondary">
+                  ADD TO CART
+                </Button>
+              </Box>
+              <div>
+                <Typography className="product_name">
+                  Elegant Gold Necklace
+                </Typography>
+                <Typography className="product_price">$2,900</Typography>
+              </div>
             </Box>
-            <div>
-          <Typography className="product_name">Elegant Gold Necklace</Typography>
-          <Typography className="product_price">$2,900</Typography>
-        </div>
-           </Box>
-           <Box>
-             <Box className="ring">
-              <Button className="btnn" color="secondary">
-               ADD TO CART
-              </Button>
+            <Box>
+              <Box className="ring">
+                <Button className="btnn" color="secondary">
+                  ADD TO CART
+                </Button>
+              </Box>
+              <div>
+                <Typography className="product_name">
+                  Elegant Gold Necklace
+                </Typography>
+                <Typography className="product_price">$2,900</Typography>
+              </div>
             </Box>
-            <div>
-          <Typography className="product_name">Elegant Gold Necklace</Typography>
-          <Typography className="product_price">$2,900</Typography>
-        </div>
-           </Box>
-           <Box>
-             <Box className="ring">
-              <Button className="btnn" color="secondary">
-               ADD TO CART
-              </Button>
+            <Box>
+              <Box className="ring">
+                <Button className="btnn" color="secondary">
+                  ADD TO CART
+                </Button>
+              </Box>
+              <div>
+                <Typography className="product_name">
+                  Elegant Gold Necklace
+                </Typography>
+                <Typography className="product_price">$2,900</Typography>
+              </div>
             </Box>
-            <div>
-          <Typography className="product_name">Elegant Gold Necklace</Typography>
-          <Typography className="product_price">$2,900</Typography>
-        </div>
-           </Box>
-           <Box>
-             <Box className="ring">
-              <Button className="btnn" color="secondary">
-               ADD TO CART
-              </Button>
+            <Box>
+              <Box className="ring">
+                <Button className="btnn" color="secondary">
+                  ADD TO CART
+                </Button>
+              </Box>
+              <div>
+                <Typography className="product_name">
+                  Elegant Gold Necklace
+                </Typography>
+                <Typography className="product_price">$2,900</Typography>
+              </div>
             </Box>
-            <div>
-          <Typography className="product_name">Elegant Gold Necklace</Typography>
-          <Typography className="product_price">$2,900</Typography>
-        </div>
-           </Box>
+            <Box>
+              <Box className="ring">
+                <Button className="btnn" color="secondary">
+                  ADD TO CART
+                </Button>
+              </Box>
+              <div>
+                <Typography className="product_name">
+                  Elegant Gold Necklace
+                </Typography>
+                <Typography className="product_price">$2,900</Typography>
+              </div>
+            </Box>
           </Box>
         </Stack>
       </Container>
