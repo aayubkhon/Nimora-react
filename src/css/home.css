@@ -1,7 +1,7 @@
 /* Collection start */
 .homepage .home_collection {
   width: 100%;
-  height: auto;
+  height: 400px;
 }
 
 .home_collection .container {
@@ -277,7 +277,6 @@
   flex-direction: column;
   position: relative;
   top: 70%;
-  
 }
 .DiamondCollection_frame .img_text {
   color: rgb(0, 0, 0);
@@ -342,8 +341,7 @@
 
 .RecentProducts_frame {
   width: 100%;
-  height: 100%;
-  background: rgb(255, 255, 255);
+  height: 1350px;
 }
 
 .RecentProducts_frame .wrap {
@@ -384,7 +382,7 @@
   letter-spacing: 10%;
   text-align: center;
 }
-.RecentProducts_frame .wrap_box{
+.RecentProducts_frame .wrap_box {
   display: grid;
   align-items: center;
   justify-content: space-around;
@@ -457,29 +455,51 @@
   text-align: left;
   opacity: 1;
   transition: 0.2s ease-out;
-
 }
 
-.RecentProducts_frame .product_name{
+.RecentProducts_frame .product_name {
   color: rgb(6, 6, 6);
-font-family: Judson;
-font-size: 24px;
-font-weight: 400;
-line-height: 28px;
-letter-spacing: 0%;
-text-align: left;
-text-transform: capitalize;
-margin-top: 10px;
+  font-family: Judson;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-transform: capitalize;
+  margin-top: 10px;
 }
 
-.RecentProducts_frame .product_price{
-color: rgb(57, 57, 57);
-font-family: Inter;
-font-size: 16px;
-font-weight: 400;
-line-height: 19px;
-letter-spacing: 0%;
-text-align: left;
-margin-top: 10px;
+.RecentProducts_frame .product_price {
+  color: rgb(57, 57, 57);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0%;
+  text-align: left;
+  margin-top: 10px;
+}
 
+/* RecentProducts_frame finish */
+
+/* Advertisements start */
+
+.Ads_shop_frame {
+  width: 100%;
+  height: 680px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0px -62px 60px 20px rgb(217, 217, 217 /40%);
+  background-color: #956dd3;
+  margin-top: 120px;
+}
+
+.Ads_shop_frame .ads_video {
+  border: 1px solid red;
+  width: 100%;
+  display: flex;
+  transform: scale(1.5);
+  overflow: hidden;
+  background: #0c0e12;
+  box-shadow: 0px -8px 90px rgb(215, 215, 255);
 }

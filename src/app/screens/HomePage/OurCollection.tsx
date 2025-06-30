@@ -135,37 +135,3 @@ const OurCollection = (props: any) => {
 };
 export default OurCollection;
 
-{
-  /* <Box className="cards">
-          <div className="bracelets"></div>
-          <Box className="navlink line">
-            <NavLink className="nav" to="/">
-              bracelets
-            </NavLink>
-          </Box>
-        </Box>
-        <Box className="cards">
-          <div className="necklace"></div>
-          <Box className="navlink line">
-            <NavLink className="nav" to="/">
-              necklaces
-            </NavLink>
-          </Box>
-        </Box>
-        <Box className="cards">
-          <div className="rings"></div>
-          <Box className="navlink line">
-            <NavLink className="nav" to="/">
-              rings
-            </NavLink>
-          </Box>
-        </Box>
-        <Box className="cards">
-          <div className="chain"></div>
-          <Box className="navlink line">
-            <NavLink className="nav" to="/">
-              chains
-            </NavLink>
-          </Box>
-        </Box> */
-}
