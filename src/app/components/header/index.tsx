@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Stack,
-  Box,
-  Button,
-  IconButton,
-  Badge,
-} from "@mui/material";
+import { Stack, Box, Button, IconButton, Badge } from "@mui/material";
 import { NavLink, Outlet } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -17,12 +11,13 @@ const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
       <div className="navbar">
-        <NavLink to="/">
+        <NavLink  to="/">
           <img className="logo" src="/icons/Clip.svg" alt="" />
         </NavLink>
         <ul>
           <li>
-            <NavLink  className="nav-link-ltr"
+            <NavLink
+              className="nav-link-ltr"
               to="/"
               onClick={props.setPath}
               style={(isActive) => ({
@@ -33,49 +28,59 @@ const NavbarHome = (props: any) => {
             </NavLink>
           </li>
           <li onClick={props.setPath}>
-            <NavLink   className="hover_line nav-link-ltr"to="/shop">Shop </NavLink>
+            <NavLink className="hover_line nav-link-ltr" to="/shop">
+              Shop{" "}
+            </NavLink>
           </li>
           <li onClick={props.setPath}>
-          <NavLink className="hover_line nav-link-ltr" to="/store">Store </NavLink>
-          </li>
-          <li onClick={props.setPath}> 
-          <NavLink className="hover_line nav-link-ltr" to="/service">Service </NavLink>
+            <NavLink className="hover_line nav-link-ltr" to="/store">
+              Store{" "}
+            </NavLink>
           </li>
           <li onClick={props.setPath}>
-          <NavLink className="hover_line nav-link-ltr" to="/help">Help </NavLink>
+            <NavLink className="hover_line nav-link-ltr" to="/service">
+              Service{" "}
+            </NavLink>
+          </li>
+          <li onClick={props.setPath}>
+            <NavLink className="hover_line nav-link-ltr" to="/help">
+              Help{" "}
+            </NavLink>
           </li>
         </ul>
         <div className="icon_box">
-        <Box>
-              <IconButton
-                aria-label="cart"
-                // id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                color="warning"
-                className="shopin_cart"
-              >
-                <img className="icon" src="/icons/icons.svg" alt="" />
-              </IconButton>
-            </Box>
-            <Box>
-              <IconButton
-                aria-label="cart"
-                // id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-                color="warning"
-                className="shopin_cart"
-                // onClick={}
-              >
-                <Badge badgeContent={1}>
-                  <img className="icon_bag" src={"/icons/bag.svg"} alt="" />
-                </Badge>
-              </IconButton>
-            </Box>
-          <Button variant="contained" className="login_btn">Login</Button>
+          <Box>
+            <IconButton
+              aria-label="cart"
+              // id="basic-button"
+              aria-controls={undefined}
+              aria-haspopup="true"
+              aria-expanded={undefined}
+              color="warning"
+              className="shopin_cart"
+            >
+              <img className="icon" src="/icons/icons.svg" alt="" />
+            </IconButton>
+          </Box>
+          <Box>
+            <IconButton
+              aria-label="cart"
+              // id="basic-button"
+              aria-controls={undefined}
+              aria-haspopup="true"
+              aria-expanded={undefined}
+              color="warning"
+              className="shopin_cart"
+              // onClick={}
+            >
+              <Badge badgeContent={1}>
+                <img className="icon_bag" src={"/icons/bag.svg"} alt="" />
+              </Badge>
+            </IconButton>
+          </Box>
+          <Button variant="contained" className="login_btn">
+            Login
+          </Button>
         </div>
       </div>
       <Stack>
@@ -85,6 +90,7 @@ const NavbarHome = (props: any) => {
           autoplay={{
             delay: 3500,
             disableOnInteraction: false,
+            pauseOnMouseEnter:true
           }}
           pagination={{
             clickable: true,
@@ -92,7 +98,7 @@ const NavbarHome = (props: any) => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide >
+          <SwiperSlide>
             <Stack className="head_information_second">
               <Box>
                 <div className="big_img2"></div>

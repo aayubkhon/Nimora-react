@@ -25,7 +25,7 @@ const TrabdingProduct = () => {
 
       <Container>
         <Stack flexDirection={"column"}>
-          <Box className="frame_name"> TOP 15 TRENDING PRODUCTS</Box>
+          <Box className="frame_name"> TOP 5 TRENDING PRODUCTS</Box>
         </Stack>
         <CssVarsProvider>
    <Swiper  modules={[Pagination]}

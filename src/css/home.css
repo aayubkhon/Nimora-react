@@ -485,8 +485,21 @@
 /* Advertisements start */
 
 .Ads_shop_frame {
+ width: 100%;
+height: 710px;
+}
+
+.Ads_shop_frame .ads_video {
   width: 100%;
-  height: 680px;
+  display: flex;
+  transform: scale(1.5);
+  overflow: hidden;
+  background: #0c0e12;
+  box-shadow: 0px -8px 90px rgb(215, 215, 255);
+}
+.Ads_shop_frame .ads_wrapper{
+ width: 100%;
+  height: 550px;
   display: flex;
   overflow: hidden;
   box-shadow: 0px -62px 60px 20px rgb(217, 217, 217 /40%);
@@ -494,12 +507,128 @@
   margin-top: 120px;
 }
 
-.Ads_shop_frame .ads_video {
-  border: 1px solid red;
+
+.sale-banner {
+  background-color: rgb(75, 61, 57);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
   width: 100%;
+}
+
+.sale-banner .container {
   display: flex;
-  transform: scale(1.5);
-  overflow: hidden;
-  background: #0c0e12;
-  box-shadow: 0px -8px 90px rgb(215, 215, 255);
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sale-banner .title {
+  color: rgb(255, 255, 255);
+font-family: Judson;
+font-size: 65px;
+font-weight: 700;
+line-height: 76px;
+letter-spacing: 0%;
+text-transform: uppercase;
+}
+
+.sale-banner .subtitle {
+  color: rgb(255, 255, 255);
+font-family: Inter;
+font-size: 18px;
+font-weight: 500;
+line-height: 22px;
+letter-spacing: 0%;
+text-align: start;
+text-transform: capitalize;
+}
+
+.sale-banner .timer {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  gap: 10px;
+  margin-left: auto;
+
+}
+
+.sale-banner .timer_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sale-banner .time {
+  color: rgb(255, 255, 255);
+font-family: Judson;
+font-size: 65px;
+font-weight: 700;
+line-height: 40px;
+letter-spacing: 0%;
+text-align: left;
+text-transform: uppercase;
+}
+
+.sale-banner .day {
+ color: rgb(255, 255, 255);
+font-family: Inter;
+font-size: 16px;
+font-weight: 400;
+line-height: 19px;
+letter-spacing: 0%;
+text-align: center;
+text-transform: capitalize;
+margin-top: 11px;
+}
+
+.sale-banner .view-offer {
+ background: rgb(238, 238, 238);
+ width: 157px;
+height: 40px;
+color: rgb(0, 0, 0);
+font-family: Judson;
+font-size: 14px;
+font-weight: 700;
+line-height: 8px;
+letter-spacing: 3px;
+text-align: center;
+text-transform: uppercase;
+margin-left: auto;
+}
+
+/* Advertisements finish */
+
+/* Events start */
+
+.Event_frame{
+width: 100%;
+height: 500px;
+margin-top: 80px;
+}
+
+.Event_frame .events-title {
+color: rgb(46, 46, 46);
+font-family: Judson;
+font-size: 50px;
+font-weight: 400;
+line-height: 58px;
+letter-spacing: 0%;
+text-align: center;
+text-transform: capitalize;
+}
+
+.Event_frame .events-subtitle {
+color: rgb(75, 61, 57);
+font-family: Judson;
+font-size: 18px;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 15%;
+text-align: center;
+text-transform: uppercase;
+margin-top: 20px;
 }
