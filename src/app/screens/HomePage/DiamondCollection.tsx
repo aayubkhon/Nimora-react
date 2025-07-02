@@ -47,6 +47,7 @@ const DiamondCollection = () => {
         <Box>
           <img src="/icons/columbia.svg" alt="" />
         </Box>
+         
       </Stack>
       <Box className="vector"></Box>
       

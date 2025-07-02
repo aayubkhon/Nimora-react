@@ -11,7 +11,7 @@ const RecentProducts = () => {
         <Stack flexDirection={"column"}>
           <Box className="wrap">
             <p>OUR RECENT PRODUCTS</p>
-            <h1>Trendy Design Collections</h1>
+            <h1>Our Best Seller Products</h1>
             <Box className="btn_box">
               <Button
                 className="product_btn"
