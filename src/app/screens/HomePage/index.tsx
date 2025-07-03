@@ -5,7 +5,7 @@ import TradingProduct from './TradingProduct';
 import DiamondCollection from './DiamondCollection';
 import RecentProducts from './RecentProducts';
 import Advertisements from './Advertisements';
-import Events from './Events';
+import Services from './Services';
 
 const HomePage = () => {
   return (
@@ -15,7 +15,7 @@ const HomePage = () => {
       <DiamondCollection/>
       <RecentProducts/>
       <Advertisements/>
-      <Events/>
+      <Services/>
     </div>
   )
 }
