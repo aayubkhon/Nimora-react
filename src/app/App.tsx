@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-import { Routes, Route,} from "react-router-dom";
+import { Routes, Route, } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import ShopPage from "./screens/ShopPage";
 import HelpPage from "./screens/HelpPage";
@@ -11,9 +11,12 @@ import NavbarHome from "./components/header";
 import NavbarShop from "./components/header/shop";
 import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
+import OneJewellry from "./screens/ShopPage/oneJewellry";
+import ChoosenCatagory from "./screens/ShopPage/choosenCatagory";
+
 function App() {
   const main_path = window.location.pathname;
-  const [path, setPath] = useState()
+  const [path, setPath] = useState();
   return (
     <>
       {main_path === "/" ? (
@@ -26,11 +29,17 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop" element={<ShopPage />}>
+          <Route path=":jewellry_id" element={<OneJewellry />} />
+          <Route
+            path=":jewellry_id/:category_id"
+            element={<ChoosenCatagory />}
+          />
+        </Route>
         <Route path="/help" element={<HelpPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }

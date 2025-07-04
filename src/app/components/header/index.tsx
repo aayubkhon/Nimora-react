@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack, Box, Button, IconButton, Badge } from "@mui/material";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -11,9 +11,9 @@ const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
       <div className="navbar">
-        <NavLink  to="/">
+        <Link  to="/">
           <img className="logo" src="/icons/Clip.svg" alt="" />
-        </NavLink>
+        </Link>
         <ul>
           <li>
             <NavLink
@@ -167,7 +167,7 @@ const NavbarHome = (props: any) => {
           </SwiperSlide>
         </Swiper>
       </Stack>
-      <Outlet />
+      <Outlet/>
     </div>
   );
 };
