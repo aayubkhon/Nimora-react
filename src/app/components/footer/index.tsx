@@ -10,7 +10,7 @@ export function Footer() {
           <Stack flexDirection={"row"} sx={{ height: "242px," }}>
             <Stack className="info" flexDirection={"column"}>
               <Box>
-              <img className="logo" src="/icons/Clip.svg" alt="" />
+                <img className="logo" src="/icons/Clip.svg" alt="" />
               </Box>
               <Box className="main_text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -34,16 +34,16 @@ export function Footer() {
             <Stack className="parts">
               <Box className="part_subject">Sections</Box>
               <Box className="targets">
-                <NavLink to="/" >Main Page</NavLink>
+                <NavLink to="/">Main Page</NavLink>
               </Box>
               <Box className="targets">
-              <NavLink to="/shop" >Shop</NavLink>
+                <NavLink to="/shop">Shop</NavLink>
               </Box>
               <Box className="targets">
-              <NavLink to="/store" >Store</NavLink>
+                <NavLink to="/store">Store</NavLink>
               </Box>
               <Box className="targets">
-              <NavLink to="/help">Help</NavLink>
+                <NavLink to="/help">Help</NavLink>
               </Box>
             </Stack>
             <Stack className="find_us">

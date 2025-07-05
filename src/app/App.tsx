@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-import { Routes, Route, } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import ShopPage from "./screens/ShopPage";
 import HelpPage from "./screens/HelpPage";
@@ -29,12 +29,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route path="/shop" element={<ShopPage />}>
-          <Route path=":jewellry_id" element={<OneJewellry />} />
-          <Route
-            path=":jewellry_id/:category_id"
-            element={<ChoosenCatagory />}
-          />
+          <Route path=":jewellry_id" element={<ChoosenCatagory />} />
+          <Route path=":jewellry_id/:category_id" element={<OneJewellry />} />
         </Route>
         <Route path="/help" element={<HelpPage />} />
         <Route path="/login" element={<LoginPage />} />

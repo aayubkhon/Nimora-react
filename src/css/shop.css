@@ -1,0 +1,201 @@
+.Shop_frame {
+  width: 100%;
+  height: 2500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Shop_frame .background_img {
+  background: url("/public/home/shopback.jpeg") no-repeat;
+  width: 100%;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+}
+.Shop_frame .background_title {
+  position: relative;
+  top: 40%;
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 69px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Shop_frame .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.Shop_frame .shop_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 130px;
+}
+
+.Shop_frame .shop_subtitle {
+  color: rgb(75, 61, 57);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 15%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.Shop_frame .shop_title {
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.Shop_frame .shop_img_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Shop_frame .shop_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 182px;
+  box-sizing: border-box;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 20px;
+  margin-top: 68px;
+  cursor: pointer;
+}
+
+.Shop_frame .shop_box:hover {
+  border: 1px solid #f7ab42;
+}
+
+.Shop_frame .shop_svg {
+  width: 82.79px;
+  height: 64.94px;
+}
+
+.Shop_frame .shop_img_title {
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-transform: capitalize;
+  margin-top: 12px;
+}
+
+.Shop_frame .search_box {
+  width: 490px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: 100px;
+}
+
+.Shop_frame .search_form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Shop_frame .search_input {
+   position: relative;
+  width: 328px;
+  height: 52px;
+  margin-left: 10px;
+  display: flex;
+  box-sizing: border-box;
+  border: 1px solid rgb(217, 217, 217);
+  color: rgb(173, 173, 173);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+.Shop_frame .btn_search {
+  position: absolute;
+  width: 30px;
+  height: 45px;
+  background: rgb(75, 61, 57);
+  color: white;
+  margin-right: 10px;
+}
+
+
+.Shop_frame .product_catagories{
+   display: flex;
+   padding-left: 83px;
+   margin-top: 55px;
+}
+.Shop_frame .product_box{
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.Shop_frame .product_title{
+color: rgb(0, 0, 0);
+font-family: Judson;
+font-size: 30px;
+font-weight: 400;
+line-height: 35px;
+letter-spacing: 0%;
+text-align: left;
+text-transform: capitalize;
+margin-top: 20px ;
+}
+
+.Shop_frame .devider{
+border-bottom: 1px solid rgb(199, 199, 199);
+margin-top: 20px;
+
+}
+
+.Shop_frame .product_names_box{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+}
+
+.Shop_frame .product_names{
+   color: rgb(0, 0, 0);
+font-family: Inter;
+font-size: 18px;
+font-weight: 400;
+line-height: 60px;
+letter-spacing: 0%;
+text-align: left;
+margin-top: 10px;
+}
+
+.Shop_frame .product_count{
+color: rgb(0, 0, 0);
+font-family: Inter;
+font-size: 18px;
+font-weight: 400;
+line-height: 60px;
+letter-spacing: 0%;
+text-align: right;
+}

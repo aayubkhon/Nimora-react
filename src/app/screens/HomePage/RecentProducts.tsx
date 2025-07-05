@@ -1,10 +1,11 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
-import React from "react";
+import { Box, Container, Rating, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 
 import { CssVarsProvider } from "@mui/joy/styles";
 
 const RecentProducts = () => {
+  const order_list = Array.from(Array(6).keys());
   return (
     <div className="RecentProducts_frame">
       <Container>
@@ -46,84 +47,29 @@ const RecentProducts = () => {
         </Stack>
         <Stack>
           <Box className="wrap_box">
-            <Box>
-              <Box className="ring">
-                <Button className="btnn" color="secondary">
-                  ADD TO CART
-                </Button>
-              </Box>
-              <div>
-                <Typography className="product_name">
-                  Elegant Gold Necklace
-                </Typography>
-                <Typography className="product_price">$2,900</Typography>
-              </div>
-            </Box>
-            <Box>
-              <Box className="ring">
-                <Button className="btnn" color="secondary">
-                  ADD TO CART
-                </Button>
-              </Box>
-              <div>
-                <Typography className="product_name">
-                  Elegant Gold Necklace
-                </Typography>
-                <Typography className="product_price">$2,900</Typography>
-              </div>
-            </Box>
-            <Box>
-              <Box className="ring">
-                <Button className="btnn" color="secondary">
-                  ADD TO CART
-                </Button>
-              </Box>
-              <div>
-                <Typography className="product_name">
-                  Elegant Gold Necklace
-                </Typography>
-                <Typography className="product_price">$2,900</Typography>
-              </div>
-            </Box>
-            <Box>
-              <Box className="ring">
-                <Button className="btnn" color="secondary">
-                  ADD TO CART
-                </Button>
-              </Box>
-              <div>
-                <Typography className="product_name">
-                  Elegant Gold Necklace
-                </Typography>
-                <Typography className="product_price">$2,900</Typography>
-              </div>
-            </Box>
-            <Box>
-              <Box className="ring">
-                <Button className="btnn" color="secondary">
-                  ADD TO CART
-                </Button>
-              </Box>
-              <div>
-                <Typography className="product_name">
-                  Elegant Gold Necklace
-                </Typography>
-                <Typography className="product_price">$2,900</Typography>
-              </div>
-            </Box>
-            <Box>
-              <Box className="ring">
-                <Button className="btnn" color="secondary">
-                  ADD TO CART
-                </Button>
-              </Box>
-              <div>
-                <Typography className="product_name">
-                  Elegant Gold Necklace
-                </Typography>
-                <Typography className="product_price">$2,900</Typography>
-              </div>
-            </Box>
+            {order_list.map((ele) => {
+              return (
+                <Box>
+                  <Box className="ring">
+                    <Button className="btnn" color="secondary">
+                      ADD TO CART
+                    </Button>
+                  </Box>
+                  <div>
+                    <Typography className="product_name">
+                      Elegant Gold Necklace
+                    </Typography>
+                    <Typography className="product_price">$2,900</Typography>
+                    <Rating
+                      sx={{ mt: 2 }}
+                      name="half-rating"
+                      defaultValue={2.5}
+                      precision={0.5}
+                    />
+                  </div>
+                </Box>
+              );
+            })}
           </Box>
         </Stack>
       </Container>
