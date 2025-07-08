@@ -28,24 +28,24 @@ const NavbarHome = (props: any) => {
             </NavLink>
           </li>
           <li onClick={props.setPath}>
-            <NavLink className="hover_line nav-link-ltr" to="/shop">
+            <Link className="hover_line nav-link-ltr" to="/shop">
               Shop{" "}
-            </NavLink>
+            </Link>
           </li>
           <li onClick={props.setPath}>
-            <NavLink className="hover_line nav-link-ltr" to="/store">
+            <Link className="hover_line nav-link-ltr" to="/store">
               Store{" "}
-            </NavLink>
+            </Link>
           </li>
           <li onClick={props.setPath}>
-            <NavLink className="hover_line nav-link-ltr" to="/service">
+            <Link className="hover_line nav-link-ltr" to="/service">
               Service{" "}
-            </NavLink>
+            </Link>
           </li>
           <li onClick={props.setPath}>
-            <NavLink className="hover_line nav-link-ltr" to="/help">
+            <Link className="hover_line nav-link-ltr" to="/help">
               Help{" "}
-            </NavLink>
+            </Link>
           </li>
         </ul>
         <div className="icon_box">

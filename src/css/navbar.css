@@ -136,7 +136,8 @@ ul li .nav-link-ltr {
   line-height: 69px;
   letter-spacing: 0%;
   text-transform: capitalize;
-  cursor: default;
+  opacity: 0;
+  animation: anim-top .6s 0.9s forwards linear ;
 }
 
 .home_navbar .define_shop {
@@ -149,7 +150,8 @@ ul li .nav-link-ltr {
   text-align: left;
   text-transform: uppercase;
   margin-top: 15px;
-  cursor: default;
+  opacity: 0;
+  animation: anim-top .6s 0.9s forwards linear ;
 }
 .home_navbar .timeline_service {
   position: relative;
@@ -162,6 +164,14 @@ ul li .nav-link-ltr {
   text-align: justify;
   margin-top: 18px;
   color: white;
+  opacity: 0;
+  animation: anim-top .6s 0.9s forwards linear ;
+}
+
+
+@keyframes anim-top{
+  0%{transform: translateY(500px); opacity: 0;}
+  100%{transform: translateY(0px); opacity: 1;}
 }
 
 .home_navbar .main_btn {

@@ -58,7 +58,7 @@ theme = createTheme(theme, {
       styleOverrides: {
         maxWidthLg: {
           [theme.breakpoints.up("lg")]: {
-            maxWidth: "1600px",
+            maxWidth: "1320px",
           },
         },
       },
