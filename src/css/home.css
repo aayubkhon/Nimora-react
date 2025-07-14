@@ -411,6 +411,28 @@
   justify-content: center;
   margin-top: 50px;
 }
+.RecentProducts_frame .favorite_box {
+  position: relative;
+}
+
+.RecentProducts_frame .ring:hover .favorite_box .favorite {
+  opacity: 1;
+  transition: 0.2s ease-out;
+}
+
+.RecentProducts_frame .favorite {
+  position: absolute;
+  left: 30px;
+  bottom: 135px;
+  opacity: 0;
+}
+
+.RecentProducts_frame .favorite:hover {
+  position: absolute;
+  left: 30px;
+  bottom: 135px;
+  opacity: 1;
+}
 
 /* .RecentProducts_frame .ring:hover {
   background: url("/public/home/rings.jpeg") no-repeat;

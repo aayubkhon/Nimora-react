@@ -1,8 +1,8 @@
 import { Box, Container, Rating, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
+import Favorite from "@mui/icons-material/Favorite";
 
-import { CssVarsProvider } from "@mui/joy/styles";
 
 const RecentProducts = () => {
   const order_list = Array.from(Array(6).keys());
@@ -54,6 +54,13 @@ const RecentProducts = () => {
                     <Button className="btnn" color="secondary">
                       ADD TO CART
                     </Button>
+                    <Box className="favorite_box">
+                      <Favorite
+                        color="primary"
+                        fontSize="large"
+                        className="favorite"
+                      />
+                    </Box>
                   </Box>
                   <div>
                     <Typography className="product_name">
