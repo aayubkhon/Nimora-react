@@ -2,8 +2,10 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import "../../../css/shop.css";
 import {
+  Badge,
   Box,
   Button,
+  Checkbox,
   Pagination,
   PaginationItem,
   Rating,
@@ -12,12 +14,12 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
 import Slider from "@mui/material/Slider";
-
 import Typography from "@mui/joy/Typography";
-import Favorite from "@mui/icons-material/Favorite";
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 const ShopPage = () => {
   const order_list = Array.from(Array(6).keys());
 
@@ -124,20 +126,45 @@ const ShopPage = () => {
         </div>
         <Stack>
           <Box className="wrap_box">
-            {order_list.map((ele) => {
+            {order_list.map((ele,index) => {
               return (
-                <Box>
+                <Box className="favorite_box">
                   <Box className="ring">
-                    <Button className="btnn" color="secondary">
-                      ADD TO CART
-                    </Button>
-                    <Box className="favorite_box">
-                      <Favorite
-                        color="primary"
-                        fontSize="large"
+                     <Box
+                        className="box"
+                      >
+                        <Badge
                         className="favorite"
-                      />
-                    </Box>
+                        color="secondary"
+                          badgeContent={8}
+                        >
+                          <Checkbox 
+                            icon={<FavoriteBorder style={{ color: "white"  }}  />}
+                            id={`${index}`}
+                            checkedIcon={<Favorite  style={{ color: "red"  }} />}
+                          />
+                        </Badge>
+                      </Box>
+                      <Button
+                        className="add_btn"
+                      >
+                       Add to cart
+                      </Button>
+                      <Button
+                        className="box"
+                      >
+                        <Badge 
+                        className="eyeIcon_box"
+                          badgeContent={8}
+                          color="secondary"
+                        >
+                          <Checkbox
+                            icon={
+                              <RemoveRedEyeIcon className="eyeIcon"   />
+                            }
+                          />
+                        </Badge>
+                      </Button>
                   </Box>
                   <div>
                     <Typography className="img_name">

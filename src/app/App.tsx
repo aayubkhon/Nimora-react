@@ -31,8 +31,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         <Route path="/shop" element={<ShopPage />}>
-          <Route path=":jewellry_id" element={<ChoosenCatagory />} />
-          <Route path=":jewellry_id/:category_id" element={<OneJewellry />} />
+          <Route path="/shop/:jewellry_id" element={<ChoosenCatagory />} />
+          <Route path="/shop/:jewellry_id/:category_id" element={<OneJewellry />} />
         </Route>
         <Route path="/help" element={<HelpPage />} />
         <Route path="/login" element={<LoginPage />} />

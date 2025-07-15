@@ -3,7 +3,6 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
 
-
 const RecentProducts = () => {
   const order_list = Array.from(Array(6).keys());
   return (

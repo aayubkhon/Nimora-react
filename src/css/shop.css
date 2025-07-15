@@ -25,13 +25,14 @@
 
 .Shop_frame .wrap_box {
   display: grid;
-  gap: 20px;
+  gap: 8px;
   grid-template-columns: auto auto auto;
   width: 100%;
   align-items: center;
   justify-content: space-around;
   grid-template-columns: auto auto auto;
   margin-top: 100px;
+  flex-wrap:wrap;
 }
 
 .Shop_frame .ring {
@@ -43,36 +44,82 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
 }
 .Shop_frame .favorite_box {
   position: relative;
+  
 }
 
-.Shop_frame .favorite {
-  position: absolute;
-  left: 5px;
+.Shop_frame .box{
+position: relative;
+
+}
+
+
+.Shop_frame .favorite{
+position: absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+  left: 210px;
   bottom: 100px;
-}
-
-.Shop_frame .btnn {
-  width: 170px;
-  height: 35px;
-  color: rgb(255, 255, 255);
-  font-family: Judson;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 15%;
-  text-align: left;
-  background: rgb(6, 6, 6);
-  color: #000;
+ width: 35px;
+height: 35px;
+border-radius: 50%;
+background-color: #000;
+ z-index: 3;
   opacity: 0;
-  position: relative;
-  top: 40%;
+  transition: ease;
 }
 
-.Shop_frame .btnn:hover {
-  width: 170px;
+.Shop_frame .ring:hover .favorite{
+   opacity: 1;
+  transition: 0.2s ease-out;
+}
+
+.Shop_frame .ring:hover .eyeIcon{
+  opacity: 1;
+  transition: 0.2s ease-out;
+}
+
+.Shop_frame .eyeIcon_box{
+  position: absolute;
+  display: flex;
+align-items: center;
+justify-content: center;
+  left: 58px;
+  bottom: 60px;
+   width: 35px;
+height: 35px;
+border-radius: 50%;
+background-color: #000;
+opacity: 0;
+}
+
+.Shop_frame .ring:hover .eyeIcon_box{
+  opacity: 1;
+  transition: 0.2s ease-out;
+}
+
+.Shop_frame .eyeIcon{
+  position: absolute;
+    width: 22px;
+height: 24px;
+color: white;
+opacity: 0;
+
+}
+
+
+
+
+.Shop_frame .add_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
   height: 35px;
   color: rgb(255, 255, 255);
   font-family: Judson;
@@ -82,11 +129,24 @@
   letter-spacing: 15%;
   text-align: left;
   background: rgb(6, 6, 6);
-  color: #000;
-  opacity: 1;
+  top: 40%;
+  left: 10%;
+ z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.Shop_frame .ring:hover .btnn {
+.Shop_frame .ring:hover .add_btn{
+  opacity: 1;
+  transition: 0.2s ease-out;
+  background: rgb(6, 6, 6);
+  color: rgb(255, 255, 255);
+
+}
+
+
+
+.Shop_frame .ring:hover .add_btnn {
   width: 170px;
   height: 35px;
   color: rgb(255, 255, 255);
@@ -98,7 +158,7 @@
   text-align: left;
   opacity: 1;
   transition: 0.2s ease-out;
-}
+} 
 
 .Shop_frame .img_name {
   color: rgb(6, 6, 6);
