@@ -1,7 +1,11 @@
-import { Box, Container, Rating, Stack, Typography } from "@mui/material";
+import { Badge, Box, Checkbox, Container, Rating, Stack, Typography } from "@mui/material";
 import React from "react";
 import Button from "@mui/material/Button";
-import Favorite from "@mui/icons-material/Favorite";
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 const RecentProducts = () => {
   const order_list = Array.from(Array(6).keys());
@@ -50,16 +54,25 @@ const RecentProducts = () => {
               return (
                 <Box>
                   <Box className="ring">
-                    <Button className="btnn" color="secondary">
-                      ADD TO CART
-                    </Button>
-                    <Box className="favorite_box">
-                      <Favorite
-                        color="primary"
-                        fontSize="large"
+                     <Box
+                        className="box"
+                      >
+                        <Badge
                         className="favorite"
-                      />
-                    </Box>
+                        color="secondary"
+                          badgeContent={8}
+                        >
+                          <Checkbox
+                            icon={<FavoriteBorder style={{ color: "#000"  }}  />}
+                            checkedIcon={<Favorite  style={{ color: "red"  }} />}
+                          />
+                        </Badge>
+                      </Box>
+                      <Button
+                        className="add_btn"
+                      >
+                       Add to cart
+                      </Button>
                   </Box>
                   <div>
                     <Typography className="product_name">

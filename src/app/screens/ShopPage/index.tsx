@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Checkbox,
+  Container,
   Pagination,
   PaginationItem,
   Rating,
@@ -139,7 +140,7 @@ const ShopPage = () => {
                           badgeContent={8}
                         >
                           <Checkbox 
-                            icon={<FavoriteBorder style={{ color: "white"  }}  />}
+                            icon={<FavoriteBorder style={{ color: "#000"  }}  />}
                             id={`${index}`}
                             checkedIcon={<Favorite  style={{ color: "red"  }} />}
                           />
@@ -160,7 +161,7 @@ const ShopPage = () => {
                         >
                           <Checkbox
                             icon={
-                              <RemoveRedEyeIcon className="eyeIcon"   />
+                              <RemoveRedEyeIcon   className="eyeIcon"   />
                             }
                           />
                         </Badge>

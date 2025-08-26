@@ -11,7 +11,7 @@ const light = {
   palette: {
     type: "light",
     background: {
-      default: "#f4f6f8",
+      default: "#ffffff",
       paper: common.white,
     },
     primary: {
@@ -19,8 +19,8 @@ const light = {
       main: "#ffffff",
     },
     secondary: {
-      main: "#000",
-      // main: "#0383a3",
+      // main: "#000",
+      main: "#ffff",
     },
     text: {
       primary: "#172b4d",

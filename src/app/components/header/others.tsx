@@ -7,10 +7,10 @@ import {
   IconButton,
   Badge,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink,} from "react-router-dom";
 const NavbarOthers = (props: any) => {
   return (
-    <div className="home_navbar">
+    <Container className="home_navbar">
       <div className="navbar">
         <NavLink to="/">
           <img className="logo" src="/icons/Clip.svg" alt="" />
@@ -73,7 +73,7 @@ const NavbarOthers = (props: any) => {
           <Button className="login_btn">Login</Button>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

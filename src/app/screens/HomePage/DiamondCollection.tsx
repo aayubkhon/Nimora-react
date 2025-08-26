@@ -28,26 +28,27 @@ const DiamondCollection = () => {
           </div>
         </div>
       </div>
-      <Stack className="logo_box">
-        <Box>
+      <Stack className="scroller">
+     <Box className="scroller-inner" >
+         <Box className="scroller_item">
           <img src="/icons/elegant.svg" alt="" />
         </Box>
-        <Box>
+        <Box className="scroller_item">
           <img src="/icons/ozagi.svg" alt="" />
         </Box>
-        <Box>
+        <Box className="scroller_item">
           <img src="/icons/soager.svg" alt="" />
         </Box>
-        <Box>
+        <Box className="scroller_item">
           <img src="/icons/luxia.svg" alt="" />
         </Box>
-        <Box>
+        <Box className="scroller_item">
           <img src="/icons/caterene.svg" alt="" />
         </Box>
-        <Box>
+        <Box className="scroller_item">
           <img src="/icons/columbia.svg" alt="" />
         </Box>
-         
+     </Box>
       </Stack>
       <Box className="vector"></Box>
       
