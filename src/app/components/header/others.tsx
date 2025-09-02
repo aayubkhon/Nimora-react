@@ -34,10 +34,10 @@ const NavbarOthers = (props: any) => {
           <NavLink className="hover_line nav-link-ltr" to="/store">Store </NavLink>
           </li>
           <li onClick={props.setPath}> 
-          <NavLink className="hover_line nav-link-ltr" to="/service">Service </NavLink>
+          <NavLink className="hover_line nav-link-ltr" to="/community">Community </NavLink>
           </li>
           <li onClick={props.setPath}>
-          <NavLink className="hover_line nav-link-ltr" to="/help">Help </NavLink>
+          <NavLink className="hover_line nav-link-ltr" to="/help">CS</NavLink>
           </li>
         </ul>
         <div className="icon_box">

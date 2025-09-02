@@ -38,13 +38,13 @@ const NavbarHome = (props: any) => {
             </Link>
           </li>
           <li onClick={props.setPath}>
-            <Link className="hover_line nav-link-ltr" to="/service">
-              Service{" "}
+            <Link className="hover_line nav-link-ltr" to="/community">
+              Community{" "}
             </Link>
           </li>
           <li onClick={props.setPath}>
             <Link className="hover_line nav-link-ltr" to="/help">
-              Help{" "}
+              CS{" "}
             </Link>
           </li>
         </ul>

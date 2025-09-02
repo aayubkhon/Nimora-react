@@ -7,12 +7,14 @@ import HomePage from "./screens/HomePage";
 import ShopPage from "./screens/ShopPage";
 import HelpPage from "./screens/HelpPage";
 import LoginPage from "./screens/LoginPage";
+import StorePage from "./screens/StorePage/store";
 import NavbarHome from "./components/header";
 import NavbarShop from "./components/header/shop";
 import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
 import OneJewellry from "./screens/ShopPage/oneJewellry";
 import ChoosenCatagory from "./screens/ShopPage/choosenCatagory";
+import Community from './screens/CommunityPage/community';
 
 function App() {
   const main_path = window.location.pathname;
@@ -33,6 +35,8 @@ function App() {
           <Route path="/:jewellry_id/*" element={<ChoosenCatagory />} />
           <Route path="/:jewellry_id/:category_id" element={<OneJewellry />} />
         <Route path="/help" element={<HelpPage />} />
+        <Route path="/store" element={<StorePage />} />
+        <Route path="/community" element={<Community />} />=
         <Route path="/login" element={<LoginPage />} />
       </Routes>
       <Footer />

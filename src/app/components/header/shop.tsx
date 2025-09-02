@@ -33,13 +33,13 @@ const NavbarShop = (props: any) => {
           </NavLink>
         </li>
         <li onClick={props.setPath}>
-          <NavLink className="hover_line nav-link-ltr" to="/service">
-            Service{" "}
+          <NavLink className="hover_line nav-link-ltr" to="/community">
+            Community{" "}
           </NavLink>
         </li>
         <li onClick={props.setPath}>
           <NavLink className="hover_line nav-link-ltr" to="/help">
-            Help{" "}
+            CS{" "}
           </NavLink>
         </li>
       </ul>
