@@ -121,10 +121,9 @@ ul li .nav-link-ltr {
 
 .home_navbar .head_information {
   display: flex;
-  flex-direction: row;
-  width: 100%;
   height: 950px;
   background: #504a48;
+
 }
 
 .home_navbar .define_text {
@@ -195,8 +194,9 @@ ul li .nav-link-ltr {
   background-size: cover;
   background-image: url("/public/home/fal.png");
   background-repeat: no-repeat;
-  width: 80%;
+  width:1200px;
   height: 950px;
+
 }
 
 .home_navbar .big_img2 {

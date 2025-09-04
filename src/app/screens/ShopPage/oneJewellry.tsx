@@ -3,7 +3,6 @@ import {
   Badge,
   Button,
   Checkbox,
-  Container,
   Divider,
   Rating,
   Typography,
@@ -33,7 +32,7 @@ function OneJewellry() {
             <img className="four_img" src="/home/best.jpeg" alt="" />
           </div>
         </div>
-        <Stack className="main_title" flexDirection={"column"}>
+        <Stack className="main">
           <h1 className="product_name">Elegant Gold Necklace</h1>
           <Box display={"flex"}>
             <Rating
@@ -64,35 +63,65 @@ function OneJewellry() {
             </p>
           </Box>
           <Divider sx={{ mt: 4 }} orientation="horizontal" />
-          <Box className={"button_containe"}>
-            <div className="bt_style">
-              <Button
-                className="count_btn"
-                color="secondary"
-                onClick={() => setCount(count + 1)}
-              >
-                +
-              </Button>
-              <h4>{count}</h4>
-              <Button
-                className="count_btn"
-                color="secondary"
-                onClick={() => setCount(count - 1)}
-              >
-                -
-              </Button>
-            </div>
-            <Box className={"btn_box"}>
-              <Button   color="secondary"  className="btn_add">Add to cart</Button>
-              <Badge className="like_favorite" color="secondary" badgeContent={8}>
-                <Checkbox
-                  icon={<FavoriteBorder style={{ color: "#000" }} />}
-                  checkedIcon={<Favorite style={{ color: "red" }} />}
-                />
-              </Badge>
+          <Box className={"button_container"}>
+            <Box display={"flex"}>
+              <div className="bt_style">
+                <Button
+                  className="count_btn"
+                  color="secondary"
+                  onClick={() => setCount(count + 1)}
+                >
+                  +
+                </Button>
+                <h4>{count}</h4>
+                <Button
+                  className="count_btn"
+                  color="secondary"
+                  onClick={() => setCount(count - 1)}
+                >
+                  -
+                </Button>
+              </div>
+              <Box className={"btn_box"}>
+                <Button color="secondary" className="btn_add">
+                  Add to cart
+                </Button>
+                <Badge
+                  className="like_favorite"
+                  color="secondary"
+                  badgeContent={8}
+                >
+                  <Checkbox
+                    icon={<FavoriteBorder style={{ color: "#000" }} />}
+                    checkedIcon={<Favorite style={{ color: "red" }} />}
+                  />
+                </Badge>
+              </Box>
+            </Box>
+            <Box display={"flex"} alignItems={"center"}>
+              <img className="return" src="/icons/return.svg" alt="" />
+              <p className="return_title">
+                Estimate delivery times: 12-26 days (International)
+              </p>
+            </Box>
+            <Box display={"flex"} alignItems={"center"}>
+              <img className="return" src="/icons/pr_return.svg" alt="" />
+              <p className="return_title">
+                Free return within 30 days of purchase.
+              </p>
             </Box>
           </Box>
         </Stack>
+      </div>
+      <div className="map_cont">
+        <iframe
+        title="Jewellry"
+          style={{ marginTop: "35px", marginLeft: "15px" }}
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50627.69730558068!2d126.85207834863277!3d37.526049699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b45c3d89d7801%3A0x7883571cabf15b8b!2sTiffany%20%26%20Co.!5e0!3m2!1sen!2skr!4v1756989543830!5m2!1sen!2skr"
+          width={"1320"}
+          height={"500"}
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   );

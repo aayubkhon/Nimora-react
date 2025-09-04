@@ -120,7 +120,7 @@ const NavbarHome = (props: any) => {
               </Stack>
             </Stack>
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <Stack className="head_information">
               <Stack
                 justifyContent={"column"}
@@ -140,7 +140,7 @@ const NavbarHome = (props: any) => {
                 <div className="big_img"></div>
               </Box>
             </Stack>
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide>
             <Stack className="head_information3">
               <Box>
@@ -148,7 +148,7 @@ const NavbarHome = (props: any) => {
               </Box>
               <Stack
                 justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "650px" }}
+                sx={{ marginTop: "176px", marginLeft: "670px" }}
               >
                 <Box className="define_shop">Trendy Design</Box>
                 <Box className="define_text">
