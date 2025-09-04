@@ -1,10 +1,21 @@
 import React from "react";
-import { Container, Divider, Rating, Typography } from "@mui/material";
+import {
+  Badge,
+  Button,
+  Checkbox,
+  Container,
+  Divider,
+  Rating,
+  Typography,
+} from "@mui/material";
 import "../../../css/products.scss";
 import { Stack } from "@mui/material";
 import { Box } from "@mui/material";
-
+import { useState } from "react";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 function OneJewellry() {
+  const [count, setCount] = useState(0);
   return (
     <div className="OneJewellry_frame">
       <div className="container">
@@ -52,7 +63,35 @@ function OneJewellry() {
               left in stock.
             </p>
           </Box>
-            <Divider sx={{mt:4}} orientation="horizontal" />
+          <Divider sx={{ mt: 4 }} orientation="horizontal" />
+          <Box className={"button_containe"}>
+            <div className="bt_style">
+              <Button
+                className="count_btn"
+                color="secondary"
+                onClick={() => setCount(count + 1)}
+              >
+                +
+              </Button>
+              <h4>{count}</h4>
+              <Button
+                className="count_btn"
+                color="secondary"
+                onClick={() => setCount(count - 1)}
+              >
+                -
+              </Button>
+            </div>
+            <Box className={"btn_box"}>
+              <Button   color="secondary"  className="btn_add">Add to cart</Button>
+              <Badge className="like_favorite" color="secondary" badgeContent={8}>
+                <Checkbox
+                  icon={<FavoriteBorder style={{ color: "#000" }} />}
+                  checkedIcon={<Favorite style={{ color: "red" }} />}
+                />
+              </Badge>
+            </Box>
+          </Box>
         </Stack>
       </div>
     </div>

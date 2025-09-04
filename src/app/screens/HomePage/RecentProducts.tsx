@@ -3,9 +3,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+
 
 const RecentProducts = () => {
   const order_list = Array.from(Array(6).keys());

@@ -2,10 +2,10 @@
   height: 1800px;
   margin: 50px 50px;
   .container {
-  display: flex;
-  width: 100%;
-  height: 900px;
-}
+    display: flex;
+    width: 100%;
+    height: 900px;
+  }
 }
 
 // .background_img {
@@ -15,8 +15,6 @@
 //   width: 100%;
 //   height: 950px;
 // }
-
-
 
 .grid_container {
   display: grid;
@@ -29,6 +27,7 @@
   .first_img {
     width: 116px;
     height: 120px;
+    border-radius: 10px;
   }
 }
 
@@ -37,6 +36,7 @@
   .second_img {
     width: 563px;
     height: 772px;
+    border-radius: 10px;
   }
 }
 
@@ -45,6 +45,7 @@
   .three_img {
     width: 116px;
     height: 120px;
+    border-radius: 10px;
   }
 }
 
@@ -54,6 +55,7 @@
   .four_img {
     width: 116px;
     height: 120px;
+    border-radius: 10px;
   }
 }
 
@@ -127,15 +129,93 @@
   }
 }
 
-.hurry_up{
+.hurry_up {
   font-family: Judson;
-font-size: 16px;
-font-weight: 400;
-text-align: left;
-text-transform: capitalize;
-margin-top: 20px;
-strong{
-  color: rgba(250, 162, 158, 1);
-}
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  text-transform: capitalize;
+  margin-top: 20px;
+  strong {
+    color: rgba(250, 162, 158, 1);
+  }
 }
 
+.button_containe {
+  margin-top: 20px;
+  display: flex;
+}
+
+.bt_style {
+  box-sizing: border-box;
+  border: 1px solid rgba(232, 232, 232, 1);
+  border-radius: 42px;
+  background: rgba(245, 245, 245, 1);
+  width: 158px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  .count_btn {
+    border: none;
+    outline: none;
+    width: 148px;
+    height: 54px;
+    font-family: Outfit;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    border-radius: 42px;
+
+    &:hover {
+      border: none;
+      outline: none;
+      width: 148px;
+      height: 54px;
+      font-family: Outfit;
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffff;
+      border-radius: 42px;
+      background: #000;
+    }
+  }
+}
+
+.btn_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .btn_add {
+    border-radius: 40px;
+    background: rgba(75, 61, 57, 1);
+    width: 350px;
+    height: 54px;
+    outline: none;
+    color: rgba(255, 255, 255, 1);
+    font-family: Judson;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 8px;
+    letter-spacing: 15%;
+    text-align: left;
+    text-transform: uppercase;
+    margin-left: 10px;
+    &:hover {
+      background-color: #000;
+    }
+  }
+  .like_favorite {
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 29px;
+    background: rgba(255, 255, 255, 1);
+    width: 54px;
+    height: 54px;
+    text-align: center;
+    padding-left: 5px;
+    margin-left: 10px;
+
+  }
+}
