@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import "../../../css/shop.css";
 import {
@@ -23,7 +23,12 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 const ShopPage = () => {
   const order_list = Array.from(Array(6).keys());
-
+  // ** INITIALIZATIONS ** // 
+  const [value,setValue] = useState("1")
+  // ** HANDLES ** // 
+  const handleChange = (event:any,newValue:string) =>{
+    console.log(value)
+  }
   return (
     <div className="Shop_frame">
       <div className="background_box">
@@ -37,28 +42,28 @@ const ShopPage = () => {
           <h6 className="shop_subtitle">Attractve jewellery</h6>
           <h1 className="shop_title">Gorgeous Collections</h1>
         </div>
-        <div className="shop_img_wrapper">
-          <div className="shop_box">
+        <Stack flexDirection={"row"} className="shop_img_wrapper">
+          <Box className="shop_box">
             <img className="shop_svg" src="/icons/earring.svg" alt="" />
             <p className="shop_img_title">Earrings</p>
-          </div>
-          <div className="shop_box">
+          </Box>
+          <Box className="shop_box">
             <img className="shop_svg" src="/icons/necklace.svg" alt="" />
             <p className="shop_img_title">Necklace</p>
-          </div>
-          <div className="shop_box">
+          </Box>
+          <Box className="shop_box">
             <img className="shop_svg" src="/icons/diamond.svg" alt="" />
             <p className="shop_img_title">Diamond</p>
-          </div>
-          <div className="shop_box">
+          </Box>
+          <Box className="shop_box">
             <img className="shop_svg" src="/icons/pendant.svg" alt="" />
             <p className="shop_img_title">Pendant</p>
-          </div>
-          <div className="shop_box">
+          </Box>
+          <Box className="shop_box">
             <img className="shop_svg" src="/icons/gems.svg" alt="" />
             <p className="shop_img_title">Gems</p>
-          </div>
-        </div>
+          </Box>
+        </Stack>
       </div>
       <div className="main_product">
         <div className="product_box">

@@ -5,7 +5,7 @@ import "../css/footer.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import ShopPage from "./screens/ShopPage";
-import HelpPage from "./screens/HelpPage";
+
 import LoginPage from "./screens/LoginPage";
 import StorePage from "./screens/StorePage/store";
 import NavbarHome from "./components/header";
@@ -15,6 +15,7 @@ import Footer from "./components/footer";
 import OneJewellry from "./screens/ShopPage/oneJewellry";
 import ChoosenCatagory from "./screens/ShopPage/choosenCatagory";
 import Community from './screens/CommunityPage/community';
+import { HelpPage } from "./screens/HelpPage";
 
 function App() {
   const main_path = window.location.pathname;
