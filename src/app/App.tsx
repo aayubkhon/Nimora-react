@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
@@ -14,9 +14,10 @@ import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
 import OneJewellry from "./screens/ShopPage/oneJewellry";
 import ChoosenCatagory from "./screens/ShopPage/choosenCatagory";
-import Community from './screens/CommunityPage/community';
+import Community from "./screens/CommunityPage/community";
 import { HelpPage } from "./screens/HelpPage";
-
+import VisitMyPage from "./screens/MemberPage/visitMyPage";
+import VisitOtherPage from './screens/MemberPage/visitOtherPage';
 function App() {
   const main_path = window.location.pathname;
   const [path, setPath] = useState();
@@ -32,12 +33,14 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />}/>
-          <Route path="/:jewellry_id/*" element={<ChoosenCatagory />} />
-          <Route path="/:jewellry_id/:category_id" element={<OneJewellry />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/:jewellry_id/*" element={<ChoosenCatagory />} />
+        <Route path="/:jewellry_id/:category_id" element={<OneJewellry />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/store" element={<StorePage />} />
-        <Route path="/community" element={<Community />} />=
+        <Route path="/community" element={<Community />} />
+        <Route path="/member-page" element={<VisitMyPage />} />
+        <Route path="/member-page/other" element={<VisitOtherPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
       <Footer />
