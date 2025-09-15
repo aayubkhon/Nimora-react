@@ -18,6 +18,7 @@ import Community from "./screens/CommunityPage/community";
 import { HelpPage } from "./screens/HelpPage";
 import VisitMyPage from "./screens/MemberPage/visitMyPage";
 import VisitOtherPage from './screens/MemberPage/visitOtherPage';
+import OrdersPage from "./screens/OrdersPage";
 function App() {
   const main_path = window.location.pathname;
   const [path, setPath] = useState();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/:jewellry_id/:category_id" element={<OneJewellry />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/store" element={<StorePage />} />
+        <Route path="/orders" element={<OrdersPage />} />
         <Route path="/community" element={<Community />} />
         <Route path="/member-page" element={<VisitMyPage />} />
         <Route path="/member-page/other" element={<VisitOtherPage />} />
