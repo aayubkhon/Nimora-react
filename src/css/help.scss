@@ -1,6 +1,6 @@
 .help_page {
   width: 100%;
-  height: 1600px;
+  height: 1300px;
 }
 
 .bg_help {
@@ -40,7 +40,7 @@
 .cs_title {
   background-image: url("../../public/home/pattern.png");
   width: 100%;
-  height: 550px;
+  height: 850px;
   background-size: cover;
   background-position: center;
 }
@@ -70,37 +70,37 @@
   }
 }
 
-.help_tablist {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
 .help_menu {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
   margin-top: 30px;
-}
-.help_tab {
-  color: #ffff;
-  font-family: Judson;
-  font-size: 23px;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 15%;
-  text-transform: uppercase;
-  border: 1px solid #fff;
-  width: 250px;
-  outline: none;
-  opacity: 1;
-  cursor: pointer;
-  &:hover {
-    background-color: #ffff;
-    color: #000;
-    border: 1px solid #000;
-    transition: ease-in 0.2s;
+
+  .help_tab {
+    color: #ffff;
+    border: 1px solid rgba(172, 172, 172, 1);
+    height: 50px;
+    font-family: Judson;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: 15%;
+    text-transform: uppercase;
+    width: 250px;
+    background-color: #000;
+    text-align: center;
+    margin: 10px 70px;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(20, 0, 0);
+      background-color: rgb(255, 255, 255);
+    }
+    &:focus {
+      color: rgb(20, 0, 0);
+      background-color: rgb(255, 255, 255);
+    }
   }
 }
 

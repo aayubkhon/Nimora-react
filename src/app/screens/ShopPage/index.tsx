@@ -194,6 +194,7 @@ const ShopPage = () => {
       <Box className="pagination_box">
         <Pagination
           count={5}
+          page={1}
           renderItem={(item) => (
             <PaginationItem
               components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}

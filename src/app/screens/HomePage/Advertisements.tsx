@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import moment from "moment";
 import React from "react";
 
 const Advertisements = () => {
@@ -23,22 +24,7 @@ const Advertisements = () => {
             </p>
           </div>
           <div className="timer">
-            <div className="timer_box">
-              <p className="time">01</p>
-              <p className="day">Days</p>
-            </div>
-            <div className="timer_box">
-              <p className="time">10</p>
-              <p className="day">Hours</p>
-            </div>
-            <div className="timer_box">
-              <p className="time">29</p>
-              <p className="day">Minutes</p>
-            </div>
-            <div className="timer_box">
-              <p className="time">30</p>
-              <p className="day">Seconds</p>
-            </div>
+                 <span className="time">{moment().format("YY-MM-DD HH:MM")}</span>
           </div>
           <Button color="primary" className="view-offer">View Offer</Button>
         </div>

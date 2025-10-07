@@ -92,30 +92,19 @@ export function HelpPage() {
           </p>
         </div>
         <TabContext value={value}>
-          <Box className={"help_menu"}>
-            <Tabs onChange={handleChange} className="help_tablist">
+        <Box className={"help_menu"} >
+            <Tabs  value={value}  onChange={handleChange}>
               <Tab
-                sx={{
-                  background: " rgb(0, 0, 0)",
-                  color: "#ffff",
-                  border: "1px solid #fff",
-                }}
                 className="help_tab"
                 label="Notice"
                 value={"1"}
               />
               <Tab
-                sx={{ background: " rgb(0, 0, 0)", color: "#ffff" }}
                 className="help_tab"
                 label="FAQ"
                 value={"2"}
               />
               <Tab
-                sx={{
-                  background: " rgb(0, 0, 0)",
-                  color: "#ffff",
-                  border: "1px solid #fff",
-                }}
                 className="help_tab"
                 label="Contact Us"
                 value={"3"}

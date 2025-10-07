@@ -1,0 +1,56 @@
+.target_articles_container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 20px;
+  cursor: pointer;
+  gap: 15px;
+}
+
+.card_box {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.target_img {
+  width: 290px;
+  height: 250px;
+}
+
+.typography_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.articles_box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.moment_box {
+  margin-top: 5px;
+}
+
+.article_name {
+  color: white;
+  font-family: Judson;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  margin-left: 10px;
+}
+.target_coment {
+  color: white;
+  font-family: Judson;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  margin: 20px 10px;
+  height: auto;
+}

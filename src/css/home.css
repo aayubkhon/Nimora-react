@@ -599,12 +599,6 @@
   margin-left: auto;
 }
 
-.sale-banner .timer_box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .sale-banner .time {
   color: rgb(255, 255, 255);
@@ -617,17 +611,6 @@
   text-transform: uppercase;
 }
 
-.sale-banner .day {
-  color: rgb(255, 255, 255);
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 0%;
-  text-align: center;
-  text-transform: capitalize;
-  margin-top: 11px;
-}
 
 .sale-banner .view-offer {
   background: rgb(238, 238, 238);
@@ -635,7 +618,20 @@
   height: 40px;
   color: rgb(0, 0, 0);
   font-family: Judson;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.sale-banner .view-offer:hover {
+  background: #000000;
+  color: rgb(255, 255, 255);
+  font-family: Judson;
+  font-size: 16px;
   font-weight: 700;
   line-height: 8px;
   letter-spacing: 3px;
