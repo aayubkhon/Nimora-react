@@ -116,7 +116,7 @@ export function HelpPage() {
               <h1 className="faq">Frequently Asked Questions</h1>
             </Box>
             <Stack className="help_main_content">
-              <TabPanel value="1">
+              <TabPanel value={"1"}>
                 <Stack className="theRules_box">
                   <Box className="theRules_frame">
                     {notice.map((ele, number) => {

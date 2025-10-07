@@ -47,7 +47,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1, 2, 3]} />
+            <TargetArticles targetBoArticles={[1,]} />
           </TabPanel>
           <TabPanel value={"2"}>
             <div className="box_head">
@@ -56,7 +56,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1, 2, 3]} />
+            <TargetArticles targetBoArticles={[1,]} />
           </TabPanel>
           <TabPanel value={"3"}>
             <div className="box_head">
@@ -65,7 +65,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1, 2, 3]} />
+            <TargetArticles targetBoArticles={[1,]} />
           </TabPanel>
           <TabPanel value={"4"}>
             <div className="box_head">
@@ -74,13 +74,13 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1, 2, 3]} />
+            <TargetArticles targetBoArticles={[1,]} />
           </TabPanel>
         </TabContext>
       </Box>
       <Box className="pagination_box">
         <Pagination
-          count={3}
+          count={1}
           page={1}
           renderItem={(item) => (
             <PaginationItem
