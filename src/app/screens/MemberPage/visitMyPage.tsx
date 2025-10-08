@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import "../../../css/my_page.scss";
 import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
-import PersonIcon from "@mui/icons-material/Person";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ZoomOutIcon from "@mui/icons-material/ZoomOut";
 import RedeemIcon from "@mui/icons-material/Redeem";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import ModeIcon from "@mui/icons-material/Mode";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MyFavorites from "./myFavorites";
 import MySettings from "./mySettings";
@@ -31,44 +30,48 @@ const VisitMyPage = () => {
           <p className="mypage_navi">Home/My Page</p>
         </div>
       </Box>
-      <Container className="container">
-        <Box className={"menu"}>
-            <Box className="my_box">
-              <PersonIcon sx={{ fontSize: 100 }} fontSize="large" />
+      <div className="my_container">
+              <Box className="my_profile">
+              <AccountCircleIcon sx={{ fontSize: 100 }} fontSize="large" />
+           <Box>
               <p>Leo</p>
+              <p>+8221312</p>
               <p>User</p>
-              <p>MANAGE LISTINGS</p>
+           </Box>
             </Box>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-              }}
-            >
-              <TabContext value={value}>
-                <Tabs
+            <div className="tab_container">
+               <TabContext value={value}>
+               <Box>
+                 <Tabs
                   orientation="vertical"
-                  variant="scrollable"
                   onChange={handleChange}
                   aria-label="Vertical tabs example"
+                  className="tab_main"
                 >
-                  <Tab
+                  <Typography>MANAGE LISTINGS</Typography>
+
+                    <Tab
                     iconPosition="start"
                     value="1"
                     icon={<FavoriteBorderIcon />}
                     label="My Favorite"
+                    className="tab_title"
                   />
                   <Tab
                     iconPosition="start"
                     value="2"
                     icon={<RedeemIcon />}
                     label="My Orders"
+                    className="tab_title"
+
                   />
                   <Tab
                     iconPosition="start"
                     value="3"
-                    icon={<ZoomOutIcon />}
+                    icon={<ZoomOutIcon/>}
                     label="Recently Visited"
+                    className="tab_title"
+
                   />
 
                   <Tab
@@ -76,12 +79,16 @@ const VisitMyPage = () => {
                     value="4"
                     icon={<PersonAddAlt1Icon />}
                     label="My Followers"
+                    className="tab_title"
+
                   />
                   <Tab
                     iconPosition="start"
                     value="5"
                     icon={<PersonAddAlt1Icon />}
                     label="My Followings"
+                    className="tab_title"
+
                   />
                   <Typography>Community</Typography>
                   <Tab
@@ -89,12 +96,14 @@ const VisitMyPage = () => {
                     value="6"
                     icon={<AddCommentIcon />}
                     label="Articles"
+                    className="tab_title"
                   />
                   <Tab
                     iconPosition="start"
                     value="7"
                     icon={<ModeIcon />}
                     label="Write Article"
+                    className="tab_title"
                   />
                   <Typography>Menage Account</Typography>
                   <Tab
@@ -102,8 +111,11 @@ const VisitMyPage = () => {
                     value="8"
                     icon={<AccountCircleIcon />}
                     label="My Profile"
+                    className="tab_title"
+
                   />
                 </Tabs>
+               </Box>
                 <TabPanel value={"1"}>
                   <Box className="menu_name">My Favorite</Box>
                   <Box>
@@ -153,9 +165,8 @@ const VisitMyPage = () => {
                   </Box>
                 </TabPanel>
               </TabContext>
-            </Box>
-        </Box>
-      </Container>
+            </div>
+      </div>
     </div>
   );
 };

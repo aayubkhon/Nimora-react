@@ -22,7 +22,7 @@ const TargetArticles = (props: any) => {
             <Card
               variant="plain"
               sx={{
-                width: 290,
+                width: 400,
                 height: 440,
                 bgcolor: "rgb(20, 0, 0)",
                 p: 0,

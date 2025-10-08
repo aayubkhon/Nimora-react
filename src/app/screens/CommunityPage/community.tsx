@@ -47,7 +47,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1,]} />
+            <TargetArticles targetBoArticles={[1,2]} />
           </TabPanel>
           <TabPanel value={"2"}>
             <div className="box_head">

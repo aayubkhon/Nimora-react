@@ -1,0 +1,145 @@
+.favorite_frame {
+  height: 500px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 20px 30px;
+  border: 1px solid rgb(149, 146, 146);
+  background: rgb(246, 245, 240);
+  border-radius: 15px;
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+  }
+  .img_frame {
+    position: relative;
+    cursor: pointer;
+    .m_image {
+      width: 400px;
+      height: 350px;
+      border-radius: 20px;
+    }
+    .img_hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: all 0.9s ease;
+      width: 400px;
+      height: 350px;
+    }
+    &:hover .img_hover {
+      opacity: 1;
+    }
+  }
+}
+
+.add_to_cart {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border: 1px solid rgb(20, 0, 0);
+  border-radius: 5px;
+  background-color: #fff;
+  color: rgb(20, 0, 0);
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s ease;
+  font-family: Judson;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 8px;
+  letter-spacing: 15%;
+  text-transform: uppercase;
+  text-align: center;
+  height: 35px;
+  &:hover {
+    background-color: rgb(20, 0, 0);
+    color: #fff;
+  }
+}
+.img_frame:hover .add_to_cart {
+  opacity: 1;
+}
+.icon_box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.box_icon {
+  position: absolute;
+  .eyeiCon_box {
+    position: absolute;
+    top: 280px;
+    right: 200px;
+    color: white;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  .favorite_badge {
+    position: absolute;
+    top: 270px;
+    left: 100px;
+    transition: all 0.5s ease;
+    opacity: 0;
+  }
+}
+.img_frame:hover .eyeiCon_box {
+  opacity: 1;
+}
+.img_frame:hover .favorite_badge {
+  opacity: 1;
+}
+.eyeiCon {
+  color: black;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.title_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 350px;
+  height: 100%;
+  cursor: pointer;
+  .text_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .jewellry_name {
+      font-family: Judson;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 8px;
+      letter-spacing: 15%;
+      text-transform: capitalize;
+      color: rgb(20, 0, 0);
+      margin-bottom: 5px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .jewellry_price {
+      font-family: Judson;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 8px;
+      letter-spacing: 15%;
+      text-transform: capitalize;
+      color: rgb(20, 0, 0);
+      margin-bottom: 5px;
+      text-align: center;
+      margin-top: 15px;
+    }
+  }
+}

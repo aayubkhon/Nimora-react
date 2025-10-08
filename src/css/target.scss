@@ -1,10 +1,11 @@
 .target_articles_container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   margin-top: 20px;
   cursor: pointer;
   width: 100%;
   gap: 15px;
+  height: auto;
 }
 
 .card_box {
@@ -13,7 +14,7 @@
   margin-top: 10px;
 }
 .target_img {
-  width: 290px;
+  width: 400px;
   height: 250px;
 }
 

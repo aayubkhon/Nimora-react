@@ -5,7 +5,6 @@ import "../css/footer.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import ShopPage from "./screens/ShopPage";
-
 import LoginPage from "./screens/LoginPage";
 import StorePage from "./screens/StorePage/store";
 import NavbarHome from "./components/header";
