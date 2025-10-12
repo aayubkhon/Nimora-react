@@ -7,11 +7,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../../../css/costum-swiper.css";
+import { motion } from "framer-motion";
 const NavbarHome = (props: any) => {
   return (
     <div className="home_navbar">
       <div className="navbar">
-        <Link  to="/">
+        <Link to="/">
           <img className="logo" src="/icons/Clip.svg" alt="" />
         </Link>
         <ul>
@@ -84,90 +85,34 @@ const NavbarHome = (props: any) => {
         </div>
       </div>
       <Stack>
-        <Swiper
-          spaceBetween={0}
-          centeredSlides={true}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter:true
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Stack className="head_information_second">
-              <Box>
-                <div className="big_img2"></div>
-              </Box>
-              <Stack
-                justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "800px" }}
-              >
-                <Box className="define_shop">Special Occasion Jewellery</Box>
-                <Box className="define_text">AMAZING JEWELLERY COLLECTION</Box>
-                <Box className="timeline_service">
-                  Maecenas ut orci hendrerit. Praesent maximus est a ligula
-                  ultricies, sit amet ornare dui mattis. Donec ac mi dui. Donec
-                  commodo ultrices elit eu sodales.
-                </Box>
-                <Box sx={{ mt: "20px" }}>
-                  <Button className="main_btn ">Shop now</Button>
-                </Box>
-              </Stack>
-            </Stack>
-          </SwiperSlide>
-          {/* <SwiperSlide>
-            <Stack className="head_information">
-              <Stack
-                justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "69px" }}
-              >
-                <Box className="define_text">NEW DESIGN WEDDING RINGS</Box>
-                <Box className="define_shop">Classy Design</Box>
-                <Box className="timeline_service ">
-                  Viverra ipsum nunc aliquet bibendum enim facilisis. Egestas
-                  erat imperdiet sed euismod nisi porta lorem mollis.
-                </Box>
-                <Box sx={{ mt: "20px" }}>
-                  <Button className="main_btn ">Shop now</Button>
-                </Box>
-              </Stack>
-              <Box>
-                <div className="big_img"></div>
-              </Box>
-            </Stack>
-          </SwiperSlide> */}
-          <SwiperSlide>
-            <Stack className="head_information3">
-              <Box>
-                <div className="big_img3"></div>
-              </Box>
-              <Stack
-                justifyContent={"column"}
-                sx={{ marginTop: "176px", marginLeft: "670px" }}
-              >
-                <Box className="define_shop">Trendy Design</Box>
-                <Box className="define_text">
-                  FASHIONABLE DESIGNING JEWELLARY
-                </Box>
-                <Box className="timeline_service">
-                  Saecenas ut orci hendrerit. Praesent maximus est a ligula
-                  ultricies, sit amet ornare dui mattis. Donec ac mi dui. Donec
-                  commodo ultrices elit eu sodales.
-                </Box>
-                <Box sx={{ mt: "20px" }}>
-                  <Button className="main_btn">Shop now</Button>
-                </Box>
-              </Stack>
-            </Stack>
-          </SwiperSlide>
-        </Swiper>
+        <Stack className="head_information_second">
+          <Box>
+            <motion.img
+              src="/home/swr.png"
+              alt="Swing Woman"
+              className="big_img2"
+              animate={{
+                rotate: [4, -9, 4], // strong swing angle
+              }}
+              transition={{
+                repeat: Infinity,
+                ease: "easeInOut",
+                duration: 4, // fast speed
+              }}
+            />
+          </Box>
+          <Stack
+            justifyContent={"column"}
+            sx={{ marginTop: "150px", marginLeft: "150px" }}
+          >
+            <img className="header_logo" src="/icons/Clip.svg" alt="" />
+            <Box sx={{ mt: "20px" }}>
+              <Button className="main_btn ">Shop now</Button>
+            </Box>
+          </Stack>
+        </Stack>
       </Stack>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };

@@ -32,6 +32,8 @@ const Community = (props: any) => {
               onChange={handleChange}
               aria-label="Vertical tabs example"
               value={value}
+              sx={{"& button.Mui-selected":{backgroundColor:"white",color:"black"}}}
+              
             >
               <img src="/icons/glamora.svg" alt="" />
               <Tab className="tab_br" value={"1"} label="All Blogs" />

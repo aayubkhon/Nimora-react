@@ -11,8 +11,8 @@ const HomePage = () => {
   return (
     <div className='homepage'>
       <OurCollection/>
-      <TradingProduct/>
       <DiamondCollection/>
+      <TradingProduct/>
       <RecentProducts/>
       <Advertisements/>
       <Services/>

@@ -1,0 +1,112 @@
+.follow_frame {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  .followers_box {
+    display: flex;
+    align-items: center;
+    background: rgb(239, 232, 215);
+    margin-top: 20px;
+    border-radius: 20px;
+    outline: none;
+    width: 900px;
+    height: 120px;
+    .followers_img {
+      text-align: center;
+      margin-top: 10px;
+      margin-left: 40px;
+    }
+  }
+}
+
+.followers_container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 20px;
+  margin-left: 30px;
+  .followers_auth_user {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .followers_title {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+}
+
+.follow_btn_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .following_already {
+    margin-left: auto;
+    box-shadow: 1px 4px 6px rgba(211.44, 211.44, 211.44, 0.25);
+    border-radius: 15px;
+    color: #000;
+    font-size: 14px;
+    font-family: Judson;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(20, 0, 0);
+      color: #ffff;
+      font-weight: 600;
+      transition: ease-in 0.2s;
+    }
+  }
+  .follow_btn {
+    margin-left: auto;
+    box-shadow: 1px 4px 6px rgba(211.44, 211.44, 211.44, 0.25);
+    border-radius: 15px;
+    color: #000;
+    font-size: 14px;
+    font-family: Judson;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(20, 0, 0);
+      color: #ffff;
+      font-weight: 600;
+      transition: ease-in 0.2s;
+    }
+  }
+  .follow_cancel_btn {
+    margin-left: auto;
+    margin-right: 30px;
+    box-shadow: 1px 4px 6px rgba(211.44, 211.44, 211.44, 0.25);
+    border-radius: 15px;
+    color: #000;
+    font-size: 14px;
+    font-family: Judson;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(20, 0, 0);
+      color: #ffff;
+      font-weight: 600;
+      transition: ease-in 0.2s;
+    }
+  }
+}

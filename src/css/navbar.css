@@ -1,7 +1,6 @@
 .home_navbar {
   width: 100%;
   background: rgb(255, 255, 255);
-  
 }
 .navbar {
   width: 100%;
@@ -45,6 +44,7 @@ ul li .nav-link-ltr {
   align-items: center;
   justify-content: space-between;
   width: 170px;
+  margin-top: 20px;
 }
 
 .home_navbar .navbar .login_btn {
@@ -123,7 +123,6 @@ ul li .nav-link-ltr {
   display: flex;
   height: 950px;
   background: #504a48;
-
 }
 
 .home_navbar .define_text {
@@ -136,42 +135,28 @@ ul li .nav-link-ltr {
   letter-spacing: 0%;
   text-transform: capitalize;
   opacity: 0;
-  animation: anim-top .6s 0.9s forwards linear ;
+  animation: anim-top 0.6s 0.9s forwards linear;
 }
 
 .home_navbar .define_shop {
   position: relative;
-  width: 484px;
-  color: #fff;
+  color: rgb(6, 6, 6);
   font-family: Judson;
-  font-size: 20px;
+  font-size: 60px;
   font-weight: 400;
   text-align: left;
   text-transform: uppercase;
   margin-top: 15px;
   opacity: 0;
-  animation: anim-top .6s 0.9s forwards linear ;
+  animation: anim-top 0.6s 0.9s forwards linear;
 }
-.home_navbar .timeline_service {
+.home_navbar .header_logo {
   position: relative;
-  width: 566px;
-  font-family: Inter;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: 0%;
-  text-align: justify;
-  margin-top: 18px;
-  color: white;
-  opacity: 0;
-  animation: anim-top .6s 0.9s forwards linear ;
+  width: 756px;
+  text-align: center;
 }
 
 
-@keyframes anim-top{
-  0%{transform: translateY(500px); opacity: 0;}
-  100%{transform: translateY(0px); opacity: 1;}
-}
 
 .home_navbar .main_btn {
   width: 180px;
@@ -181,67 +166,30 @@ ul li .nav-link-ltr {
   text-align: center;
   text-transform: uppercase;
   border: none;
-  background-color: #ffffff;
-  color: black;
+  color: rgb(6, 6, 6);
+  border: 1px solid rgb(6, 6, 6);
+  margin-top: 30px;
 }
 .home_navbar .main_btn:hover {
-  color: white;
-  border: 1px solid white;
+  background-color: rgb(6, 6, 6);
+  color: #fff;
   transition: all 0.3s linear;
 }
-.home_navbar .big_img {
-   position: absolute;
-  background-size: cover;
-  background-image: url("/public/home/fal.png");
-  background-repeat: no-repeat;
-  width:1200px;
-  height: 950px;
 
-}
-
-.home_navbar .big_img2 {
+.home_navbar .head_information_second .big_img2 {
   position: absolute;
-  background-size: cover;
-  background-image: url("/public/home/lee.png");
-  background-repeat: no-repeat;
-    width: 770px;
-  height: 950px;
+  width: 600px;
+  left: 50%;
+  height: 90%;
+  transform-origin: top center;
 }
+
 
 .home_navbar .head_information_second {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 950px;
-  background: #b6b6b4;
-}
-
-.home_navbar .big_img3 {
-  position: absolute;
-  background-size: cover;
-  background-image: url("/public/home/zhou.png");
-  background-repeat: no-repeat;
-  width: 700px;
-  height: 950px;
-}
-
-.home_navbar .head_information3 {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 950px;
-  background: #cd865c;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 800px;
 }
 
 .home_navbar .icon {

@@ -93,7 +93,7 @@ export function HelpPage() {
         </div>
         <TabContext value={value}>
         <Box className={"help_menu"} >
-            <Tabs  value={value}  onChange={handleChange}>
+            <Tabs  value={value}  onChange={handleChange} sx={{"& button.Mui-selected":{backgroundColor:"white",color:"black"}}}>
               <Tab
                 className="help_tab"
                 label="Notice"
