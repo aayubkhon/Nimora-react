@@ -14,6 +14,7 @@ import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel } from "@mui/lab";
 import TargetArticles from "../CommunityPage/targetArticles";
+import TuiEditor from "../../components/tuiEditor/tuiEditor";
 const VisitMyPage = () => {
   // ** INITIALIZATIONS ** //
   const [value, setValue] = useState("1");
@@ -163,8 +164,8 @@ const VisitMyPage = () => {
                 </TabPanel>
                 <TabPanel value={"7"}>
                   <Box className="menu_name">Write Articles</Box>
-                  <Box>
-                    <MySettings />
+                  <Box  className={"box_frame"}>
+                    <TuiEditor />
                   </Box>
                 </TabPanel>
                 <TabPanel value={"8"}>

@@ -337,3 +337,18 @@
     transition: ease-in 0.2s;
   }
 }
+
+/* TuiEDitor start */
+
+
+  .tuieditor_frame{
+  height: 800px;
+
+  }
+  .form_row{
+ display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  }
+ 
