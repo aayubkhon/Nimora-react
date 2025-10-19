@@ -1,0 +1,178 @@
+.OtherPage_frame {
+  width: 100%;
+  height: 1900px;
+  .bg_mypage {
+  background-image: url("../../public/home/adored.jpeg");
+  width: 100%;
+  height: 900px;
+  background-size: contain;
+  background-position: center;}
+}
+
+
+
+.bg_box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 98%;
+  .mypage {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 60px;
+    font-weight: 800;
+    letter-spacing: 0%;
+    text-transform: capitalize;
+  }
+  .mypage_navi {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 8px;
+    letter-spacing: 15%;
+    text-transform: capitalize;
+  }
+}
+
+.right_menu {
+  height: 1200px;
+  width: 100%;
+  background-image: url("../../public/home/pattern.png");
+}
+
+.my_container {
+  display: flex;
+  width: 100%;
+
+  .tab_my_cont {
+    display: flex;
+    width: 100%;
+    height: 1100px;
+    margin: 70px 20px;
+    border: 0.5px solid rgb(20, 0, 0);
+    border-radius: 10px;
+  }
+}
+
+
+.profile_info {
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 30px;
+  width: 100%;
+  .my_name {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 8px;
+    letter-spacing: 15%;
+    text-transform: capitalize;
+    margin-top: 20px;
+  }
+  .my_phone {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 8px;
+    letter-spacing: 15%;
+    text-transform: capitalize;
+    margin-top: 30px;
+  }
+  .user {
+    color: rgb(20, 0, 0);
+    font-family: Judson;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 8px;
+    letter-spacing: 15%;
+    text-transform: capitalize;
+    margin-top: 30px;
+  }
+}
+
+.tab_main {
+  display: flex;
+  width: 350px;
+  height: 700px;
+  margin-top: 150px;
+  margin-left: 25px;
+  border-radius: 30px;
+  background: rgb(255, 246, 239);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  border: 0.5px solid rgb(20, 0, 0);
+  .MuiTab-root {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+    color: rgb(40, 40, 40);
+    font-family: "Judson", serif;
+    font-weight: 600;
+    text-transform: none;
+    padding: 10px 20px;
+    min-height: 48px;
+    border-radius: 12px;
+    margin: 5px 12px;
+    transition: all 0.25s ease;
+    width: 270px;
+      margin-top: 10px;
+
+
+    &:hover {
+      background-color: rgb(225, 214, 202);
+      color: rgb(100, 40, 20);
+    }
+
+    &.Mui-selected {
+      background-color: rgb(200, 180, 160);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+  .tab_another{
+         color: rgb(141, 72, 50);
+    font-family: Judson;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 8px;
+    letter-spacing: 15%;
+    text-transform: capitalize;
+    margin-left: 20px;
+    margin-top: 25px;
+    opacity: 0.7;
+  }
+}
+
+.tab_title {
+  color: rgb(20, 0, 0);
+  font-family: Judson;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 8px;
+  letter-spacing: 15%;
+  text-transform: capitalize;
+  margin-left: 20px;
+  
+}
+
+.tab_name {
+  color: rgb(20, 0, 0);
+  font-family: Judson;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 8px;
+  letter-spacing: 15%;
+  text-transform: capitalize;
+}
+
+.box_frame {
+  margin-top: 110px;
+}

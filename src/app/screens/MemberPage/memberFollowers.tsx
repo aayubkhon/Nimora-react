@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../css/followers.scss";
-import { Avatar, Box, Button, Link, Stack } from "@mui/material";
+import { Avatar, Box, Button, Stack } from "@mui/material";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 const follower = [
   { mb_nick: "leo", following: true },
@@ -31,28 +31,19 @@ const MemberFollow = (props: any) => {
                 <Box className="follow_btn_box">
                   {props.actions_enabled &&
                     (follower.following ? (
-                      <>
-                        <Button
-                          variant={"contained"}
-                          className="following_already"
-                        >
-                          FOLLOWING
-                        </Button>
-                        <Button
-                          className="follow_btn"
-                          variant={"contained"}
-                          startIcon={<PersonAddAltOutlinedIcon />}
-                        >
-                          Follow Back
-                        </Button>
-                      </>
+                      <Button
+                        variant={"contained"}
+                        className="following_already"
+                      >
+                        FOLLOWING
+                      </Button>
                     ) : (
                       <Button
                         className="follow_btn"
                         variant={"contained"}
                         startIcon={<PersonAddAltOutlinedIcon />}
                       >
-                        Follow
+                        Follow Back
                       </Button>
                     ))}
                 </Box>

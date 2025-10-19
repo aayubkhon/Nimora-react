@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../../css/my_page.scss";
-import { Avatar, Box, Container, Stack, Tab, Tabs } from "@mui/material";
+import { Avatar, Box,  Tab, Tabs, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ZoomOutIcon from "@mui/icons-material/ZoomOut";
@@ -39,10 +39,10 @@ const VisitMyPage = () => {
                 <Tabs
                 selectionFollowsFocus={true}
                   orientation="vertical"
-                  className="tttt"
                   onChange={handleChange}
                   aria-label="Vertical tabs example"
                   value={value}
+                  variant="fullWidth"
                   sx={{
                     "& button.Mui-selected": {
                       backgroundColor: "rgb(246, 245, 240)",
@@ -62,12 +62,12 @@ const VisitMyPage = () => {
                       <p className="user">User</p>
                     </Box>
                   </Box>
+                  <Typography variant="h4" className="tab_another">My Activity</Typography>
                     <Tab
                     iconPosition="start"
                     value="1"
                     icon={<FavoriteBorderIcon />}
                     label="My Favorite"
-                    className="tab_label"
                   />
                   <Tab
                     iconPosition="start"
@@ -98,7 +98,7 @@ const VisitMyPage = () => {
                     label="My Followings"
                     className="tab_label"
                   />
-                  <p>Community</p>
+                  <p className="tab_title">Community</p>
                   <Tab
                     iconPosition="start"
                     value="6"
@@ -113,7 +113,7 @@ const VisitMyPage = () => {
                     label="Write Article"
                     className="tab_label"
                   />
-                  <p>Menage Account</p>
+                  <p  className="tab_title">Menage Account</p>
                   <Tab
                     iconPosition="start"
                     value="8"
@@ -125,7 +125,7 @@ const VisitMyPage = () => {
               </Box>
               
                   <TabPanel value={"1"}>
-                  <h1 className="exprss">My Favorite</h1>
+                  <Typography variant="h1" className="">My Favorite</Typography>
                     <Box className={"box_frame"} >
                       <MyFavorites />
                     </Box>

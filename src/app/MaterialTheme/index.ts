@@ -22,6 +22,7 @@ const light = {
       main: "#000",
       // main: "#ffff",
     },
+  
     text: {
       primary: "#172b4d",
       secondary: "#6b778c",

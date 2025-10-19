@@ -9,9 +9,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import { CssVarsProvider } from "@mui/joy/styles";
 import moment from "moment";
 
-const handlePaginationChange = (event: any, value: number) => {
-  console.log(value);
-};
+
 const TargetArticles = (props: any) => {
   return (
     <div className="target_articles_container">

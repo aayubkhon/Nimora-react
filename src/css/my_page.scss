@@ -1,4 +1,4 @@
-.MyPage_frame {
+.OtherPage_frame {
   width: 100%;
   height: 1900px;
 }
@@ -40,8 +40,6 @@
   height: 1200px;
   width: 100%;
   background-image: url("../../public/home/pattern.png");
-  background-size: cover;
-  background-position: center;
 }
 
 .my_container {
@@ -50,18 +48,14 @@
 
   .tab_my_cont {
     display: flex;
-    border: 1px solid rgb(20, 0, 0);
     width: 100%;
+    height: 1100px;
     margin: 70px 20px;
+    border: 0.5px solid rgb(20, 0, 0);
+    border-radius: 10px;
   }
 }
 
-.my_profile {
-  width: 300px;
-  height: 740px;
-  border: 1px solid rgb(20, 0, 0);
-  margin-top: 20px;
-}
 
 .profile_info {
   flex-direction: column;
@@ -105,49 +99,68 @@
 .tab_main {
   display: flex;
   width: 350px;
-  height: 950px;
-  margin-top: 170px;
+  height: 700px;
+  margin-top: 150px;
   margin-left: 25px;
-  background: rgb(246, 245, 240);
-  border: 1px solid red;
+  border-radius: 30px;
+  background: rgb(255, 246, 239);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  border: 0.5px solid rgb(20, 0, 0);
+  .MuiTab-root {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+    color: rgb(40, 40, 40);
+    font-family: "Judson", serif;
+    font-weight: 600;
+    text-transform: none;
+    padding: 10px 20px;
+    min-height: 48px;
+    border-radius: 12px;
+    margin: 5px 12px;
+    transition: all 0.25s ease;
+    width: 270px;
+      margin-top: 10px;
 
-  .tab_label {
-    color: #fff;
+
+    &:hover {
+      background-color: rgb(225, 214, 202);
+      color: rgb(100, 40, 20);
+    }
+
+    &.Mui-selected {
+      background-color: rgb(200, 180, 160);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+  .tab_another{
+         color: rgb(141, 72, 50);
     font-family: Judson;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 8px;
+    letter-spacing: 15%;
     text-transform: capitalize;
-    width: 300px;
-    height: 5%;
-    text-align: center;
-    background: rgb(20, 0, 0);
-    margin-top: 20px;
-
-    // &:hover {
-    //   background-color: rgb(255, 255, 255);
-    //   color: rgb(20, 0, 0);
-    //   font-weight: 800;
-    //   border: 1px solid rgba(172, 172, 172, 1);
-    //   cursor: pointer;
-    //   transition: ease-in 0.2s;
-    // }
-    // &:focus {
-    //   background-color: rgb(255, 255, 255);
-    //   color: rgb(20, 0, 0);
-    //   font-weight: 800;
-    //   border: 1px solid rgba(172, 172, 172, 1);
-    //   cursor: pointer;
-    // }
+    margin-left: 20px;
+    margin-top: 25px;
+    opacity: 0.7;
   }
 }
 
-.label_title {
+.tab_title {
   color: rgb(20, 0, 0);
   font-family: Judson;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 8px;
   letter-spacing: 15%;
   text-transform: capitalize;
+  margin-left: 20px;
+  
 }
 
 .tab_name {
@@ -161,16 +174,8 @@
 }
 
 .box_frame {
-  margin-top: 120px;
+  margin-top: 110px;
 }
-
-// .eeee{
-//   border: 1px solid red ;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   justify-content: flex-start;
-// }
 
 // My Setting //
 
@@ -178,17 +183,17 @@
   display: flex;
   flex-direction: column;
   margin-top: 25px;
-  width: 100%;
-  background-color: rgb(253, 250, 245);
+  width: 950px;
+   background: rgb(255, 249, 244);
   border-radius: 20px;
-  border: 1px solid rgb(20, 0, 0);
+  border: 0.5px solid rgb(20, 0, 0);
 }
 
 .setting_file_box {
   display: flex;
   width: 100%;
   height: 130px;
-  background-color: rgb(253, 250, 245);
+    background: rgb(255, 249, 244);
   border-radius: 5px;
   margin-top: 50px;
 }
@@ -235,12 +240,15 @@
   flex-direction: column;
   margin-top: 10px;
   width: 100%;
+  margin-left: 30px;
+
   .info_input {
     display: flex;
-    width: 100%;
+    width: 810px;
     height: 54px;
     background: #fff;
     border-radius: 10px;
+    margin-top: 10px;
   }
 }
 
@@ -269,7 +277,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-left: 30px;
 }
 
 .short_input {
@@ -277,6 +286,7 @@
   width: 390px;
   height: 54px;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 .short_input_second {
@@ -286,6 +296,7 @@
   background: #f6f6f6;
   border-radius: 10px;
   margin-left: 30px;
+  margin-top: 10px;
 }
 
 .spec_short_input {
@@ -306,23 +317,25 @@
   font-size: 15px;
   font-family: Judson;
   font-weight: 600;
-  width: 100%;
+  width: 810px;
   height: 200px;
   border-radius: 10px;
-  border: 1px solid rgb(20, 0, 0);
 }
 
-.update_btn_box {
-  box-shadow: 1px 4px 6px rgba(211.44, 211.44, 211.44, 0.25);
+.big_info_input {
+  margin-top: 15px;
+}
+
+.MuiButtonBase-root.update_btn_box {
   border-radius: 15px;
-  color: #000;
-  font-size: 20px;
+  color: rgb(20, 0, 0);
+  font-size: 22px;
   font-family: Judson;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: capitalize;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(225, 214, 202);
   border: none;
-  width: 170px;
+  width: 200px;
   height: 60px;
   cursor: pointer;
   text-align: center;
@@ -331,24 +344,60 @@
   margin-right: 50px;
   &:hover {
     background-color: rgb(20, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    border: 1px solid rgba(172, 172, 172, 1);
-    transition: ease-in 0.2s;
+    color: rgb(255, 249, 244);
   }
 }
 
 /* TuiEDitor start */
 
-
-  .tuieditor_frame{
+.tuieditor_frame {
   height: 800px;
-
-  }
-  .form_row{
- display: flex;
+  width: 900px;
+    border: 0.5px solid rgb(20, 0, 0);
+  border-radius: 15px;
+  background-color: white;
+}
+.form_row {
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  
+  .category_title{
+  color: rgb(20, 0, 0);
+  font-size: 30px;
+  font-family: Judson;
+  font-weight: 600;
+  text-transform: capitalize;
   }
- 
+}
+
+  .textfield_title{
+    color: rgb(20, 0, 0);
+    font-size: 20px;
+    font-family: Judson;
+    font-weight: 600;
+    text-transform: capitalize;
+    width: 300px;
+  }
+.MuiButtonBase-root.register {
+  border-radius: 15px;
+  color: rgb(20, 0, 0);
+  font-size: 22px;
+  font-family: Judson;
+  font-weight: 800;
+  text-transform: capitalize;
+  background-color: rgb(225, 214, 202);
+  border: none;
+  width: 200px;
+  height: 60px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  &:hover {
+    background-color: rgb(20, 0, 0);
+    color: rgb(255, 249, 244);
+  }
+}

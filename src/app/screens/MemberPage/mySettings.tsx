@@ -77,7 +77,7 @@ const MySettings = () => {
           </div>
         </Box>
         <Box display={"flex"} justifyContent={"flex-end"}>
-          <button className="update_btn_box">Update Profile</button>
+          <Button variant="contained"  className="update_btn_box">Update Profile</Button>
         </Box>
       </Stack>
     </div>

@@ -20,17 +20,17 @@ const TuiEditor = (props:any) => {
       <Stack className="tuieditor_frame">
       <Stack direction={"row"} justifyContent={"space-evenly"} margin={"40px"}>
         <Box className="form_row">
-          <Typography
-            style={{ color: "rgb(20, 0, 0)", margin: "10px" }}
-            variant="h3"
+          <Typography variant="h1" className='category_title'
           >
             Category
           </Typography>
           <FormControl
-            sx={{ width: "250px", height: "56px", background: "white" }}
+            sx={{ width: "250px", height: "56px",marginTop:2 }}
+            color='secondary'
+
           >
             <Select
-              sx={{ border: "1px solid red" }}
+
               value="celebrity"
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
@@ -44,17 +44,18 @@ const TuiEditor = (props:any) => {
           </FormControl>
         </Box>
         <Box className="form_row">
-          <Typography
-            style={{ color: "rgb(20, 0, 0)", margin: "10px" }}
-            variant="h3"
+          <Typography variant="h1"  className='category_title'
           >
             Title
           </Typography>
           <TextField
             id="filled-basic"
             label="Type title"
-            variant="filled"
-            style={{ width: "300px", background: "white" }}
+            color='secondary'
+            className='textfield_title'
+             variant="outlined" 
+            sx={{ marginTop:2 }}
+
           />
         </Box>
       </Stack>
@@ -80,11 +81,10 @@ const TuiEditor = (props:any) => {
           load: function (param: any) {},
         }}
       />
-      <Stack direction={"row"} justifyContent={"center"}>
+      <Stack  direction={"row"} justifyContent={"center"}>
         <Button
           variant="contained"
           className='register'
-          style={{ margin: "30px", width: "250px", height: "45px" }}
         >
           Register
         </Button>
