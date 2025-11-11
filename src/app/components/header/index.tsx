@@ -17,16 +17,16 @@ const NavbarHome = (props: any) => {
         </Link>
         <ul>
           <li>
-            <NavLink
+            <Link
               className="nav-link-ltr"
               to="/"
               onClick={props.setPath}
-              style={(isActive) => ({
-                color: isActive ? "#f7ab42" : "black",
-              })}
+              // style={(isActive) => ({
+              //   color: isActive ? "#f7ab42" : "black",
+              // })}
             >
               Home
-            </NavLink>
+            </Link>
           </li>
           <li onClick={props.setPath}>
             <Link className="hover_line nav-link-ltr" to="/shop">
@@ -88,17 +88,17 @@ const NavbarHome = (props: any) => {
         <Stack className="head_information_second">
           <Box>
             <motion.img
-              src="/home/swr.png"
+              src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTV0cTVvdmtjd3pqdDJ1c3VrZjcxOHJldmRvbG9oMWE0cTRiMHUzeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WKCAUc5RqkL0tzvsCM/giphy.gif"
               alt="Swing Woman"
               className="big_img2"
-              animate={{
-                rotate: [4, -9, 4], // strong swing angle
-              }}
-              transition={{
-                repeat: Infinity,
-                ease: "easeInOut",
-                duration: 4, // fast speed
-              }}
+              // animate={{
+              //   rotate: [4, -9, 4], // strong swing angle
+              // }}
+              // transition={{
+              //   repeat: Infinity,
+              //   ease: "easeInOut",
+              //   duration: 4, // fast speed
+              // }}
             />
           </Box>
           <Stack
@@ -112,7 +112,6 @@ const NavbarHome = (props: any) => {
           </Stack>
         </Stack>
       </Stack>
-      <Outlet />
     </div>
   );
 };

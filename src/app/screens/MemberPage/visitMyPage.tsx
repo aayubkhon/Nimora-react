@@ -36,20 +36,12 @@ const VisitMyPage = () => {
           <Box className="tab_my_cont">
             <TabContext value={value}>
               <Box className={"tab_main"}>
-                <Tabs
-                selectionFollowsFocus={true}
-                  orientation="vertical"
-                  onChange={handleChange}
-                  aria-label="Vertical tabs example"
-                  value={value}
-                  variant="fullWidth"
-                  sx={{
-                    "& button.Mui-selected": {
-                      backgroundColor: "rgb(246, 245, 240)",
-                      color: "black",
-                    },
-                  }}
-                  
+                <Tabs 
+                orientation="vertical"
+               value={value}
+  onChange={handleChange}
+  indicatorColor="primary"
+  variant="fullWidth"
                 >
                   <Box display="flex">
                   <Avatar

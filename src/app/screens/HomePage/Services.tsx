@@ -1,11 +1,11 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React from "react";
 
 const Services = () => {
   return (
     <div className="Services_frame">
       <Container>
-        <Box>
+        <Box marginLeft={3}>
           <h2 className="services-title">Stores & services</h2>
           <p className="services-subtitle">
             Discover our thoughtfully designed stores and Piercing Studios
@@ -19,7 +19,7 @@ const Services = () => {
             <p className="store_subtitle">
               Your new favorite space to shop, stack, and stay a while.
             </p>
-            <Typography className="store_click">Visit Our Stores</Typography>
+            <Button className="store_click">Visit Our Stores</Button>
           </div>
           <div className="store_frame">
             <img className="store_img" src="/home/store3.jpeg" alt="" />
@@ -27,7 +27,7 @@ const Services = () => {
             <p className="store_subtitle">
               Your new favorite space to shop, stack, and stay a while.
             </p>
-            <Typography className="store_click">Visit Our Stores</Typography>
+            <Button className="store_click">Visit Our Stores</Button>
           </div>
           <div className="store_frame">
             <img className="store_img" src="/home/store2.jpeg" alt="" />
@@ -35,7 +35,7 @@ const Services = () => {
             <p className="store_subtitle">
               Your new favorite space to shop, stack, and stay a while.
             </p>
-            <Typography className="store_click">Visit Our Stores</Typography>
+                        <Button className="store_click">Visit Our Stores</Button>
           </div>
         </div>
       </Container>

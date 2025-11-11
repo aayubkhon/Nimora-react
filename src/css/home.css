@@ -2,7 +2,6 @@
 
 .homepage .home_collection {
   width: 100%;
-  height: 400px;
 }
 
 .home_collection .container {
@@ -148,31 +147,87 @@
 .TrandingProduct_frame {
   width: 100%;
   height: 900px;
-  background: rgb(246, 245, 240);
 }
 
 .TrandingProduct_frame .frame_name {
   color: rgb(46, 46, 46);
   font-family: Judson;
-  font-size: 55px;
-  font-weight: 400;
+  font-size: 45px;
+  font-weight: 800;
   text-transform: capitalize;
-  margin-top: 50px;
+  margin-left: 60px;
 }
 
-.TrandingProduct_frame .add_bag {
-  height: 20px;
-  font-size: 12px;
-  font-weight: 400;
-  text-align: center;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  background: #ffffff;
-  color: #000;
-  margin-left: auto;
+.TrandingProduct_frame .card_frame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 0.8px solid rgb(0, 0, 0);
+  height: 560px;
 }
-.TrandingProduct_frame .add_box .add_bag:hover {
+
+.TrandingProduct_frame .card_frame .img_car_box {
+  width: 100%;
+  height: 600px;
+}
+
+.TrandingProduct_frame .img_frame {
+  position: relative;
+  cursor: pointer;
+}
+
+.TrandingProduct_frame .img_frame .m_image {
+  width: 400px;
+  height: 445px;
+}
+
+@media (min-width: 1600px) {
+  .TrandingProduct_frame .img_frame .m_image {
+    width: 500px;
+  }
+}
+
+.TrandingProduct_frame .img_frame .img_hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.9s ease;
+  width: 400px;
+  height: 445px;
+}
+
+@media (min-width: 1600px) {
+  .TrandingProduct_frame .img_frame .img_hover {
+    width: 500px;
+  }
+}
+
+.TrandingProduct_frame .img_frame:hover .img_hover {
+  opacity: 1;
+}
+
+.TrandingProduct_frame .img_car_box .img_frame .add {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: rgb(243, 243, 243);
+  color: #79786c;
+  font-size: 16px;
+  opacity: 1;
+  transition: all 0.5s ease;
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  height: 35px;
+}
+
+.TrandingProduct_frame .add_box .add:hover {
   height: 20px;
   font-size: 12px;
   font-weight: 400;
@@ -185,7 +240,7 @@
 }
 
 .TrandingProduct_frame .product_name {
-  color: rgb(46, 46, 46);
+  color: rgb(132, 131, 120);
   font-family: Judson;
   font-size: 22px;
   font-weight: 400;
@@ -193,14 +248,16 @@
   letter-spacing: 0%;
   text-align: left;
   text-transform: capitalize;
+  margin: 5px 15px;
 }
 .TrandingProduct_frame .product_price {
-  color: rgb(46, 46, 46);
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 400;
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 17px;
+  font-weight: 600;
   line-height: 30px;
   letter-spacing: 0%;
+  margin-left: 15px;
 }
 
 .TrandingProduct_frame .swiper {
@@ -335,7 +392,6 @@
   width: 100%;
 }
 
-
 .DiamondCollection_frame .scroller-inner::after {
   display: flex;
   gap: 2rem;
@@ -427,16 +483,13 @@
   align-items: center;
   justify-content: center;
   margin-top: 50px;
-
 }
 .RecentProducts_frame .favorite_box {
   position: relative;
-
 }
 
 .RecentProducts_frame .box {
   position: relative;
-
 }
 
 .RecentProducts_frame .favorite {
@@ -453,13 +506,11 @@
   z-index: 3;
   opacity: 0;
   transition: ease;
-
 }
 
 .RecentProducts_frame .ring:hover .favorite {
   opacity: 1;
   transition: 0.2s ease-out;
-
 }
 .RecentProducts_frame .add_btn {
   display: flex;
@@ -599,7 +650,6 @@
   margin-left: auto;
 }
 
-
 .sale-banner .time {
   color: rgb(255, 255, 255);
   font-family: Judson;
@@ -610,7 +660,6 @@
   text-align: left;
   text-transform: uppercase;
 }
-
 
 .sale-banner .view-offer {
   background: rgb(238, 238, 238);
@@ -646,8 +695,7 @@
 
 .Services_frame {
   width: 100%;
-  height: 790px;
-  background: rgb(246, 245, 240);
+  height: 800px;
   display: flex;
   flex-direction: column;
 }
@@ -663,8 +711,8 @@
 .Services_frame .services-title {
   color: rgb(46, 46, 46);
   font-family: Judson;
-  font-size: 50px;
-  font-weight: 400;
+  font-size: 40px;
+  font-weight: 600;
   letter-spacing: 0%;
   text-transform: capitalize;
   margin-top: 50px;
@@ -673,22 +721,24 @@
 .Services_frame .services-subtitle {
   color: rgb(75, 61, 57);
   font-family: Judson;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 15%;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-top: 10px;
 }
 
 .Services_frame .store_frame {
   display: flex;
   flex-direction: column;
+  margin-left: 25px;
+
 }
 
 .Services_frame .store_img {
-  width: 430px;
-  height: 350px;
+  width: 400px;
+  height: 330px;
 }
 
 .Services_frame .store_title {
@@ -707,11 +757,10 @@
   font-family: Judson;
   font-size: 18px;
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0%;
+  line-height: 30px;
   text-align: left;
   text-transform: capitalize;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .Services_frame .store_click {
@@ -722,7 +771,7 @@
   font-weight: 400;
   line-height: 26px;
   letter-spacing: 0%;
-  text-align: left;
+  text-align: start;
   text-decoration-line: underline;
   text-transform: capitalize;
 }

@@ -19,7 +19,6 @@
     .m_image {
       width: 400px;
       height: 350px;
-      border-radius: 20px;
     }
     .img_hover {
       position: absolute;
@@ -70,32 +69,48 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  display: flex;
   gap: 10px;
 }
 
-.box_icon {
-  position: absolute;
-  .eyeiCon_box {
-    position: absolute;
-    top: 280px;
-    right: 200px;
-    color: white;
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-  .favorite_badge {
-    position: absolute;
-    top: 270px;
-    left: 100px;
-    transition: all 0.5s ease;
-    opacity: 0;
-  }
+.eye_icon_box {
+   border: 0.5px solid rgb(20, 0, 0);
+  position: relative;
+  top: 250px;
+  right: 200px;
+  color: white;
+  transition: all 0.5s ease;
+  border-radius: 40px;
+  opacity: 1;
+  width: 5px;
+  height: 50px;
+  justify-content: space-evenly;
+  
 }
-.img_frame:hover .eyeiCon_box {
+
+.favorite_icon_box {
+  border: 0.5px solid rgb(20, 0, 0);
+  position: relative;
+  top: 250px;
+  right: 15px;
+  transition: all 0.5s ease;
+  border-radius: 15px;
+  opacity: 0;
+}
+
+.MuiBadge-badge {
+  position: absolute;
+  left: 8px;
+  top: 23px;
+  background: none;
+  color: black;
+  font-size: 19px;
+  font-weight: 400px;
+}
+
+.img_frame:hover .eye_icon_box {
   opacity: 1;
 }
-.img_frame:hover .favorite_badge {
+.img_frame:hover .favorite_icon_box {
   opacity: 1;
 }
 .eyeiCon {

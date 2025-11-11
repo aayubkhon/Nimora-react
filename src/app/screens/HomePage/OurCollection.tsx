@@ -12,7 +12,7 @@ import { CssVarsProvider } from "@mui/joy/styles";
 const OurCollection = (props: any) => {
   return (
     <div className="home_collection">
-      <div className="container">
+      {/* <div className="container">
         <CssVarsProvider>
           <Card
             variant="plain"
@@ -129,7 +129,7 @@ const OurCollection = (props: any) => {
             </Typography>
           </Card>
         </CssVarsProvider>
-      </div>
+      </div> */}
     </div>
   );
 };

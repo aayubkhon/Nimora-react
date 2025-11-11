@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "../../../css/other_page.scss";
 import { Avatar, Box, Tab, Tabs, Typography, Button } from "@mui/material";
-
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddCommentIcon from "@mui/icons-material/AddComment";
-
 import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel, TabList } from "@mui/lab";
@@ -32,18 +30,11 @@ const VisitOtherPage = () => {
             <TabContext value={value}>
               <Box className={"tab_main"}>
                 <Tabs
-                  selectionFollowsFocus={true}
                   orientation="vertical"
                   onChange={handleChange}
                   aria-label="Vertical tabs example"
                   value={value}
                   variant="fullWidth"
-                  sx={{
-                    "& button.Mui-selected": {
-                      backgroundColor: "rgb(246, 245, 240)",
-                      color: "black",
-                    },
-                  }}
                 >
                   <Box display="flex">
                     <Avatar
