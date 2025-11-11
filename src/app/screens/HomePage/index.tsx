@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import OurCollection from './OurCollection'
 import "../../../css/home.css";
 import TradingProduct from './TradingProduct';
@@ -8,6 +8,10 @@ import Advertisements from './Advertisements';
 import Services from './Services';
 
 const HomePage = () => {
+
+  useEffect(()=>{
+    
+  },[])
   return (
     <div className='homepage'>
       <OurCollection/>
