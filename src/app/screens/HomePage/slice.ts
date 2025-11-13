@@ -13,13 +13,13 @@ const HomePageSlice = createSlice({
     setTopTradings: (state, action) => {
       state.topTradings = action.payload;
     },
-    setBestSellerProduct: (state, action) => {
+    BestSellerProduct: (state, action) => {
       state.bestSellerProduct = action.payload;
     },
   },
 });
 
-export const { setTopTradings, setBestSellerProduct } = HomePageSlice.actions;
+export const { setTopTradings, BestSellerProduct } = HomePageSlice.actions;
 
 const HomePageReducer = HomePageSlice.reducer
 export default HomePageReducer

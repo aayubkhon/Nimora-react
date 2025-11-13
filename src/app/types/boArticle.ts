@@ -11,7 +11,7 @@ export interface BoArticle {
   art_likes: number;
   art_views: number;
   mb_id: string;
-  createdAt: Date;
+  createdAt?: Date;
   updatedAt: Date;
   member_data:Member,
   me_liked: MeLiked[],

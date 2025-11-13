@@ -17,7 +17,7 @@ export interface Shop {
   mb_likes: number;
   mb_follow_cnt: number;
   mb_subscriber_cnt: number;
-  createdAt: Date;
+  createdAt: string;
   me_liked: MeLiked[];
 }
 

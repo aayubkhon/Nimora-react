@@ -1,6 +1,6 @@
 export interface MeLiked {
-  mv_id: string;
-  like_red_id: string;
+  mb_id: string;
+  like_ref_id: string;
   my_favorite: boolean;
 }
 

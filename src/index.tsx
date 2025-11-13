@@ -9,6 +9,7 @@ import theme from './app/MaterialTheme';
 import { BrowserRouter } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 const container = document.getElementById("root")!;
+
 const root = createRoot(container);
 
 
