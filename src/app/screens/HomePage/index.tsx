@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import OurCollection from "./OurCollection";
 import "../../../css/home.css";
 import TradingProduct from "./TradingProduct";
 import DiamondCollection from "./DiamondCollection";
@@ -14,6 +13,7 @@ import { createSelector } from "reselect";
 import { setTopTradings } from "../../screens/HomePage/slice";
 import { retrievetopTradings } from "../../screens/HomePage/selector";
 import { Shop } from "../../types/user";
+import Header from "./Header";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -36,7 +36,7 @@ const HomePage = () => {
   }, []);
   return (
     <div className="homepage">
-      <OurCollection />
+      <Header />
       <TradingProduct />
       <DiamondCollection />
       <RecentProducts />

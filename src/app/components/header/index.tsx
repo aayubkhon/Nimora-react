@@ -1,118 +1,130 @@
-import React from "react";
-import { Stack, Box, Button, IconButton, Badge } from "@mui/material";
-import { Link, NavLink, Outlet } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "../../../css/costum-swiper.css";
-import { motion } from "framer-motion";
-const NavbarHome = (props: any) => {
+import React, { useState } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Stack, Box, Button, IconButton, Badge, Container, Drawer } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonIcon from '@mui/icons-material/Person';
+import { navbar } from "../../lib/navbar";
+import "../../../css/navbar.scss";
+import Footer from "../footer";
+
+const NavbarHome = () => {
+  const navigate = useNavigate();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
-    <div className="home_navbar">
-      <div className="navbar">
-        <Link to="/">
-          <img className="logo" src="/icons/Clip.svg" alt="" />
-        </Link>
-        <ul>
-          <li>
-            <Link
-              className="nav-link-ltr"
-              to="/"
-              onClick={props.setPath}
-              // style={(isActive) => ({
-              //   color: isActive ? "#f7ab42" : "black",
-              // })}
-            >
-              Home
-            </Link>
-          </li>
-          <li onClick={props.setPath}>
-            <Link className="hover_line nav-link-ltr" to="/shop">
-              Shop{" "}
-            </Link>
-          </li>
-          <li onClick={props.setPath}>
-            <Link className="hover_line nav-link-ltr" to="/store">
-              Store{" "}
-            </Link>
-          </li>
-          <li onClick={props.setPath}>
-            <Link className="hover_line nav-link-ltr" to="/community">
-              Community{" "}
-            </Link>
-          </li>
-          <li onClick={props.setPath}>
-            <Link className="hover_line nav-link-ltr" to="/help">
-              CS{" "}
-            </Link>
-          </li>
-        </ul>
-        <div className="icon_box">
-          <Box>
-            <IconButton
-              aria-label="cart"
-              // id="basic-button"
-              aria-controls={undefined}
-              aria-haspopup="true"
-              aria-expanded={undefined}
-              color="warning"
-              className="shopin_cart"
-            >
-              <img className="icon" src="/icons/icons.svg" alt="" />
-            </IconButton>
-          </Box>
-          <Box>
-            <IconButton
-              aria-label="cart"
-              // id="basic-button"
-              aria-controls={undefined}
-              aria-haspopup="true"
-              aria-expanded={undefined}
-              color="warning"
-              className="shopin_cart"
-              // onClick={}
-            >
-              <Badge badgeContent={1}>
-                <img className="icon_bag" src={"/icons/bag.svg"} alt="" />
-              </Badge>
-            </IconButton>
-          </Box>
-          <Button variant="contained" className="login_btn">
+    <>
+      <div className="navbar_container">
+        <Box className="logo_section" onClick={() => navigate("/")}>
+          <img className="logo" src="/icons/clip.svg" alt="Glamora" />
+        </Box>
+
+        <Box className="navbar_section desktop_nav">
+          {navbar.map(({ title, path, hidden }, id) => {
+            return (
+              !hidden && (
+                <NavLink
+                  className={({ isActive }) => `navlink ${isActive ? "active" : ""}`}
+                  key={id}
+                  to={path}
+                >
+                  {title}
+                </NavLink>
+              )
+            );
+          })}
+        </Box>
+
+        <Box className="action_section">
+          <IconButton className="icon_btn" onClick={() => navigate("/cart")}>
+            <Badge badgeContent={3} color="error">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+          <IconButton className="icon_btn" onClick={() => navigate("/my-account")}>
+            <PersonIcon />
+          </IconButton>
+          <Button className="login_btn" onClick={() => navigate("/login")}>
             Login
           </Button>
-        </div>
-      </div>
-      <Stack>
-        <Stack className="head_information_second">
-          <Box>
-            <motion.img
-              src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTV0cTVvdmtjd3pqdDJ1c3VrZjcxOHJldmRvbG9oMWE0cTRiMHUzeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WKCAUc5RqkL0tzvsCM/giphy.gif"
-              alt="Swing Woman"
-              className="big_img2"
-              // animate={{
-              //   rotate: [4, -9, 4], // strong swing angle
-              // }}
-              // transition={{
-              //   repeat: Infinity,
-              //   ease: "easeInOut",
-              //   duration: 4, // fast speed
-              // }}
-            />
-          </Box>
-          <Stack
-            justifyContent={"column"}
-            sx={{ marginTop: "150px", marginLeft: "150px" }}
+
+          {/* Mobile Menu Button */}
+          <IconButton
+            className="mobile_menu_btn"
+            onClick={handleDrawerToggle}
+            edge="end"
           >
-            <img className="header_logo" src="/icons/Clip.svg" alt="" />
-            <Box sx={{ mt: "20px" }}>
-              <Button className="main_btn ">Shop now</Button>
-            </Box>
-          </Stack>
-        </Stack>
-      </Stack>
-    </div>
+            <MenuIcon />
+          </IconButton>
+        </Box>
+      </div>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        className="mobile_drawer"
+      >
+        <Box className="drawer_content">
+          <Box className="drawer_header">
+            <span className="brand_name">Glamora</span>
+            <IconButton onClick={handleDrawerToggle}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <Box className="mobile_nav">
+            {navbar.map(({ title, path, hidden }, id) => {
+              return (
+                !hidden && (
+                  <NavLink
+                    className={({ isActive }) => `mobile_navlink ${isActive ? "active" : ""}`}
+                    key={id}
+                    to={path}
+                    onClick={handleDrawerToggle}
+                  >
+                    {title}
+                  </NavLink>
+                )
+              );
+            })}
+          </Box>
+
+          <Box className="mobile_actions">
+            <Button 
+              fullWidth 
+              variant="contained" 
+              className="mobile_login_btn"
+              onClick={() => {
+                navigate("/login");
+                handleDrawerToggle();
+              }}
+            >
+              Login
+            </Button>
+            <Button 
+              fullWidth 
+              variant="outlined" 
+              className="mobile_signup_btn"
+              onClick={() => {
+                navigate("/sign-up");
+                handleDrawerToggle();
+              }}
+            >
+              Sign Up
+            </Button>
+          </Box>
+        </Box>
+      </Drawer>
+      <Outlet />
+      <Footer />
+    </>
   );
 };
 

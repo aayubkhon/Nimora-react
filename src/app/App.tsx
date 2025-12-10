@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "../css/App.css";
-import "../css/navbar.css";
 import "../css/footer.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./screens/HomePage";
@@ -18,37 +17,28 @@ import { HelpPage } from "./screens/HelpPage";
 import VisitMyPage from "./screens/MemberPage/visitMyPage";
 import VisitOtherPage from './screens/MemberPage/visitOtherPage';
 import OrdersPage from "./screens/OrdersPage";
+import NotFound from "./screens/NotFound";
+import { navbar } from "./lib/navbar";
 function App() {
-  const main_path = window.location.pathname;
-  const [path, setPath] = useState();
+  
   return (
-    <>
-      {main_path === "/" ? (
-        <NavbarHome setPath={setPath} />
-      ) : main_path.includes("/shop") ? (
-        <NavbarShop setPath={setPath} />
-      ) : (
-        <NavbarOthers setPath={setPath} />
-      )}
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/:jewellry_id/*" element={<ChoosenCatagory />} />
-        <Route path="/:jewellry_id/:category_id" element={<OneJewellry />} />
-        <Route path="/help" element={<HelpPage />} />
-        <Route path="/store" element={<StorePage />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/member-page" element={<VisitMyPage />} />
-        <Route path="/member-page/other" element={<VisitOtherPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
-      <Footer />
+     <>
+    
+  <div>
+        <Routes>
+          <Route element={<NavbarHome />}>
+            {navbar.map(({ path, element }, id) => {
+              return <Route key={id} path={path} element={element} />;
+            })}
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+  </div>
+    
     </>
+
   );
+
 }
 
 export default App;
-
-

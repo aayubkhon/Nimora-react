@@ -1,153 +1,85 @@
-/* Collection start */
 
-.homepage .home_collection {
+/* Header Start */
+.header{
   width: 100%;
+  height: 600px;
+}
+.header .anim_ring {
+  position: absolute;
+  width: 500px;
+  left: 60%;
+  height: 60%;
+  transform-origin: top center;
 }
 
-.home_collection .container {
+
+.header .head_information_second {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-}
-.home_collection .ll {
-  display: flex;
-  width: 100%;
+  height: 750px;
+
 }
 
-.home_collection .cards {
-  width: 270px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  border: 0.1px solid black;
-  box-sizing: border-box;
-}
-
-.earring {
-  width: 300px;
-  height: 350px;
-  background: url("/public/home/chubby.jpeg") no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.earring:hover {
-  background: url("/public/home/chubbiys.jpeg") no-repeat;
-  width: 300px;
-  height: 350px;
-  background-size: cover;
-  background-position: center;
+.icon {
   cursor: pointer;
+  width: 15.43px;
+  height: 15.76px;
 }
-.bracelets {
-  width: 300px;
 
-  height: 350px;
-  background: url("/public/home/bracelets.jpeg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.bracelets:hover {
-  background: url("/public/home/braceletss.jpeg") no-repeat;
-  width: 300px;
-
-  height: 350px;
-  background-position: center;
-  background-size: cover;
+.icon_bag {
   cursor: pointer;
-}
-.necklace {
-  width: 380px;
-  height: 350px;
-  background: url("/public/home/necklace.jpeg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.necklace:hover {
-  background: url("/public/home/necklaces.jpeg") no-repeat;
-  width: 300px;
-
-  height: 350px;
-  background-position: center;
-  background-size: cover;
-  cursor: pointer;
-}
-.rings {
-  width: 300px;
-
-  height: 350px;
-  background: url("/public/home/ring.jpeg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.rings:hover {
-  background: url("/public/home/rings.jpeg") no-repeat;
-  width: 300px;
-
-  height: 350px;
-  background-position: center;
-  background-size: cover;
-  cursor: pointer;
-}
-.chain {
-  width: 300px;
-
-  height: 350px;
-  background: url("/public/home/chain.jpeg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.chain:hover {
-  background: url("/public/home/chains.jpeg") no-repeat;
-  width: 300px;
-  height: 350px;
-  background-position: center;
-  background-size: cover;
-  cursor: pointer;
+  width: 14.32px;
+  height: 15.76px;
 }
 
-.home_collection .navlink a {
-  color: #ffffff;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.home_collection .navlink {
-  color: #ffffff;
-  padding-left: 10px;
-  text-transform: uppercase;
-  background: #504a48;
-  font-weight: 400;
-  font-size: 17px;
-  font-family: "Sora", sans-serif;
+ .header_logo {
   position: relative;
+  width: 606px;
+  text-align: center;
 }
 
-.navlink:hover {
-  opacity: 1;
+.header .header_title{
+    color: #2e2e2e;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: Judson;
+  font-size: 35px;
+  font-weight: 600;
 }
 
-.line::before {
-  width: 0%;
-  bottom: 10px;
+
+
+.header .main_btn {
+  width: 180px;
+  font-family: Judson;
+  font-size: 19px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  color: rgb(6, 6, 6);
+  border: 1px solid rgb(6, 6, 6);
+  margin-top: 30px;
+}
+.header .main_btn:hover {
+  background-color: rgb(6, 6, 6);
+  color: #fff;
+  transition: all 0.3s linear;
 }
 
-.line:hover::before {
-  width: 35%;
-}
 
-.line:hover a {
-  color: #f7ab42;
-  transition: all 0.1s linear;
-}
-/* Collection finish */
+/* Header Finish */
 
 /* TrandingProduct_frme start */
 .TrandingProduct_frame {
   width: 100%;
   height: 900px;
+  background: rgba(255, 252, 245, 1);
+
+ 
 }
+
 
 .TrandingProduct_frame .frame_name {
   color: rgb(46, 46, 46);
@@ -164,6 +96,7 @@
   width: 100%;
   border: 0.8px solid rgb(0, 0, 0);
   height: 560px;
+  background-color: #fff;
 }
 
 .TrandingProduct_frame .card_frame .img_car_box {
@@ -177,15 +110,11 @@
 }
 
 .TrandingProduct_frame .img_frame .m_image {
-  width: 400px;
+  width: 390px;
   height: 445px;
 }
 
-@media (min-width: 1600px) {
-  .TrandingProduct_frame .img_frame .m_image {
-    width: 500px;
-  }
-}
+
 
 .TrandingProduct_frame .img_frame .img_hover {
   position: absolute;
@@ -193,15 +122,11 @@
   left: 0;
   opacity: 0;
   transition: all 0.9s ease;
-  width: 400px;
+    width: 390px;
   height: 445px;
 }
 
-@media (min-width: 1600px) {
-  .TrandingProduct_frame .img_frame .img_hover {
-    width: 500px;
-  }
-}
+
 
 .TrandingProduct_frame .img_frame:hover .img_hover {
   opacity: 1;
@@ -425,6 +350,9 @@
 .RecentProducts_frame {
   width: 100%;
   height: 1350px;
+    background-image: url("../../public/home/pattern.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .RecentProducts_frame .wrap {
@@ -584,6 +512,7 @@
 .Ads_shop_frame {
   width: 100%;
   height: 710px;
+  
 }
 
 .Ads_shop_frame .ads_video {
@@ -698,6 +627,9 @@
   height: 800px;
   display: flex;
   flex-direction: column;
+      background-image: url("../../public/home/pattern.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .Services_frame .store_wrapper {
@@ -739,6 +671,7 @@
 .Services_frame .store_img {
   width: 400px;
   height: 330px;
+  border-radius: 20px;
 }
 
 .Services_frame .store_title {
@@ -772,7 +705,6 @@
   line-height: 26px;
   letter-spacing: 0%;
   text-align: start;
-  text-decoration-line: underline;
   text-transform: capitalize;
 }
 

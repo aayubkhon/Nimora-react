@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import products from "../../lib/swiper";
 import { FreeMode, Pagination } from "swiper/modules";
@@ -7,7 +6,10 @@ import { Box, Button, Link } from "@mui/joy";
 import { Favorite, Visibility } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import { CssVarsProvider } from "@mui/joy/styles";
-
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "../../../css/costum-swiper.css";
 const TrabdingProduct = () => {
   return (
     <CssVarsProvider>
@@ -19,12 +21,13 @@ const TrabdingProduct = () => {
           </Typography>
         </Box>
         <Swiper
-          slidesPerView={4}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination]}
+           slidesPerView={3.5}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
