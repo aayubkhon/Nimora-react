@@ -1,33 +1,35 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import products from "../../lib/swiper";
-import { FreeMode, Pagination } from "swiper/modules";
+import { Navigation } from 'swiper/modules';
 import { Box, Button, Link } from "@mui/joy";
 import { Favorite, Visibility } from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import { CssVarsProvider } from "@mui/joy/styles";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "../../../css/costum-swiper.css";
+import "../../../css/costum-swiper.scss";
 const TrabdingProduct = () => {
   return (
     <CssVarsProvider>
       <div className="TrandingProduct_frame">
         <Box flexDirection={"column"}>
-          <Typography className="frame_name">
-            {" "}
+          <Typography  className="frame_title">
             TOP 5 TRENDING PRODUCTS
           </Typography>
         </Box>
         <Swiper
-           slidesPerView={3.5}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
+          slidesPerView={4}
+        spaceBetween={0}
+        navigation={{
+          nextEl: ".btn-next",
+          prevEl: ".btn-prev",
         }}
-        modules={[Pagination]}
-        className="mySwiper"
+        modules={[Navigation]}
+        className="trending-swiper"
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
@@ -36,7 +38,7 @@ const TrabdingProduct = () => {
                   <Box className="img_frame">
                     <img className="m_image" src={product.image} alt="" />
                     <img
-                      className=".m_image img_hover"
+                      className="m_image img_hover"
                       src={product.image_hover}
                       alt=""
                     />
@@ -88,6 +90,15 @@ const TrabdingProduct = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+         {/* Custom Pagination Buttons */}
+      <div className="pagination-buttons">
+        <button className="btn-prev pagination-btn">
+          <KeyboardArrowLeftIcon  sx={{ fontSize: 30,color:"white", }} />
+        </button>
+        <button className="btn-next pagination-btn">
+          <KeyboardArrowRightIcon sx={{ fontSize: 30,color:"white" }}/>
+        </button>
+      </div>
       </div>
     </CssVarsProvider>
   );

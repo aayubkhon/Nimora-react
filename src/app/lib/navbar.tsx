@@ -39,7 +39,7 @@ export const navbar: NavbarObj[] = [
 
     {
     element: <CommunityPage />,
-    title: "CommunityPge",
+    title: "community",
     path: "/community",
     private: false,
     hidden: false,

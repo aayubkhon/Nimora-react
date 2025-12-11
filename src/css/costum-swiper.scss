@@ -1,0 +1,40 @@
+// .swiper-button-next,.swiper-button-prev{
+//    color: #ffffff;
+// }
+// .swiper-pagination-bullet{
+//    background-color: #ffffff;
+// }
+
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+      margin-top: 30px;
+
+  }
+
+  .pagination-btn {
+    width: 32px;
+    height: 35px;
+    background: #000;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+
+
+    img {
+      width: 30px;
+      height: 30px;
+      filter: brightness(100);
+    }
+
+    &:hover {
+      background: #333;
+    }
+  }

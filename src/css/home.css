@@ -1,6 +1,5 @@
-
 /* Header Start */
-.header{
+.header {
   width: 100%;
   height: 600px;
 }
@@ -12,13 +11,11 @@
   transform-origin: top center;
 }
 
-
 .header .head_information_second {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 750px;
-
 }
 
 .icon {
@@ -33,22 +30,20 @@
   height: 15.76px;
 }
 
- .header_logo {
+.header_logo {
   position: relative;
   width: 606px;
   text-align: center;
 }
 
-.header .header_title{
-    color: #2e2e2e;
+.header .header_title {
+  color: #2e2e2e;
   text-decoration: none;
   text-transform: capitalize;
   font-family: Judson;
   font-size: 35px;
   font-weight: 600;
 }
-
-
 
 .header .main_btn {
   width: 180px;
@@ -68,24 +63,21 @@
   transition: all 0.3s linear;
 }
 
-
 /* Header Finish */
 
 /* TrandingProduct_frme start */
 .TrandingProduct_frame {
   width: 100%;
-  height: 900px;
-  background: rgba(255, 252, 245, 1);
-
- 
+  height: 800px;
+  background: #fff;
 }
 
-
-.TrandingProduct_frame .frame_name {
+.TrandingProduct_frame .frame_title {
   color: rgb(46, 46, 46);
-  font-family: Judson;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 45px;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: capitalize;
   margin-left: 60px;
 }
@@ -94,9 +86,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 0.8px solid rgb(0, 0, 0);
+  border: 0.1px solid rgb(0, 0, 0);
   height: 560px;
   background-color: #fff;
+  margin-top: 40px;
 }
 
 .TrandingProduct_frame .card_frame .img_car_box {
@@ -110,23 +103,19 @@
 }
 
 .TrandingProduct_frame .img_frame .m_image {
-  width: 390px;
-  height: 445px;
+  width: 100%;
+  height: 452px;
 }
-
-
 
 .TrandingProduct_frame .img_frame .img_hover {
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  transition: all 0.9s ease;
-    width: 390px;
-  height: 445px;
+  transition: all 0.7s ease;
+  width: 100%;
+  height: 452px;
 }
-
-
 
 .TrandingProduct_frame .img_frame:hover .img_hover {
   opacity: 1;
@@ -152,18 +141,6 @@
   height: 35px;
 }
 
-.TrandingProduct_frame .add_box .add:hover {
-  height: 20px;
-  font-size: 12px;
-  font-weight: 400;
-  text-align: center;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  background: rgb(246, 245, 240);
-  color: #000;
-}
-
 .TrandingProduct_frame .product_name {
   color: rgb(132, 131, 120);
   font-family: Judson;
@@ -185,33 +162,6 @@
   margin-left: 15px;
 }
 
-.TrandingProduct_frame .swiper {
-  width: 100%;
-  height: 640px;
-  cursor: pointer;
-  margin-top: 50px;
-}
-
-.TrandingProduct_frame .swiper-slide {
-  width: 100%;
-  height: 600px;
-}
-
-/* Pagination */
-.TrandingProduct_frame .swiper-pagination-bullet {
-  width: 30px;
-  height: 1px;
-  background-color: rgb(46, 46, 46);
-  border: 3px solid rgb(46, 46, 46);
-  border-radius: 14px;
-}
-.TrandingProduct_frame .swiper-pagination-bullet-active {
-  width: 30px;
-  border-radius: 14px;
-  background-color: rgb(46, 46, 46);
-  border: 3px solid rgb(46, 46, 46);
-  transition: all 0.8s ease-in-out;
-}
 /* TrandingProduct_frme finish */
 
 /* DiamondCollection_frme start */
@@ -349,10 +299,11 @@
 
 .RecentProducts_frame {
   width: 100%;
-  height: 1350px;
-    background-image: url("../../public/home/pattern.png");
-  background-size: cover;
-  background-position: center;
+  height: 1450px;
+  /* background-image: url("../../public/home/pattern.png");
+  background-size: cover; */
+  background: rgba(255, 255, 255, 1);
+  /* background-position: center; */
 }
 
 .RecentProducts_frame .wrap {
@@ -403,7 +354,7 @@
 
 .RecentProducts_frame .ring {
   width: 361px;
-  height: 371px;
+  height: 391px;
   background: url("/public/home/bridal.jpeg") no-repeat;
   background-size: cover;
   cursor: pointer;
@@ -452,10 +403,9 @@
   font-weight: 700;
   line-height: 19px;
   letter-spacing: 15%;
-  text-align: left;
+  text-align: center;
   background: rgb(6, 6, 6);
   top: 40%;
-  left: 10%;
   z-index: 3;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -512,13 +462,12 @@
 .Ads_shop_frame {
   width: 100%;
   height: 710px;
-  
 }
 
 .Ads_shop_frame .ads_video {
   width: 100%;
   display: flex;
-  transform: scale(1.5);
+  transform: scale(2);
   overflow: hidden;
   background: #0c0e12;
   box-shadow: 0px -8px 90px rgb(215, 215, 255);
@@ -530,7 +479,6 @@
   overflow: hidden;
   box-shadow: 0px -62px 60px 20px rgb(217, 217, 217 /40%);
   background-color: #956dd3;
-  margin-top: 120px;
 }
 
 .sale-banner {
@@ -577,6 +525,7 @@
   justify-content: center;
   gap: 10px;
   margin-left: auto;
+  margin-bottom: 27px;
 }
 
 .sale-banner .time {
@@ -603,6 +552,7 @@
   text-align: center;
   text-transform: uppercase;
   margin-left: auto;
+  margin-bottom: 27px;
 }
 
 .sale-banner .view-offer:hover {
@@ -624,10 +574,10 @@
 
 .Services_frame {
   width: 100%;
-  height: 800px;
+  height: auto;
   display: flex;
   flex-direction: column;
-      background-image: url("../../public/home/pattern.png");
+  background-image: url("../../public/home/pattern.png");
   background-size: cover;
   background-position: center;
 }
@@ -665,7 +615,6 @@
   display: flex;
   flex-direction: column;
   margin-left: 25px;
-
 }
 
 .Services_frame .store_img {

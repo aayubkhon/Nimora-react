@@ -13,6 +13,7 @@
 .Shop_frame .main_product {
   display: flex;
   width: 100%;
+ 
 }
 
 .Shop_frame .dior_br {
@@ -193,16 +194,16 @@
 } */
 
 .Shop_frame .background_img {
-  background: url("/public/home/daihana.jpg") no-repeat;
+  background: url("/public/home/luxury.jpg") no-repeat;
   width: 100%;
-  height: 950px;
+  height: 650px;
   background-size: cover;
   background-position: center;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 .Shop_frame .background_title {
   position: relative;
-  top: 40%;
+  top: 20%;
   color: rgb(0, 0, 0);
   font-family: Judson;
   font-size: 50px;
@@ -215,10 +216,10 @@
 
 .Shop_frame .background_subtitle {
   position: relative;
-  top: 40%;
+  top: 20%;
   color: rgb(0, 0, 0);
   font-family: Judson;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 8px;
   letter-spacing: 15%;
@@ -230,6 +231,9 @@
 .Shop_frame .container {
   display: flex;
   flex-direction: column;
+   background-image: url("../../public/home/pattern.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .Shop_frame .shop_center {
@@ -280,15 +284,20 @@
   border-radius: 20px;
   margin-top: 68px;
   cursor: pointer;
+  background-color: #fff;
+  
 }
 
 .Shop_frame .shop_box:hover {
-  border: 1px solid #f7ab42;
+      
+  border: 1px solid #ff8a00 ;
+
 }
 
 .Shop_frame .shop_svg {
   width: 82.79px;
   height: 64.94px;
+  color: #fff;
 }
 
 .Shop_frame .shop_img_title {

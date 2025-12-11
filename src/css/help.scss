@@ -5,11 +5,10 @@
 
 .bg_help {
   background-image: url("../../public/home/css.jpg");
-  height: 650px;
+  height: 600px;
   width: 100%;
   background-size: cover;
   background-position: center;
-  margin-top: 10px;
 }
 
 .help_box {
@@ -119,7 +118,7 @@
   border: 1px solid rgba(172, 172, 172, 1);
   background: rgb(247, 245, 239);
   margin: 30px 0;
-  height: 520px;
+  height: auto;
   .help_rules {
     color: rgba(34, 34, 34, 1);
     font-family: Judson;
