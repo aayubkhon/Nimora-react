@@ -1,0 +1,29 @@
+<svg viewBox="0 0 27 14" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27.000000" height="14.000000" fill="none">
+	<defs>
+		<linearGradient id="paint_linear_0" x1="14.643878" x2="24.4595871" y1="13.4009819" y2="1.02448654" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgb(230,58,17)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgb(243,145,49)" offset="0.829999983" stop-opacity="1" />
+			<stop stop-color="rgb(243,148,51)" offset="1" stop-opacity="1" />
+		</linearGradient>
+		<linearGradient id="paint_linear_1" x1="0" x2="12.2621021" y1="7.35789633" y2="7.35789633" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgb(243,148,51)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgb(243,145,49)" offset="0.170000002" stop-opacity="1" />
+			<stop stop-color="rgb(230,58,17)" offset="1" stop-opacity="1" />
+		</linearGradient>
+		<linearGradient id="paint_linear_2" x1="0" x2="12.2624702" y1="7.35789776" y2="7.35789776" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgb(230,58,17)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgb(243,145,49)" offset="0.829999983" stop-opacity="1" />
+			<stop stop-color="rgb(243,148,51)" offset="1" stop-opacity="1" />
+		</linearGradient>
+		<linearGradient id="paint_linear_3" x1="14.8621941" x2="22.3355331" y1="13.5195599" y2="3.45375633" gradientUnits="userSpaceOnUse">
+			<stop stop-color="rgb(243,148,51)" offset="0" stop-opacity="1" />
+			<stop stop-color="rgb(243,145,49)" offset="0.170000002" stop-opacity="1" />
+			<stop stop-color="rgb(230,58,17)" offset="1" stop-opacity="1" />
+		</linearGradient>
+	</defs>
+	<rect id="Layer_1" width="27.000000" height="14.000000" x="0.000000" y="0.000000" fill="rgb(255,255,255)" fill-opacity="0" />
+	<path id="Vector" d="M20.9458 0C17.6023 0 14.8916 2.42916 14.8916 5.42528L14.8916 14C16.386 12.5978 18.0959 11.0217 20.9458 11.0217C24.2894 11.0217 27.0001 8.42174 27.0001 5.42528C27.0001 2.42881 24.2894 0 20.9458 0Z" fill="url(#paint_linear_0)" fill-rule="nonzero" />
+	<path id="Vector" d="M0 0.899414L0 8.00361C0 11.214 2.74521 13.8164 6.13105 13.8164C9.51689 13.8164 12.2621 11.214 12.2621 8.00361L12.2621 0.899414C8.30142 4.9709 4.21944 5.14862 0 0.899414Z" fill="url(#paint_linear_1)" fill-rule="nonzero" />
+	<path id="Vector" d="M6.13105 9.12811C1.64367 9.12811 0 4.28512 0 1.07469L0 0.899414L0 8.00361C0 11.214 2.74484 13.8164 6.13105 13.8164C9.51726 13.8164 12.2621 11.214 12.2621 8.00361L12.2621 1.07678C12.2614 4.28721 10.5618 9.12846 6.13105 9.12846L6.13105 9.12811Z" fill="url(#paint_linear_2)" fill-rule="nonzero" />
+	<path id="Vector" d="M22.8383 3.8078C21.5207 2.55854 19.433 2.60628 18.0672 3.8078C16.6356 5.06681 15.3518 7.59737 14.8916 14.0001C17.5181 9.38849 21.4174 9.86519 22.8383 8.33124C24.0678 7.00393 24.1556 5.05705 22.8383 3.8078Z" fill="url(#paint_linear_3)" fill-rule="nonzero" />
+</svg>

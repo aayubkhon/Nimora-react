@@ -13,7 +13,7 @@ const NavbarHome = () => {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
+  const handleDrawer = () => {
     setMobileOpen(!mobileOpen);
   };
 
@@ -21,7 +21,7 @@ const NavbarHome = () => {
     <>
       <div className="navbar_container">
         <Box className="logo_section" onClick={() => navigate("/")}>
-          <img className="logo" src="/icons/clip.svg" alt="Glamora" />
+          <img className="logo" src="/icons/glamora.svg" alt="Glamora" />
         </Box>
 
         <Box className="navbar_section desktop_nav">
@@ -56,7 +56,7 @@ const NavbarHome = () => {
           {/* Mobile Menu Button */}
           <IconButton
             className="mobile_menu_btn"
-            onClick={handleDrawerToggle}
+            onClick={handleDrawer}
             edge="end"
           >
             <MenuIcon />
@@ -68,13 +68,13 @@ const NavbarHome = () => {
       <Drawer
         anchor="right"
         open={mobileOpen}
-        onClose={handleDrawerToggle}
+        onClose={handleDrawer}
         className="mobile_drawer"
       >
         <Box className="drawer_content">
           <Box className="drawer_header">
             <span className="brand_name">Glamora</span>
-            <IconButton onClick={handleDrawerToggle}>
+            <IconButton onClick={handleDrawer}>
               <CloseIcon />
             </IconButton>
           </Box>
@@ -87,7 +87,7 @@ const NavbarHome = () => {
                     className={({ isActive }) => `mobile_navlink ${isActive ? "active" : ""}`}
                     key={id}
                     to={path}
-                    onClick={handleDrawerToggle}
+                    onClick={handleDrawer}
                   >
                     {title}
                   </NavLink>
@@ -103,7 +103,7 @@ const NavbarHome = () => {
               className="mobile_login_btn"
               onClick={() => {
                 navigate("/login");
-                handleDrawerToggle();
+                handleDrawer();
               }}
             >
               Login
@@ -114,7 +114,7 @@ const NavbarHome = () => {
               className="mobile_signup_btn"
               onClick={() => {
                 navigate("/sign-up");
-                handleDrawerToggle();
+                handleDrawer();
               }}
             >
               Sign Up

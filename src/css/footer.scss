@@ -1,0 +1,331 @@
+// Footer Component Styles
+/* FOOTER STYLES */
+.footer_container {
+  width: 100%;
+  background: rgb(42, 31, 28);
+  color: #ffffff;
+  margin-top: 80px;
+}
+
+/* Footer Top Section */
+.footer_top {
+  background: rgb(50, 40, 37);
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .info_card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .info_icon {
+      font-size: 40px;
+      color: #f7ab42;
+      flex-shrink: 0;
+    }
+
+    .info_title {
+      color: #ffffff;
+      font-family: "Judson", serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: capitalize;
+    }
+
+    .info_text {
+      color: rgba(255, 255, 255, 0.7);
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 0;
+
+    .info_card {
+      padding: 15px;
+    }
+  }
+}
+
+/* Main Footer Content */
+.footer_main {
+  padding: 60px 0 40px;
+
+  @media (max-width: 768px) {
+    padding: 40px 0 30px;
+  }
+}
+
+/* Brand Section */
+.brand_section {
+  .brand_logo {
+    font-family: "Judson", serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .brand_description {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+
+  .social_icons {
+    display: flex;
+    gap: 12px;
+
+    .social_btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      width: 45px;
+      height: 45px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        background: #f7ab42;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(247, 171, 66, 0.3);
+      }
+
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-bottom: 30px;
+
+    .social_icons {
+      justify-content: center;
+    }
+  }
+}
+
+/* Footer Columns */
+.footer_column {
+  .column_title {
+    color: #ffffff;
+    font-family: "Judson", serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    position: relative;
+    padding-bottom: 12px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #f7ab42, transparent);
+    }
+  }
+
+  .footer_link {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    padding-left: 0;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 2px;
+      background: #f7ab42;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: #f7ab42;
+      padding-left: 15px;
+
+      &::before {
+        width: 10px;
+      }
+    }
+  }
+
+  .newsletter_text {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .newsletter_form {
+    display: flex;
+    gap: 8px;
+
+    .newsletter_input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+
+      .MuiOutlinedInput-root {
+        color: #ffffff;
+        border-radius: 25px;
+
+        fieldset {
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &:hover fieldset {
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        &.Mui-focused fieldset {
+          border-color: #f7ab42;
+        }
+
+        input {
+          font-size: 14px;
+
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+          }
+        }
+      }
+    }
+
+    .subscribe_btn {
+      background: #f7ab42;
+      color: #ffffff;
+      min-width: 45px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #ff8a00;
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(247, 171, 66, 0.4);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    margin-bottom: 30px;
+
+    .column_title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .footer_link::before {
+      display: none;
+    }
+
+    .footer_link:hover {
+      padding-left: 0;
+    }
+  }
+}
+
+/* Footer Bottom */
+.footer_bottom {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  .footer_bottom_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+    }
+
+    .payment_methods {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      .payment_icon {
+        height: 15px;
+        width: auto;
+        object-fit: contain;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+        filter: brightness(0.9);
+
+        &:hover {
+          opacity: 1;
+          filter: brightness(1.1);
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      justify-content: center;
+      text-align: center;
+
+      .payment_methods {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 960px) {
+  .footer_main {
+    .MuiGrid-item {
+      &:nth-child(1) {
+        order: 1;
+      }
+      &:nth-child(5) {
+        order: 2;
+      }
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4) {
+        order: 3;
+      }
+    }
+  }
+}
+/* FOOTER STYLES END */
