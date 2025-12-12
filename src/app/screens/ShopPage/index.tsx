@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import "../../../css/shop.css";
+import "../../../css/shop.scss";
 import {
   Badge,
   Box,
@@ -81,6 +81,7 @@ const ShopPage = () => {
               ></Button>
             </form>
           </Box>
+          {/* Product Catagories */}
           <div className="product_catagories">
             <div className="product_box">
               <h1 className="product_title">Product Categories</h1>
@@ -113,7 +114,7 @@ const ShopPage = () => {
                     <p className="min_price">Min Price</p>
                     <input placeholder="$20.00" className="price" type="text" />
                   </div>
-                  <div>
+                  <div className="filter_price">
                     <p className="max_price">Max Price</p>
                     <input placeholder="$99.00" className="price" type="text" />
                   </div>
@@ -130,6 +131,7 @@ const ShopPage = () => {
             </div>
           </div>
         </div>
+          {/* Card section */}
         <Stack>
           <Box className="wrap_box">
             {order_list.map((ele, index) => {
