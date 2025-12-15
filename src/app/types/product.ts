@@ -22,3 +22,4 @@ export interface Product {
   updatedAt: Date;
   me_liked: MeLiked[],
 }
+

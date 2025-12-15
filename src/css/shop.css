@@ -1,0 +1,133 @@
+/* SHOP PAGE STYLES */
+.Shop_frame {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Shop_frame .product_box {
+  display: flex;
+  flex-direction: column;
+}
+
+.Shop_frame .main_product {
+  display: flex;
+  width: 100%;
+}
+
+.Shop_frame .background_img {
+  background: url("/public/home/5860577.jpg") no-repeat;
+  width: 100%;
+  height: 650px;
+  background-size: cover;
+  background-position: center;
+}
+.Shop_frame .background_title {
+  position: relative;
+  top: 20%;
+  color: #fff;
+  font-family: Judson;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 69px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Shop_frame .background_subtitle {
+  position: relative;
+  top: 20%;
+    color: #fff;
+  font-family: Judson;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: 15%;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.Shop_frame .container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.Shop_frame .shop_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Shop_frame .shop_subtitle {
+  color: rgb(75, 61, 57);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 15%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.Shop_frame .shop_title {
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.Shop_frame .shop_img_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Shop_frame .shop_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 182px;
+  box-sizing: border-box;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 20px;
+  margin-top: 68px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.Shop_frame .shop_box:hover {
+  border: 1px solid #ff8a00;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 138, 0, 0.2);
+}
+
+.Shop_frame .shop_svg {
+  width: 82.79px;
+  height: 64.94px;
+  color: #fff;
+}
+
+.Shop_frame .slider {
+  background: white;
+  margin-top: 40px;
+  color: #000;
+}
+
+.Shop_frame .pagination_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}

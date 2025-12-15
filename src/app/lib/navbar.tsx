@@ -9,6 +9,7 @@ import SignUp from "../screens/SignUpPage";
 import LoginPage from "../screens/LoginPage";
 import VisitMyPage from "../screens/MemberPage/visitMyPage";
 import { NavbarObj } from "../types/other";
+import VisitOtherPage from '../screens/MemberPage/visitOtherPage';
 
 
 
@@ -84,6 +85,13 @@ export const navbar: NavbarObj[] = [
     element: <VisitMyPage />,
     title: "my-account",
     path: "/my-account",
+    private: false,
+    hidden: true,
+  },
+   {
+    element: <VisitOtherPage />,
+    title: "other-account",
+    path: "/my-account/:other",
     private: false,
     hidden: true,
   },

@@ -2,6 +2,15 @@ import React from "react";
 import { Box, Button, Stack } from "@mui/material";
 
 const DiamondCollection = () => {
+  const brands = [
+    { name: "Elegant", logo: "/icons/elegant.svg" },
+    { name: "Ozagi", logo: "/icons/ozagi.svg" },
+    { name: "Soager", logo: "/icons/soager.svg" },
+    { name: "Luxiva", logo: "/icons/luxia.svg" },
+    { name: "Catalena", logo: "/icons/caterene.svg" },
+    { name: "Columbia", logo: "/icons/columbia.svg" }
+  ];
+  const duplicatedBrands = [...brands, ...brands];
   return (
     <div className="DiamondCollection_frame">
       <div className="container">
@@ -28,30 +37,18 @@ const DiamondCollection = () => {
           </div>
         </div>
       </div>
-      <Stack className="scroller">
-     <Box className="scroller-inner" >
-         <Box className="scroller_item">
-          <img src="/icons/elegant.svg" alt="" />
+      <Box className="animation_frame">
+      <Box className="scroller">
+        <Box className="scroller-inner">
+          {duplicatedBrands.map((brand, index) => (
+            <Box key={index} className="scroller_item">
+              <img src={brand.logo} alt={brand.name} />
+            </Box>
+          ))}
         </Box>
-        <Box className="scroller_item">
-          <img src="/icons/ozagi.svg" alt="" />
-        </Box>
-        <Box className="scroller_item">
-          <img src="/icons/soager.svg" alt="" />
-        </Box>
-        <Box className="scroller_item">
-          <img src="/icons/luxia.svg" alt="" />
-        </Box>
-        <Box className="scroller_item">
-          <img src="/icons/caterene.svg" alt="" />
-        </Box>
-        <Box className="scroller_item">
-          <img src="/icons/columbia.svg" alt="" />
-        </Box>
-     </Box>
-      </Stack>
-      <Box className="vector"></Box>
-      
+      </Box>
+      <Box className="vector" />
+    </Box>
     </div>
   );
 };

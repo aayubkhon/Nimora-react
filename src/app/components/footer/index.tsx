@@ -45,8 +45,7 @@ const Footer = () => {
                 <Box>
                   <Typography className="info_title">Locate Us</Typography>
                   <Typography className="info_text">
-                    Etiam placerat egestas lorem vitae venenatis dolar rutrum
-                    eget.
+                    Etiam placerat egestas lorem vitae venenatis dolar rutrum.
                   </Typography>
                 </Box>
               </Box>

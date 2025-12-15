@@ -50,12 +50,12 @@ const RecentProducts = () => {
           <Box className="wrap_box">
             {order_list.map((ele) => {
               return (
-                <Box>
+                <Box className="box">
                   <Box className="ring">
                      <Box
-                        className="box"
+                        
                       >
-                        <Badge
+                        {/* <Badge
                         className="favorite"
                         color="secondary"
                           badgeContent={8}
@@ -64,7 +64,7 @@ const RecentProducts = () => {
                             icon={<FavoriteBorder style={{ color: "#000"  }}  />}
                             checkedIcon={<Favorite  style={{ color: "red"  }} />}
                           />
-                        </Badge>
+                        </Badge> */}
                       </Box>
                       <Button
                         className="add_btn"
@@ -72,7 +72,7 @@ const RecentProducts = () => {
                        Add to cart
                       </Button>
                   </Box>
-                  <div>
+                  <div className="product_title_frame">
                     <Typography className="product_name">
                       Elegant Gold Necklace
                     </Typography>

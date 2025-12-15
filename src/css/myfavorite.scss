@@ -5,7 +5,7 @@
   justify-content: flex-start;
   flex-direction: column;
   margin: 20px 30px;
-  border: 1px solid rgb(149, 146, 146);
+  border: 0.8px solid rgb(20, 0, 0);
   background: rgb(246, 245, 240);
   border-radius: 15px;
   &:hover {
@@ -19,6 +19,7 @@
     .m_image {
       width: 400px;
       height: 350px;
+      border-radius: 15px;
     }
     .img_hover {
       position: absolute;
@@ -28,6 +29,8 @@
       transition: all 0.9s ease;
       width: 400px;
       height: 350px;
+      border-radius: 15px;
+
     }
     &:hover .img_hover {
       opacity: 1;
@@ -80,7 +83,7 @@
   color: white;
   transition: all 0.5s ease;
   border-radius: 40px;
-  opacity: 1;
+  opacity: 0;
   width: 5px;
   height: 50px;
   justify-content: space-evenly;

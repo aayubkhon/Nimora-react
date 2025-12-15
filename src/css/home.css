@@ -242,36 +242,121 @@
   margin-top: 30px;
 }
 
-.DiamondCollection_frame .scroller {
+/* BRAND LOGO INFINITE SCROLLER */
+.DiamondCollection_frame .animation_frame {
   position: relative;
   width: 100%;
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 80px;
+  padding: 60px 0;
+  background: #ffffff;
 }
 
-.DiamondCollection_frame .scroller-inner {
+@media (max-width: 768px) {
+  .DiamondCollection_frame .animation_frame {
+    margin-top: 50px;
+    padding: 40px 0;
+  }
+}
+
+/* Scroller Container */
+.scroller {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Add gradient masks on sides */
+.scroller::before,
+.scroller::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scroller::before {
+  left: 0;
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.scroller::after {
+  right: 0;
+  background: linear-gradient(to left, #ffffff, transparent);
+}
+
+@media (max-width: 768px) {
+  .scroller::before,
+  .scroller::after {
+    width: 50px;
+  }
+}
+
+/* Scroller Inner - Contains the logos */
+.scroller-inner {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 50px;
-  margin-top: 40px;
-  animation: scroll 15s linear infinite;
+  justify-content: flex-start;
+  gap: 80px;
+  animation: scroll 30s linear infinite;
 }
 
-.DiamondCollection_frame .scroller_item {
+/* Pause on hover */
+.scroller-inner:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .scroller-inner {
+    gap: 50px;
+    animation-duration: 20s;
+  }
+}
+
+/* Individual Logo Items */
+.scroller_item {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  flex-shrink: 0;
+  width: 150px;
+  height: 80px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.scroller_item img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.DiamondCollection_frame .scroller-inner::after {
-  display: flex;
-  gap: 2rem;
+.scroller_item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
+@media (max-width: 768px) {
+  .scroller_item {
+    width: 120px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroller_item {
+    width: 100px;
+    height: 50px;
+  }
+}
+
+/* Keyframes for infinite scroll */
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -281,17 +366,22 @@
   }
 }
 
-.DiamondCollection_frame .vector {
+/* Optional: Separator Line */
+.vector {
   border: 0.8px solid rgb(0, 0, 0);
   height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   width: 80%;
-  margin-left: 130px;
-  margin-top: 30px;
+  margin: 0 auto;
+  margin-top: 50px;
 }
+
+@media (max-width: 768px) {
+  .vector {
+    width: 90%;
+    margin-top: 30px;
+  }
+}
+/* BRAND LOGO INFINITE SCROLLER END */
 
 /* DiamondCollection_frme finish */
 
@@ -300,10 +390,12 @@
 .RecentProducts_frame {
   width: 100%;
   height: 1450px;
-  /* background-image: url("../../public/home/pattern.png");
-  background-size: cover; */
-  background: rgba(255, 255, 255, 1);
-  /* background-position: center; */
+  background: linear-gradient(
+    180deg,
+    rgba(195, 154, 112, 0),
+    rgba(195, 154, 112, 0.1) 31%,
+    rgba(195, 154, 112, 0) 100%
+  );
 }
 
 .RecentProducts_frame .wrap {
@@ -347,9 +439,10 @@
 .RecentProducts_frame .wrap_box {
   display: grid;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   grid-template-columns: auto auto auto;
   margin-top: 60px;
+  gap: 25px;
 }
 
 .RecentProducts_frame .ring {
@@ -361,16 +454,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
-.RecentProducts_frame .favorite_box {
-  position: relative;
+.RecentProducts_frame .favorite {
+  position: absolute;
+  bottom: 50%;
 }
 
 .RecentProducts_frame .box {
-  position: relative;
+  border: 0.8px solid rgb(0, 0, 0);
+  width: 100%;
+  border-radius: 15px;
+  transition: 0.3s ease;
+  background-color: #fff;
+
 }
 
+.RecentProducts_frame .box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 5px 15px rgba(255, 136, 0, 0.366);
+}
 .RecentProducts_frame .favorite {
   position: absolute;
   display: flex;
@@ -430,6 +534,13 @@
   text-align: left;
   opacity: 1;
   transition: 0.2s ease-out;
+}
+
+.RecentProducts_frame .product_title_frame {
+  padding-left: 20px;
+  background-color: #fff;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .RecentProducts_frame .product_name {

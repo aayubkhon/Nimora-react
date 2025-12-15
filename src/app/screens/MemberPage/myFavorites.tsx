@@ -14,7 +14,7 @@ const MyFavorites = () => {
         <button className="add_to_cart">add to cart</button>
         <div className="icon_box">
           <Button className="eye_icon_box">
-            <Badge badgeContent={8} color="secondary">
+            <Badge  color="secondary">
               <Checkbox
                 size="medium"
                 icon={<RemoveRedEyeIcon className="eyeiCon" />}

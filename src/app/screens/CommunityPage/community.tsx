@@ -32,7 +32,7 @@ const Community = (props: any) => {
               onChange={handleChange}
               aria-label="Vertical tabs example"
               value={value}
-              sx={{"& button.Mui-selected":{backgroundColor:"white",color:"black"}}}
+              sx={{"& button.Mui-selected":{backgroundColor:"linear-gradient(90deg, #f7ab42, #ff8a00);",color:"#ffff"}}}
               
             >
               <img src="/icons/glamora.svg" alt="" />
@@ -49,7 +49,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1,2]} />
+            <TargetArticles targetBoArticles={[1,2,3]} />
           </TabPanel>
           <TabPanel value={"2"}>
             <div className="box_head">
