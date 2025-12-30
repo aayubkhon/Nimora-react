@@ -9,6 +9,7 @@ const targetBoArticles = [1, 2, 3, 4, 5];
 const Community = (props: any) => {
   // ** INITIALIZATIONS ** //
   const [value, setValue] = useState("1");
+
   // ** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -32,8 +33,12 @@ const Community = (props: any) => {
               onChange={handleChange}
               aria-label="Vertical tabs example"
               value={value}
-              sx={{"& button.Mui-selected":{backgroundColor:"linear-gradient(90deg, #f7ab42, #ff8a00);",color:"#ffff"}}}
-              
+              sx={{
+                "& button.Mui-selected": {
+                  backgroundColor: "linear-gradient(90deg, #f7ab42, #ff8a00);",
+                  color: "#ffff",
+                },
+              }}
             >
               <img src="/icons/glamora.svg" alt="" />
               <Tab className="tab_br" value={"1"} label="All Blogs" />
@@ -49,7 +54,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1,2,3]} />
+            <TargetArticles targetBoArticles={[1, 2, 3]} />
           </TabPanel>
           <TabPanel value={"2"}>
             <div className="box_head">
@@ -58,7 +63,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1,]} />
+            <TargetArticles targetBoArticles={[1]} />
           </TabPanel>
           <TabPanel value={"3"}>
             <div className="box_head">
@@ -67,7 +72,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1,]} />
+            <TargetArticles targetBoArticles={[1]} />
           </TabPanel>
           <TabPanel value={"4"}>
             <div className="box_head">
@@ -76,7 +81,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1,]} />
+            <TargetArticles targetBoArticles={[1]} />
           </TabPanel>
         </TabContext>
       </Box>

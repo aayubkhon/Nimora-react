@@ -1,4 +1,5 @@
 import { BoArticle } from "./boArticle";
+import { Product } from "./product";
 import { Shop } from "./user";
 
 export interface AppRootState {
@@ -11,8 +12,8 @@ export interface AppRootState {
 }
 
 export interface HomePageState{
-   topTradings: Shop[],
-   bestSellerProduct:Shop[]
+   trendProducts: Product[],
+   bestSellerProduct:Product[]
 
 
 }

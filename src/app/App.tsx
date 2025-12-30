@@ -6,7 +6,6 @@ import ShopPage from "./screens/ShopPage";
 import LoginPage from "./screens/LoginPage";
 import StorePage from "./screens/StorePage/store";
 import NavbarHome from "./components/header";
-import NavbarShop from "./components/header/shop";
 import NavbarOthers from "./components/header/others";
 import Footer from "./components/footer";
 import OneJewellry from "./screens/ShopPage/oneJewellry";

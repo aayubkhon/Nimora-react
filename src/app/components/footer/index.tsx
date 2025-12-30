@@ -7,6 +7,7 @@ import {
   TextField,
   Button,
   IconButton,
+  Stack,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -142,18 +143,12 @@ const Footer = () => {
                 <Link to="/help" className="footer_link">
                   FAQ
                 </Link>
-                <Typography  className="footer_link">
-                  Style Guide
-                </Typography>
+                <Typography className="footer_link">Style Guide</Typography>
                 <Link to="/community" className="footer_link">
                   Community
                 </Link>
-                <Typography className="footer_link">
-                  Make-A-Friend
-                </Typography>
-                <Typography  className="footer_link">
-                  Statement
-                </Typography>
+                <Typography className="footer_link">Make-A-Friend</Typography>
+                <Typography className="footer_link">Statement</Typography>
               </Box>
             </Grid>
 
@@ -161,18 +156,12 @@ const Footer = () => {
             <Grid item xs={6} sm={3} md={2}>
               <Box className="footer_column">
                 <Typography className="column_title">Useful Links</Typography>
+                <Typography className="footer_link">Browse Revival</Typography>
                 <Typography className="footer_link">
-                  Browse Revival
-                </Typography>
-                <Typography  className="footer_link">
                   Endgangering Revival
                 </Typography>
-                <Typography  className="footer_link">
-                  Bangles
-                </Typography>
-                <Typography className="footer_link">
-                  Accessories
-                </Typography>
+                <Typography className="footer_link">Bangles</Typography>
+                <Typography className="footer_link">Accessories</Typography>
                 <Link to="/shop" className="footer_link">
                   Shop All
                 </Link>
@@ -212,8 +201,9 @@ const Footer = () => {
             <Typography className="copyright">
               © Akramov Ayubkhon All Rights Reserved
             </Typography>
-            <Box className="payment_methods">
-              <img src="/icons/Layer.svg" alt="COD" className="payment_icon" />
+            <Stack className="payment_methods">
+             <Box>
+               <img src="/icons/Layer.svg" alt="COD" className="payment_icon" />
               <img src="/icons/pay.svg" alt="GPay" className="payment_icon" />
               <img
                 src="/icons/Layer3.svg"
@@ -231,7 +221,8 @@ const Footer = () => {
                 alt="Credit Card"
                 className="payment_icon"
               />
-            </Box>
+             </Box>
+            </Stack>
           </Box>
         </Container>
       </Box>

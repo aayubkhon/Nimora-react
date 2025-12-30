@@ -6,6 +6,7 @@ import {
   Pagination,
   PaginationItem,
   Stack, Grid,
+  Container,
 } from "@mui/material";
 import {Typography, IconButton, Button, Rating } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -66,8 +67,8 @@ const ShopPage = () => {
       <Grid container spacing={0} className="stsss">
       {order_list.map((ele)=>{
         return(
-           <Grid item xs={12} md={3}  >
-      <ProductCard/>
+             <Grid item xs={12} md={3}>
+        <ProductCard/>
            </Grid>
         );
       })}

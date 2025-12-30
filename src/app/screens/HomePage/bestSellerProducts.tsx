@@ -1,19 +1,30 @@
-import { Badge, Box, Checkbox, Container, Rating, Stack, Typography } from "@mui/material";
-import React from "react";
 import Button from "@mui/material/Button";
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
+import {
+  Box,
+  Container,
+  Rating,
+  Stack,
+  Typography,
+} from "@mui/material";
+import React from "react";
 
 
-const RecentProducts = () => {
+const BestSellerProducts = () => {
   const order_list = Array.from(Array(6).keys());
   return (
     <div className="RecentProducts_frame">
       <Container>
         <Stack flexDirection={"column"}>
           <Box className="wrap">
-            <p>OUR RECENT PRODUCTS</p>
-            <h1>Our Best Seller Products</h1>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              flexDirection={"column"}
+            >
+              {" "}
+              <p className="recent_product">OUR RECENT PRODUCTS</p>
+              <h1 className="recent_product_title">Our Best Seller Products</h1>
+            </Box>
             <Box className="btn_box">
               <Button
                 className="product_btn"
@@ -51,27 +62,11 @@ const RecentProducts = () => {
             {order_list.map((ele) => {
               return (
                 <Box className="box">
-                  <Box className="ring">
-                     <Box
-                        
-                      >
-                        {/* <Badge
-                        className="favorite"
-                        color="secondary"
-                          badgeContent={8}
-                        >
-                          <Checkbox
-                            icon={<FavoriteBorder style={{ color: "#000"  }}  />}
-                            checkedIcon={<Favorite  style={{ color: "red"  }} />}
-                          />
-                        </Badge> */}
-                      </Box>
-                      <Button
-                        className="add_btn"
-                      >
-                       Add to cart
-                      </Button>
-                  </Box>
+                <Box className={"frame_img_box"}>
+                  <img src="/home/new_r.jpeg" className="first_imges" alt="" />
+                  <img src="/home/diamondd.jpeg" className="first_imges action_hover " alt="" />
+                    <Button className="add_btn">Add to cart</Button>
+                </Box>
                   <div className="product_title_frame">
                     <Typography className="product_name">
                       Elegant Gold Necklace
@@ -94,4 +89,4 @@ const RecentProducts = () => {
   );
 };
 
-export default RecentProducts;
+export default BestSellerProducts;

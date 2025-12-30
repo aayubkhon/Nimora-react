@@ -10,9 +10,8 @@ import LoginPage from "../screens/LoginPage";
 import VisitMyPage from "../screens/MemberPage/visitMyPage";
 import { NavbarObj } from "../types/other";
 import VisitOtherPage from '../screens/MemberPage/visitOtherPage';
-
-
-
+import Basket from "../components/header/basket";
+import CheckoutPage from "../components/header/others";
 
 
 export const navbar: NavbarObj[] = [
@@ -92,6 +91,20 @@ export const navbar: NavbarObj[] = [
     element: <VisitOtherPage />,
     title: "other-account",
     path: "/my-account/:other",
+    private: false,
+    hidden: true,
+  },
+  {
+    element: <Basket />,
+    title: "basket",
+    path: "/cart",
+    private: false,
+    hidden: true,
+  },
+    {
+    element: <CheckoutPage />,
+    title: "chechout",
+    path: "/checkout",
     private: false,
     hidden: true,
   },

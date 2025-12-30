@@ -1,0 +1,498 @@
+/* CHECKOUT PAGE STYLES */
+.checkout_page {
+  width: 100%;
+  min-height: 100vh;
+  background: #fafafa;
+  padding-bottom: 80px;
+}
+
+/* Page Header */
+.checkout_header {
+  background: linear-gradient(135deg, #2e2e2e 0%, #1a1a1a 100%);
+  padding: 40px 0;
+  margin-bottom: 40px;
+}
+
+.checkout_title {
+  color: #ffffff;
+  font-family: "Judson", serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.secure_badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.secure_badge svg {
+  color: #4caf50;
+  font-size: 20px;
+}
+
+.secure_badge Typography {
+  color: #4caf50;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .checkout_title {
+    font-size: 28px;
+  }
+}
+
+/* Stepper */
+.checkout_stepper {
+  margin-bottom: 50px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.checkout_stepper .MuiStepLabel-root .Mui-completed {
+  color: #4caf50;
+}
+
+.checkout_stepper .MuiStepLabel-root .Mui-active {
+  color: #f7ab42;
+}
+
+@media (max-width: 768px) {
+  .checkout_stepper {
+    padding: 20px;
+  }
+
+  .checkout_stepper .MuiStepLabel-label {
+    font-size: 12px;
+  }
+}
+
+/* Checkout Content */
+.checkout_content {
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  gap: 40px;
+}
+
+@media (max-width: 1200px) {
+  .checkout_content {
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 960px) {
+  .checkout_content {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout_summary {
+    order: -1;
+  }
+}
+
+/* Checkout Forms */
+.checkout_forms {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form_step {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.step_header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.step_icon {
+  color: #f7ab42;
+  font-size: 32px;
+}
+
+.step_title {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .form_step {
+    padding: 25px 20px;
+  }
+
+  .step_title {
+    font-size: 20px;
+  }
+}
+
+/* Form Fields */
+.form_field {
+  margin-bottom: 20px;
+}
+
+.form_field .MuiOutlinedInput-root {
+  border-radius: 8px;
+}
+
+.form_field .MuiOutlinedInput-root:hover fieldset {
+  border-color: #f7ab42;
+}
+
+.form_field .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #f7ab42;
+}
+
+.form_field .MuiInputLabel-root.Mui-focused {
+  color: #f7ab42;
+}
+
+.form_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+@media (max-width: 600px) {
+  .form_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shipping Methods */
+.shipping_methods {
+  margin-top: 30px;
+}
+
+.section_subtitle {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.shipping_option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.shipping_option:hover {
+  border-color: #f7ab42;
+  background: rgba(247, 171, 66, 0.05);
+}
+
+.shipping_option .MuiRadio-root.Mui-checked {
+  color: #f7ab42;
+}
+
+.option_title {
+  color: #2e2e2e;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.option_subtitle {
+  color: #666666;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.option_price {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Payment Methods */
+.payment_methods {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.payment_option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.payment_option:hover {
+  border-color: #f7ab42;
+  background: rgba(247, 171, 66, 0.05);
+}
+
+.payment_option .MuiRadio-root.Mui-checked {
+  color: #f7ab42;
+}
+
+.card_icons {
+  display: flex;
+  gap: 8px;
+}
+
+.card_icons img {
+  height: 24px;
+}
+
+.paypal_icon {
+  height: 24px;
+}
+
+.card_form {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.save_info_checkbox {
+  margin-top: 20px;
+}
+
+.save_info_checkbox .MuiCheckbox-root.Mui-checked {
+  color: #f7ab42;
+}
+
+/* Review Section */
+.review_section {
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.review_section:last-child {
+  border-bottom: none;
+}
+
+.review_title {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.review_text {
+  color: #666666;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.terms_checkbox {
+  margin-top: 30px;
+}
+
+.terms_checkbox .MuiCheckbox-root.Mui-checked {
+  color: #f7ab42;
+}
+
+.terms_text {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #666666;
+}
+
+.terms_link {
+  color: #f7ab42;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.terms_link:hover {
+  color: #ff8a00;
+}
+
+/* Checkout Actions */
+.checkout_actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.back_btn,
+.next_btn {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: "Judson", serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.back_btn {
+  background: transparent;
+  color: #2e2e2e;
+  border: 2px solid #2e2e2e;
+}
+
+.back_btn:hover {
+  background: #2e2e2e;
+  color: #ffffff;
+}
+
+.next_btn {
+  background: linear-gradient(135deg, #f7ab42, #ff8a00);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(247, 171, 66, 0.4);
+}
+
+.next_btn:hover {
+  box-shadow: 0 8px 25px rgba(247, 171, 66, 0.5);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .checkout_actions {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Checkout Summary */
+.checkout_summary {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+@media (max-width: 960px) {
+  .checkout_summary {
+    position: relative;
+    top: 0;
+  }
+}
+
+.summary_card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.summary_title {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* Summary Items */
+.summary_items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.summary_item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.summary_item_image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f5f5f5;
+}
+
+.summary_item_details {
+  flex: 1;
+}
+
+.summary_item_name {
+  color: #2e2e2e;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.summary_item_qty {
+  color: #666666;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}
+
+.summary_item_price {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Summary Pricing */
+.summary_pricing {
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.pricing_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.pricing_row Typography {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  color: #666666;
+}
+
+.total_row {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.total_row Typography:first-child {
+  color: #2e2e2e;
+  font-family: "Judson", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.total_row Typography:last-child {
+  color: #f7ab42;
+  font-family: "Judson", serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+/* CHECKOUT PAGE STYLES END */

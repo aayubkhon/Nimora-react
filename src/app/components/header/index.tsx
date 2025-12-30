@@ -16,7 +16,6 @@ const NavbarHome = () => {
   const handleDrawer = () => {
     setMobileOpen(!mobileOpen);
   };
-
   return (
     <>
       <div className="navbar_container">
@@ -42,8 +41,8 @@ const NavbarHome = () => {
 
         <Box className="action_section">
           <IconButton className="icon_btn" onClick={() => navigate("/cart")}>
-            <Badge badgeContent={3} color="error">
-              <ShoppingCartIcon />
+            <Badge  badgeContent={3} color="error">
+              <ShoppingCartIcon   />
             </Badge>
           </IconButton>
           <IconButton className="icon_btn" onClick={() => navigate("/my-account")}>
@@ -73,7 +72,6 @@ const NavbarHome = () => {
       >
         <Box className="drawer_content">
           <Box className="drawer_header">
-            <span className="brand_name">Glamora</span>
             <IconButton onClick={handleDrawer}>
               <CloseIcon />
             </IconButton>
