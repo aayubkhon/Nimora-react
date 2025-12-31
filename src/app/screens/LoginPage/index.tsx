@@ -19,7 +19,10 @@ import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import AppleIcon from "@mui/icons-material/Apple";
 import "../../../css/login.scss";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../lib/Definer";
 import MemberApiServices from "../../apiServices/memberApiServices";
@@ -33,15 +36,12 @@ const LoginPage = () => {
   let mb_nick: string = "",
     mb_phone: number = 0,
     mb_password: string = "";
-  // Register form state
-  const [registerData, setRegisterData] = useState({
-    mb_nick: "",
-    mb_phone: "",
-    mb_password: "",
-    confirmPassword: "",
-  });
 
   // ** HEANDLERS ** //
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setActiveTab(newValue);
+  };
+
   const handleUsername = (e: any) => {
     mb_nick = e.target.value;
   };
@@ -52,9 +52,31 @@ const LoginPage = () => {
     mb_password = e.target.value;
   };
 
-  const handleLoginRequest = async (props:any) => {
+  // ** SignUp Process ** //
+
+  const handleSignUpRequest = async () => {
     try {
-      const is_fulfiled = mb_nick != "" && mb_password != "";
+      const is_fulfiled =
+        mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
+      assert.ok(is_fulfiled, Definer.input_err1);
+      const signup_data = {
+        mb_nick: mb_nick,
+        mb_phone: mb_phone,
+        mb_password: mb_password,
+      };
+      const memberApiService = new MemberApiServices();
+      await memberApiService.signupRequest(signup_data);
+      navigate("/");
+      sweetTopSmallSuccessAlert("SignUp Success", 1000, true);
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+  // ** Login Process ** //
+  const handleLoginRequest = async (props: any) => {
+    try {
+      const is_fulfiled = mb_nick !== "" && mb_password !== "";
       assert.ok(is_fulfiled, Definer.input_err1);
       const login_data = {
         mb_nick: mb_nick,
@@ -62,7 +84,7 @@ const LoginPage = () => {
       };
       const memberApiService = new MemberApiServices();
       await memberApiService.loginRequest(login_data);
-      navigate("/")
+      navigate("/");
       sweetTopSmallSuccessAlert("Login Success", 1000, true);
     } catch (err) {
       console.log(err);
@@ -109,7 +131,7 @@ const LoginPage = () => {
             {/* Tabs */}
             <Tabs
               value={activeTab}
-              // onChange={handleTabChange}
+              onChange={handleTabChange}
               className="form_tabs"
               variant="fullWidth"
             >
@@ -119,7 +141,7 @@ const LoginPage = () => {
 
             {/* Login Form */}
             {activeTab === 0 && (
-              <Box  component="form" className="form_content">
+              <Box component="form" className="form_content">
                 <Typography className="form_title">Welcome Back</Typography>
                 <Typography className="form_subtitle">
                   Login to access your account
@@ -160,17 +182,7 @@ const LoginPage = () => {
 
                 <Box className="form_options">
                   <FormControlLabel
-                    control={
-                      <Checkbox
-                      // checked={loginData.remember}
-                      // onChange={(e) =>
-                      //   setLoginData({
-                      //     ...loginData,
-                      //     remember: e.target.checked,
-                      //   })
-                      // }
-                      />
-                    }
+                    control={<Checkbox />}
                     label="Remember me"
                     className="remember_checkbox"
                   />
@@ -182,7 +194,11 @@ const LoginPage = () => {
                   </Typography>
                 </Box>
 
-                <Button onClick={handleLoginRequest} fullWidth className="submit_button">
+                <Button
+                  onClick={handleLoginRequest}
+                  fullWidth
+                  className="submit_button"
+                >
                   Login
                 </Button>
 
@@ -192,18 +208,21 @@ const LoginPage = () => {
 
                 <Box className="social_buttons">
                   <Button
+                    onClick={() => navigate("*")}
                     className="social_button google"
                     startIcon={<GoogleIcon />}
                   >
                     Google
                   </Button>
                   <Button
+                    onClick={() => navigate("*")}
                     className="social_button facebook"
                     startIcon={<FacebookIcon />}
                   >
                     Facebook
                   </Button>
                   <Button
+                    onClick={() => navigate("*")}
                     className="social_button apple"
                     startIcon={<AppleIcon />}
                   >
@@ -223,44 +242,29 @@ const LoginPage = () => {
 
                 <TextField
                   fullWidth
-                  label="Full Name"
+                  label="Choose a Nickname"
                   type="text"
                   variant="outlined"
                   className="form_input"
-                  // value={registerData.name}
-                  // onChange={(e) =>
-                  //   setRegisterData({ ...registerData, name: e.target.value })
-                  // }
-                  required
+                  onChange={handleUsername}
                 />
 
                 <TextField
                   fullWidth
-                  label="Email Address"
-                  type="email"
+                  label="Phone Number"
+                  type="text"
                   variant="outlined"
                   className="form_input"
-                  // value={registerData.email}
-                  // onChange={(e) =>
-                  //   setRegisterData({ ...registerData, email: e.target.value })
-                  // }
-                  required
+                  onChange={handlePhone}
                 />
 
                 <TextField
                   fullWidth
-                  label="Password"
+                  label="Create Password"
                   type={showPassword ? "text" : "password"}
                   variant="outlined"
                   className="form_input"
-                  // value={registerData.password}
-                  // onChange={(e) =>
-                  //   setRegisterData({
-                  //     ...registerData,
-                  //     password: e.target.value,
-                  //   })
-                  // }
-                  required
+                  onChange={handlePassword}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -278,24 +282,11 @@ const LoginPage = () => {
                     ),
                   }}
                 />
-
-                <TextField
+                <Button
+                  onClick={handleSignUpRequest}
                   fullWidth
-                  label="Confirm Password"
-                  type={showPassword ? "text" : "password"}
-                  variant="outlined"
-                  className="form_input"
-                  value={registerData.confirmPassword}
-                  onChange={(e) =>
-                    setRegisterData({
-                      ...registerData,
-                      confirmPassword: e.target.value,
-                    })
-                  }
-                  required
-                />
-
-                <Button type="submit" fullWidth className="submit_button">
+                  className="submit_button"
+                >
                   Create Account
                 </Button>
 
@@ -305,18 +296,21 @@ const LoginPage = () => {
 
                 <Box className="social_buttons">
                   <Button
+                    onClick={() => navigate("*")}
                     className="social_button google"
                     startIcon={<GoogleIcon />}
                   >
                     Google
                   </Button>
                   <Button
+                    onClick={() => navigate("*")}
                     className="social_button facebook"
                     startIcon={<FacebookIcon />}
                   >
                     Facebook
                   </Button>
                   <Button
+                    onClick={() => navigate("*")}
                     className="social_button apple"
                     startIcon={<AppleIcon />}
                   >
