@@ -105,7 +105,6 @@
   width: 100%;
   height: 452px;
   cursor: pointer;
-
 }
 
 .TrandingProduct_frame .img_frame {
@@ -117,13 +116,11 @@
   width: 100%;
   height: 452px;
   cursor: pointer;
-
 }
 
 .TrandingProduct_frame .img_frame:hover .img_hover {
   opacity: 1;
 }
-
 
 .TrandingProduct_frame .img_card_box .img_frame .add {
   position: absolute;
@@ -165,25 +162,43 @@
   letter-spacing: 0%;
   margin-left: 15px;
 }
+.TrandingProduct_frame .product_count {
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0%;
+  margin-left: 10px;
+}
+.TrandingProduct_frame .product_size{
+  color: rgb(0, 0, 0);
+  font-family: Judson;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0%;
+  margin-left: 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
 
-
-.TrandingProduct_frame .action_btn_box{
+.TrandingProduct_frame .action_btn_box {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-
 }
 .TrandingProduct_frame .action_btn {
   width: 25px;
   height: 25px;
   transition: all 0.3s ease;
   text-align: center;
+}
+.TrandingProduct_frame .action_btn_box .action_btn:hover {
+  color: red;
   cursor: pointer;
 }
-
-
 
 /* TrandingProduct_frme finish */
 
@@ -559,14 +574,14 @@
   position: absolute;
   width: 150px;
   height: 35px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-family: Judson;
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
   letter-spacing: 15%;
   text-align: center;
-  background: rgb(6, 6, 6);
+  background: #fff;
   top: 85%;
   left: 30%;
   z-index: 1;
@@ -580,8 +595,8 @@
 }
 
 .RecentProducts_frame .add_btn:hover {
-  background: #fff;
-  color: rgb(0, 0, 0);
+  background: rgb(6, 6, 6);
+  color: rgb(255, 255, 255);
 }
 
 .RecentProducts_frame .product_title_frame {

@@ -31,21 +31,14 @@ const BestSellerProducts = () => {
                 color="secondary"
                 variant="outlined"
               >
-                TRADITIONAL JEWELS
+                Bracelet 
               </Button>
               <Button
                 className="product_btn"
                 color="secondary"
                 variant="outlined"
               >
-                BRIDAL JEWELS
-              </Button>
-              <Button
-                className="product_btn"
-                color="secondary"
-                variant="outlined"
-              >
-                ANITIQUE JEWELS
+                Earing 
               </Button>
               <Button
                 className="product_btn"
@@ -53,6 +46,14 @@ const BestSellerProducts = () => {
                 variant="outlined"
               >
                 NECKLACES
+              </Button>
+              <Button
+                className="product_btn"
+                color="secondary"
+                variant="outlined"
+              >
+                
+                ANITIQUE JEWELS
               </Button>
             </Box>
           </Box>

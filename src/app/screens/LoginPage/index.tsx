@@ -19,31 +19,56 @@ import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import AppleIcon from "@mui/icons-material/Apple";
 import "../../../css/login.scss";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../lib/Definer";
+import MemberApiServices from "../../apiServices/memberApiServices";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Login form state
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-    remember: false,
-  });
-
+  // ** INITIALIZATIONS ** //
+  let mb_nick: string = "",
+    mb_phone: number = 0,
+    mb_password: string = "";
   // Register form state
   const [registerData, setRegisterData] = useState({
-    name: "",
-    email: "",
-    password: "",
+    mb_nick: "",
+    mb_phone: "",
+    mb_password: "",
     confirmPassword: "",
   });
-   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setActiveTab(newValue);
+
+  // ** HEANDLERS ** //
+  const handleUsername = (e: any) => {
+    mb_nick = e.target.value;
+  };
+  const handlePhone = (e: any) => {
+    mb_phone = e.target.value;
+  };
+  const handlePassword = (e: any) => {
+    mb_password = e.target.value;
   };
 
-
+  const handleLoginRequest = async (props:any) => {
+    try {
+      const is_fulfiled = mb_nick != "" && mb_password != "";
+      assert.ok(is_fulfiled, Definer.input_err1);
+      const login_data = {
+        mb_nick: mb_nick,
+        mb_password: mb_password,
+      };
+      const memberApiService = new MemberApiServices();
+      await memberApiService.loginRequest(login_data);
+      navigate("/")
+      sweetTopSmallSuccessAlert("Login Success", 1000, true);
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Box className="login_page">
@@ -83,8 +108,8 @@ const LoginPage = () => {
           <Box className="form_section">
             {/* Tabs */}
             <Tabs
-              value={activeTab} 
-              onChange={handleTabChange}
+              value={activeTab}
+              // onChange={handleTabChange}
               className="form_tabs"
               variant="fullWidth"
             >
@@ -94,10 +119,7 @@ const LoginPage = () => {
 
             {/* Login Form */}
             {activeTab === 0 && (
-              <Box
-                component="form"
-                className="form_content"
-              >
+              <Box  component="form" className="form_content">
                 <Typography className="form_title">Welcome Back</Typography>
                 <Typography className="form_subtitle">
                   Login to access your account
@@ -105,15 +127,10 @@ const LoginPage = () => {
 
                 <TextField
                   fullWidth
-                  label="Email Address"
-                  type="email"
+                  label="Username"
                   variant="outlined"
                   className="form_input"
-                  value={loginData.email}
-                  onChange={(e) =>
-                    setLoginData({ ...loginData, email: e.target.value })
-                  }
-                  required
+                  onChange={handleUsername}
                 />
 
                 <TextField
@@ -122,11 +139,7 @@ const LoginPage = () => {
                   type={showPassword ? "text" : "password"}
                   variant="outlined"
                   className="form_input"
-                  value={loginData.password}
-                  onChange={(e) =>
-                    setLoginData({ ...loginData, password: e.target.value })
-                  }
-                  required
+                  onChange={handlePassword}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -149,13 +162,13 @@ const LoginPage = () => {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={loginData.remember}
-                        onChange={(e) =>
-                          setLoginData({
-                            ...loginData,
-                            remember: e.target.checked,
-                          })
-                        }
+                      // checked={loginData.remember}
+                      // onChange={(e) =>
+                      //   setLoginData({
+                      //     ...loginData,
+                      //     remember: e.target.checked,
+                      //   })
+                      // }
                       />
                     }
                     label="Remember me"
@@ -169,7 +182,7 @@ const LoginPage = () => {
                   </Typography>
                 </Box>
 
-                <Button type="submit" fullWidth className="submit_button">
+                <Button onClick={handleLoginRequest} fullWidth className="submit_button">
                   Login
                 </Button>
 
@@ -202,10 +215,7 @@ const LoginPage = () => {
 
             {/* Register Form */}
             {activeTab === 1 && (
-              <Box
-                component="form"
-                className="form_content"
-              >
+              <Box component="form" className="form_content">
                 <Typography className="form_title">Create Account</Typography>
                 <Typography className="form_subtitle">
                   Join Glamora family today
@@ -217,10 +227,10 @@ const LoginPage = () => {
                   type="text"
                   variant="outlined"
                   className="form_input"
-                  value={registerData.name}
-                  onChange={(e) =>
-                    setRegisterData({ ...registerData, name: e.target.value })
-                  }
+                  // value={registerData.name}
+                  // onChange={(e) =>
+                  //   setRegisterData({ ...registerData, name: e.target.value })
+                  // }
                   required
                 />
 
@@ -230,10 +240,10 @@ const LoginPage = () => {
                   type="email"
                   variant="outlined"
                   className="form_input"
-                  value={registerData.email}
-                  onChange={(e) =>
-                    setRegisterData({ ...registerData, email: e.target.value })
-                  }
+                  // value={registerData.email}
+                  // onChange={(e) =>
+                  //   setRegisterData({ ...registerData, email: e.target.value })
+                  // }
                   required
                 />
 
@@ -243,13 +253,13 @@ const LoginPage = () => {
                   type={showPassword ? "text" : "password"}
                   variant="outlined"
                   className="form_input"
-                  value={registerData.password}
-                  onChange={(e) =>
-                    setRegisterData({
-                      ...registerData,
-                      password: e.target.value,
-                    })
-                  }
+                  // value={registerData.password}
+                  // onChange={(e) =>
+                  //   setRegisterData({
+                  //     ...registerData,
+                  //     password: e.target.value,
+                  //   })
+                  // }
                   required
                   InputProps={{
                     endAdornment: (

@@ -28,9 +28,6 @@ import ShopApiServices from "../../apiServices/shopApiService";
 const HomePage = () => {
   // ** INITIALIZATION */
   // const { setTopTradings } = actionDispatch(useDispatch());
-  useEffect(() => {
-
-  }, []);
   return (
     <div className="homepage">
       <Header />

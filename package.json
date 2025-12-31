@@ -37,7 +37,7 @@
     "redux-logger": "^3.0.6",
     "sass": "^1.91.0",
     "styled-components": "^6.1.1",
-    "sweetalert2": "^11.10.1",
+    "sweetalert2": "^11.26.17",
     "swiper": "^11.1.4",
     "typescript": "^4.8.3",
     "universal-cookie": "^6.1.1",

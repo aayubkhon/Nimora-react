@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { Stack, Box, Button, IconButton, Badge, Container, Drawer } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PersonIcon from '@mui/icons-material/Person';
+import {
+  Stack,
+  Box,
+  Button,
+  IconButton,
+  Badge,
+  Container,
+  Drawer,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
 import { navbar } from "../../lib/navbar";
 import "../../../css/navbar.scss";
 import Footer from "../footer";
 
-const NavbarHome = () => {
+const NavbarHome = (props: any) => {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -28,7 +36,9 @@ const NavbarHome = () => {
             return (
               !hidden && (
                 <NavLink
-                  className={({ isActive }) => `navlink ${isActive ? "active" : ""}`}
+                  className={({ isActive }) =>
+                    `navlink ${isActive ? "active" : ""}`
+                  }
                   key={id}
                   to={path}
                 >
@@ -38,20 +48,23 @@ const NavbarHome = () => {
             );
           })}
         </Box>
-
         <Box className="action_section">
           <IconButton className="icon_btn" onClick={() => navigate("/cart")}>
-            <Badge  badgeContent={3} color="error">
-              <ShoppingCartIcon   />
+            <Badge badgeContent={3} color="error">
+              <ShoppingCartIcon />
             </Badge>
           </IconButton>
-          <IconButton className="icon_btn" onClick={() => navigate("/my-account")}>
+          <IconButton
+            className="icon_btn"
+            onClick={() => navigate("/my-account")}
+          >
             <PersonIcon />
           </IconButton>
-          <Button className="login_btn" onClick={() => navigate("/login")}>
-            Login
-          </Button>
-
+          <Box>
+            <Button className="login_btn" onClick={() => navigate("/login")}>
+              Login
+            </Button>
+          </Box>
           {/* Mobile Menu Button */}
           <IconButton
             className="mobile_menu_btn"
@@ -82,7 +95,9 @@ const NavbarHome = () => {
               return (
                 !hidden && (
                   <NavLink
-                    className={({ isActive }) => `mobile_navlink ${isActive ? "active" : ""}`}
+                    className={({ isActive }) =>
+                      `mobile_navlink ${isActive ? "active" : ""}`
+                    }
                     key={id}
                     to={path}
                     onClick={handleDrawer}
@@ -95,9 +110,9 @@ const NavbarHome = () => {
           </Box>
 
           <Box className="mobile_actions">
-            <Button 
-              fullWidth 
-              variant="contained" 
+            <Button
+              fullWidth
+              variant="contained"
               className="mobile_login_btn"
               onClick={() => {
                 navigate("/login");
@@ -106,9 +121,9 @@ const NavbarHome = () => {
             >
               Login
             </Button>
-            <Button 
-              fullWidth 
-              variant="outlined" 
+            <Button
+              fullWidth
+              variant="outlined"
               className="mobile_signup_btn"
               onClick={() => {
                 navigate("/sign-up");
