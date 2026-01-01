@@ -3,7 +3,7 @@ import ShopPage from "../screens/ShopPage";
 import StorePage from "../screens/StorePage/store";
 import { HelpPage } from "../screens/HelpPage/";
 import CommunityPage from "../screens/CommunityPage/community";
-import OneJewellry from "../screens/ShopPage/oneJewellry";
+import ChoosenCatagory from "../screens/ShopPage/oneJewellry";
 import OrdersPage from "../screens/OrdersPage";
 import SignUp from "../screens/SignUpPage";
 import LoginPage from "../screens/LoginPage";
@@ -53,7 +53,7 @@ export const navbar: NavbarObj[] = [
     hidden: false,
   },
   {
-    element: <OneJewellry />,
+    element: <ChoosenCatagory />,
     title: "OneJewellry",
     path: "/shop/:product_id",
     private: false,

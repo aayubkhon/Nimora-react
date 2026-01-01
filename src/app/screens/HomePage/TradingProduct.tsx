@@ -26,6 +26,7 @@ import {
 import MemberApiServices from "../../apiServices/memberApiServices";
 import { Definer } from "../../lib/Definer";
 import assert from "assert";
+import { useNavigate } from "react-router-dom";
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setTopTradings: (data: Product[]) => dispach(setTopTradings(data)),
@@ -43,6 +44,8 @@ const TrabdingProduct = () => {
   const { setTopTradings } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
   const refs: any = useRef([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const productService = new ProductApiServices();
     productService
@@ -50,27 +53,34 @@ const TrabdingProduct = () => {
       .then((data) => setTopTradings(data))
       .catch((err) => console.log(err));
   }, []);
+
   const targetLikeTop = async (e: any, id: string) => {
     try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
       const memberService = new MemberApiServices(),
         like_result: any = await memberService.memberLikeTarget({
           like_ref_id: id,
-          group_type: "member",
+          group_type: "product",
         });
       assert.ok(like_result, Definer.general_err1);
       if (like_result.like_status > 0) {
         e.target.style.fill = "red";
-        refs.current[like_result.like_ref_id].innerHtml++
+        refs.current[like_result.like_ref_id].innerHTML++;
       } else {
         e.target.style.fill = "black";
-        refs.current[like_result.like_ref_id].innerHtml--
-
+        refs.current[like_result.like_ref_id].innerHTML--;
       }
     } catch (err: any) {
       console.log(`ERROR ::: targetLikeTop", ${err}`);
       sweetErrorHandling(err).then();
     }
   };
+
+  // ** HEANDLERS **/
+  const choosenProductsHandler = (id:string)=>{
+    navigate(`/shop/${id}`)
+  }
+
   return (
     <div className="TrandingProduct_frame">
       <Box flexDirection={"column"}>
@@ -102,7 +112,7 @@ const TrabdingProduct = () => {
                         alt=""
                       />
                     )}
-                    <Button className="add">add +</Button>
+                    <Button onClick={()=> choosenProductsHandler(product._id)} className="add">add +</Button>
                     <div className="icon_box"></div>
                   </Box>
                   <Box>

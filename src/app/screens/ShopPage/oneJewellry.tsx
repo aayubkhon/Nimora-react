@@ -13,7 +13,7 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
-function OneJewellry() {
+function ChoosenCatagory() {
   const [count, setCount] = useState(0);
   return (
     <div className="OneJewellry_frame">
@@ -128,4 +128,4 @@ function OneJewellry() {
   );
 }
 
-export default OneJewellry;
+export default ChoosenCatagory;
