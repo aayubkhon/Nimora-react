@@ -1,29 +1,54 @@
 import React, { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
-  Stack,
   Box,
   Button,
   IconButton,
   Badge,
-  Container,
-  Drawer,
+  Avatar,
+  Menu,
+  MenuItem,
+  ListItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PersonIcon from "@mui/icons-material/Person";
 import { navbar } from "../../lib/navbar";
 import "../../../css/navbar.scss";
 import Footer from "../footer";
-
+import { Logout } from "@mui/icons-material";
+import PersonIcon from "@mui/icons-material/Person";
+import MemberApiServices from "../../apiServices/memberApiServices";
+import {
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
+import { Definer } from "../../lib/Definer";
 const NavbarHome = (props: any) => {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
-
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
+  };
   const handleDrawer = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleLogOutRequest = async () => {
+    try {
+      const memberApiService = new MemberApiServices();
+      await memberApiService.logOutRequest();
+      await sweetTopSmallSuccessAlert("success", 700, true);
+    } catch (err) {
+      console.log(err);
+      sweetFailureProvider(Definer.general_err1);
+    }
+  };
+
   return (
     <>
       <div className="navbar_container">
@@ -47,6 +72,18 @@ const NavbarHome = (props: any) => {
               )
             );
           })}
+          {props.virifiedMemberData ? (
+            <Box>
+              <NavLink
+                to={"/my-account"}
+                className={({ isActive }: { isActive: boolean }) =>
+                  `navlink ${isActive ? "active" : ""}`
+                }
+              >
+                My Page
+              </NavLink>
+            </Box>
+          ) : null}
         </Box>
         <Box className="action_section">
           <IconButton className="icon_btn" onClick={() => navigate("/cart")}>
@@ -54,17 +91,43 @@ const NavbarHome = (props: any) => {
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
-          <IconButton
+          {/* <IconButton
             className="icon_btn"
             onClick={() => navigate("/my-account")}
           >
             <PersonIcon />
-          </IconButton>
-          <Box>
-            <Button className="login_btn" onClick={() => navigate("/login")}>
-              Login
-            </Button>
-          </Box>
+          </IconButton> */}
+          {!props.virifiedMemberData ? (
+            <Box>
+              <Button className="login_btn" onClick={() => navigate("/login")}>
+                Login
+              </Button>
+            </Box>
+          ) : (
+            <Avatar
+              src={props.virifiedMemberData.mb_image}
+              onClick={handleLogOutClick}
+              sx={{ width: "30px", height: "30px", cursor: "pointer" }}
+            />
+          )}
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleCloseLogOut}
+            onClick={handleCloseLogOut}
+            PaperProps={{
+              elevation: 0,
+            }}
+            transformOrigin={{ horizontal: "right", vertical: "top" }}
+            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          >
+            <MenuItem onClick={handleLogOutRequest}>
+              <ListItem>
+                <Logout fontSize="small" style={{ color: "blue" }} />
+                Logout
+              </ListItem>
+            </MenuItem>
+          </Menu>
           {/* Mobile Menu Button */}
           <IconButton
             className="mobile_menu_btn"
@@ -75,66 +138,6 @@ const NavbarHome = (props: any) => {
           </IconButton>
         </Box>
       </div>
-
-      {/* Mobile Drawer */}
-      <Drawer
-        anchor="right"
-        open={mobileOpen}
-        onClose={handleDrawer}
-        className="mobile_drawer"
-      >
-        <Box className="drawer_content">
-          <Box className="drawer_header">
-            <IconButton onClick={handleDrawer}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-
-          <Box className="mobile_nav">
-            {navbar.map(({ title, path, hidden }, id) => {
-              return (
-                !hidden && (
-                  <NavLink
-                    className={({ isActive }) =>
-                      `mobile_navlink ${isActive ? "active" : ""}`
-                    }
-                    key={id}
-                    to={path}
-                    onClick={handleDrawer}
-                  >
-                    {title}
-                  </NavLink>
-                )
-              );
-            })}
-          </Box>
-
-          <Box className="mobile_actions">
-            <Button
-              fullWidth
-              variant="contained"
-              className="mobile_login_btn"
-              onClick={() => {
-                navigate("/login");
-                handleDrawer();
-              }}
-            >
-              Login
-            </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              className="mobile_signup_btn"
-              onClick={() => {
-                navigate("/sign-up");
-                handleDrawer();
-              }}
-            >
-              Sign Up
-            </Button>
-          </Box>
-        </Box>
-      </Drawer>
       <Outlet />
       <Footer />
     </>

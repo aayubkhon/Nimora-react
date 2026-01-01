@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Favorite, Visibility } from "@mui/icons-material";
@@ -8,8 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../../../css/costum-swiper.scss";
-import {  Box, Button,  Typography } from "@mui/material";
-
+import { Box, Button, Typography } from "@mui/material";
 
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +19,13 @@ import { retrieveTradingProducts } from "../../screens/HomePage/selector";
 import { Product } from "../../types/product";
 import ProductApiServices from "../../apiServices/productApiServices";
 import { serverApi } from "../../lib/config";
-import { sweetTopSmallSuccessAlert } from "../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
+import MemberApiServices from "../../apiServices/memberApiServices";
+import { Definer } from "../../lib/Definer";
+import assert from "assert";
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setTopTradings: (data: Product[]) => dispach(setTopTradings(data)),
@@ -36,8 +41,8 @@ const trendProductsRetriever = createSelector(
 const TrabdingProduct = () => {
   // ** INITIALIZATION */
   const { setTopTradings } = actionDispatch(useDispatch());
-  
   const { trendProducts } = useSelector(trendProductsRetriever);
+  const refs: any = useRef([]);
   useEffect(() => {
     const productService = new ProductApiServices();
     productService
@@ -45,7 +50,27 @@ const TrabdingProduct = () => {
       .then((data) => setTopTradings(data))
       .catch((err) => console.log(err));
   }, []);
+  const targetLikeTop = async (e: any, id: string) => {
+    try {
+      const memberService = new MemberApiServices(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHtml++
+      } else {
+        e.target.style.fill = "black";
+        refs.current[like_result.like_ref_id].innerHtml--
 
+      }
+    } catch (err: any) {
+      console.log(`ERROR ::: targetLikeTop", ${err}`);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <div className="TrandingProduct_frame">
       <Box flexDirection={"column"}>
@@ -61,73 +86,78 @@ const TrabdingProduct = () => {
         modules={[Navigation]}
         className="trending-swiper"
       >
-          {trendProducts.map((product: Product) => {
-            const images_path = `${serverApi}/${product.product_images[0]}`;
-            const second_img_path = `${serverApi}/${product.product_images[1]}`;
-            return (
-              <SwiperSlide key={product._id}>
-                <Box className="card_frame">
-                  <Box className={"img_card_box"}>
-                    <Box className="img_frame">
-                      <img className="m_image" src={images_path} alt="" />
-                      {second_img_path && (
-                        <img
-                          className="m_image img_hover"
-                          src={second_img_path}
-                          alt=""
-                        />
-                      )}
-                      <Button className="add">add +</Button>
-                      <div className="icon_box"></div>
-                    </Box>
+        {trendProducts.map((product: Product) => {
+          const images_path = `${serverApi}/${product.product_images[0]}`;
+          const second_img_path = `${serverApi}/${product.product_images[1]}`;
+          return (
+            <SwiperSlide key={product._id}>
+              <Box className="card_frame">
+                <Box className={"img_card_box"}>
+                  <Box className="img_frame">
+                    <img className="m_image" src={images_path} alt="" />
+                    {second_img_path && (
+                      <img
+                        className="m_image img_hover"
+                        src={second_img_path}
+                        alt=""
+                      />
+                    )}
+                    <Button className="add">add +</Button>
+                    <div className="icon_box"></div>
+                  </Box>
+                  <Box>
                     <Box>
-                      <Box>
-                        <Typography className="product_name">
-                          {product.product_name}
+                      <Typography className="product_name">
+                        {product.product_name}
+                      </Typography>
+                      <Box
+                        sx={{ display: "flex", gap: 3, alignItems: "center" }}
+                      >
+                        <Typography className="product_price">
+                          {product.product_price}$
                         </Typography>
-                        <Box
-                          sx={{ display: "flex", gap: 3, alignItems: "center" }}
-                        >
-                          <Typography className="product_price">
-                            {product.product_price}$
+                        <Box className={"action_btn_box"}>
+                          <Favorite
+                            onClick={(e) => targetLikeTop(e, product._id)}
+                            style={{
+                              fill: product.product_likes ? "red" : "black",
+                            }}
+                            className="action_btn"
+                          />
+                          <Typography
+                            ref={(element) =>
+                              (refs.current[product._id] = element)
+                            }
+                            className="product_count"
+                          >
+                            {product.product_likes}
                           </Typography>
-                          <Box className={"action_btn_box"}>
-                            <Favorite
-                              style={{
-                                fill: product.product_likes ? "red" : "black",
-                              }}
-                              className="action_btn"
-                            />
-                            <Typography className="product_count">
-                              {product.product_likes}
-                            </Typography>
-                          </Box>
-                          <Box className={"action_btn_box"}>
-                            <Visibility
-                              style={{
-                                fill: product.product_views ? "blue" : "black",
-                                cursor: "pointer",
-                              }}
-                              className="action_btn"
-                            />
-                            <Typography className="product_count">
-                              {product.product_views}
-                            </Typography>
-                          </Box>
-                          
                         </Box>
-                        <Box >
-                            <Typography className="product_size">
-                              size:  {product.product_size}
-                            </Typography>
-                          </Box>
+                        <Box className={"action_btn_box"}>
+                          <Visibility
+                            style={{
+                              fill: product.product_views ? "blue" : "black",
+                              cursor: "pointer",
+                            }}
+                            className="action_btn"
+                          />
+                          <Typography className="product_count">
+                            {product.product_views}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box>
+                        <Typography className="product_size">
+                          size: {product.product_size}
+                        </Typography>
                       </Box>
                     </Box>
                   </Box>
                 </Box>
-              </SwiperSlide>
-            );
-          })}
+              </Box>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
       {/* Custom Pagination Buttons */}
       <div className="pagination-buttons">
