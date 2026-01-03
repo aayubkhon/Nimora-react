@@ -13,6 +13,7 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+
 function ChoosenCatagory() {
   const [count, setCount] = useState(0);
   return (

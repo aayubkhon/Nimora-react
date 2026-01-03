@@ -66,7 +66,8 @@ const LoginPage = () => {
       };
       const memberApiService = new MemberApiServices();
       await memberApiService.signupRequest(signup_data);
-      navigate("/");
+      navigate("/")
+      window.location.reload();
       sweetTopSmallSuccessAlert("SignUp Success", 1000, true);
     } catch (err) {
       console.log(err);
@@ -84,7 +85,8 @@ const LoginPage = () => {
       };
       const memberApiService = new MemberApiServices();
       await memberApiService.loginRequest(login_data);
-      navigate("/");
+      navigate("/")
+      window.location.reload();
       sweetTopSmallSuccessAlert("Login Success", 1000, true);
     } catch (err) {
       console.log(err);

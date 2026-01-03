@@ -1,14 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { Favorite, Visibility } from "@mui/icons-material";
+import {
+  CheckBox,
+  Favorite,
+  FavoriteBorder,
+  Visibility,
+} from "@mui/icons-material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../../../css/costum-swiper.scss";
-import { Box, Button, Typography } from "@mui/material";
+import { Badge, Box, Button, Checkbox, Typography } from "@mui/material";
 
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -45,6 +50,7 @@ const TrabdingProduct = () => {
   const { trendProducts } = useSelector(trendProductsRetriever);
   const refs: any = useRef([]);
   const navigate = useNavigate();
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const productService = new ProductApiServices();
@@ -52,9 +58,11 @@ const TrabdingProduct = () => {
       .getAllProducts({ order: "product_likes", limit: 8, page: 1 })
       .then((data) => setTopTradings(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productRebuild]);
 
-  const targetLikeTop = async (e: any, id: string) => {
+  // ** HEANDLERS **/
+
+  const targetLikeProducts = async (e: any, id: string) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
       const memberService = new MemberApiServices(),
@@ -63,23 +71,24 @@ const TrabdingProduct = () => {
           group_type: "product",
         });
       assert.ok(like_result, Definer.general_err1);
-      if (like_result.like_status > 0) {
-        e.target.style.fill = "red";
-        refs.current[like_result.like_ref_id].innerHTML++;
-      } else {
-        e.target.style.fill = "black";
-        refs.current[like_result.like_ref_id].innerHTML--;
-      }
+      // if (like_result.like_status > 0) {
+      //   e.target.style.fill = "#FF3040";
+      //   refs.current[like_result.like_ref_id].innerHTML++;
+      // } else {
+      //   e.target.style.fill = "#6e6e6e";
+      //   refs.current[like_result.like_ref_id].innerHTML--;
+      // }
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
     } catch (err: any) {
       console.log(`ERROR ::: targetLikeTop", ${err}`);
       sweetErrorHandling(err).then();
     }
   };
 
-  // ** HEANDLERS **/
-  const choosenProductsHandler = (id:string)=>{
-    navigate(`/shop/${id}`)
-  }
+  const choosenProductsHandler = (id: string) => {
+    navigate(`/shop/${id}`);
+  };
 
   return (
     <div className="TrandingProduct_frame">
@@ -99,6 +108,7 @@ const TrabdingProduct = () => {
         {trendProducts.map((product: Product) => {
           const images_path = `${serverApi}/${product.product_images[0]}`;
           const second_img_path = `${serverApi}/${product.product_images[1]}`;
+          const prodyct_size = product.product_size
           return (
             <SwiperSlide key={product._id}>
               <Box className="card_frame">
@@ -112,7 +122,12 @@ const TrabdingProduct = () => {
                         alt=""
                       />
                     )}
-                    <Button onClick={()=> choosenProductsHandler(product._id)} className="add">add +</Button>
+                    <Button
+                      onClick={() => choosenProductsHandler(product._id)}
+                      className="add"
+                    >
+                      add +
+                    </Button>
                     <div className="icon_box"></div>
                   </Box>
                   <Box>
@@ -127,13 +142,26 @@ const TrabdingProduct = () => {
                           {product.product_price}$
                         </Typography>
                         <Box className={"action_btn_box"}>
-                          <Favorite
-                            onClick={(e) => targetLikeTop(e, product._id)}
-                            style={{
-                              fill: product.product_likes ? "red" : "black",
-                            }}
-                            className="action_btn"
-                          />
+                          <Badge>
+                            <Checkbox
+                              id={product._id}
+                              onClick={(e) =>
+                                targetLikeProducts(e, product._id)
+                              }
+                              icon={
+                                <FavoriteBorder style={{ color: "#424141" }} />
+                              }
+                              checkedIcon={
+                                <Favorite style={{ color: "#FF3040" }} />
+                              }
+                              checked={
+                                product?.me_liked &&
+                                product?.me_liked[0]?.my_favorite
+                                  ? true
+                                  : false
+                              }
+                            />
+                          </Badge>
                           <Typography
                             ref={(element) =>
                               (refs.current[product._id] = element)
@@ -158,7 +186,7 @@ const TrabdingProduct = () => {
                       </Box>
                       <Box>
                         <Typography className="product_size">
-                          size: {product.product_size}
+                         size: {prodyct_size}
                         </Typography>
                       </Box>
                     </Box>

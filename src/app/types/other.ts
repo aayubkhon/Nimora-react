@@ -12,7 +12,7 @@ export interface SearchObj {
   limit: number;
 }
 
-export interface ProductData {
+export interface ProductSearchObj {
   order: string;
   page: number;
   limit: number;

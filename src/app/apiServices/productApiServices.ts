@@ -3,7 +3,7 @@ import assert from "assert";
 import { Definer } from "../lib/Definer";
 import { serverApi } from "../lib/config";
 import { Product,} from "../types/product";
-import { ProductData } from "../types/other";
+import { ProductSearchObj } from "../types/other";
 
 class ProductApiServices {
   private readonly path: string;
@@ -11,7 +11,7 @@ class ProductApiServices {
     this.path = serverApi;
   }
 
- async getAllProducts(data:ProductData) {
+ async getAllProducts(data:ProductSearchObj) {
   try {
     const url = "/products"; 
     const result = await axios.post(this.path + url, data, { withCredentials: true });

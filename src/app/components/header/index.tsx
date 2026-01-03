@@ -115,15 +115,13 @@ const NavbarHome = (props: any) => {
             open={open}
             onClose={handleCloseLogOut}
             onClick={handleCloseLogOut}
-            PaperProps={{
-              elevation: 0,
-            }}
+            
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem onClick={handleLogOutRequest}>
+            <MenuItem onClick={handleLogOutRequest} >
               <ListItem>
-                <Logout fontSize="small" style={{ color: "blue" }} />
+                <Logout  fontSize="small" style={{ color: "blue" }} />
                 Logout
               </ListItem>
             </MenuItem>
