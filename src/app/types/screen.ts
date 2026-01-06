@@ -1,19 +1,26 @@
 import { BoArticle } from "./boArticle";
 import { Product } from "./product";
-import { Shop } from "./user";
+
+
+/*REACT APP STATE*/
 
 export interface AppRootState {
    homePage: HomePageState;
-}
-
-export interface AppRootState {
+   shopPage:ShopPageState;
    boArticles: BoArticle;
-
 }
 
+
+/*HOMEPAGE*/
 export interface HomePageState{
    trendProducts: Product[],
-   bestSellerProduct:Product[]
+   bestSellerProduct:Product[],
+}
 
-
+/*SHOPPAGE*/
+export interface ShopPageState {
+  allProducts: Product[];
+  relatedProducts: Product[];
+  chosenProduct: Product | null;
+//   productReviews: Review[];
 }

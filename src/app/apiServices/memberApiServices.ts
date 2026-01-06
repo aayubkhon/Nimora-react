@@ -72,5 +72,6 @@ class MemberApiServices {
       throw err;
     }
   }
+  
 }
 export default MemberApiServices;

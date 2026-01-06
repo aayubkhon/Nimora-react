@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Navigation } from "swiper/modules";
 import {
   CheckBox,
@@ -31,7 +32,7 @@ import {
 import MemberApiServices from "../../apiServices/memberApiServices";
 import { Definer } from "../../lib/Definer";
 import assert from "assert";
-import { useNavigate } from "react-router-dom";
+
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setTopTradings: (data: Product[]) => dispach(setTopTradings(data)),
@@ -44,7 +45,7 @@ const trendProductsRetriever = createSelector(
   })
 );
 
-const TrabdingProduct = () => {
+const TrabdingProducts = () => {
   // ** INITIALIZATION */
   const { setTopTradings } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
@@ -108,7 +109,7 @@ const TrabdingProduct = () => {
         {trendProducts.map((product: Product) => {
           const images_path = `${serverApi}/${product.product_images[0]}`;
           const second_img_path = `${serverApi}/${product.product_images[1]}`;
-          const prodyct_size = product.product_size
+          const prodyct_size = product.product_size;
           return (
             <SwiperSlide key={product._id}>
               <Box className="card_frame">
@@ -122,6 +123,7 @@ const TrabdingProduct = () => {
                         alt=""
                       />
                     )}
+
                     <Button
                       onClick={() => choosenProductsHandler(product._id)}
                       className="add"
@@ -186,7 +188,7 @@ const TrabdingProduct = () => {
                       </Box>
                       <Box>
                         <Typography className="product_size">
-                         size: {prodyct_size}
+                          size: {prodyct_size}
                         </Typography>
                       </Box>
                     </Box>
@@ -210,4 +212,4 @@ const TrabdingProduct = () => {
   );
 };
 
-export default TrabdingProduct;
+export default TrabdingProducts;
