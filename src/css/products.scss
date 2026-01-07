@@ -1,12 +1,12 @@
 .OneJewellry_frame {
   height: 1900px;
-  margin: 50px 50px;
-      width: 1320px;
+  margin-top: 40px;
+  width: 100%;
 
-  .container {
+  .jews_container {
     display: flex;
-    width: 1360px;
-    height: 700px;
+    width: 100%;
+    
   }
 }
 
@@ -25,6 +25,7 @@
     height: 120px;
     border-radius: 10px;
     cursor: pointer;
+    margin-left: 13px;
   }
 }
 
@@ -35,7 +36,6 @@
     height: 682px;
     border-radius: 15px;
     border: 0.1px solid rgba(0, 0, 0, 0.15);
-
   }
 }
 
@@ -146,7 +146,6 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-
 }
 
 .bt_style {
@@ -222,39 +221,39 @@
   }
 }
 
-.return{
-width: 24px;
-height: 24px;
-text-align: center;
-margin-top: 5px;
+.return {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  margin-top: 5px;
 }
 
-
-.return_title{
+.return_title {
   font-family: Judson;
-font-size: 16px;
-font-weight: 400;
-text-align: center;
-text-transform: capitalize;
-margin: 20px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: capitalize;
+  margin: 20px 20px;
 }
 
-.map_cont{
-    border: 1px solid rgb(199, 199, 199);
-  margin-top: 40px;
+.map_cont {
+  border: 0.1px solid rgb(199, 199, 199);
+  margin-top: 100px;
   height: 580px;
-  width: 1350px;
+  width: 100%;
 }
-
-
 
 /* PRODUCT CARD STYLES */
-.container{
-margin-top: 60px;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  width: 100%;
 }
 
 .produt_grid {
-  border: 1px solid red;
   padding: 0;
   margin: 0;
 }
@@ -268,8 +267,8 @@ margin-top: 60px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 0.5px solid rgb(0, 0, 0);
-  
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
@@ -324,6 +323,7 @@ margin-top: 60px;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
   }
 
   &:hover .product_image {

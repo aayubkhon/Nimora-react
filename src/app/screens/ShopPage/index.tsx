@@ -36,7 +36,7 @@ const ShopPage = () => {
           <p className="background_subtitle">Home/Shop</p>
         </div>
       </div>
-      <div className="container">
+      <div className="cards_container">
         <div className="shop_center">
           <h6 className="shop_subtitle">Attractve jewellery</h6>
           <h1 className="shop_title">Gorgeous Collections</h1>
@@ -64,7 +64,7 @@ const ShopPage = () => {
           </Box>
         </Stack>
       </div>
-      <Grid container spacing={0} className="stsss">
+      <Grid container spacing={0}>
       {order_list.map((ele)=>{
         return(
              <Grid item xs={12} md={3}>

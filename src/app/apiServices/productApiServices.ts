@@ -11,7 +11,7 @@ class ProductApiServices {
     this.path = serverApi;
   }
 
- async getAllProducts(data:ProductSearchObj) {
+ async getTargetProducts(data:ProductSearchObj) {
   try {
     const url = "/products"; 
     const result = await axios.post(this.path + url, data, { withCredentials: true });

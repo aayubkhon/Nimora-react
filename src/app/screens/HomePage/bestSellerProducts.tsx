@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import { Box, Container, Rating, Stack, Typography } from "@mui/material";
 import "swiper/css";
@@ -9,15 +9,26 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
-import MemberApiServices from "../../apiServices/memberApiServices";
 import { Definer } from "../../lib/Definer";
 import assert from "assert";
 // ** REDUX */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { retrievebestSellerProduct } from "../../screens/HomePage/selector";
+import { setBestSellerProduct } from "../../screens/HomePage/slice";
+import { Product } from "../../types/product";
+import ProductApiServices from "../../apiServices/productApiServices";
 import { serverApi } from "../../lib/config";
+import MemberApiServices from "../../apiServices/memberApiServices";
+import { retrievebestSellerProduct } from "./selector";
 import { useNavigate } from "react-router-dom";
+import { ProductSearchObj } from "../../types/other";
+
+// ** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setBestSellerProduct: (data: Product[]) =>
+    dispach(setBestSellerProduct(data)),
+});
 
 // ** REDUX SELECTOR */
 const bestSellerProductsRetriever = createSelector(
@@ -29,38 +40,38 @@ const bestSellerProductsRetriever = createSelector(
 
 const BestSellerProducts = () => {
   // ** INITIALIZATION */
+  const { setBestSellerProduct } = actionDispatch(useDispatch());
+  const { bestSellerProduct } = useSelector(bestSellerProductsRetriever);
+  const [targetSearchObject, setTargetSearchObject] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 6,
+      order: "product_views",
+      product_collection:"Bracelet"
+    });
   const refs: any = useRef([]);
   const navigate = useNavigate();
 
-  // ** HEANDLERS **/
+  useEffect(() => {
+    const productService = new ProductApiServices();
+    productService
+      .getTargetProducts(targetSearchObject)
+      .then((data) => setBestSellerProduct(data))
+      .catch((err) => console.log(err));
+  }, [targetSearchObject]);
 
-  const targetLikeTop = async (e: any, id: string) => {
-    try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
-      const memberService = new MemberApiServices(),
-        like_result: any = await memberService.memberLikeTarget({
-          like_ref_id: id,
-          group_type: "product",
-        });
-      assert.ok(like_result, Definer.general_err1);
-      if (like_result.like_status > 0) {
-        e.target.style.fill = "red";
-        refs.current[like_result.like_ref_id].innerHTML++;
-      } else {
-        e.target.style.fill = "black";
-        refs.current[like_result.like_ref_id].innerHTML--;
-      }
-      await sweetTopSmallSuccessAlert("success", 700, false);
-    } catch (err: any) {
-      console.log(`ERROR ::: targetLikeTop", ${err}`);
-      sweetErrorHandling(err).then();
-    }
-  };
+  // ** HEANDLERS **/
 
   const choosenProductsHandler = (id: string) => {
     navigate(`/shop/${id}`);
   };
-  const order_list = Array.from(Array(6).keys());
+
+  
+  const searchCollectionHandler = (collection:string) =>{
+    targetSearchObject.page = 1
+    targetSearchObject.product_collection = collection
+    setTargetSearchObject({...targetSearchObject})
+  }
   return (
     <div className="RecentProducts_frame">
       <Container>
@@ -77,30 +88,36 @@ const BestSellerProducts = () => {
             </Box>
             <Box className="btn_box">
               <Button
-                className="product_btn"
+                className="product_btn active"
                 color="secondary"
                 variant="outlined"
+                onClick={()=>searchCollectionHandler}
               >
                 Bracelet
               </Button>
               <Button
-                className="product_btn"
+                className="product_btn active"
                 color="secondary"
                 variant="outlined"
+                 onClick={()=>searchCollectionHandler("Ring")}
               >
-                Earing
+                Ring
               </Button>
               <Button
-                className="product_btn"
+                className="product_btn active"
                 color="secondary"
                 variant="outlined"
+                 onClick={()=>searchCollectionHandler("Necklace")}
+
               >
                 NECKLACES
               </Button>
               <Button
-                className="product_btn"
+                className="product_btn active"
                 color="secondary"
                 variant="outlined"
+                 onClick={()=>searchCollectionHandler("Etc")}
+
               >
                 ANITIQUE JEWELS
               </Button>
@@ -109,27 +126,35 @@ const BestSellerProducts = () => {
         </Stack>
         <Stack>
           <Box className="wrap_box">
-            {order_list.map((ele) => {
+            {bestSellerProduct.map((product: Product) => {
+              const images_path = `${serverApi}/${product.product_images[0]}`;
+              const second_img_path = `${serverApi}/${product.product_images[1]}`;
+              const prodyct_size = product.product_size;
               return (
-                <Box className="box">
+                <Box key={product._id} className="main_img_boxes">
                   <Box className={"frame_img_box"}>
-                    <img
-                      src="/home/new_r.jpeg"
-                      className="first_imges"
-                      alt=""
-                    />
-                    <img
-                      src="/home/diamondd.jpeg"
-                      className="first_imges action_hover "
-                      alt=""
-                    />
-                    <Button className="add_btn">Add to cart</Button>
+                    <img className="first_imges" src={images_path} alt="" />
+                    {second_img_path && (
+                      <img
+                        className="first_imges action_hover"
+                        src={second_img_path}
+                        alt=""
+                      />
+                    )}
+                    <Button
+                      onClick={() => choosenProductsHandler(product._id)}
+                      className="add_btn"
+                    >
+                      Add to cart
+                    </Button>
                   </Box>
                   <div className="product_title_frame">
                     <Typography className="product_name">
-                      Elegant Gold Necklace
+                      {product.product_name}
                     </Typography>
-                    <Typography className="product_price">$2,900</Typography>
+                    <Typography className="product_price">
+                      ${product.product_price}
+                    </Typography>
                     <Rating
                       sx={{ mt: 2 }}
                       name="half-rating"

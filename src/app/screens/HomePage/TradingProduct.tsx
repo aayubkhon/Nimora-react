@@ -56,7 +56,7 @@ const TrabdingProducts = () => {
   useEffect(() => {
     const productService = new ProductApiServices();
     productService
-      .getAllProducts({ order: "product_likes", limit: 8, page: 1 })
+      .getTargetProducts({ order: "product_likes", limit: 8, page: 1 })
       .then((data) => setTopTradings(data))
       .catch((err) => console.log(err));
   }, [productRebuild]);

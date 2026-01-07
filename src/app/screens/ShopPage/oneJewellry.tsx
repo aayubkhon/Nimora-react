@@ -101,18 +101,28 @@ const ChoosenProduct = () => {
   };
   const displayImages = [...productImages];
   if (displayImages.length > 1) {
-    [displayImages[0], displayImages[1]] = [displayImages[1], displayImages[0]];
+    [displayImages[0], displayImages[1]] = [
+      displayImages[1],
+      displayImages[0],
+      displayImages[2],
+    ];
   }
   return (
     <div className="OneJewellry_frame">
-      <div className="container">
+      <div className="jews_container">
         <div className="grid_container">
-          {displayImages.slice(0, 3).map((image: string, index: number) => (
+          {displayImages.slice(0, 4).map((image: string, index: number) => (
             <div key={index} className={`item-${index + 1}`}>
               <Zoom>
                 <img
                   className={`${
-                    index === 0 ? "first" : index === 1 ? "second" : index === 2
+                    index === 0
+                      ? "first"
+                      : index === 1
+                      ? "second"
+                      : index === 2
+                      ? "three"
+                      : index === 3
                   }_img`}
                   src={`${serverApi}/${image}`}
                   alt={`${chosenProduct?.product_name} ${index + 1}`}
@@ -231,9 +241,9 @@ const ChoosenProduct = () => {
       <div className="map_cont">
         <iframe
           title="Jewellry"
-          style={{ marginTop: "35px", marginLeft: "15px" }}
+          style={{ marginTop: "35px", marginLeft: 15 }}
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50627.69730558068!2d126.85207834863277!3d37.526049699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b45c3d89d7801%3A0x7883571cabf15b8b!2sTiffany%20%26%20Co.!5e0!3m2!1sen!2skr!4v1756989543830!5m2!1sen!2skr"
-          width={"1320"}
+          width={"98%"}
           height={"500"}
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>

@@ -49,10 +49,13 @@
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
+  
 }
 
-.Shop_frame .container {
+.Shop_frame .cards_container {
+  width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -89,6 +92,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .Shop_frame .shop_box {
