@@ -111,7 +111,17 @@
   transition: all 0.3s ease;
 }
 
-.Shop_frame .shop_box:hover {
+.Shop_frame .shop_box:hover{
+  border: 1px solid #ff8a00;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 138, 0, 0.2);
+}
+.Shop_frame .shop_box:active{
+  border: 1px solid #ff8a00;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 138, 0, 0.2);
+}
+.Shop_frame .shop_box:focus{
   border: 1px solid #ff8a00;
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(255, 138, 0, 0.2);

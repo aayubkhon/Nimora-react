@@ -1,4 +1,5 @@
 import { BoArticle } from "./boArticle";
+import { Order } from "./order";
 import { Product } from "./product";
 
 
@@ -23,4 +24,14 @@ export interface ShopPageState {
   relatedProducts: Product[];
   chosenProduct: Product | null;
 //   productReviews: Review[];
+}
+
+/*ORDERS PAGE*/
+
+export interface OrdersPageState {
+  processOrders: Order[];
+  finishedOrders: Order[];
+  cancelledOrders: Order[];
+  pausedOrders:Order[]
+  allOrders: Order[];
 }
