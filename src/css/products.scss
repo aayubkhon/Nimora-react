@@ -6,7 +6,6 @@
   .jews_container {
     display: flex;
     width: 100%;
-    
   }
 }
 
@@ -45,6 +44,7 @@
     width: 116px;
     height: 120px;
     border-radius: 10px;
+    margin-left: 13px;
     cursor: pointer;
   }
 }
@@ -56,6 +56,7 @@
     width: 116px;
     height: 120px;
     border-radius: 10px;
+    margin-left: 13px;
     cursor: pointer;
   }
 }
@@ -245,12 +246,13 @@
 }
 
 /* PRODUCT CARD STYLES */
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 60px;
-  width: 100%;
+.productCard_container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
 }
 
 .produt_grid {
@@ -268,6 +270,8 @@
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   border: 0.5px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-8px);
@@ -314,21 +318,11 @@
 /* Image Container */
 .image_container {
   width: 100%;
+  aspect-ratio: 1 / 1;
   height: 350px;
   position: relative;
   overflow: hidden;
   background: #f8f8f8;
-  .product_image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
-  }
-
-  &:hover .product_image {
-    transform: scale(1.08);
-  }
 
   @media (max-width: 768px) {
     height: 300px;
@@ -339,23 +333,48 @@
   }
 }
 
+.action_hover_box {
+  position: relative;
+  width: 100%;
+  &:hover .action_hover {
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+  .product_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .action_hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s ease;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover .product_image {
+    transform: scale(1.08);
+  }
+}
+
 /* Hover Actions */
 .hover_actions {
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 25px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  opacity: 0;
+  opacity: 1;
   transform: translateX(20px);
   transition: all 0.3s ease;
-
-  &.visible {
+  &:hover .action_hover_box{ 
     opacity: 1;
-    transform: translateX(0);
   }
-
   .action_btn {
     width: 42px;
     height: 42px;
@@ -363,7 +382,6 @@
     color: #2e2e2e;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
-
     &:hover {
       background: #2e2e2e;
       color: #ffffff;
@@ -409,19 +427,15 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   border-radius: 0;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
   z-index: 3;
-
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  border: 1px solid red;
   &:hover {
     background: #000000;
     cursor: pointer;
+    opacity: 1;
+    transform: translateY(100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .MuiButton-startIcon {

@@ -5,12 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../../../css/costum-swiper.scss";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../lib/sweetAlert";
-import { Definer } from "../../lib/Definer";
-import assert from "assert";
 // ** REDUX */
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -19,7 +13,6 @@ import { setBestSellerProduct } from "../../screens/HomePage/slice";
 import { Product } from "../../types/product";
 import ProductApiServices from "../../apiServices/productApiServices";
 import { serverApi } from "../../lib/config";
-import MemberApiServices from "../../apiServices/memberApiServices";
 import { retrievebestSellerProduct } from "./selector";
 import { useNavigate } from "react-router-dom";
 import { ProductSearchObj } from "../../types/other";
@@ -47,7 +40,6 @@ const BestSellerProducts = () => {
       page: 1,
       limit: 6,
       order: "product_views",
-      product_collection:"Bracelet"
     });
   const refs: any = useRef([]);
   const navigate = useNavigate();
@@ -91,7 +83,7 @@ const BestSellerProducts = () => {
                 className="product_btn active"
                 color="secondary"
                 variant="outlined"
-                onClick={()=>searchCollectionHandler}
+                onClick={()=>searchCollectionHandler("Bracelet")}
               >
                 Bracelet
               </Button>

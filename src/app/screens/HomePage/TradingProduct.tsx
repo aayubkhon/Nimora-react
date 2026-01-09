@@ -213,3 +213,46 @@ const TrabdingProducts = () => {
 };
 
 export default TrabdingProducts;
+
+
+
+// ** REDUX */
+// import { useDispatch, useSelector } from "react-redux";
+// import { Dispatch } from "@reduxjs/toolkit";
+// import { createSelector } from "reselect";
+// import { setBestSellerProduct } from "../../screens/HomePage/slice";
+// import { Product } from "../../types/product";
+// import ProductApiServices from "../../apiServices/productApiServices";
+// import { serverApi } from "../../lib/config";
+// import MemberApiServices from "../../apiServices/memberApiServices";
+// import { ProductSearchObj } from "../../types/other";
+// import { setAllProducts } from "./slice";
+// import { retrieveAllProducts } from "./selector";
+
+// // ** REDUX SLICE */
+// const actionDispatch = (dispach: Dispatch) => ({
+//   setAllProducts: (data: Product[]) => dispach(setAllProducts(data)),
+// });
+
+// // ** REDUX SELECTOR */
+// const allProductsRetriever = createSelector(
+//   retrieveAllProducts,
+//   (allProducts) => ({
+//     allProducts,
+//   })
+// );
+// const ProductCard = (props:any) => {
+//     // ** INITIALIZATION */
+//       const { setAllProducts } = actionDispatch(useDispatch());
+//       const { allProducts } = useSelector(allProductsRetriever);
+//       const [targetSearchObject, setTargetSearchObject] =
+//         useState<ProductSearchObj>({
+//           page: 1,
+//           limit: 6,
+//           order: "product_views",
+//           product_collection:"Bracelet"
+//         });
+//       const refs: any = useRef([]);
+//       const navigate = useNavigate();
+//   const [isFavorite, setIsFavorite] = useState(false);
+//   const [isHovered, setIsHovered] = useState(false);
