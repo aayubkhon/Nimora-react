@@ -6,14 +6,8 @@ import {
   Pagination,
   PaginationItem,
   Stack,
-  Grid,
-  Container,
 } from "@mui/material";
-import { Typography, IconButton, Button, Rating } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -28,10 +22,8 @@ import assert from "assert";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setBestSellerProduct } from "../../screens/HomePage/slice";
 import { Product } from "../../types/product";
 import ProductApiServices from "../../apiServices/productApiServices";
-import { serverApi } from "../../lib/config";
 import MemberApiServices from "../../apiServices/memberApiServices";
 import { ProductSearchObj } from "../../types/other";
 import { setAllProducts } from "./slice";
@@ -79,6 +71,14 @@ const ShopPage = (props: any) => {
     targetSearchObject.product_collection = collection;
     setTargetSearchObject({ ...targetSearchObject });
   };
+
+  const handlePaginatonsChange = (event:any,value:number)=>{
+    targetSearchObject.page = value
+    setTargetSearchObject({...targetSearchObject})
+
+  }
+
+   
 
    const targetLikeShop = async (e: any, id: string) => {
       try {
@@ -154,11 +154,11 @@ const ShopPage = (props: any) => {
           </Box>
         </Stack>
       </div>
-      <ProductCard allProducts={allProducts} targetLikeShop={targetLikeShop}/>
+      <ProductCard allProducts={allProducts} targetLikeShop={targetLikeShop} />
       <Box className="pagination_box">
         <Pagination
-          count={5}
-          page={1}
+          count={targetSearchObject.page >= 3 ? targetSearchObject.page +1 : 3}
+          page={targetSearchObject.page}
           renderItem={(item) => (
             <PaginationItem
               components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
@@ -167,6 +167,7 @@ const ShopPage = (props: any) => {
               className="pagination"
             />
           )}
+          onChange={handlePaginatonsChange}
         />
       </Box>
     </div>

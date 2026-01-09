@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Box, Typography, IconButton, Rating, Checkbox } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -8,22 +8,16 @@ import "../../../css/products.scss";
 // ** REDUX */
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
-import MemberApiServices from "../../apiServices/memberApiServices";
-import assert from "assert";
-import { Definer } from "../../lib/Definer";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../lib/sweetAlert";
+
 
 const ProductCard = (props: any) => {
-  const refs: any = useRef([]);
   const navigate = useNavigate();
 
   const choosenProductsHandler = (id: string) => {
     navigate(`/shop/${id}`);
   };
 
+ 
   return (
     <div className="productCard_container">
       {props.allProducts.map((product: Product) => {
@@ -33,7 +27,7 @@ const ProductCard = (props: any) => {
           <Box className="product_card">
             {/* Badges */}
             <Box className="badges">
-              {product.product_status && (
+              {product.createdAt && (
                 <Box className="badge new_badge">NEW</Box>
               )}
               {product.product_discount > 0 && (

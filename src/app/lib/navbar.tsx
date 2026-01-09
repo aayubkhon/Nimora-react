@@ -4,14 +4,13 @@ import StorePage from "../screens/StorePage/store";
 import { HelpPage } from "../screens/HelpPage/";
 import CommunityPage from "../screens/CommunityPage/community";
 import ChoosenProduct from "../screens/ShopPage/oneJewellry";
-import OrdersPage from "../screens/OrdersPage";
 import SignUp from "../screens/SignUpPage";
 import LoginPage from "../screens/LoginPage";
 import VisitMyPage from "../screens/MemberPage/visitMyPage";
 import { NavbarObj } from "../types/other";
 import VisitOtherPage from '../screens/MemberPage/visitOtherPage';
 import Basket from "../components/header/basket";
-import CheckoutPage from "../components/header/others";
+import OrdersPage from "../screens/OrdersPage";
 
 
 export const navbar: NavbarObj[] = [
@@ -66,6 +65,7 @@ export const navbar: NavbarObj[] = [
     private: true,
     hidden: true,
   },
+  
   {
     element: <SignUp />,
     title: "sign-up",
@@ -102,7 +102,7 @@ export const navbar: NavbarObj[] = [
     hidden: true,
   },
     {
-    element: <CheckoutPage />,
+    element: <OrdersPage />,
     title: "chechout",
     path: "/checkout",
     private: false,
