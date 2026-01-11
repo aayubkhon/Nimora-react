@@ -17,65 +17,54 @@ import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import ReplayOutlinedIcon from "@mui/icons-material/ReplayOutlined";
 import "../../../css/navbar.scss";
+import { CartItem } from "../../types/other";
+import { Product } from "../../types/product";
+import { serverApi } from "../../lib/config";
 
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  size?: string;
-  color?: string;
-}
-
-const Basket = () => {
+const Basket = (props: any) => {
+  // ** INITIALIZATIONS ** //
   const navigate = useNavigate();
   const [couponCode, setCouponCode] = useState("");
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: "1",
-      name: "Elegant Diamond Ring",
-      price: 2900,
-      quantity: 1,
-      image: "/home/new_r.jpeg",
-      size: "7",
-      color: "Rose Gold",
-    },
-    {
-      id: "2",
-      name: "Pearl Necklace Set",
-      price: 1850,
-      quantity: 2,
-      image: "/home/new_r.jpeg",
-    },
-  ]);
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
-  const updateQuantity = (id: string, change: number) => {
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id: string) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
-  };
-
-  const moveToWishlist = (id: string) => {
-    console.log("Move to wishlist:", id);
-    removeItem(id);
-  };
-
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+  const itemsPrice = cartItems.reduce(
+    (a: any, c: CartItem) => a + c.price * c.quantity,
     0
   );
-  const shipping = subtotal > 5000 ? 0 : 150;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax;
+  const shippingPrice = itemsPrice > 100 ? 0 : 2;
+  const totalPrice = itemsPrice + shippingPrice;
+  // ** HANDLES ** //
+
+  // const onAdd = (product: Product) => {
+  //   const exist: any = cartItems.find(
+  //     (item: CartItem) => item._id === product._id
+  //   );
+  //   if (exist) {
+  //     const cart_updated = cartItems.map((item: CartItem) =>
+  //       item._id === product._id
+  //         ? {
+  //             ...exist,
+  //             quantity: exist.quantity + 1,
+  //           }
+  //         : item
+  //     );
+  //     setCartItems(cart_updated);
+  //     localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+  //   } else {
+  //     const new_item: CartItem = {
+  //       _id: product._id,
+  //       quantity: 1,
+  //       name: product.product_name,
+  //       price: product.product_price,
+  //       image: product.product_images[0],
+  //     };
+  //   }
+  // };
+  const onRemove = () => {};
+  const onDelete = () => {};
+  const onDeleteAll = () => {};
 
   const applyCoupon = () => {
     console.log("Apply coupon:", couponCode);
@@ -133,74 +122,76 @@ const Basket = () => {
               </Box>
             ) : (
               <Box className="items_list">
-                {cartItems.map((item) => (
-                  <Box key={item.id} className="cart_item">
-                    <Box className="item_image">
-                      <img src={item.image} alt={item.name} />
-                    </Box>
+                {cartItems.map((item: CartItem) => {
+                  const images_path = `${serverApi}/${item.image}`;
 
-                    <Box className="item_details">
-                      <Typography className="item_name">{item.name}</Typography>
-                      {(item.size || item.color) && (
+                  return (
+                    <Box key={item._id} className="cart_item">
+                      <Box className="item_image">
+                        <img src={images_path} />
+                      </Box>
+
+                      <Box className="item_details">
+                        <Typography className="item_name">
+                          {item.name}
+                        </Typography>
+
                         <Box className="item_options">
-                          {item.color && (
-                            <Typography className="item_option">
-                              Color: {item.color}
-                            </Typography>
-                          )}
                           {item.size && (
                             <Typography className="item_option">
                               Size: {item.size}
                             </Typography>
                           )}
                         </Box>
-                      )}
 
-                      <Box className="item_actions">
-                        <IconButton
-                          className="action_icon"
-                          onClick={() => moveToWishlist(item.id)}
-                        >
-                          <FavoriteBorderIcon />
-                        </IconButton>
-                        <Typography className="action_text">
-                          Move to Wishlist
-                        </Typography>
+                        <Box className="item_actions">
+                          <IconButton
+                            className="action_icon"
+                            // onClick={() => moveToWishlist(item.id)}
+                          >
+                            <FavoriteBorderIcon />
+                          </IconButton>
+                          <Typography className="action_text">
+                            Move to Wishlist
+                          </Typography>
 
-                        <IconButton
-                          className="action_icon"
-                          onClick={() => removeItem(item.id)}
-                        >
-                          <DeleteOutlineIcon />
-                        </IconButton>
-                        <Typography className="action_text">Remove</Typography>
+                          <IconButton
+                            className="action_icon"
+                            // onClick={() => removeItem(item.id)}
+                          >
+                            <DeleteOutlineIcon />
+                          </IconButton>
+                          <Typography className="action_text">
+                            Remove
+                          </Typography>
+                        </Box>
                       </Box>
-                    </Box>
 
-                    <Box className="item_quantity">
-                      <IconButton
-                        className="qty_btn"
-                        onClick={() => updateQuantity(item.id, -1)}
-                        disabled={item.quantity <= 1}
-                      >
-                        <RemoveIcon />
-                      </IconButton>
-                      <Typography className="qty_number">
-                        {item.quantity}
+                      <Box className="item_quantity">
+                        <IconButton
+                          className="qty_btn"
+                          // onClick={() => updateQuantity(item.quantity, -1)}
+                          disabled={item.quantity <= 1}
+                        >
+                          <RemoveIcon />
+                        </IconButton>
+                        <Typography className="qty_number">
+                          {item.quantity}
+                        </Typography>
+                        <IconButton
+                          className="qty_btn"
+                          // onClick={() => updateQuantity(item.quantity, 1)}
+                        >
+                          <AddIcon />
+                        </IconButton>
+                      </Box>
+
+                      <Typography className="item_price">
+                        ${item.price * item.quantity}
                       </Typography>
-                      <IconButton
-                        className="qty_btn"
-                        onClick={() => updateQuantity(item.id, 1)}
-                      >
-                        <AddIcon />
-                      </IconButton>
                     </Box>
-
-                    <Typography className="item_price">
-                      ${(item.price * item.quantity).toLocaleString()}
-                    </Typography>
-                  </Box>
-                ))}
+                  );
+                })}
               </Box>
             )}
 
@@ -221,34 +212,30 @@ const Basket = () => {
               <Box className="summary_card">
                 <Typography className="summary_title">Order Summary</Typography>
 
-                <Box className="summary_row">
+                {/* <Box className="summary_row">
                   <Typography className="summary_label">Subtotal</Typography>
                   <Typography className="summary_value">
-                    ${subtotal.toLocaleString()}
+                    ${total}
                   </Typography>
-                </Box>
+                </Box> */}
 
                 <Box className="summary_row">
                   <Typography className="summary_label">Shipping</Typography>
                   <Typography className="summary_value">
-                    {shipping === 0 ? "FREE" : `$${shipping}`}
+                    {shippingPrice === 0 ? "FREE" : `$${shippingPrice}`}
                   </Typography>
                 </Box>
 
                 <Box className="summary_row">
                   <Typography className="summary_label">Tax (8%)</Typography>
-                  <Typography className="summary_value">
-                    ${tax.toFixed(2)}
-                  </Typography>
+                  <Typography className="summary_value">$22</Typography>
                 </Box>
 
                 <Divider className="summary_divider" />
 
                 <Box className="summary_row total_row">
                   <Typography className="total_label">Total</Typography>
-                  <Typography className="total_value">
-                    ${total.toLocaleString()}
-                  </Typography>
+                  <Typography className="total_value">${totalPrice}</Typography>
                 </Box>
 
                 {/* Coupon Code */}

@@ -13,7 +13,7 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 //REDUX
@@ -47,7 +47,7 @@ const chosenProductRetriever = createSelector(
   })
 );
 
-const ChoosenProduct = () => {
+const ChoosenProduct = (props: any) => {
   // ** INITIALIZATION */
   const { setChosenProduct } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
@@ -56,6 +56,8 @@ const ChoosenProduct = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [mainImage, setMainImage] = useState(0);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+  const { cartItems } = props;
+  const navigate = useNavigate();
 
   const productRelatedProcess = async () => {
     try {
@@ -73,6 +75,21 @@ const ChoosenProduct = () => {
     productRelatedProcess().then();
   }, [productRebuild]);
   // ** HEANDLERS **/
+
+  const addItemBasket = (product: any) => {
+    try {
+      let itemList:Product[] = []
+      const itemListJSON = localStorage.getItem("item_list")
+        ? localStorage.getItem("item_list")
+        : null;
+        if (itemListJSON){
+          itemList = JSON.parse(itemListJSON)
+        }
+        itemList.push(product)
+        const new_itemList = JSON.stringify(itemList)
+        localStorage.setItem("item_list",new_itemList)
+    } catch (err) {}
+  };
   const productImages = chosenProduct?.product_images || [];
   const sizes = ["XS", "S", "M", "L", "XL"];
   const ratingValue = chosenProduct?.product_rating
@@ -155,7 +172,7 @@ const ChoosenProduct = () => {
             </p>
             {chosenProduct?.product_size && (
               <>
-                <p className="pr_size">Size:</p>
+                <p className="pr_size">Size: {chosenProduct.product_size}</p>
                 <div className="product_size">
                   {sizes.map((size) => (
                     <p
@@ -201,8 +218,12 @@ const ChoosenProduct = () => {
                 </Button>
               </div>
               <Box className={"btn_box"}>
-                <Button color="secondary" className="btn_add">
-                  Add to cart
+                <Button
+                  onClick={(e) => {addItemBasket(chosenProduct)}}
+                  color="secondary"
+                  className="btn_add"
+                >
+                  Add to basket
                 </Button>
                 <Badge
                   className="like_favorite"

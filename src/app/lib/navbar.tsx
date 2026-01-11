@@ -9,8 +9,9 @@ import LoginPage from "../screens/LoginPage";
 import VisitMyPage from "../screens/MemberPage/visitMyPage";
 import { NavbarObj } from "../types/other";
 import VisitOtherPage from '../screens/MemberPage/visitOtherPage';
-import Basket from "../components/header/basket";
 import OrdersPage from "../screens/OrdersPage";
+import Basket from "../components/header/basket";
+// import OrdersPage from "../screens/OrdersPage";
 
 
 export const navbar: NavbarObj[] = [
@@ -65,7 +66,6 @@ export const navbar: NavbarObj[] = [
     private: true,
     hidden: true,
   },
-  
   {
     element: <SignUp />,
     title: "sign-up",
