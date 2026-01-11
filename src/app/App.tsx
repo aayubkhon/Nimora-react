@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import { Member } from "./types/user";
 import { serverApi } from "./lib/config";
 import "./apiServices/verify";
-import { CartItem } from "./types/other";
-import { Product } from "./types/product";
+
 
 function App() {
   // ** INITIALIZATIONS ** //
@@ -29,31 +28,7 @@ function App() {
       setVirifiedMemberData(member_data);
     }
   }, []);
-  // const onAdd = (product: Product) => {
-  //   const exist: any = cartItems.find(
-  //     (item: CartItem) => item._id === product._id
-  //   );
-  //   if (exist) {
-  //     const cart_updated = cartItems.map((item: CartItem) =>
-  //       item._id === product._id
-  //         ? {
-  //             ...exist,
-  //             quantity: exist.quantity + 1,
-  //           }
-  //         : item
-  //     );
-  //     setCartItems(cart_updated);
-  //     localStorage.setItem("cart_data", JSON.stringify(cart_updated));
-  //   } else {
-  //     const new_item: CartItem = {
-  //       _id: product._id,
-  //       quantity: 1,
-  //       name: product.product_name,
-  //       price: product.product_price,
-  //       image: product.product_images[0],
-  //     };
-  //   }
-  // };
+
   // * HANDLERS* //
   return (
     <>

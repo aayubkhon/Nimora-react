@@ -24,6 +24,8 @@ import {
 } from "../../lib/sweetAlert";
 import { Definer } from "../../lib/Definer";
 const NavbarHome = (props: any) => {
+  const basket_countJSON = localStorage.getItem("cart_data") ? localStorage.getItem("cart_data") : "[]"
+  const badge_count = JSON.parse(basket_countJSON as string)
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -87,7 +89,7 @@ const NavbarHome = (props: any) => {
         </Box>
         <Box className="action_section">
           <IconButton className="icon_btn" onClick={() => navigate("/cart")}>
-            <Badge badgeContent={3} color="error">
+            <Badge badgeContent={badge_count.length} color="error">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>

@@ -20,51 +20,102 @@ import "../../../css/navbar.scss";
 import { CartItem } from "../../types/other";
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
+import assert from "assert";
+import { Definer } from "../../lib/Definer";
+import { sweetErrorHandling } from "../../lib/sweetAlert";
+import orderApiServices from "../../apiServices/orderApiServices";
 
 const Basket = (props: any) => {
   // ** INITIALIZATIONS ** //
   const navigate = useNavigate();
   const [couponCode, setCouponCode] = useState("");
+  const [count, setCount] = useState(1);
   const cartJson: any = localStorage.getItem("cart_data");
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
-
   const itemsPrice = cartItems.reduce(
-    (a: any, c: CartItem) => a + c.price * c.quantity,
+    (a: any, c: any) => a + c.price * c.quantity,
     0
   );
   const shippingPrice = itemsPrice > 100 ? 0 : 2;
   const totalPrice = itemsPrice + shippingPrice;
   // ** HANDLES ** //
 
-  // const onAdd = (product: Product) => {
-  //   const exist: any = cartItems.find(
-  //     (item: CartItem) => item._id === product._id
-  //   );
-  //   if (exist) {
-  //     const cart_updated = cartItems.map((item: CartItem) =>
-  //       item._id === product._id
-  //         ? {
-  //             ...exist,
-  //             quantity: exist.quantity + 1,
-  //           }
-  //         : item
-  //     );
-  //     setCartItems(cart_updated);
-  //     localStorage.setItem("cart_data", JSON.stringify(cart_updated));
-  //   } else {
-  //     const new_item: CartItem = {
-  //       _id: product._id,
-  //       quantity: 1,
-  //       name: product.product_name,
-  //       price: product.product_price,
-  //       image: product.product_images[0],
-  //     };
-  //   }
-  // };
-  const onRemove = () => {};
-  const onDelete = () => {};
-  const onDeleteAll = () => {};
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems.find(
+      (item: CartItem) => item._id === product._id
+    );
+    if (exist) {
+      const cart_updated = cartItems.map((item: CartItem) =>
+        item._id === product._id
+          ? {
+              ...exist,
+              quantity: exist.quantity + 1,
+            }
+          : item
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        name: product.product_name,
+        price: product.product_price,
+        image: product.product_images[0],
+      };
+      const cart_updated = [...cartItems, { ...new_item }];
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onDelete = (item: CartItem) => {
+    const item_data: any = cartItems.find(
+      (ele: CartItem) => ele._id === item._id
+    );
+    if (item_data.quantity === 1) {
+      const cart_updated = cartItems.filter(
+        (ele: CartItem) => ele._id !== item._id
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const cart_updated = cartItems.map((ele: CartItem) =>
+        ele._id === item._id
+          ? { ...item_data, quantity: item_data.quantity - 1 }
+          : ele
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onRemove = (item: CartItem) => {
+    const cart_updated = cartItems.filter(
+      (ele: CartItem) => ele._id !== item._id
+    );
+    setCartItems(cart_updated);
+    localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    window.location.reload()
+  };
+
+  const onDeleteAll = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart_data");
+  };
+
+const processOrderHandler = async () =>{
+  try {
+    assert.ok(localStorage.getItem("member_data"),Definer.auth_err1)
+    const order = new orderApiServices()
+    await order.createOrder(cartItems)
+    onDeleteAll()
+    navigate("/checkout")
+  } catch (err:any) {
+    console.log(err);
+    sweetErrorHandling(err).then()
+    
+  }
+}
 
   const applyCoupon = () => {
     console.log("Apply coupon:", couponCode);
@@ -82,7 +133,6 @@ const Basket = (props: any) => {
           </Typography>
         </Container>
       </Box>
-
       <Container maxWidth="xl" className="cart_container">
         <Box className="cart_content">
           {/* Left Side - Cart Items */}
@@ -106,7 +156,7 @@ const Basket = (props: any) => {
             {/* Cart Items */}
             {cartItems.length === 0 ? (
               <Box className="empty_cart">
-                <img src="/images/empty-cart.svg" alt="Empty Cart" />
+                <img src="/home/empty_cart.png" alt="Empty Cart" />
                 <Typography className="empty_title">
                   Your cart is empty
                 </Typography>
@@ -122,7 +172,7 @@ const Basket = (props: any) => {
               </Box>
             ) : (
               <Box className="items_list">
-                {cartItems.map((item: CartItem) => {
+                {cartItems.map((item: any) => {
                   const images_path = `${serverApi}/${item.image}`;
 
                   return (
@@ -157,7 +207,7 @@ const Basket = (props: any) => {
 
                           <IconButton
                             className="action_icon"
-                            // onClick={() => removeItem(item.id)}
+                            onClick={() => onRemove(item)}
                           >
                             <DeleteOutlineIcon />
                           </IconButton>
@@ -170,8 +220,7 @@ const Basket = (props: any) => {
                       <Box className="item_quantity">
                         <IconButton
                           className="qty_btn"
-                          // onClick={() => updateQuantity(item.quantity, -1)}
-                          disabled={item.quantity <= 1}
+                          onClick={() => onDelete(item)}
                         >
                           <RemoveIcon />
                         </IconButton>
@@ -180,7 +229,7 @@ const Basket = (props: any) => {
                         </Typography>
                         <IconButton
                           className="qty_btn"
-                          // onClick={() => updateQuantity(item.quantity, 1)}
+                          onClick={() => onAdd(item)}
                         >
                           <AddIcon />
                         </IconButton>
@@ -211,28 +260,19 @@ const Basket = (props: any) => {
             <Box className="order_summary_section">
               <Box className="summary_card">
                 <Typography className="summary_title">Order Summary</Typography>
-
-                {/* <Box className="summary_row">
-                  <Typography className="summary_label">Subtotal</Typography>
-                  <Typography className="summary_value">
-                    ${total}
-                  </Typography>
-                </Box> */}
-
                 <Box className="summary_row">
                   <Typography className="summary_label">Shipping</Typography>
                   <Typography className="summary_value">
-                    {shippingPrice === 0 ? "FREE" : `$${shippingPrice}`}
+                    ${shippingPrice}
                   </Typography>
                 </Box>
-
-                <Box className="summary_row">
+                {/* <Box className="summary_row">
                   <Typography className="summary_label">Tax (8%)</Typography>
-                  <Typography className="summary_value">$22</Typography>
-                </Box>
-
+                  <Typography className="summary_value">
+                    ${itemsPrice}
+                  </Typography>
+                </Box> */}
                 <Divider className="summary_divider" />
-
                 <Box className="summary_row total_row">
                   <Typography className="total_label">Total</Typography>
                   <Typography className="total_value">${totalPrice}</Typography>
@@ -257,7 +297,7 @@ const Basket = (props: any) => {
                 <Button
                   fullWidth
                   className="checkout_btn"
-                  onClick={() => navigate("/checkout")}
+                  onClick={processOrderHandler}
                 >
                   Proceed to Checkout
                 </Button>

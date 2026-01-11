@@ -2,7 +2,7 @@ import axios from "axios";
 import assert from "assert";
 import { Definer } from "../lib/Definer";
 import { serverApi } from "../lib/config";
-import { Product,} from "../types/product";
+import { Product } from "../types/product";
 import { ProductSearchObj } from "../types/other";
 
 class ProductApiServices {
@@ -11,20 +11,23 @@ class ProductApiServices {
     this.path = serverApi;
   }
 
- async getTargetProducts(data:ProductSearchObj) {
-  try {
-    const url = "/products"; 
-    const result = await axios.post(this.path + url, data, { withCredentials: true });
-    assert.ok(result, Definer.general_err1);
-    console.log("state", result.data.state);
-    const produts: Product[] = result.data.data;
-    console.log("product::",produts);
-    return produts;
-  } catch (err: any) {
-    console.log(`ERROR ::: getAllProducts", ${err.message}`);
-    throw err;
+  async getTargetProducts(data: ProductSearchObj) {
+    try {
+      const url = "/products";
+      const result = await axios.post(this.path + url, data, {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
+      console.log("state", result.data.state);
+      const produts: Product[] = result.data.data;
+      console.log("product::", produts);
+      return produts;
+    } catch (err: any) {
+      console.log(`ERROR ::: getAllProducts", ${err.message}`);
+      throw err;
+    }
   }
-}
   async getChosenProduct(product_id: string): Promise<Product> {
     try {
       const url = `/products/${product_id}`,

@@ -26,6 +26,7 @@ import { serverApi } from "../../lib/config";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert,
 } from "../../lib/sweetAlert";
 import MemberApiServices from "../../apiServices/memberApiServices";
 import { Definer } from "../../lib/Definer";
@@ -53,7 +54,7 @@ const ChoosenProduct = (props: any) => {
   const { chosenProduct } = useSelector(chosenProductRetriever);
   let { product_id } = useParams<{ product_id: any }>();
   const [count, setCount] = useState(1);
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [mainImage, setMainImage] = useState(0);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
   const { cartItems } = props;
@@ -76,19 +77,39 @@ const ChoosenProduct = (props: any) => {
   }, [productRebuild]);
   // ** HEANDLERS **/
 
-  const addItemBasket = (product: any) => {
+  const addItemBasket = async (product: any) => {
     try {
-      let itemList:Product[] = []
-      const itemListJSON = localStorage.getItem("item_list")
-        ? localStorage.getItem("item_list")
+      let itemList: any[] = [];
+      const itemListJSON = localStorage.getItem("cart_data")
+        ? localStorage.getItem("cart_data")
         : null;
-        if (itemListJSON){
-          itemList = JSON.parse(itemListJSON)
-        }
-        itemList.push(product)
-        const new_itemList = JSON.stringify(itemList)
-        localStorage.setItem("item_list",new_itemList)
-    } catch (err) {}
+      if (itemListJSON) {
+        itemList = JSON.parse(itemListJSON);
+      }
+      const is_exist = itemList.some(
+        (check_item) => check_item.order_id === product_id
+      );
+
+      if (!is_exist) {
+        const orderItemProduct = {
+          _id: product._id,
+          name: product.product_name,
+          quantity: count,
+          price: product.product_price,
+          image: product.product_images[0],
+          size: product.product_size,
+        };
+        itemList.push(orderItemProduct);
+        const new_itemList = JSON.stringify(itemList);
+        localStorage.setItem("cart_data", new_itemList);
+        sweetTopSuccessAlert("Add Success", 1000);
+        navigate("/cart");
+      } else {
+        throw new Error("Selected item!");
+      }
+    } catch (err: any) {
+      await sweetErrorHandling(err);
+    }
   };
   const productImages = chosenProduct?.product_images || [];
   const sizes = ["XS", "S", "M", "L", "XL"];
@@ -172,7 +193,6 @@ const ChoosenProduct = (props: any) => {
             </p>
             {chosenProduct?.product_size && (
               <>
-                <p className="pr_size">Size: {chosenProduct.product_size}</p>
                 <div className="product_size">
                   {sizes.map((size) => (
                     <p
@@ -219,7 +239,9 @@ const ChoosenProduct = (props: any) => {
               </div>
               <Box className={"btn_box"}>
                 <Button
-                  onClick={(e) => {addItemBasket(chosenProduct)}}
+                  onClick={(e) => {
+                    addItemBasket(chosenProduct);
+                  }}
                   color="secondary"
                   className="btn_add"
                 >

@@ -128,7 +128,14 @@
       color: #fff;
       cursor: pointer;
     }
+    
   }
+  .active {
+      border-radius: 37px;
+      background: rgba(20, 20, 20, 1);
+      color: #fff;
+      cursor: pointer;
+    }
 }
 
 .hurry_up {
@@ -372,7 +379,7 @@
   opacity: 1;
   transform: translateX(20px);
   transition: all 0.3s ease;
-  &:hover .action_hover_box{ 
+  &:hover .action_hover_box {
     opacity: 1;
   }
   .action_btn {
