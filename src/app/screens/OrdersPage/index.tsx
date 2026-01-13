@@ -1,26 +1,107 @@
-import React, { useState } from "react";
-import { Box, Container, Typography, TextField, Button, Radio, RadioGroup, FormControlLabel, Checkbox, Stepper, Step, StepLabel } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  Checkbox,
+  Stepper,
+  Step,
+  StepLabel,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import "../../../css/checkout.css";
 
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { Product } from "../../types/product";
+import ProductApiServices from "../../apiServices/productApiServices";
+import { serverApi } from "../../lib/config";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert,
+} from "../../lib/sweetAlert";
+import MemberApiServices from "../../apiServices/memberApiServices";
+import { Definer } from "../../lib/Definer";
+import assert from "assert";
+import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
+import orderApiServices from "../../apiServices/orderApiServices";
+import { retrievePauseddOrders } from "./selector";
+import { Order } from "../../types/order";
 
-const OrdersPage = () => {
+// ** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Product) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Product) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Product) => dispatch(setFinishedOrders(data)),
+});
+
+// ** REDUX SELECTOR */
+
+const pausedOrderRetriever = createSelector(
+  retrievePauseddOrders,
+  (pausedOrders) => ({
+    pausedOrders,
+  })
+);
+
+const OrdersPage = (props: any) => {
+  // ** INITIALIZATION */
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+  const { pausedOrders } = useSelector(pausedOrderRetriever);
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [shippingMethod, setShippingMethod] = useState("standard");
   const [paymentMethod, setPaymentMethod] = useState("card");
 
+  useEffect(() => {
+    const orderService = new orderApiServices();
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders("process")
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders("finished")
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   const steps = ["Shipping", "Payment", "Review"];
 
   const orderItems = [
-    { name: "Elegant Diamond Ring", price: 2900, quantity: 1, image: "/home/new_r.jpeg" },
-    { name: "Pearl Necklace Set", price: 1850, quantity: 2, image: "/home/new_r.jpeg" }
+    {
+      name: "Elegant Diamond Ring",
+      price: 2900,
+      quantity: 1,
+      image: "/home/new_r.jpeg",
+    },
+    {
+      name: "Pearl Necklace Set",
+      price: 1850,
+      quantity: 2,
+      image: "/home/new_r.jpeg",
+    },
   ];
 
-  const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = orderItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const shipping = shippingMethod === "express" ? 250 : 150;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
@@ -74,7 +155,9 @@ const OrdersPage = () => {
               <Box className="form_step">
                 <Box className="step_header">
                   <LocalShippingOutlinedIcon className="step_icon" />
-                  <Typography className="step_title">Shipping Information</Typography>
+                  <Typography className="step_title">
+                    Shipping Information
+                  </Typography>
                 </Box>
 
                 <Box className="form_grid">
@@ -146,7 +229,9 @@ const OrdersPage = () => {
 
                 {/* Shipping Method */}
                 <Box className="shipping_methods">
-                  <Typography className="section_subtitle">Shipping Method</Typography>
+                  <Typography className="section_subtitle">
+                    Shipping Method
+                  </Typography>
                   <RadioGroup
                     value={shippingMethod}
                     onChange={(e) => setShippingMethod(e.target.value)}
@@ -157,8 +242,12 @@ const OrdersPage = () => {
                         control={<Radio />}
                         label={
                           <Box>
-                            <Typography className="option_title">Standard Shipping</Typography>
-                            <Typography className="option_subtitle">5-7 business days</Typography>
+                            <Typography className="option_title">
+                              Standard Shipping
+                            </Typography>
+                            <Typography className="option_subtitle">
+                              5-7 business days
+                            </Typography>
                           </Box>
                         }
                       />
@@ -171,8 +260,12 @@ const OrdersPage = () => {
                         control={<Radio />}
                         label={
                           <Box>
-                            <Typography className="option_title">Express Shipping</Typography>
-                            <Typography className="option_subtitle">2-3 business days</Typography>
+                            <Typography className="option_title">
+                              Express Shipping
+                            </Typography>
+                            <Typography className="option_subtitle">
+                              2-3 business days
+                            </Typography>
                           </Box>
                         }
                       />
@@ -188,7 +281,9 @@ const OrdersPage = () => {
               <Box className="form_step">
                 <Box className="step_header">
                   <PaymentOutlinedIcon className="step_icon" />
-                  <Typography className="step_title">Payment Information</Typography>
+                  <Typography className="step_title">
+                    Payment Information
+                  </Typography>
                 </Box>
 
                 {/* Payment Method */}
@@ -204,9 +299,9 @@ const OrdersPage = () => {
                       label="Credit / Debit Card"
                     />
                     <Box className="card_icons">
-                     <img src="/icons/Layer3.svg" alt="Paytm" />
-                    <img src="/icons/bank.svg" alt="PhonePe" />
-                    <img src="/icons/grow.svg" alt="Credit Card" />
+                      <img src="/icons/Layer3.svg" alt="Paytm" />
+                      <img src="/icons/bank.svg" alt="PhonePe" />
+                      <img src="/icons/grow.svg" alt="Credit Card" />
                     </Box>
                   </Box>
 
@@ -250,7 +345,11 @@ const OrdersPage = () => {
                       control={<Radio />}
                       label="PayPal"
                     />
-                    <img src="/icons/paypal.svg" alt="PayPal" className="paypal_icon" />
+                    <img
+                      src="/icons/paypal.svg"
+                      alt="PayPal"
+                      className="paypal_icon"
+                    />
                   </Box>
 
                   <Box className="payment_option">
@@ -273,30 +372,46 @@ const OrdersPage = () => {
             {/* Step 3: Review Order */}
             {activeStep === 2 && (
               <Box className="form_step">
-                <Typography className="step_title">Review Your Order</Typography>
+                <Typography className="step_title">
+                  Review Your Order
+                </Typography>
 
                 <Box className="review_section">
-                  <Typography className="review_title">Shipping Address</Typography>
+                  <Typography className="review_title">
+                    Shipping Address
+                  </Typography>
                   <Typography className="review_text">
-                    John Doe<br />
-                    123 Jewelry Lane<br />
-                    New York, NY 10001<br />
+                    John Doe
+                    <br />
+                    123 Jewelry Lane
+                    <br />
+                    New York, NY 10001
+                    <br />
                     United States
                   </Typography>
                 </Box>
 
                 <Box className="review_section">
-                  <Typography className="review_title">Shipping Method</Typography>
+                  <Typography className="review_title">
+                    Shipping Method
+                  </Typography>
                   <Typography className="review_text">
-                    {shippingMethod === "express" ? "Express Shipping (2-3 days)" : "Standard Shipping (5-7 days)"}
+                    {shippingMethod === "express"
+                      ? "Express Shipping (2-3 days)"
+                      : "Standard Shipping (5-7 days)"}
                   </Typography>
                 </Box>
 
                 <Box className="review_section">
-                  <Typography className="review_title">Payment Method</Typography>
+                  <Typography className="review_title">
+                    Payment Method
+                  </Typography>
                   <Typography className="review_text">
-                    {paymentMethod === "card" ? "Credit Card ending in ••••1234" : 
-                     paymentMethod === "paypal" ? "PayPal" : "Cash on Delivery"}
+                    {paymentMethod === "card"
+                      ? "Credit Card ending in ••••1234"
+                      : paymentMethod === "paypal"
+                      ? "PayPal"
+                      : "Cash on Delivery"}
                   </Typography>
                 </Box>
 
@@ -304,7 +419,9 @@ const OrdersPage = () => {
                   control={<Checkbox required />}
                   label={
                     <Typography className="terms_text">
-                      I agree to the <span className="terms_link">Terms & Conditions</span> and <span className="terms_link">Privacy Policy</span>
+                      I agree to the{" "}
+                      <span className="terms_link">Terms & Conditions</span> and{" "}
+                      <span className="terms_link">Privacy Policy</span>
                     </Typography>
                   }
                   className="terms_checkbox"
@@ -314,16 +431,10 @@ const OrdersPage = () => {
 
             {/* Navigation Buttons */}
             <Box className="checkout_actions">
-              <Button
-                className="back_btn"
-                onClick={handleBack}
-              >
+              <Button className="back_btn" onClick={handleBack}>
                 {activeStep === 0 ? "Back to Cart" : "Back"}
               </Button>
-              <Button
-                className="next_btn"
-                onClick={handleNext}
-              >
+              <Button className="next_btn" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? "Place Order" : "Continue"}
               </Button>
             </Box>
@@ -335,20 +446,33 @@ const OrdersPage = () => {
               <Typography className="summary_title">Order Summary</Typography>
 
               {/* Order Items */}
-              <Box className="summary_items">
-                {orderItems.map((item, index) => (
-                  <Box key={index} className="summary_item">
-                    <img src={item.image} alt={item.name} className="summary_item_image" />
-                    <Box className="summary_item_details">
-                      <Typography className="summary_item_name">{item.name}</Typography>
-                      <Typography className="summary_item_qty">Qty: {item.quantity}</Typography>
+              {/* {pausedOrders?.map((order: Order) => {
+                const product: Product = order.product_data.filter(
+                  (ele) => ele._id === order.order.product_id
+                )[0];
+                const images_path = `${serverApi}/${product.product_images[0]}`;
+                return (
+                  <Box className="summary_items">
+                    <Box key={order._id} className="summary_item">
+                      <img src={images_path} className="summary_item_image" />
+                      <Box className="summary_item_details">
+                        <Typography className="summary_item_name">
+                          {product.product_name}
+                        </Typography>
+                        <Typography className="summary_item_qty">
+                          Qty: {order.order.item_quantity}
+                        </Typography>
+                      </Box>
+                      <Typography className="summary_item_price">
+                        $
+                        {(
+                          order.order.item_price * order.order.item_quantity
+                        ).toLocaleString()}
+                      </Typography>
                     </Box>
-                    <Typography className="summary_item_price">
-                      ${(item.price * item.quantity).toLocaleString()}
-                    </Typography>
                   </Box>
-                ))}
-              </Box>
+                );
+              })} */}
 
               {/* Pricing */}
               <Box className="summary_pricing">
@@ -366,7 +490,7 @@ const OrdersPage = () => {
                 </Box>
                 <Box className="pricing_row total_row">
                   <Typography>Total</Typography>
-                  <Typography>${total.toLocaleString()}</Typography>
+                  <Typography>${total}</Typography>
                 </Box>
               </Box>
             </Box>

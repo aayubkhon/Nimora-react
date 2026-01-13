@@ -8,7 +8,8 @@ export interface AppRootState {
   homePage: HomePageState;
   shopPage: ShopPageState;
   boArticles: BoArticle;
-  ordersPage:OrdersPageState
+  ordersPage: OrdersPageState;
+  communityPage: CommunityPageState;
 }
 
 /*HOMEPAGE*/
@@ -33,4 +34,8 @@ export interface OrdersPageState {
   cancelledOrders: Order[];
   pausedOrders: Order[];
   allOrders: Order[];
+}
+
+export interface CommunityPageState {
+  tergetBoArticles: BoArticle[];
 }

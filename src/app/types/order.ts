@@ -11,6 +11,7 @@ export interface OrderItem {
 }
 
 export interface Order {
+  order: any;
   _id: string;
   ordert_total_amount: number;
   order_delivery_cost: number;
