@@ -15,13 +15,19 @@ import ModeCommentOutlined from "@mui/icons-material/ModeCommentOutlined";
 import Face from "@mui/icons-material/Face";
 import { CssVarsProvider } from "@mui/joy/styles";
 import moment from "moment";
+import { BoArticle } from "../../types/boArticle";
+import { serverApi } from "../../lib/config";
+import { Checkbox } from "@mui/material";
+import { Favorite, Visibility } from "@mui/icons-material";
 
 const TargetArticles = (props: any) => {
   return (
     <div className="wrapper">
       <div className="target_articles_container">
-        {props.targetBoArticles?.map((articles: any, index: string) => {
-          const art_image_url = "/home/bridal.jpeg";
+        {props.tergetBoArticles?.map((article: BoArticle) => {
+          const art_image_url = article.art_image
+            ? `${serverApi}/${article.art_image}`
+            : "/home/bridal.jpeg";
           return (
             <CssVarsProvider>
               <Box
@@ -74,11 +80,13 @@ const TargetArticles = (props: any) => {
                         }}
                       />
                     </Box>
-                    <Typography sx={{ fontWeight: "lg" }}>MUI</Typography>
+                    <Typography sx={{ fontWeight: "lg" }}>
+                      {article?.member_data.mb_nick}
+                    </Typography>
                   </CardContent>
                   <CardOverflow>
                     <AspectRatio>
-                      <img src="/home/new_r.jpeg" alt="" loading="lazy" />
+                      <img style={{objectFit:"fill"}} src={art_image_url} loading="lazy" />
                     </AspectRatio>
                   </CardOverflow>
                   <CardContent
@@ -86,11 +94,29 @@ const TargetArticles = (props: any) => {
                     sx={{ alignItems: "center", mx: -1 }}
                   >
                     <Box sx={{ width: 0, display: "flex", gap: 0.5 }}>
+                      {/* <Checkbox
+                        id={article?._id}
+                        // onClick={(e) =>
+                        //   targetLikeProducts(e, product._id)
+                        // }
+                        icon={<FavoriteBorder style={{ color: "#424141" }} />}
+                        checkedIcon={<Favorite style={{ color: "#FF3040" }} />}
+                        checked={
+                          article?.me_liked && article?.me_liked[0]?.my_favorite
+                            ? true
+                            : false
+                        }
+                      /> */}
                       <IconButton variant="plain" color="neutral" size="sm">
-                        <FavoriteBorder />
-                      </IconButton>
-                      <IconButton variant="plain" color="neutral" size="sm">
-                        <ModeCommentOutlined />
+                        <Visibility
+                          style={{
+                            fill: article?.art_views
+                              ? "blue"
+                              : "black",
+                            cursor: "pointer",
+                          }}
+                          className="action_btn"
+                        />
                       </IconButton>
                     </Box>
                   </CardContent>
@@ -101,7 +127,7 @@ const TargetArticles = (props: any) => {
                       textColor="text.primary"
                       sx={{ fontSize: "sm", fontWeight: "lg" }}
                     >
-                      8.1M Likes
+                      {article?.art_likes}
                     </Link>
                     <Typography sx={{ fontSize: "sm" }}>
                       <Link
@@ -110,24 +136,16 @@ const TargetArticles = (props: any) => {
                         textColor="text.primary"
                         sx={{ fontWeight: "lg" }}
                       >
-                        MUI
+                        {article?.art_subject}
                       </Link>{" "}
-                      The React component library you always wanted
+                      {article?.art_content}
                     </Typography>
-                    <Link
-                      component="button"
-                      underline="none"
-                      startDecorator="…"
-                      sx={{ fontSize: "sm", color: "text.tertiary" }}
-                    >
-                      more
-                    </Link>
                     <Link
                       component="button"
                       underline="none"
                       sx={{ fontSize: "10px", color: "text.tertiary", my: 0.5 }}
                     >
-                      2 DAYS AGO
+                      {moment(article?.createdAt).fromNow()}
                     </Link>
                   </CardContent>
                   <CardContent orientation="horizontal" sx={{ gap: 1 }}>

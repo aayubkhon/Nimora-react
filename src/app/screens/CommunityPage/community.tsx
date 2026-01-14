@@ -1,21 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css/community.scss";
 import { Box, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
 import TargetArticles from "./targetArticles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-const targetBoArticles = [1, 2, 3, 4, 5];
-const Community = (props: any) => {
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setTargetBoArticles } from "./slice";
+import { BoArticle, SearchArticlesObj } from "../../types/boArticle";
+import { retrieveTargetBoArticles } from "./selector";
+import CommunityService from "../../apiServices/communityApiServicse";
+
+// ** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setTargetBoArticles: (data: BoArticle[]) =>
+    dispach(setTargetBoArticles(data)),
+});
+// ** REDUX SELECTOR */
+const tergetBoArticlesRetriever = createSelector(
+  retrieveTargetBoArticles,
+  (tergetBoArticles) => ({
+    tergetBoArticles,
+  })
+);
+const CommunityPage = (props: any) => {
   // ** INITIALIZATIONS ** //
+  const { setTargetBoArticles } = actionDispatch(useDispatch());
+  const { tergetBoArticles } = useSelector(tergetBoArticlesRetriever);
+  const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
+    {
+      bo_id: "all blogs",
+      page: 1,
+      limit: 5,
+    }
+  );
   const [value, setValue] = useState("1");
 
+  useEffect(() => {
+    const communityService = new CommunityService();
+    communityService
+      .getTargetArticles(searchArticlesObj)
+      .then((data) => {
+        setTargetBoArticles(data);
+      })
+      .catch((err) => console.log(err));
+  }, [searchArticlesObj]);
+
   // ** HANDLERS **//
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (event: any, newValue: string) => {
+    searchArticlesObj.page = 1;
+    switch (newValue) {
+      case "1":
+        searchArticlesObj.bo_id = "all";
+        break;
+      case "2":
+        searchArticlesObj.bo_id = "news";
+        break;
+      case "3":
+        searchArticlesObj.bo_id = "humor";
+        break;
+      case "4":
+        searchArticlesObj.bo_id = "recommendation";
+        break;
+    }
+    setSearchArticlesObj({ ...searchArticlesObj });
     setValue(newValue);
   };
   const handlePaginationChange = (event: any, value: number) => {
-    console.log(value);
+    searchArticlesObj.page = value;
+    setSearchArticlesObj({ ...searchArticlesObj });
   };
   return (
     <div className="Community_frame">
@@ -54,7 +110,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1, 2, 3]} />
+            <TargetArticles tergetBoArticles={tergetBoArticles} />
           </TabPanel>
           <TabPanel value={"2"}>
             <div className="box_head">
@@ -63,7 +119,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1]} />
+            <TargetArticles tergetBoArticles={tergetBoArticles} />
           </TabPanel>
           <TabPanel value={"3"}>
             <div className="box_head">
@@ -72,7 +128,7 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1]} />
+            <TargetArticles tergetBoArticles={tergetBoArticles} />
           </TabPanel>
           <TabPanel value={"4"}>
             <div className="box_head">
@@ -81,19 +137,19 @@ const Community = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles targetBoArticles={[1]} />
+            <TargetArticles tergetBoArticles={tergetBoArticles} />
           </TabPanel>
         </TabContext>
       </Box>
       <Box className="pagination_box">
         <Pagination
-          count={1}
+          count={5}
           page={1}
           renderItem={(item) => (
             <PaginationItem
               components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
               {...item}
-              style={{ color: "black" }}
+            color="secondary"
               className="pagination"
             />
           )}
@@ -104,4 +160,4 @@ const Community = (props: any) => {
   );
 };
 
-export default Community;
+export default CommunityPage;
