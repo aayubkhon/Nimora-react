@@ -1,5 +1,5 @@
-import { Avatar, Box, Button, Link, Stack } from "@mui/material";
-import React from "react";
+import { Avatar, Box, Button, Stack } from "@mui/material";
+import React, { useState } from "react";
 import "../../../css/followers.scss";
 import PersonAddDisabledOutlinedIcon from "@mui/icons-material/PersonAddDisabledOutlined";
 const following = [
@@ -7,7 +7,31 @@ const following = [
   { mb_nick: "ulugbek" },
   { mb_nick: "larisa" },
 ];
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setMemberFollowings } from "./slice";
+import { retrieveMemberFollowings } from "./selector";
+import { Member } from "../../types/user";
+
+// ** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setMemberFollowings: (data: Member[]) => dispach(setMemberFollowings(data)),
+});
+// ** REDUX SELECTOR */
+const memberFollowingsRetriever = createSelector(
+  retrieveMemberFollowings,
+  (memberFollowings) => ({
+    memberFollowings,
+  })
+);
 const MemberFollowings = (props: any) => {
+  // ** INITIALIZATIONS ** //
+
+  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
+  const { setMemberFollowings } = actionDispatch(useDispatch());
+  const { memberFollowings } = useSelector(memberFollowingsRetriever);
   return (
     <div className="follow_frame">
       <Stack>

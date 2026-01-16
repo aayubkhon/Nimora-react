@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../css/followers.scss";
 import { Avatar, Box, Button, Stack } from "@mui/material";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
@@ -7,8 +7,32 @@ const follower = [
   { mb_nick: "jonibek", following: false },
   { mb_nick: "sofia", following: true },
 ];
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setMemberFollowers } from "./slice";
+import { retrieveMemberFollowers } from "./selector";
+import { Member } from "../../types/user";
+
+// ** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setMemberFollowers: (data: Member[]) => dispach(setMemberFollowers(data)),
+});
+// ** REDUX SELECTOR */
+const memberFollowersRetriever = createSelector(
+  retrieveMemberFollowers,
+  (memberFollowers) => ({
+    memberFollowers,
+  })
+);
 
 const MemberFollow = (props: any) => {
+  // ** INITIALIZATIONS ** //
+
+  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
+  const { setMemberFollowers } = actionDispatch(useDispatch());
+  const { memberFollowers } = useSelector(memberFollowersRetriever);
   return (
     <div>
       <Stack>

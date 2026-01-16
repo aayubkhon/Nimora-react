@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css/my_page.scss";
-import { Avatar, Box,  Tab, Tabs, Typography } from "@mui/material";
+import { Avatar, Box, Tab, Tabs, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ZoomOutIcon from "@mui/icons-material/ZoomOut";
@@ -15,9 +15,68 @@ import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel } from "@mui/lab";
 import TargetArticles from "../CommunityPage/targetArticles";
 import TuiEditor from "../../components/tuiEditor/tuiEditor";
-const VisitMyPage = () => {
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import {
+  setChosenMember,
+  setChosenMemberArticles,
+  setChosenSingleArticles,
+} from "./slice";
+import { BoArticle, SearchArticlesObj } from "../../types/boArticle";
+import CommunityService from "../../apiServices/communityApiServicse";
+import { Member } from "../../types/user";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberArticles,
+  retrieveChosenSingleArticles,
+} from "./selector";
+
+// ** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member[]) => dispach(setChosenMember(data)),
+  setChosenMemberArticles: (data: Member[]) =>
+    dispach(setChosenMemberArticles(data)),
+  setChosenSingleArticles: (data: Member[]) =>
+    dispach(setChosenSingleArticles(data)),
+});
+
+// ** REDUX SELECTOR */
+const ChosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const ChosenMemberArticlesRetriever = createSelector(
+  retrieveChosenMemberArticles,
+  (chosenMemberArticles) => ({
+    chosenMemberArticles,
+  })
+);
+const ChosenSingleArticlesRetriever = createSelector(
+  retrieveChosenSingleArticles,
+  (chosenSingleArticles) => ({
+    chosenSingleArticles,
+  })
+);
+const VisitMyPage = (props:any) => {
   // ** INITIALIZATIONS ** //
+
+  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
+  const { setChosenMember, setChosenMemberArticles, setChosenSingleArticles } =
+    actionDispatch(useDispatch());
+      const { chosenMember } = useSelector(ChosenMemberRetriever);
+      const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
+      const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
+    
   const [value, setValue] = useState("1");
+
+  useEffect(() => {
+
+  }, []);
+
   // ** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -36,26 +95,33 @@ const VisitMyPage = () => {
           <Box className="tab_my_cont">
             <TabContext value={value}>
               <Box className={"tab_main"}>
-                <Tabs 
-                orientation="vertical"
-               value={value}
-  onChange={handleChange}
-  indicatorColor="primary"
-  variant="fullWidth"
+                <Tabs
+                  orientation="vertical"
+                  value={value}
+                  onChange={handleChange}
+                  indicatorColor="primary"
+                  variant="fullWidth"
                 >
                   <Box display="flex">
-                  <Avatar
-                alt={""}
-                sx={{ width: "80px", height: "80px",marginLeft:5,marginTop:3 }}
-              />
+                    <Avatar
+                      alt={""}
+                      sx={{
+                        width: "80px",
+                        height: "80px",
+                        marginLeft: 5,
+                        marginTop: 3,
+                      }}
+                    />
                     <Box className={"profile_info"}>
                       <p className="my_name">Leo</p>
                       <p className="my_phone">+8221312</p>
                       <p className="user">User</p>
                     </Box>
                   </Box>
-                  <Typography variant="h4" className="tab_another">My Activity</Typography>
-                    <Tab
+                  <Typography variant="h4" className="tab_another">
+                    My Activity
+                  </Typography>
+                  <Tab
                     iconPosition="start"
                     value="1"
                     icon={<FavoriteBorderIcon />}
@@ -105,7 +171,7 @@ const VisitMyPage = () => {
                     label="Write Article"
                     className="tab_label"
                   />
-                  <p  className="tab_title">Menage Account</p>
+                  <p className="tab_title">Menage Account</p>
                   <Tab
                     iconPosition="start"
                     value="8"
@@ -115,57 +181,59 @@ const VisitMyPage = () => {
                   />
                 </Tabs>
               </Box>
-              
-                  <TabPanel value={"1"}>
-                  <Typography variant="h1" className="">My Favorite</Typography>
-                    <Box className={"box_frame"} >
-                      <MyFavorites />
-                    </Box>
-                  </TabPanel>
-                       <TabPanel value={"2"}>
-                  <h1 className="menu_name">My orders</h1>
-                  <Box>
-                    <MySettings />
-                  </Box>
-                </TabPanel>
-                <TabPanel value={"3"}>
-                  <Box className="menu_name">Recently visited</Box>
-                  <Box>
-                    <MySettings />
-                  </Box>
-                </TabPanel>
-               <Box>
-                 <TabPanel value={"4"}>
+
+              <TabPanel value={"1"}>
+                <Typography variant="h1" className="">
+                  My Favorite
+                </Typography>
+                <Box className={"box_frame"}>
+                  <MyFavorites />
+                </Box>
+              </TabPanel>
+              <TabPanel value={"2"}>
+                <h1 className="menu_name">My orders</h1>
+                <Box>
+                  <MySettings />
+                </Box>
+              </TabPanel>
+              <TabPanel value={"3"}>
+                <Box className="menu_name">Recently visited</Box>
+                <Box>
+                  <MySettings />
+                </Box>
+              </TabPanel>
+              <Box>
+                <TabPanel value={"4"}>
                   <Box className="menu_name">My Followersss</Box>
-                  <Box className={"box_frame"} >
+                  <Box className={"box_frame"}>
                     <MemberFollow actions_enabled={true} />
                   </Box>
                 </TabPanel>
-               </Box>
-                <TabPanel value={"5"}>
-                  <Box className="menu_name">My Followings</Box>
-                  <Box className={"box_frame"}>
-                    <MemberFollowings actions_enabled={true} />
-                  </Box>
-                </TabPanel>
-                <TabPanel value={"6"}>
-                  <Box className="menu_name">Articles</Box>
-                  <Box>
-                    <TargetArticles />
-                  </Box>
-                </TabPanel>
-                <TabPanel value={"7"}>
-                  <Box className="menu_name">Write Articles</Box>
-                  <Box  className={"box_frame"}>
-                    <TuiEditor />
-                  </Box>
-                </TabPanel>
-                <TabPanel value={"8"}>
-                  <Box className="menu_name">My Profile</Box>
-                  <Box className={"box_frame"}>
-                    <MySettings />
-                  </Box>
-                </TabPanel>
+              </Box>
+              <TabPanel value={"5"}>
+                <Box className="menu_name">My Followings</Box>
+                <Box className={"box_frame"}>
+                  <MemberFollowings actions_enabled={true} />
+                </Box>
+              </TabPanel>
+              <TabPanel value={"6"}>
+                <Box className="menu_name">Articles</Box>
+                <Box>
+                  <TargetArticles />
+                </Box>
+              </TabPanel>
+              <TabPanel value={"7"}>
+                <Box className="menu_name">Write Articles</Box>
+                <Box className={"box_frame"}>
+                  <TuiEditor />
+                </Box>
+              </TabPanel>
+              <TabPanel value={"8"}>
+                <Box className="menu_name">My Profile</Box>
+                <Box className={"box_frame"}>
+                  <MySettings />
+                </Box>
+              </TabPanel>
             </TabContext>
           </Box>
         </div>

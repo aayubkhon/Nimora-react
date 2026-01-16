@@ -7,8 +7,58 @@ import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel, TabList } from "@mui/lab";
 import TargetArticles from "../CommunityPage/targetArticles";
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import {
+  setChosenMember,
+  setChosenMemberArticles,
+  setChosenSingleArticles,
+} from "./slice";
+import { Member } from "../../types/user";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberArticles,
+  retrieveChosenSingleArticles,
+} from "./selector";
+
+// ** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member[]) => dispach(setChosenMember(data)),
+  setChosenMemberArticles: (data: Member[]) =>
+    dispach(setChosenMemberArticles(data)),
+  setChosenSingleArticles: (data: Member[]) =>
+    dispach(setChosenSingleArticles(data)),
+});
+
+// ** REDUX SELECTOR */
+const ChosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const ChosenMemberArticlesRetriever = createSelector(
+  retrieveChosenMemberArticles,
+  (chosenMemberArticles) => ({
+    chosenMemberArticles,
+  })
+);
+const ChosenSingleArticlesRetriever = createSelector(
+  retrieveChosenSingleArticles,
+  (chosenSingleArticles) => ({
+    chosenSingleArticles,
+  })
+);
 const VisitOtherPage = () => {
   // ** INITIALIZATIONS ** //
+  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
+  const { setChosenMember, setChosenMemberArticles, setChosenSingleArticles } =
+    actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(ChosenMemberRetriever);
+  const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
+  const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
   const [value, setValue] = useState("1");
   // ** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -72,7 +122,7 @@ const VisitOtherPage = () => {
                               style={{
                                 background: "rgb(20, 0, 0)",
                                 color: "white",
-                                borderRadius:10
+                                borderRadius: 10,
                               }}
                             >
                               BEKOR QILISH
@@ -87,8 +137,10 @@ const VisitOtherPage = () => {
                             <Button
                               variant="contained"
                               onClick={() => setValue("4")}
-                              style={{ background: "#30945E",borderRadius:10 }}
-                              
+                              style={{
+                                background: "#30945E",
+                                borderRadius: 10,
+                              }}
                             >
                               FOLLOW QILISH
                             </Button>
