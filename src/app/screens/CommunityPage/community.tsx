@@ -28,13 +28,15 @@ const tergetBoArticlesRetriever = createSelector(
 );
 const CommunityPage = (props: any) => {
   // ** INITIALIZATIONS ** //
+
+  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
   const { setTargetBoArticles } = actionDispatch(useDispatch());
   const { tergetBoArticles } = useSelector(tergetBoArticlesRetriever);
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
     {
-      bo_id: "all blogs",
+      bo_id: "all",
       page: 1,
-      limit: 5,
+      limit: 6,
     }
   );
   const [value, setValue] = useState("1");
@@ -47,7 +49,7 @@ const CommunityPage = (props: any) => {
         setTargetBoArticles(data);
       })
       .catch((err) => console.log(err));
-  }, [searchArticlesObj]);
+  }, [searchArticlesObj,articleREbuild]);
 
   // ** HANDLERS **//
   const handleChange = (event: any, newValue: string) => {
@@ -110,7 +112,10 @@ const CommunityPage = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles tergetBoArticles={tergetBoArticles} />
+            <TargetArticles
+              tergetBoArticles={tergetBoArticles}
+              setArticletRebuild={setArticletRebuild}
+            />
           </TabPanel>
           <TabPanel value={"2"}>
             <div className="box_head">
@@ -119,7 +124,10 @@ const CommunityPage = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles tergetBoArticles={tergetBoArticles} />
+            <TargetArticles
+              tergetBoArticles={tergetBoArticles}
+              setArticletRebuild={setArticletRebuild}
+            />
           </TabPanel>
           <TabPanel value={"3"}>
             <div className="box_head">
@@ -128,7 +136,10 @@ const CommunityPage = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles tergetBoArticles={tergetBoArticles} />
+            <TargetArticles
+              tergetBoArticles={tergetBoArticles}
+              setArticletRebuild={setArticletRebuild}
+            />
           </TabPanel>
           <TabPanel value={"4"}>
             <div className="box_head">
@@ -137,19 +148,22 @@ const CommunityPage = (props: any) => {
                 Express your opinions freely here without content restrictions
               </p>
             </div>
-            <TargetArticles tergetBoArticles={tergetBoArticles} />
+            <TargetArticles
+              tergetBoArticles={tergetBoArticles}
+              setArticletRebuild={setArticletRebuild}
+            />
           </TabPanel>
         </TabContext>
       </Box>
       <Box className="pagination_box">
         <Pagination
-          count={5}
-          page={1}
+          count={searchArticlesObj.page >= 3 ? searchArticlesObj.page + 1 : 3}
+          page={searchArticlesObj.page}
           renderItem={(item) => (
             <PaginationItem
               components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
               {...item}
-            color="secondary"
+              color="secondary"
               className="pagination"
             />
           )}

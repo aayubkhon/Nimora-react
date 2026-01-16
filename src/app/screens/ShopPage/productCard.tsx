@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, IconButton, Rating, Checkbox } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Rating,
+  Checkbox,
+  Badge,
+} from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
@@ -9,7 +16,6 @@ import "../../../css/products.scss";
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
 
-
 const ProductCard = (props: any) => {
   const navigate = useNavigate();
 
@@ -17,7 +23,6 @@ const ProductCard = (props: any) => {
     navigate(`/shop/${id}`);
   };
 
- 
   return (
     <div className="productCard_container">
       {props.allProducts.map((product: Product) => {
@@ -27,9 +32,7 @@ const ProductCard = (props: any) => {
           <Box className="product_card">
             {/* Badges */}
             <Box className="badges">
-              {product.createdAt && (
-                <Box className="badge new_badge">NEW</Box>
-              )}
+              {product.createdAt && <Box className="badge new_badge">NEW</Box>}
               {product.product_discount > 0 && (
                 <Box className="badge discount_badge">
                   -{product.product_discount}%
@@ -39,9 +42,9 @@ const ProductCard = (props: any) => {
 
             {/* Image Container */}
             <Box className="image_container">
-              <Box  className={"action_hover_box"}
+              <Box
+                className={"action_hover_box"}
                 onClick={() => choosenProductsHandler(product._id)}
-              
               >
                 <img className="product_image" src={images_path} alt="" />
                 {second_img_path && (
@@ -55,23 +58,50 @@ const ProductCard = (props: any) => {
 
               {/* Hover Actions */}
               <Box className="hover_actions">
-                <IconButton className="action_btn quick_view_btn">
-                  <RemoveRedEyeOutlinedIcon style={{
-                              fill: product.product_views ? "blue" : "black",
-                              cursor: "pointer",
-                            }} />
-                </IconButton>
-                <Checkbox
-                  className="action_btn favorite_btn"
-                  onClick={(e) => props.targetLikeShop(e, product._id)}
-                  icon={<FavoriteBorderIcon />}
-                  checkedIcon={<FavoriteIcon style={{ color: "#FF3040" }} />}
-                  checked={
-                    product?.me_liked && product?.me_liked[0]?.my_favorite
-                      ? true
-                      : false
-                  }
-                />
+                <Badge
+                  badgeContent={product?.product_views || 0}
+                  color="error"
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      backgroundColor: "#380df6",
+                      color: "white",
+                      fontWeight: "bold",
+                      borderRadius: "40px",
+                    },
+                  }}
+                >
+                  <IconButton size="small" className="action_btn quick_view_btn">
+                    <RemoveRedEyeOutlinedIcon
+                      style={{
+                        fill: product.product_views ? "blue" : "black",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </IconButton>
+                </Badge>
+                <Badge
+                  badgeContent={product?.product_likes || 0}
+                  color="error"
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      backgroundColor: "#FF3040",
+                      color: "white",
+                      fontWeight: "bold",
+                    },
+                  }}
+                >
+                  <Checkbox
+                    className="action_btn favorite_btn"
+                    onClick={(e) => props.targetLikeShop(e, product._id)}
+                    icon={<FavoriteBorderIcon />}
+                    checkedIcon={<FavoriteIcon style={{ color: "#FF3040" }} />}
+                    checked={
+                      product?.me_liked && product?.me_liked[0]?.my_favorite
+                        ? true
+                        : false
+                    }
+                  />
+                </Badge>
               </Box>
               {/* Add to Cart Button */}
               <button

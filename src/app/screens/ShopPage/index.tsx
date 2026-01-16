@@ -1,12 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../../css/shop.css";
 import "../../../css/products.scss";
-import {
-  Box,
-  Pagination,
-  PaginationItem,
-  Stack,
-} from "@mui/material";
+import { Box, Pagination, PaginationItem, Stack } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -45,8 +40,8 @@ const ShopPage = (props: any) => {
   // ** INITIALIZATIONS ** //
   const { setAllProducts } = actionDispatch(useDispatch());
   const { allProducts } = useSelector(allProductsRetriever);
-    const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-  
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+
   const [targetSearchObject, setTargetSearchObject] =
     useState<ProductSearchObj>({
       page: 1,
@@ -59,50 +54,40 @@ const ShopPage = (props: any) => {
       .getTargetProducts(targetSearchObject)
       .then((data) => setAllProducts(data))
       .catch((err) => console.log(err));
-  }, [targetSearchObject,productRebuild]);
+  }, [targetSearchObject, productRebuild]);
 
   const refs: any = useRef([]);
   const navigate = useNavigate();
   const [value, setValue] = useState("1");
   // ** HANDLES ** //
- 
+
   const searchCollectionHandler = (collection: string) => {
     targetSearchObject.page = 1;
     targetSearchObject.product_collection = collection;
     setTargetSearchObject({ ...targetSearchObject });
   };
 
-  const handlePaginatonsChange = (event:any,value:number)=>{
-    targetSearchObject.page = value
-    setTargetSearchObject({...targetSearchObject})
+  const handlePaginatonsChange = (event: any, value: number) => {
+    targetSearchObject.page = value;
+    setTargetSearchObject({ ...targetSearchObject });
+  };
 
-  }
-
-   
-
-   const targetLikeShop = async (e: any, id: string) => {
-      try {
-        assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
-        const memberService = new MemberApiServices(),
-          like_result: any = await memberService.memberLikeTarget({
-            like_ref_id: id,
-            group_type: "product",
-          });
-        assert.ok(like_result, Definer.general_err1);
-        // if (like_result.like_status > 0) {
-        //   e.target.style.fill = "#FF3040";
-        //   refs.current[like_result.like_ref_id].innerHTML++;
-        // } else {
-        //   e.target.style.fill = "#6e6e6e";
-        //   refs.current[like_result.like_ref_id].innerHTML--;
-        // }
-        await sweetTopSmallSuccessAlert("success", 700, false);
-        setProductRebuild(new Date());
-      } catch (err: any) {
-        console.log(`ERROR ::: targetLikeTop", ${err}`);
-        sweetErrorHandling(err).then();
-      }
-    };
+  const targetLikeShop = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const memberService = new MemberApiServices(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log(`ERROR ::: targetLikeTop", ${err}`);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <div className="Shop_frame">
       <div className="background_box">
@@ -157,7 +142,7 @@ const ShopPage = (props: any) => {
       <ProductCard allProducts={allProducts} targetLikeShop={targetLikeShop} />
       <Box className="pagination_box">
         <Pagination
-          count={targetSearchObject.page >= 3 ? targetSearchObject.page +1 : 3}
+          count={targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3}
           page={targetSearchObject.page}
           renderItem={(item) => (
             <PaginationItem

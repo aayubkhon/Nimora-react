@@ -2,12 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Navigation } from "swiper/modules";
-import {
-  CheckBox,
-  Favorite,
-  FavoriteBorder,
-  Visibility,
-} from "@mui/icons-material";
+import { Favorite, FavoriteBorder, Visibility } from "@mui/icons-material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "swiper/css";
@@ -72,13 +67,6 @@ const TrabdingProducts = () => {
           group_type: "product",
         });
       assert.ok(like_result, Definer.general_err1);
-      // if (like_result.like_status > 0) {
-      //   e.target.style.fill = "#FF3040";
-      //   refs.current[like_result.like_ref_id].innerHTML++;
-      // } else {
-      //   e.target.style.fill = "#6e6e6e";
-      //   refs.current[like_result.like_ref_id].innerHTML--;
-      // }
       await sweetTopSmallSuccessAlert("success", 700, false);
       setProductRebuild(new Date());
     } catch (err: any) {
@@ -213,8 +201,6 @@ const TrabdingProducts = () => {
 };
 
 export default TrabdingProducts;
-
-
 
 // ** REDUX */
 // import { useDispatch, useSelector } from "react-redux";
