@@ -4,6 +4,7 @@ import reduxLoger from "redux-logger";
 import shopPageReducer from "./screens/ShopPage/slice";
 import OrdersPageReducer from "./screens/OrdersPage/slice";
 import CommunityPageReducer from "./screens/CommunityPage/slice";
+import MemberPageReducer from "./screens/MemberPage/slice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     shopPage: shopPageReducer,
     ordersPage: OrdersPageReducer,
     communityPage: CommunityPageReducer,
+    memberPage: MemberPageReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(reduxLoger as any),

@@ -1,6 +1,8 @@
 import { BoArticle } from "./boArticle";
+import { Follower, Following } from "./follow";
 import { Order } from "./order";
 import { Product } from "./product";
+import { Member } from "./user";
 
 /*REACT APP STATE*/
 
@@ -10,6 +12,7 @@ export interface AppRootState {
   boArticles: BoArticle;
   ordersPage: OrdersPageState;
   communityPage: CommunityPageState;
+  memberPage: MemberPageState;
 }
 
 /*HOMEPAGE*/
@@ -35,7 +38,18 @@ export interface OrdersPageState {
   pausedOrders: Order[];
   allOrders: Order[];
 }
+/*COMMUNITY PAGE*/
 
 export interface CommunityPageState {
   tergetBoArticles: BoArticle[];
+}
+
+/*MEMBER PAGE*/
+export interface MemberPageState {
+  chosenMember: Member | null;
+  chosenMemberArticles: BoArticle[];
+  chosenSingleArticles: BoArticle | null;
+  memberFollowers: Follower[];
+  memberFollowings: Following[];
+  myFavorite: [] | null;
 }
