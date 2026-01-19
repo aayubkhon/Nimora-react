@@ -83,7 +83,7 @@ export const navbar: NavbarObj[] = [
   {
     element: <VisitMyPage />,
     title: "my-account",
-    path: "/my-account",
+    path: "/member",
     private: false,
     hidden: true,
   },

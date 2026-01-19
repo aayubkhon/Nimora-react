@@ -1,19 +1,30 @@
 import "../css/App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useParams } from "react-router-dom";
 import NavbarHome from "./components/header";
 import NotFound from "./screens/NotFound";
 import { navbar } from "./lib/navbar";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Member } from "./types/user";
 import { serverApi } from "./lib/config";
 import "./apiServices/verify";
 
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
-function App() {
+function App(props: any) {
   // ** INITIALIZATIONS ** //
   const [virifiedMemberData, setVirifiedMemberData] = useState<Member | null>(
     null
   );
+  const { mb_id, art_id } = useParams<{ mb_id: string; art_id: string }>();
+  const query = useQuery();
+  const chosen_mb_id: string | null = query.get("mb_id") ?? null;
+  const chosen_art_id: string | null = query.get("art_id") ?? null;
+
+  console.log(query.get("mb_id")); // Will work
+  console.log(query.get("art_id")); // Will work
 
   useEffect(() => {
     console.log("=== useEffect: App ===");
@@ -35,7 +46,13 @@ function App() {
       <div>
         <Routes>
           <Route
-            element={<NavbarHome virifiedMemberData={virifiedMemberData} />}
+            element={
+              <NavbarHome
+                chosen_art_id={chosen_art_id}
+                chosen_mb_id={chosen_mb_id}
+                virifiedMemberData={virifiedMemberData}
+              />
+            }
           >
             {navbar.map(({ path, element }, id) => {
               return <Route key={id} path={path} element={element} />;
