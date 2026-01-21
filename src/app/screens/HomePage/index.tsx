@@ -25,7 +25,13 @@ import ShopApiServices from "../../apiServices/shopApiService";
 // const topShopRetriever = createSelector(retrieveTradingProducts, (topTradings) => ({
 //   topTradings,
 // }));
+
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+  }, [])
+  
   // ** INITIALIZATION */
   // const { setTopTradings } = actionDispatch(useDispatch());
   return (

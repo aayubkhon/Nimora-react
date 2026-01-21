@@ -92,7 +92,7 @@ const ChoosenProduct = (props: any) => {
 
       if (!is_exist) {
         const orderItemProduct = {
-          _id: product._id,
+          product_id: product._id,
           name: product.product_name,
           quantity: count,
           price: product.product_price,

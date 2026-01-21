@@ -27,7 +27,8 @@ export interface MemberLiken {
 }
 
 export interface CartItem {
-  _id: string;
+  _id?: string;
+  product_id: string;
   quantity: number;
   name: string;
   price: number;

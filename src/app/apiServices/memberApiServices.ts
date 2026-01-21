@@ -9,7 +9,7 @@ class MemberApiServices {
   constructor() {
     this.path = serverApi;
   }
-  public async loginRequest(login_data: any):Promise<Member>  {
+  public async loginRequest(login_data: any): Promise<Member> {
     try {
       const result = await axios.post(this.path + "/login", login_data, {
         withCredentials: true,
@@ -41,7 +41,7 @@ class MemberApiServices {
       throw err;
     }
   }
-  public async logOutRequest()  {
+  public async logOutRequest() {
     try {
       const result = await axios.get(this.path + "/logout", {
         withCredentials: true,
@@ -53,26 +53,42 @@ class MemberApiServices {
       return logout_result === "success";
     } catch (err: any) {
       console.log(`ERROR ::: logOutRequest", ${err.message}`);
-      throw err
+      throw err;
     }
   }
 
   public async memberLikeTarget(data: any) {
     try {
       const url = "/member-liken",
-      result = await axios.post(this.path + url, data, {
-        withCredentials: true,
-      });
+        result = await axios.post(this.path + url, data, {
+          withCredentials: true,
+        });
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data.state !== "fail", result?.data?.message);
-      console.log("state",result.data.data);
-      const like_result: MemberLiken = result.data.data
-      return like_result
+      console.log("state", result.data.data);
+      const like_result: MemberLiken = result.data.data;
+      return like_result;
     } catch (err: any) {
       console.log(`ERROR ::: memberLikeTarget", ${err.message}`);
       throw err;
     }
   }
-  
+
+  public async getChosenMember(id: string) {
+    try {
+      const url = `/member/${id}`,
+        result = await axios.post(this.path + url, {
+          withCredentials: true,
+        });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
+      console.log("state", result.data.data);
+      const member: Member = result.data.data;
+      return member;
+    } catch (err: any) {
+      console.log(`ERROR ::: getChosenMember", ${err.message}`);
+      throw err;
+    }
+  }
 }
 export default MemberApiServices;

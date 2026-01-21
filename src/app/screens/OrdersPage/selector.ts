@@ -23,3 +23,7 @@ export const retrieveAllOrders = createSelector(
   selectOrdersPage,
   (OrdersPage) => OrdersPage.allOrders
 );
+export const retrieveChosenOrder = createSelector(
+  selectOrdersPage,
+  (OrdersPage) => OrdersPage.chosenOrder
+);

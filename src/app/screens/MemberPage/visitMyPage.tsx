@@ -24,21 +24,25 @@ import {
   setChosenMemberArticles,
   setChosenSingleArticles,
 } from "./slice";
-import { BoArticle, SearchArticlesObj } from "../../types/boArticle";
-import CommunityService from "../../apiServices/communityApiServicse";
+import { BoArticle, SearchMemberArticlesObj } from "../../types/boArticle";
+import CommunityApiService from "../../apiServices/communityApiServicse";
 import { Member } from "../../types/user";
 import {
   retrieveChosenMember,
   retrieveChosenMemberArticles,
   retrieveChosenSingleArticles,
 } from "./selector";
+import { sweetFailureProvider } from "../../lib/sweetAlert";
+import MemberApiServices from "../../apiServices/memberApiServices";
+import { verifyMemberData } from "../../apiServices/verify";
+import MemberOrderCards from "./memberOrders";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenMember: (data: Member[]) => dispach(setChosenMember(data)),
-  setChosenMemberArticles: (data: Member[]) =>
+  setChosenMemberArticles: (data: BoArticle[]) =>
     dispach(setChosenMemberArticles(data)),
-  setChosenSingleArticles: (data: Member[]) =>
+  setChosenSingleArticles: (data: BoArticle[]) =>
     dispach(setChosenSingleArticles(data)),
 });
 
@@ -61,21 +65,41 @@ const ChosenSingleArticlesRetriever = createSelector(
     chosenSingleArticles,
   })
 );
-const VisitMyPage = (props:any) => {
+const VisitMyPage = (props: any) => {
   // ** INITIALIZATIONS ** //
-
+  const { verifyMemberData } = props;
   const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
   const { setChosenMember, setChosenMemberArticles, setChosenSingleArticles } =
     actionDispatch(useDispatch());
-      const { chosenMember } = useSelector(ChosenMemberRetriever);
-      const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
-      const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
-    
+  const { chosenMember } = useSelector(ChosenMemberRetriever);
+  const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
+  const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({
+      mb_id: "none",
+      page: 1,
+      limit: 3,
+    });
   const [value, setValue] = useState("1");
 
   useEffect(() => {
+    if (!localStorage.getItem("member_data")) {
+      sweetFailureProvider("Please login first!", true, true);
+    }
+    const communityService = new CommunityApiService();
+    const memberService = new MemberApiServices();
 
-  }, []);
+    communityService
+      .getMemberCommunityArticle(memberArticleSearchObj)
+      .then((data) => {
+        setChosenMemberArticles(data);
+      })
+      .catch((err) => console.log(err));
+    memberService
+      .getChosenMember(verifyMemberData?.mb_id)
+      .then((data) => setChosenMember([data]))
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj]);
 
   // ** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -83,16 +107,16 @@ const VisitMyPage = (props:any) => {
   };
   return (
     <div className="MyPage_frame">
-      <Box className="bg_mypage">
+      {/* <Box className="bg_mypage">
         <div className="bg_box">
           <h1 className="mypage">My Page</h1>
           <p className="mypage_navi">Home/My Page</p>
         </div>
-      </Box>
+      </Box> */}
 
       <div className="right_menu">
         <div className="my_container">
-          <Box className="tab_my_cont">
+          <Box className="tab_cont_frame">
             <TabContext value={value}>
               <Box className={"tab_main"}>
                 <Tabs
@@ -183,53 +207,44 @@ const VisitMyPage = (props:any) => {
               </Box>
 
               <TabPanel value={"1"}>
-                <Typography variant="h1" className="">
-                  My Favorite
-                </Typography>
+               
                 <Box className={"box_frame"}>
                   <MyFavorites />
                 </Box>
               </TabPanel>
               <TabPanel value={"2"}>
-                <h1 className="menu_name">My orders</h1>
                 <Box>
-                  <MySettings />
+                  <MemberOrderCards />
                 </Box>
               </TabPanel>
               <TabPanel value={"3"}>
-                <Box className="menu_name">Recently visited</Box>
                 <Box>
                   <MySettings />
                 </Box>
               </TabPanel>
               <Box>
                 <TabPanel value={"4"}>
-                  <Box className="menu_name">My Followersss</Box>
                   <Box className={"box_frame"}>
                     <MemberFollow actions_enabled={true} />
                   </Box>
                 </TabPanel>
               </Box>
               <TabPanel value={"5"}>
-                <Box className="menu_name">My Followings</Box>
                 <Box className={"box_frame"}>
                   <MemberFollowings actions_enabled={true} />
                 </Box>
               </TabPanel>
               <TabPanel value={"6"}>
-                <Box className="menu_name">Articles</Box>
                 <Box>
                   <TargetArticles />
                 </Box>
               </TabPanel>
               <TabPanel value={"7"}>
-                <Box className="menu_name">Write Articles</Box>
                 <Box className={"box_frame"}>
                   <TuiEditor />
                 </Box>
               </TabPanel>
               <TabPanel value={"8"}>
-                <Box className="menu_name">My Profile</Box>
                 <Box className={"box_frame"}>
                   <MySettings />
                 </Box>

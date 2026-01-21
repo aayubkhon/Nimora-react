@@ -7,6 +7,7 @@ const initialState: OrdersPageState = {
   cancelledOrders: [],
   pausedOrders: [],
   allOrders: [],
+  chosenOrder: null,
 };
 
 const ordersPageSlice = createSlice({
@@ -28,6 +29,9 @@ const ordersPageSlice = createSlice({
     setAllOrders: (state, action) => {
       state.allOrders = action.payload;
     },
+    setChosenOrder: (state, action) => {
+      state.chosenOrder = action.payload;
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   setProcessOrders,
   setFinishedOrders,
   setCancelledOrders,
+  setChosenOrder,
 } = ordersPageSlice.actions;
 
 const OrdersPageReducer = ordersPageSlice.reducer;

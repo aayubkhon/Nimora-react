@@ -54,6 +54,7 @@ const ShopPage = (props: any) => {
       .getTargetProducts(targetSearchObject)
       .then((data) => setAllProducts(data))
       .catch((err) => console.log(err));
+    window.scrollTo(0, 0);
   }, [targetSearchObject, productRebuild]);
 
   const refs: any = useRef([]);

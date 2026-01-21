@@ -77,7 +77,7 @@ const NavbarHome = (props: any) => {
           {props.virifiedMemberData ? (
             <Box>
               <NavLink
-                to={"/my-account"}
+                to={"/member"}
                 className={({ isActive }: { isActive: boolean }) =>
                   `navlink ${isActive ? "active" : ""}`
                 }

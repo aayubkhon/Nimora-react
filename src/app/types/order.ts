@@ -23,3 +23,7 @@ export interface Order {
   order_items: OrderItem[];
   product_data: Product[];
 }
+export interface OrderInput {
+  order_status?: string;
+  order_id?: string;
+}

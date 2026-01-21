@@ -37,6 +37,7 @@ export interface OrdersPageState {
   cancelledOrders: Order[];
   pausedOrders: Order[];
   allOrders: Order[];
+  chosenOrder:Order | null;
 }
 /*COMMUNITY PAGE*/
 

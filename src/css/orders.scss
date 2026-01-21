@@ -1,0 +1,439 @@
+// ========================================
+// GLAMORA COLOR PALETTE
+// ========================================
+$primary-gold: #d4af37;
+$secondary-gold: #c89f2e;
+$light-bg: #f5f3f0;
+$border-light: #e0d5c7;
+$text-dark: #2c3e50;
+$text-light: #7f8c8d;
+
+// Status colors
+$status-processing: #3498db;
+$status-paused: #f39c12;
+$status-finished: #27ae60;
+
+// ========================================
+// MYPAGE ORDERS WRAPPER
+// ========================================
+.mypage-orders-wrapper {
+  width: 950px;
+  background-color: $light-bg;
+  border: 1px solid $border-light;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 84px;
+  height: 700px;
+}
+
+.mypage-orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ========================================
+// TITLE
+// ========================================
+.mypage-orders-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-dark;
+    font-family: Judson;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: '🛍️';
+    font-size: 20px;
+  }
+}
+
+// ========================================
+// TABS
+// ========================================
+.mypage-orders-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid $border-light;
+  padding-bottom: 12px;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary-gold;
+    border-radius: 2px;
+  }
+}
+
+.mypage-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  color: $text-light;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+
+  .tab-icon {
+    font-size: 14px;
+  }
+
+  .tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: #e0e0e0;
+    color: #666;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  &.active {
+    background-color: rgba($primary-gold, 0.1);
+    color: $text-dark;
+    font-weight: 600;
+
+    .tab-count {
+      background-color: $primary-gold;
+      color: white;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: $primary-gold;
+      border-radius: 1px;
+    }
+  }
+
+  // Status-specific tab colors
+  &.tab-processing.active {
+    color: $status-processing;
+
+    .tab-count {
+      background-color: $status-processing;
+    }
+
+    &::after {
+      background-color: $status-processing;
+    }
+  }
+
+  &.tab-paused.active {
+    color: $status-paused;
+
+    .tab-count {
+      background-color: $status-paused;
+    }
+
+    &::after {
+      background-color: $status-paused;
+    }
+  }
+
+  &.tab-finished.active {
+    color: $status-finished;
+
+    .tab-count {
+      background-color: $status-finished;
+    }
+
+    &::after {
+      background-color: $status-finished;
+    }
+  }
+
+  &:hover:not(.active) {
+    background-color: rgba($primary-gold, 0.05);
+  }
+}
+
+// ========================================
+// ORDERS LIST
+// ========================================
+.mypage-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary-gold;
+    border-radius: 3px;
+
+    &:hover {
+      background: $secondary-gold;
+    }
+  }
+}
+
+// ========================================
+// ORDER ITEM
+// ========================================
+.mypage-order-item {
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  border-left: 3px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(2px);
+  }
+
+  // Status-specific styles
+  &.processing {
+    border-left-color: $status-processing;
+
+    .progress-bar {
+      background-color: $status-processing;
+    }
+
+    .mypage-order-status {
+      background-color: rgba($status-processing, 0.1);
+      color: $status-processing;
+    }
+  }
+
+  &.paused {
+    border-left-color: $status-paused;
+
+    .progress-bar {
+      background-color: $status-paused;
+    }
+
+    .mypage-order-status {
+      background-color: rgba($status-paused, 0.1);
+      color: $status-paused;
+    }
+  }
+
+  &.finished {
+    border-left-color: $status-finished;
+
+    .progress-bar {
+      background-color: $status-finished;
+    }
+
+    .mypage-order-status {
+      background-color: rgba($status-finished, 0.1);
+      color: $status-finished;
+    }
+  }
+}
+
+// ========================================
+// ORDER HEADER
+// ========================================
+.mypage-order-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.mypage-order-image {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.mypage-order-details {
+  flex: 1;
+  min-width: 0;
+
+  .mypage-order-name {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-dark;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mypage-order-meta {
+    margin: 2px 0 0 0;
+    font-size: 11px;
+    color: $text-light;
+  }
+}
+
+.mypage-order-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: $text-dark;
+  white-space: nowrap;
+}
+
+// ========================================
+// ORDER PROGRESS
+// ========================================
+.mypage-order-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.progress-wrapper {
+  flex: 1;
+  height: 4px;
+  background-color: #e9ecef;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.progress-text {
+  font-size: 10px;
+  font-weight: 600;
+  color: $text-light;
+  min-width: 24px;
+  text-align: right;
+}
+
+// ========================================
+// ORDER STATUS
+// ========================================
+.mypage-order-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: all 0.2s ease;
+
+  .status-icon {
+    font-size: 12px;
+  }
+
+  .status-text {
+    letter-spacing: 0.3px;
+  }
+}
+
+// ========================================
+// EMPTY STATE
+// ========================================
+.mypage-orders-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  border: 1px dashed $border-light;
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: $text-light;
+  }
+}
+
+// ========================================
+// VIEW ALL BUTTON
+// ========================================
+.mypage-view-all-btn {
+  align-self: center;
+  padding: 10px 20px;
+  background: none;
+  border: 1px solid $text-light;
+  color: $text-dark;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background-color: rgba($primary-gold, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@media (max-width: 768px) {
+  .mypage-orders-wrapper {
+    padding: 16px;
+  }
+
+  .mypage-orders-title {
+    font-size: 16px;
+  }
+
+  .mypage-tab {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .mypage-order-header {
+    gap: 10px;
+  }
+
+  .mypage-order-image {
+    font-size: 24px;
+  }
+
+  .mypage-order-name {
+    font-size: 12px !important;
+  }
+
+  .mypage-order-price {
+    font-size: 13px;
+  }
+
+  .mypage-orders-list {
+    max-height: 300px;
+  }
+}

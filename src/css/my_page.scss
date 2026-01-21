@@ -1,14 +1,13 @@
 .OtherPage_frame {
   width: 100%;
-  height: 1900px;
+  height: 700px;
 }
 
 .bg_mypage {
-  background-image: url("../../public/home/my.jpg");
+  // background-image: url("../../public/home/panoramic.jpeg");
   width: 100%;
-  height: 700px;
-  background-size: cover;
-  background-position: center;
+  // background-size: cover;
+  // background-position: center;
 }
 
 .bg_box {
@@ -37,7 +36,7 @@
 }
 
 .right_menu {
-  height: 1200px;
+  height: 900px;
   width: 100%;
   background-image: url("../../public/home/pattern.png");
 }
@@ -46,16 +45,14 @@
   display: flex;
   width: 100%;
 
-  .tab_my_cont {
+  .tab_cont_frame {
     display: flex;
     width: 100%;
-    height: 1100px;
-    margin: 70px 20px;
-    border: 0.5px solid rgb(20, 0, 0);
+    height: 600px;
+    margin: 0px 20px;
     border-radius: 10px;
   }
 }
-
 
 .profile_info {
   flex-direction: column;
@@ -64,6 +61,7 @@
   justify-content: flex-start;
   margin-left: 30px;
   width: 100%;
+
   .my_name {
     color: rgb(20, 0, 0);
     font-family: Judson;
@@ -100,7 +98,7 @@
   display: flex;
   width: 350px;
   height: 700px;
-  margin-top: 150px;
+  margin-top: 130px;
   margin-left: 25px;
   border-radius: 30px;
   background: rgb(255, 246, 239);
@@ -122,8 +120,7 @@
     margin: 5px 12px;
     transition: all 0.25s ease;
     width: 270px;
-      margin-top: 10px;
-
+    margin-top: 10px;
 
     &:hover {
       background-color: rgb(225, 214, 202);
@@ -137,8 +134,8 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
   }
-  .tab_another{
-         color: rgb(141, 72, 50);
+  .tab_another {
+    color: rgb(141, 72, 50);
     font-family: Judson;
     font-size: 20px;
     font-weight: 600;
@@ -160,7 +157,6 @@
   letter-spacing: 15%;
   text-transform: capitalize;
   margin-left: 20px;
-  
 }
 
 .tab_name {
@@ -184,7 +180,7 @@
   flex-direction: column;
   margin-top: 25px;
   width: 950px;
-   background: rgb(255, 249, 244);
+  background: rgb(255, 249, 244);
   border-radius: 20px;
   border: 0.5px solid rgb(20, 0, 0);
 }
@@ -193,7 +189,7 @@
   display: flex;
   width: 100%;
   height: 130px;
-    background: rgb(255, 249, 244);
+  background: rgb(255, 249, 244);
   border-radius: 5px;
   margin-top: 50px;
 }
@@ -353,7 +349,7 @@
 .tuieditor_frame {
   height: 800px;
   width: 900px;
-    border: 0.5px solid rgb(20, 0, 0);
+  border: 0.5px solid rgb(20, 0, 0);
   border-radius: 15px;
   background-color: white;
 }
@@ -362,24 +358,24 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  
-  .category_title{
-  color: rgb(20, 0, 0);
-  font-size: 30px;
-  font-family: Judson;
-  font-weight: 600;
-  text-transform: capitalize;
-  }
-}
 
-  .textfield_title{
+  .category_title {
     color: rgb(20, 0, 0);
-    font-size: 20px;
+    font-size: 30px;
     font-family: Judson;
     font-weight: 600;
     text-transform: capitalize;
-    width: 300px;
   }
+}
+
+.textfield_title {
+  color: rgb(20, 0, 0);
+  font-size: 20px;
+  font-family: Judson;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 300px;
+}
 .MuiButtonBase-root.register {
   border-radius: 15px;
   color: rgb(20, 0, 0);

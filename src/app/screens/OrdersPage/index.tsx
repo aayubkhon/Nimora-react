@@ -13,7 +13,7 @@ import {
   Step,
   StepLabel,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
@@ -24,42 +24,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { Product } from "../../types/product";
-import ProductApiServices from "../../apiServices/productApiServices";
-import { serverApi } from "../../lib/config";
+
 import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-  sweetTopSuccessAlert,
-} from "../../lib/sweetAlert";
-import MemberApiServices from "../../apiServices/memberApiServices";
-import { Definer } from "../../lib/Definer";
-import assert from "assert";
-import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
+  setFinishedOrders,
+  setPausedOrders,
+  setProcessOrders,
+  setChosenOrder,
+} from "./slice";
 import orderApiServices from "../../apiServices/orderApiServices";
-import { retrievePauseddOrders } from "./selector";
-import { Order } from "../../types/order";
+import { retrieveChosenOrder, retrievePauseddOrders } from "./selector";
+import { OrderInput } from "../../types/order";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPausedOrders: (data: Product) => dispatch(setPausedOrders(data)),
   setProcessOrders: (data: Product) => dispatch(setProcessOrders(data)),
   setFinishedOrders: (data: Product) => dispatch(setFinishedOrders(data)),
+  setChosenOrder: (data: Product) => dispatch(setChosenOrder(data)),
 });
 
 // ** REDUX SELECTOR */
 
-const pausedOrderRetriever = createSelector(
-  retrievePauseddOrders,
-  (pausedOrders) => ({
-    pausedOrders,
+// const pausedOrderRetriever = createSelector(
+//   retrievePauseddOrders,
+//   (pausedOrders) => ({
+//     pausedOrders,
+//   })
+// );
+const chosenOrderRetriever = createSelector(
+  retrieveChosenOrder,
+  (chosenOrder) => ({
+    chosenOrder,
   })
 );
 
 const OrdersPage = (props: any) => {
   // ** INITIALIZATION */
-  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
-    actionDispatch(useDispatch());
-  const { pausedOrders } = useSelector(pausedOrderRetriever);
+  const { order_id } = useParams<{ order_id: string }>();
+  const { setChosenOrder } = actionDispatch(useDispatch());
+  const { chosenOrder } = useSelector(chosenOrderRetriever);
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [shippingMethod, setShippingMethod] = useState("standard");
@@ -68,17 +71,23 @@ const OrdersPage = (props: any) => {
   useEffect(() => {
     const orderService = new orderApiServices();
     orderService
-      .getMyOrders("paused")
-      .then((data) => setPausedOrders(data))
+      .getMyOrders({
+        order_id: order_id,
+      })
+      .then((data) => setChosenOrder(data))
       .catch((err) => console.log(err));
-    orderService
-      .getMyOrders("process")
-      .then((data) => setProcessOrders(data))
-      .catch((err) => console.log(err));
-    orderService
-      .getMyOrders("finished")
-      .then((data) => setFinishedOrders(data))
-      .catch((err) => console.log(err));
+    // orderService
+    //   .getMyOrders("paused")
+    //   .then((data) => setPausedOrders(data))
+    //   .catch((err) => console.log(err));
+    // orderService
+    //   .getMyOrders("process")
+    //   .then((data) => setProcessOrders(data))
+    //   .catch((err) => console.log(err));
+    // orderService
+    //   .getMyOrders("finished")
+    //   .then((data) => setFinishedOrders(data))
+    //   .catch((err) => console.log(err));
   }, []);
 
   const steps = ["Shipping", "Payment", "Review"];

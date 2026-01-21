@@ -58,8 +58,8 @@ const Basket = (props: any) => {
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
     } else {
       const new_item: CartItem = {
-        _id: product._id,
         quantity: 1,
+        product_id: product._id,
         name: product.product_name,
         price: product.product_price,
         image: product.product_images[0],
@@ -106,10 +106,10 @@ const Basket = (props: any) => {
 const processOrderHandler = async () =>{
   try {
     assert.ok(localStorage.getItem("member_data"),Definer.auth_err1)
-    const order = new orderApiServices()
-    await order.createOrder(cartItems)
+    const orderModel = new orderApiServices()
+    const order = await orderModel.createOrder(cartItems)
     onDeleteAll()
-    navigate("/checkout")
+    navigate(`/checkout/${order.order_id}`)
   } catch (err:any) {
     console.log(err);
     sweetErrorHandling(err).then()

@@ -59,13 +59,7 @@ export const navbar: NavbarObj[] = [
     private: false,
     hidden: true,
   },
-  {
-    element: <OrdersPage />,
-    title: "Orders",
-    path: "/orders",
-    private: true,
-    hidden: true,
-  },
+ 
   {
     element: <SignUp />,
     title: "sign-up",
@@ -90,7 +84,7 @@ export const navbar: NavbarObj[] = [
    {
     element: <VisitOtherPage />,
     title: "other-account",
-    path: "/my-account/:other",
+    path: "/member/:other",
     private: false,
     hidden: true,
   },
@@ -104,7 +98,7 @@ export const navbar: NavbarObj[] = [
     {
     element: <OrdersPage />,
     title: "chechout",
-    path: "/checkout",
+    path: "/checkout/:order_id",
     private: false,
     hidden: true,
   },

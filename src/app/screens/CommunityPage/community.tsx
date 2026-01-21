@@ -12,7 +12,7 @@ import { createSelector } from "reselect";
 import { setTargetBoArticles } from "./slice";
 import { BoArticle, SearchArticlesObj } from "../../types/boArticle";
 import { retrieveTargetBoArticles } from "./selector";
-import CommunityService from "../../apiServices/communityApiServicse";
+import CommunityApiService from "../../apiServices/communityApiServicse";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -42,14 +42,15 @@ const CommunityPage = (props: any) => {
   const [value, setValue] = useState("1");
 
   useEffect(() => {
-    const communityService = new CommunityService();
+    const communityService = new CommunityApiService();
     communityService
       .getTargetArticles(searchArticlesObj)
       .then((data) => {
         setTargetBoArticles(data);
       })
       .catch((err) => console.log(err));
-  }, [searchArticlesObj,articleREbuild]);
+    window.scrollTo(0, 0);
+  }, [searchArticlesObj, articleREbuild]);
 
   // ** HANDLERS **//
   const handleChange = (event: any, newValue: string) => {

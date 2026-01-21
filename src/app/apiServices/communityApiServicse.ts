@@ -2,9 +2,13 @@ import axios from "axios";
 import assert from "assert";
 import { Definer } from "../lib/Definer";
 import { serverApi } from "../lib/config";
-import { BoArticle, SearchArticlesObj } from "../types/boArticle";
+import {
+  BoArticle,
+  SearchArticlesObj,
+  SearchMemberArticlesObj,
+} from "../types/boArticle";
 
-class CommunityService {
+class CommunityApiService {
   private readonly path: string;
   constructor() {
     this.path = serverApi;
@@ -27,6 +31,23 @@ class CommunityService {
       throw err;
     }
   }
+
+  public async getMemberCommunityArticle(data: SearchMemberArticlesObj) {
+    try {
+      let url = `/community/articles?mb_id=${data.mb_id}&page=${data.page}&limit=${data.limit}`;
+      const result = await axios.get(this.path + url, {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
+      console.log("state", result.data.data);
+      const articles: BoArticle[] = result.data.data;
+      return articles;
+    } catch (err: any) {
+      console.log(`ERROR ::: getMemberCommunityArticle", ${err.message}`);
+      throw err;
+    }
+  }
 }
 
-export default CommunityService;
+export default CommunityApiService;
