@@ -49,7 +49,6 @@ const CommunityPage = (props: any) => {
         setTargetBoArticles(data);
       })
       .catch((err) => console.log(err));
-    window.scrollTo(0, 0);
   }, [searchArticlesObj, articleREbuild]);
 
   // ** HANDLERS **//

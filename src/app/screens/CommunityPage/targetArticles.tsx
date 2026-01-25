@@ -67,6 +67,7 @@ const TargetArticles = (props: any) => {
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: "0 5px 15px rgba(255, 136, 0, 0.366)",
+                    borderRadius: "20px",
                   },
                 }}
               >
@@ -88,7 +89,11 @@ const TargetArticles = (props: any) => {
                     }}
                   >
                     <Avatar
-                      src="/static/logo.png"
+                      src={
+                        article?.member_data?.mb_image
+                          ? `${serverApi}/${article.member_data.mb_image}`
+                          : "/static/logo.png"
+                      }
                       sx={{
                         width: 32,
                         height: 32,

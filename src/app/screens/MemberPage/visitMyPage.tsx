@@ -15,6 +15,9 @@ import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel } from "@mui/lab";
 import TargetArticles from "../CommunityPage/targetArticles";
 import TuiEditor from "../../components/tuiEditor/tuiEditor";
+import { Definer } from "../../lib/Definer";
+import assert from "assert";
+
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -32,17 +35,22 @@ import {
   retrieveChosenMemberArticles,
   retrieveChosenSingleArticles,
 } from "./selector";
-import { sweetFailureProvider } from "../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
 import MemberApiServices from "../../apiServices/memberApiServices";
 import { verifyMemberData } from "../../apiServices/verify";
 import MemberOrderCards from "./memberOrders";
+import MemberPost from "./memberPost";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenMember: (data: Member[]) => dispach(setChosenMember(data)),
   setChosenMemberArticles: (data: BoArticle[]) =>
     dispach(setChosenMemberArticles(data)),
-  setChosenSingleArticles: (data: BoArticle[]) =>
+  setChosenSingleArticles: (data: BoArticle) =>
     dispach(setChosenSingleArticles(data)),
 });
 
@@ -51,19 +59,19 @@ const ChosenMemberRetriever = createSelector(
   retrieveChosenMember,
   (chosenMember) => ({
     chosenMember,
-  })
+  }),
 );
 const ChosenMemberArticlesRetriever = createSelector(
   retrieveChosenMemberArticles,
   (chosenMemberArticles) => ({
     chosenMemberArticles,
-  })
+  }),
 );
 const ChosenSingleArticlesRetriever = createSelector(
   retrieveChosenSingleArticles,
   (chosenSingleArticles) => ({
     chosenSingleArticles,
-  })
+  }),
 );
 const VisitMyPage = (props: any) => {
   // ** INITIALIZATIONS ** //
@@ -74,6 +82,7 @@ const VisitMyPage = (props: any) => {
   const { chosenMember } = useSelector(ChosenMemberRetriever);
   const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
   const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
+  const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
       mb_id: "none",
@@ -96,14 +105,31 @@ const VisitMyPage = (props: any) => {
       })
       .catch((err) => console.log(err));
     memberService
-      .getChosenMember(verifyMemberData?.mb_id)
+      .getChosenMember(verifyMemberData?._id)
       .then((data) => setChosenMember([data]))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj]);
+  }, [memberArticleSearchObj, articleRebuild]);
 
   // ** HANDLERS **//
+
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => {
+          setChosenSingleArticles(data);
+          setValue("5");
+        })
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
   return (
     <div className="MyPage_frame">
@@ -207,7 +233,6 @@ const VisitMyPage = (props: any) => {
               </Box>
 
               <TabPanel value={"1"}>
-               
                 <Box className={"box_frame"}>
                   <MyFavorites />
                 </Box>
@@ -236,7 +261,11 @@ const VisitMyPage = (props: any) => {
               </TabPanel>
               <TabPanel value={"6"}>
                 <Box>
-                  <TargetArticles />
+                  <MemberPost
+                    setArticleRebuild={setArticleRebuild}
+                    chosenMemberArticles={chosenMemberArticles}
+                    renderChosenArticleHandler={renderChosenArticleHandler}
+                  />
                 </Box>
               </TabPanel>
               <TabPanel value={"7"}>
