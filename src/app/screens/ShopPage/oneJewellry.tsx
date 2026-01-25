@@ -74,6 +74,7 @@ const ChoosenProduct = (props: any) => {
 
   useEffect(() => {
     productRelatedProcess().then();
+    window.scrollTo(0, 0);
   }, [productRebuild]);
   // ** HEANDLERS **/
 

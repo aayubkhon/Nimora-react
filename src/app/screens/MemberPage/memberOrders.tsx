@@ -1,197 +1,235 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Tab,
-  Tabs,
-  Card,
-  CardContent,
-  Typography,
-  LinearProgress,
-  Chip,
-} from "@mui/material";
-// import { ShoppingBag, Clock, CheckCircle, PauseCircle } from 'lucide-react';
+import React, { useEffect, useState } from "react";
 import "../../../css/orders.scss";
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { Product } from "../../types/product";
 
-interface Order {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  total: number;
-  image: string;
-  status: "paused" | "processing" | "finished";
-  createdAt: string;
-}
+import orderApiServices from "../../apiServices/orderApiServices";
+import { Order, OrderInput } from "../../types/order";
+import {
+  retrieveFinishedOrders,
+  retrievePauseddOrders,
+  retrieveProcessOrders,
+} from "../OrdersPage/selector";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  setFinishedOrders,
+  setPausedOrders,
+  setProcessOrders,
+} from "../OrdersPage/slice";
+import { serverApi } from "../../lib/config";
 
-interface MyPageOrdersProps {
-  orders?: Order[];
-}
+// ** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
 
-const MyPageOrders: React.FC<MyPageOrdersProps> = ({
-  orders = [
-    {
-      id: "1",
-      name: "Diamond Ring",
-      price: 1200,
-      quantity: 1,
-      total: 1200,
-      image: "💎",
-      status: "processing",
-      createdAt: "2024-01-15",
-    },
-    {
-      id: "2",
-      name: "Gold Bracelet",
-      price: 450,
-      quantity: 2,
-      total: 900,
-      image: "✨",
-      status: "processing",
-      createdAt: "2024-01-10",
-    },
-    {
-      id: "3",
-      name: "Pearl Necklace",
-      price: 650,
-      quantity: 1,
-      total: 650,
-      image: "🌟",
-      status: "paused",
-      createdAt: "2024-01-12",
-    },
-    {
-      id: "4",
-      name: "Ruby Ring",
-      price: 2100,
-      quantity: 1,
-      total: 2100,
-      image: "❤️",
-      status: "finished",
-      createdAt: "2024-01-05",
-    },
-  ],
-}) => {
+// ** REDUX SELECTOR */
+
+const pausedOrderRetriever = createSelector(
+  retrievePauseddOrders,
+  (pausedOrders) => ({
+    pausedOrders,
+  })
+);
+const processOrderRetriever = createSelector(
+  retrieveProcessOrders,
+  (processOrders) => ({
+    processOrders,
+  })
+);
+const finishedOrderRetriever = createSelector(
+  retrieveFinishedOrders,
+  (finishedOrders) => ({
+    finishedOrders,
+  })
+);
+const MyPageOrders = () => {
+  // ** INITIALIZATION */
+  const { order_id } = useParams<{ order_id: string }>();
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+  const { pausedOrders } = useSelector(pausedOrderRetriever);
+  const { processOrders } = useSelector(processOrderRetriever);
+  const { finishedOrders } = useSelector(finishedOrderRetriever);
+
+  const navigate = useNavigate();
+  const [activeStep, setActiveStep] = useState(0);
+  const [shippingMethod, setShippingMethod] = useState("standard");
+  const [paymentMethod, setPaymentMethod] = useState("card");
   const [activeTab, setActiveTab] = useState(0);
 
-  const tabConfig = [
-     { value: 0, label: "Paused", status: "paused", icon: "⏸️" },
-    { value: 1, label: "Processing", status: "processing", icon: "⏳" },
-    { value: 2, label: "Finished", status: "finished", icon: "✓" },
+  useEffect(() => {
+    const orderService = new orderApiServices();
+    orderService
+      .getMyOrders({ order_status: "PAUSED" })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders({ order_status: "PROCESS" })
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders({ order_status: "FINISHED" })
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const tabs = [
+    {
+      id: 0,
+      order_status: "PAUSED",
+      label: "PAUSED",
+      icon: "⏸️",
+      count: pausedOrders?.length || 0,
+      orders: pausedOrders || [],
+    },
+    {
+      id: 1,
+      order_status: "PROCESS",
+      label: "PROCESS",
+      icon: "⏳",
+      count: processOrders?.length || 0,
+      orders: processOrders || [],
+    },
+    {
+      id: 2,
+      order_status: "FINISHED",
+      label: "FINISHED",
+      icon: "✓",
+      count: finishedOrders?.length || 0,
+      orders: finishedOrders || [],
+    },
   ];
 
-  const currentStatus = tabConfig[activeTab].status as
-    | "paused"
-    | "processing"
-    | "finished";
-  const displayOrders = orders.filter(
-    (order) => order.status === currentStatus
-  );
-
-  const getStatusProgress = (status: string) => {
-    switch (status) {
-      case "paused":
+  const getStatusProgress = (order_status: string) => {
+    switch (order_status) {
+      case "PAUSED":
         return 30;
-      case "processing":
+      case "PROCESS":
         return 65;
-      case "finished":
+      case "FINISHED":
         return 100;
       default:
         return 0;
     }
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "paused":
-        return "⏸️";
-      case "processing":
-        return "⏳";
-      case "finished":
-        return "✓";
-      default:
-        return "○";
-    }
-  };
+  const currentTabData = tabs[activeTab];
 
   return (
     <div className="mypage-orders-wrapper">
-      <div className="mypage-orders-container">
-        <h3 className="mypage-orders-title">My Orders</h3>
-
-        {/* Tabs */}
-        <div className="mypage-orders-tabs">
-          {tabConfig.map((tab) => {
-            const count = orders.filter((o) => o.status === tab.status).length;
-            return (
-              <button
-                key={tab.value}
-                className={`mypage-tab ${
-                  activeTab === tab.value ? "active" : ""
-                } tab-${tab.status}`}
-                onClick={() => setActiveTab(tab.value)}
-              >
-                <span className="tab-icon">{tab.icon}</span>
-                <span className="tab-text">{tab.label}</span>
-                <span className="tab-count">{count}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Orders List */}
-        <div className="mypage-orders-list">
-          {displayOrders.length > 0 ? (
-            displayOrders.map((order) => (
-              <div
-                key={order.id}
-                className={`mypage-order-item ${order.status}`}
-              >
-                {/* Order Item Header */}
-                <div className="mypage-order-header">
-                  <div className="mypage-order-image">{order.image}</div>
-                  <div className="mypage-order-details">
-                    <h4 className="mypage-order-name">{order.name}</h4>
-                    <p className="mypage-order-meta">
-                      ${order.price} × {order.quantity}
-                    </p>
-                  </div>
-                  <div className="mypage-order-price">${order.total}</div>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="mypage-order-progress">
-                  <div className="progress-wrapper">
-                    <div
-                      className={`progress-bar ${order.status}`}
-                      style={{ width: `${getStatusProgress(order.status)}%` }}
-                    />
-                  </div>
-                  <span className="progress-text">
-                    {getStatusProgress(order.status)}%
-                  </span>
-                </div>
-
-                {/* Status Badge */}
-                <div className={`mypage-order-status ${order.status}`}>
-                  <span className="status-icon">
-                    {getStatusIcon(order.status)}
-                  </span>
-                  <span className="status-text">{order.status}</span>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="mypage-orders-empty">
-              <p>No {currentStatus} orders</p>
-            </div>
-          )}
-        </div>
-
-        {/* View All Button */}
-        {displayOrders.length > 0 && (
-          <button className="mypage-view-all-btn">View All Orders →</button>
-        )}
+      {/* Header */}
+      <div className="mypage-orders-header">
+        <span className="header-icon">🛍️</span>
+        <span className="header-title">My Orders</span>
       </div>
+
+      {/* Tabs */}
+      <div className="mypage-orders-tabs">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            className={`mypage-tab ${
+              activeTab === tab.id ? "active" : ""
+            } tab-${tab.order_status.toLowerCase()}`}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            <span className="tab-icon">{tab.icon}</span>
+            <span className="tab-label">{tab.label}</span>
+            <span className="tab-badge">{tab.count}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Tab Content */}
+      {currentTabData?.orders.map((order: Order) => {
+        return (
+          <div key={order_id}>
+            {order.order_items.map((item) => {
+              const product: Product = order.product_data.filter(
+                (ele) => ele._id === item.product_id
+              )[0];
+
+              if (!product) return null;
+              const images_path = `${serverApi}/${product.product_images[0]}`;
+              return (
+                <div key={item._id} className="mypage-orders-content">
+                  <div className={`mypage-order-item ${order.order_status}`}>
+                    {/* Order Header */}
+                    <div className="order-header">
+                      <img src={images_path} className="order-image" />
+                      <div className="order-details">
+                        <div className="order-name">{product.product_name}</div>
+                        <div className="order-meta">
+                          ${item.item_price} × {item.item_quantity}{" "}
+                        </div>
+                      </div>
+                      <div className="order-total">${item.item_price}</div>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="order-progress">
+                      <div className="progress-label">
+                        <span>{getStatusProgress(order.order_status)}%</span>
+                      </div>
+                      <div className="progress-bar-wrapper">
+                        <div
+                          className={`progress-bar`}
+                          style={{
+                            width: `${getStatusProgress(order.order_status)}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Status Badge */}
+                    <div className={`order-status-badge ${order.order_status}`}>
+                      <span className="status-dot">●</span>
+                      <span className="status-text">{order.order_status}</span>
+                    </div>
+                    <div className="summary-actions">
+                      <button className="btn btn-outline">
+                        CONTINUE SHOPPING
+                      </button>
+                      <button className="btn btn-primary">CHECKOUT</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+
+      {currentTabData.order_status.length > 0 && (
+        <div className="order-summary">
+          <h3 className="summary-title">Order Summary</h3>
+
+          <div className="summary-rows">
+            <div className="summary-row">
+              <span className="summary-label">Tax</span>
+              <span className="summary-value">$222</span>
+            </div>
+          </div>
+
+          {/* Total */}
+          <div className="summary-total">
+            <span className="total-label">Total</span>
+            <span className="total-value">$2222</span>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="summary-actions">
+            <button className="btn btn-outline">CONTINUE SHOPPING</button>
+            <button className="btn btn-primary">CHECKOUT</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

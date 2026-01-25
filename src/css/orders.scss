@@ -1,5 +1,5 @@
 // ========================================
-// GLAMORA COLOR PALETTE
+// VARIABLES
 // ========================================
 $primary-gold: #d4af37;
 $secondary-gold: #c89f2e;
@@ -7,48 +7,58 @@ $light-bg: #f5f3f0;
 $border-light: #e0d5c7;
 $text-dark: #2c3e50;
 $text-light: #7f8c8d;
+$white: #ffffff;
+$border-color: #e9ecef;
 
 // Status colors
-$status-processing: #3498db;
 $status-paused: #f39c12;
+$status-processing: #3498db;
 $status-finished: #27ae60;
 
 // ========================================
-// MYPAGE ORDERS WRAPPER
+// MIXINS
+// ========================================
+@mixin transition($prop: all, $duration: 0.3s) {
+  transition: $prop $duration ease;
+}
+
+@mixin flex-center($direction: row, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// ========================================
+// WRAPPER
 // ========================================
 .mypage-orders-wrapper {
   width: 950px;
   background-color: $light-bg;
-  border: 1px solid $border-light;
   border-radius: 16px;
   padding: 24px;
-  margin-top: 84px;
-  height: 700px;
-}
-
-.mypage-orders-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  margin-top: 120px;
+  height: auto;
+  box-sizing: border-box;
 }
 
 // ========================================
-// TITLE
+// HEADER
 // ========================================
-.mypage-orders-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: $text-dark;
-    font-family: Judson;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
+.mypage-orders-header {
+  @include flex-center(row, center, flex-start);
   gap: 8px;
+  margin-bottom: 20px;
 
-  &::before {
-    content: '🛍️';
-    font-size: 20px;
+  .header-icon {
+    font-size: 22px;
+  }
+
+  .header-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-dark;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -56,9 +66,10 @@ $status-finished: #27ae60;
 // TABS
 // ========================================
 .mypage-orders-tabs {
-  display: flex;
+  @include flex-center(row, center, flex-start);
   gap: 8px;
-  border-bottom: 1px solid $border-light;
+  border-bottom: 2px solid $border-light;
+  margin-bottom: 20px;
   padding-bottom: 12px;
   overflow-x: auto;
 
@@ -73,112 +84,90 @@ $status-finished: #27ae60;
 }
 
 .mypage-tab {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  @include flex-center(row, center, center);
+  gap: 8px;
   padding: 8px 12px;
   background: none;
   border: none;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   color: $text-light;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  position: relative;
+  @include transition();
+  border-radius: 8px 8px 0 0;
 
   .tab-icon {
-    font-size: 14px;
+    font-size: 16px;
   }
 
-  .tab-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    background-color: #e0e0e0;
-    color: #666;
-    border-radius: 50%;
-    font-size: 10px;
+  .tab-label {
     font-weight: 600;
+  }
+
+  .tab-badge {
+    @include flex-center();
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
   }
 
   &.active {
     background-color: rgba($primary-gold, 0.1);
     color: $text-dark;
-    font-weight: 600;
+    font-weight: 700;
+    border-bottom: 3px solid $primary-gold;
 
-    .tab-count {
+    .tab-badge {
       background-color: $primary-gold;
-      color: white;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -14px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: $primary-gold;
-      border-radius: 1px;
-    }
-  }
-
-  // Status-specific tab colors
-  &.tab-processing.active {
-    color: $status-processing;
-
-    .tab-count {
-      background-color: $status-processing;
-    }
-
-    &::after {
-      background-color: $status-processing;
-    }
-  }
-
-  &.tab-paused.active {
-    color: $status-paused;
-
-    .tab-count {
-      background-color: $status-paused;
-    }
-
-    &::after {
-      background-color: $status-paused;
-    }
-  }
-
-  &.tab-finished.active {
-    color: $status-finished;
-
-    .tab-count {
-      background-color: $status-finished;
-    }
-
-    &::after {
-      background-color: $status-finished;
+      color: $white;
     }
   }
 
   &:hover:not(.active) {
     background-color: rgba($primary-gold, 0.05);
   }
+
+  // Tab-specific active colors
+  &.tab-paused.active {
+    color: $status-paused;
+    border-bottom-color: $status-paused;
+
+    .tab-badge {
+      background-color: $status-paused;
+    }
+  }
+
+  &.tab-processing.active {
+    color: $status-processing;
+    border-bottom-color: $status-processing;
+
+    .tab-badge {
+      background-color: $status-processing;
+    }
+  }
+
+  &.tab-finished.active {
+    color: $status-finished;
+    border-bottom-color: $status-finished;
+
+    .tab-badge {
+      background-color: $status-finished;
+    }
+  }
 }
 
 // ========================================
-// ORDERS LIST
+// CONTENT
 // ========================================
-.mypage-orders-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 400px;
+.mypage-orders-content {
+  max-height: 450px;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 8px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -202,12 +191,13 @@ $status-finished: #27ae60;
 // ORDER ITEM
 // ========================================
 .mypage-order-item {
-  background: white;
+  background-color: $white;
   border-radius: 12px;
+  margin-bottom: 12px;
   padding: 12px;
-  border-left: 3px solid;
+  border-left: 4px solid;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  @include transition();
   cursor: pointer;
 
   &:hover {
@@ -216,19 +206,6 @@ $status-finished: #27ae60;
   }
 
   // Status-specific styles
-  &.processing {
-    border-left-color: $status-processing;
-
-    .progress-bar {
-      background-color: $status-processing;
-    }
-
-    .mypage-order-status {
-      background-color: rgba($status-processing, 0.1);
-      color: $status-processing;
-    }
-  }
-
   &.paused {
     border-left-color: $status-paused;
 
@@ -236,9 +213,32 @@ $status-finished: #27ae60;
       background-color: $status-paused;
     }
 
-    .mypage-order-status {
+    .order-status-badge {
       background-color: rgba($status-paused, 0.1);
       color: $status-paused;
+      border: 1px solid rgba($status-paused, 0.25);
+
+      .status-dot {
+        color: $status-paused;
+      }
+    }
+  }
+
+  &.processing {
+    border-left-color: $status-processing;
+
+    .progress-bar {
+      background-color: $status-processing;
+    }
+
+    .order-status-badge {
+      background-color: rgba($status-processing, 0.1);
+      color: $status-processing;
+      border: 1px solid rgba($status-processing, 0.25);
+
+      .status-dot {
+        color: $status-processing;
+      }
     }
   }
 
@@ -249,9 +249,14 @@ $status-finished: #27ae60;
       background-color: $status-finished;
     }
 
-    .mypage-order-status {
+    .order-status-badge {
       background-color: rgba($status-finished, 0.1);
       color: $status-finished;
+      border: 1px solid rgba($status-finished, 0.25);
+
+      .status-dot {
+        color: $status-finished;
+      }
     }
   }
 }
@@ -259,93 +264,89 @@ $status-finished: #27ae60;
 // ========================================
 // ORDER HEADER
 // ========================================
-.mypage-order-header {
-  display: flex;
-  align-items: center;
+.order-header {
+  @include flex-center(row, flex-start, space-between);
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.mypage-order-image {
+.order-image {
+  width: 48px;
+  height: 50px;
   font-size: 28px;
   flex-shrink: 0;
 }
 
-.mypage-order-details {
+.order-details {
   flex: 1;
   min-width: 0;
-
-  .mypage-order-name {
-    margin: 0;
-    font-size: 13px;
-    font-weight: 600;
-    color: $text-dark;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .mypage-order-meta {
-    margin: 2px 0 0 0;
-    font-size: 11px;
-    color: $text-light;
-  }
 }
 
-.mypage-order-price {
+.order-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-dark;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-meta {
+  font-size: 11px;
+  color: $text-light;
+  margin-top: 2px;
+}
+
+.order-total {
   font-size: 14px;
   font-weight: 700;
-  color: $text-dark;
+  color: $primary-gold;
   white-space: nowrap;
 }
 
 // ========================================
-// ORDER PROGRESS
+// PROGRESS BAR
 // ========================================
-.mypage-order-progress {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
+.order-progress {
+  margin-bottom: 12px;
 }
 
-.progress-wrapper {
-  flex: 1;
+.progress-label {
+  @include flex-center(row, center, space-between);
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: $text-light;
+}
+
+.progress-bar-wrapper {
   height: 4px;
-  background-color: #e9ecef;
+  background-color: $border-color;
   border-radius: 2px;
   overflow: hidden;
+  width: 100%;
 }
 
 .progress-bar {
   height: 100%;
-  transition: width 0.3s ease;
+  @include transition(width);
   border-radius: 2px;
+  background-color: $primary-gold
 }
 
-.progress-text {
+// ========================================
+// STATUS BADGE
+// ========================================
+.order-status-badge {
+  @include flex-center(row, center, flex-start);
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
   font-size: 10px;
   font-weight: 600;
-  color: $text-light;
-  min-width: 24px;
-  text-align: right;
-}
-
-// ========================================
-// ORDER STATUS
-// ========================================
-.mypage-order-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 600;
   text-transform: capitalize;
-  transition: all 0.2s ease;
+  @include transition();
 
-  .status-icon {
+  .status-dot {
     font-size: 12px;
   }
 
@@ -357,48 +358,147 @@ $status-finished: #27ae60;
 // ========================================
 // EMPTY STATE
 // ========================================
-.mypage-orders-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 20px;
+.orders-empty {
   text-align: center;
-  background: white;
+  padding: 40px 20px;
+  background-color: $white;
   border-radius: 12px;
   border: 1px dashed $border-light;
+}
 
-  p {
-    margin: 0;
-    font-size: 13px;
-    color: $text-light;
-  }
+.empty-message {
+  font-size: 13px;
+  color: $text-light;
+  margin: 0;
 }
 
 // ========================================
 // VIEW ALL BUTTON
 // ========================================
-.mypage-view-all-btn {
-  align-self: center;
-  padding: 10px 20px;
-  background: none;
-  border: 1px solid $text-light;
-  color: $text-dark;
+.view-all-container {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.view-all-btn {
   font-size: 12px;
   font-weight: 600;
+  color: $primary-gold;
+  background: none;
+  border: 1px solid $primary-gold;
   border-radius: 8px;
+  padding: 8px 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  letter-spacing: 0.5px;
+  @include transition();
 
   &:hover {
     background-color: rgba($primary-gold, 0.1);
-    transform: translateY(-2px);
   }
 
   &:active {
-    transform: translateY(0);
+    transform: scale(0.98);
   }
 }
+
+// ========================================
+// ORDER SUMMARY
+// ========================================
+.order-summary {
+  margin-top: 30px;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  .summary-title {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-dark;
+  }
+
+  .summary-rows {
+    @include flex-center(column, stretch, flex-start);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .summary-row {
+    @include flex-center(row, center, space-between);
+    padding-bottom: 12px;
+    border-bottom: 1px solid $border-color;
+    font-size: 14px;
+
+    .summary-label {
+      color: $text-light;
+      font-weight: 500;
+    }
+
+    .summary-value {
+      color: $text-dark;
+      font-weight: 600;
+    }
+  }
+
+  .summary-total {
+    @include flex-center(row, center, space-between);
+    padding-top: 12px;
+    font-size: 18px;
+    font-weight: 700;
+
+    .total-label {
+      color: $text-dark;
+    }
+
+    .total-value {
+      color: $primary-gold;
+    }
+  }
+}
+
+// ========================================
+// SUMMARY ACTIONS
+// ========================================
+.summary-actions {
+  @include flex-center(row, center, space-between);
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(all);
+
+  &.btn-outline {
+    border: 2px solid $primary-gold;
+    background-color: transparent;
+    color: $primary-gold;
+
+    &:hover {
+      background-color: #f8f3e6;
+    }
+  }
+
+  &.btn-primary {
+    border: none;
+    background-color: $primary-gold;
+    color: white;
+
+    &:hover {
+      background-color: $secondary-gold;
+    }
+  }
+}
+
+
+
 
 // ========================================
 // RESPONSIVE
@@ -408,32 +508,38 @@ $status-finished: #27ae60;
     padding: 16px;
   }
 
-  .mypage-orders-title {
-    font-size: 16px;
+  .mypage-orders-header {
+    .header-title {
+      font-size: 16px;
+    }
   }
 
   .mypage-tab {
-    font-size: 11px;
+    font-size: 12px;
     padding: 6px 10px;
+
+    .tab-icon {
+      font-size: 14px;
+    }
   }
 
-  .mypage-order-header {
+  .order-header {
     gap: 10px;
   }
 
-  .mypage-order-image {
+  .order-image {
     font-size: 24px;
   }
 
-  .mypage-order-name {
-    font-size: 12px !important;
+  .order-name {
+    font-size: 12px;
   }
 
-  .mypage-order-price {
+  .order-total {
     font-size: 13px;
   }
 
-  .mypage-orders-list {
+  .mypage-orders-content {
     max-height: 300px;
   }
 }

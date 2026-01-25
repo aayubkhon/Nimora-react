@@ -107,9 +107,11 @@ const processOrderHandler = async () =>{
   try {
     assert.ok(localStorage.getItem("member_data"),Definer.auth_err1)
     const orderModel = new orderApiServices()
-    const order = await orderModel.createOrder(cartItems)
+    const order_id = await orderModel.createOrder(cartItems)
+    
     onDeleteAll()
-    navigate(`/checkout/${order.order_id}`)
+    navigate(`/checkout/${order_id}`)
+    
   } catch (err:any) {
     console.log(err);
     sweetErrorHandling(err).then()
@@ -117,9 +119,7 @@ const processOrderHandler = async () =>{
   }
 }
 
-  const applyCoupon = () => {
-    console.log("Apply coupon:", couponCode);
-  };
+ 
 
   return (
     <Box className="cart_page">
@@ -288,7 +288,7 @@ const processOrderHandler = async () =>{
                     className="coupon_input"
                     size="small"
                   />
-                  <Button className="apply_coupon_btn" onClick={applyCoupon}>
+                  <Button className="apply_coupon_btn" >
                     Apply
                   </Button>
                 </Box>

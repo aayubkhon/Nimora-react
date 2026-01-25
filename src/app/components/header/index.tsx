@@ -93,12 +93,6 @@ const NavbarHome = (props: any) => {
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
-          {/* <IconButton
-            className="icon_btn"
-            onClick={() => navigate("/my-account")}
-          >
-            <PersonIcon />
-          </IconButton> */}
           {!props.virifiedMemberData ? (
             <Box>
               <Button className="login_btn" onClick={() => navigate("/login")}>

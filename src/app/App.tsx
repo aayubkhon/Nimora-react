@@ -18,13 +18,9 @@ function App(props: any) {
   const [virifiedMemberData, setVirifiedMemberData] = useState<Member | null>(
     null
   );
-  const { mb_id, art_id } = useParams<{ mb_id: string; art_id: string }>();
   const query = useQuery();
   const chosen_mb_id: string | null = query.get("mb_id") ?? null;
   const chosen_art_id: string | null = query.get("art_id") ?? null;
-
-  console.log(query.get("mb_id")); // Will work
-  console.log(query.get("art_id")); // Will work
 
   useEffect(() => {
     console.log("=== useEffect: App ===");

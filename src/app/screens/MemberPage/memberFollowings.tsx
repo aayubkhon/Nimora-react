@@ -2,22 +2,18 @@ import { Avatar, Box, Button, Stack } from "@mui/material";
 import React, { useState } from "react";
 import "../../../css/followers.scss";
 import PersonAddDisabledOutlinedIcon from "@mui/icons-material/PersonAddDisabledOutlined";
-const following = [
-  { mb_nick: "ravshan" },
-  { mb_nick: "ulugbek" },
-  { mb_nick: "larisa" },
-];
+
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { setMemberFollowings } from "./slice";
 import { retrieveMemberFollowings } from "./selector";
-import { Member } from "../../types/user";
+import { Following } from "../../types/follow";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
-  setMemberFollowings: (data: Member[]) => dispach(setMemberFollowings(data)),
+  setMemberFollowings: (data: Following[]) => dispach(setMemberFollowings(data)),
 });
 // ** REDUX SELECTOR */
 const memberFollowingsRetriever = createSelector(
@@ -26,6 +22,11 @@ const memberFollowingsRetriever = createSelector(
     memberFollowings,
   })
 );
+const following = [
+  { mb_nick: "ravshan" },
+  { mb_nick: "ulugbek" },
+  { mb_nick: "larisa" },
+];
 const MemberFollowings = (props: any) => {
   // ** INITIALIZATIONS ** //
 

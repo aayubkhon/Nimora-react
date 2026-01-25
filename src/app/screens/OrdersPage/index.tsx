@@ -32,8 +32,8 @@ import {
   setChosenOrder,
 } from "./slice";
 import orderApiServices from "../../apiServices/orderApiServices";
-import { retrieveChosenOrder, retrievePauseddOrders } from "./selector";
-import { OrderInput } from "../../types/order";
+import { retrieveChosenOrder } from "./selector";
+import { serverApi } from "../../lib/config";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -45,12 +45,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 // ** REDUX SELECTOR */
 
-// const pausedOrderRetriever = createSelector(
-//   retrievePauseddOrders,
-//   (pausedOrders) => ({
-//     pausedOrders,
-//   })
-// );
 const chosenOrderRetriever = createSelector(
   retrieveChosenOrder,
   (chosenOrder) => ({
@@ -72,22 +66,11 @@ const OrdersPage = (props: any) => {
     const orderService = new orderApiServices();
     orderService
       .getMyOrders({
-        order_id: order_id,
+      order_id:  order_id as string,
       })
-      .then((data) => setChosenOrder(data))
-      .catch((err) => console.log(err));
-    // orderService
-    //   .getMyOrders("paused")
-    //   .then((data) => setPausedOrders(data))
-    //   .catch((err) => console.log(err));
-    // orderService
-    //   .getMyOrders("process")
-    //   .then((data) => setProcessOrders(data))
-    //   .catch((err) => console.log(err));
-    // orderService
-    //   .getMyOrders("finished")
-    //   .then((data) => setFinishedOrders(data))
-    //   .catch((err) => console.log(err));
+      .then((data) => {setChosenOrder(data[0])
+        console.log(data,"chosen order");
+      }).catch((err) => console.log(err));
   }, []);
 
   const steps = ["Shipping", "Payment", "Review"];
@@ -455,9 +438,9 @@ const OrdersPage = (props: any) => {
               <Typography className="summary_title">Order Summary</Typography>
 
               {/* Order Items */}
-              {/* {pausedOrders?.map((order: Order) => {
-                const product: Product = order.product_data.filter(
-                  (ele) => ele._id === order.order.product_id
+              {chosenOrder?.order_items.map((order) => {
+                const product: Product = chosenOrder.product_data.filter(
+                  (ele) => ele._id === order.product_id
                 )[0];
                 const images_path = `${serverApi}/${product.product_images[0]}`;
                 return (
@@ -469,19 +452,19 @@ const OrdersPage = (props: any) => {
                           {product.product_name}
                         </Typography>
                         <Typography className="summary_item_qty">
-                          Qty: {order.order.item_quantity}
+                          Qty: {order.item_quantity}
                         </Typography>
                       </Box>
                       <Typography className="summary_item_price">
                         $
                         {(
-                          order.order.item_price * order.order.item_quantity
+                          order.item_price * order.item_price
                         ).toLocaleString()}
                       </Typography>
                     </Box>
                   </Box>
                 );
-              })} */}
+              })}
 
               {/* Pricing */}
               <Box className="summary_pricing">

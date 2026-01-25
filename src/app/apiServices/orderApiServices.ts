@@ -36,8 +36,9 @@ class orderApiServices {
         url += `?order_status=${data.order_status}`;
       }
       if (data.order_id) {
-        url += `&order_id=${data.order_id}`;
+        url += `?order_id=${data.order_id}`;
       }
+
       const result = await axios.get(this.path + url, {
         withCredentials: true,
       });
@@ -46,7 +47,6 @@ class orderApiServices {
       console.log("state", result.data.state);
 
       const orders: any = result.data.data;
-      console.log("order", orders);
       return orders;
     } catch (err: any) {
       console.log(`ERROR ::: getMyOrders", ${err.message}`);
