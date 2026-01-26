@@ -44,6 +44,7 @@ import MemberApiServices from "../../apiServices/memberApiServices";
 import { verifyMemberData } from "../../apiServices/verify";
 import MemberOrderCards from "./memberOrders";
 import MemberPost from "./memberPost";
+import ArticleViewer from "../../components/tuiEditor/articleViewer";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -102,6 +103,7 @@ const VisitMyPage = (props: any) => {
       .getMemberCommunityArticle(memberArticleSearchObj)
       .then((data) => {
         setChosenMemberArticles(data);
+        // setValue("9")
       })
       .catch((err) => console.log(err));
     memberService
@@ -123,7 +125,7 @@ const VisitMyPage = (props: any) => {
         .getChosenArticle(art_id)
         .then((data) => {
           setChosenSingleArticles(data);
-          setValue("5");
+          // setValue("9");
         })
         .catch((err) => console.log(err));
     } catch (err: any) {
@@ -278,6 +280,11 @@ const VisitMyPage = (props: any) => {
                   <MySettings />
                 </Box>
               </TabPanel>
+                {/* <TabPanel value={"9"}>
+                <Box className={"box_frame"}>
+                  <ArticleViewer  chosenMemberArticles={chosenMemberArticles} />
+                </Box>
+              </TabPanel> */}
             </TabContext>
           </Box>
         </div>

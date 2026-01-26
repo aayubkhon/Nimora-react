@@ -38,12 +38,7 @@ const PausedOrders = (props: any) => {
     switch (order_status) {
       case "PAUSED":
         return 30;
-      case "PROCESS":
-        return 65;
-      case "FINISHED":
-        return 100;
-      default:
-        return 0;
+ 
     }
   };
   return (

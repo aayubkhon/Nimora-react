@@ -36,6 +36,7 @@ const MemberPost = (props: any) => {
   // ** HANDLERS **/
   const targetLikeHandlers = async (e: any) => {
     try {
+      e.stopPropagation()
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
       const memberService = new MemberApiServices();
       const like_result: any = await memberService.memberLikeTarget({
@@ -61,7 +62,7 @@ const MemberPost = (props: any) => {
               : "/home/new_r.jpeg";
 
             return (
-              <Box
+              <Box onClick={()=>renderChosenArticleHandler(article?._id)}
                 key={article._id}
                 sx={{
                   transition: "all 0.3s ease",
@@ -188,7 +189,7 @@ const MemberPost = (props: any) => {
                       }}
                     >
                       <strong>{article?.bo_id}</strong> 
-                      <p>{article?.art_content}</p>
+                      {/* <p>{article?.art_content}</p> */}
                     </Typography>
 
                     <Typography

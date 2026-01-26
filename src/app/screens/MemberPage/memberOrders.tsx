@@ -7,7 +7,7 @@ import { createSelector } from "reselect";
 import { Product } from "../../types/product";
 
 import orderApiServices from "../../apiServices/orderApiServices";
-import { Order, OrderInput } from "../../types/order";
+import { Order } from "../../types/order";
 import {
   retrieveFinishedOrders,
   retrievePauseddOrders,
@@ -20,6 +20,8 @@ import {
   setProcessOrders,
 } from "../OrdersPage/slice";
 import { serverApi } from "../../lib/config";
+import { CartItem } from "../../types/other";
+import { sweetErrorHandling, sweetFailureProvider } from "../../lib/sweetAlert";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -34,35 +36,41 @@ const pausedOrderRetriever = createSelector(
   retrievePauseddOrders,
   (pausedOrders) => ({
     pausedOrders,
-  })
+  }),
 );
 const processOrderRetriever = createSelector(
   retrieveProcessOrders,
   (processOrders) => ({
     processOrders,
-  })
+  }),
 );
 const finishedOrderRetriever = createSelector(
   retrieveFinishedOrders,
   (finishedOrders) => ({
     finishedOrders,
-  })
+  }),
 );
-const MyPageOrders = () => {
+const MyPageOrders = (props: any) => {
   // ** INITIALIZATION */
+  const navigate = useNavigate();
   const { order_id } = useParams<{ order_id: string }>();
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
   const { pausedOrders } = useSelector(pausedOrderRetriever);
   const { processOrders } = useSelector(processOrderRetriever);
   const { finishedOrders } = useSelector(finishedOrderRetriever);
-
-  const navigate = useNavigate();
-  const [activeStep, setActiveStep] = useState(0);
-  const [shippingMethod, setShippingMethod] = useState("standard");
-  const [paymentMethod, setPaymentMethod] = useState("card");
   const [activeTab, setActiveTab] = useState(0);
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+  const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
 
+  const itemsPrice = cartItems.reduce(
+    (a: any, c: any) => a + c.price * c.quantity,
+    0,
+  );
+  const shippingPrice = itemsPrice > 100 ? 0 : 2;
+  const totalPrice = itemsPrice + shippingPrice;
   useEffect(() => {
     const orderService = new orderApiServices();
     orderService
@@ -77,7 +85,7 @@ const MyPageOrders = () => {
       .getMyOrders({ order_status: "FINISHED" })
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [orderRebuild]);
 
   const tabs = [
     {
@@ -105,6 +113,7 @@ const MyPageOrders = () => {
       orders: finishedOrders || [],
     },
   ];
+  const currentTabData = tabs[activeTab];
 
   const getStatusProgress = (order_status: string) => {
     switch (order_status) {
@@ -118,8 +127,63 @@ const MyPageOrders = () => {
         return 0;
     }
   };
+  // ** HANDLES ** //
+  const deleteOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "CANCELLED" };
+      if (!localStorage.getItem("member_data")) {
+        sweetFailureProvider("Please login first", true);
+      }
+      let confirmation = window.confirm("Do you want Delete order?");
+      if (confirmation) {
+        const orderService = new orderApiServices();
+        await orderService.updateOrderStatus(data);
+        setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("deleteOrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
-  const currentTabData = tabs[activeTab];
+  const processOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "PROCESS" };
+      if (!localStorage.getItem("member_data")) {
+        sweetFailureProvider("Please login first", true);
+      }
+      let confirmation = window.confirm("Do you confirm order?");
+      if (confirmation) {
+        const orderService = new orderApiServices();
+        await orderService.updateOrderStatus(data);
+        setOrderRebuild(new Date());
+      }
+    } catch (err) {
+      console.log("ProcessrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const finishedOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "FINISHED" };
+      if (!localStorage.getItem("member_data")) {
+        sweetFailureProvider("Please login first", true);
+      }
+      let confirmation = window.confirm("Do you want finished order?");
+      if (confirmation) {
+        const orderService = new orderApiServices();
+        await orderService.updateOrderStatus(data);
+        navigate(`/checkout/${order_id}`);
+      }
+    } catch (err) {
+      console.log("finishedOrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="mypage-orders-wrapper">
@@ -130,6 +194,7 @@ const MyPageOrders = () => {
       </div>
 
       {/* Tabs */}
+
       <div className="mypage-orders-tabs">
         {tabs.map((tab) => (
           <button
@@ -137,7 +202,9 @@ const MyPageOrders = () => {
             className={`mypage-tab ${
               activeTab === tab.id ? "active" : ""
             } tab-${tab.order_status.toLowerCase()}`}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => {
+              setActiveTab(tab.id);
+            }}
           >
             <span className="tab-icon">{tab.icon}</span>
             <span className="tab-label">{tab.label}</span>
@@ -145,21 +212,26 @@ const MyPageOrders = () => {
           </button>
         ))}
       </div>
-
       {/* Tab Content */}
       {currentTabData?.orders.map((order: Order) => {
         return (
           <div key={order_id}>
             {order.order_items.map((item) => {
               const product: Product = order.product_data.filter(
-                (ele) => ele._id === item.product_id
+                (ele) => ele._id === item.product_id,
               )[0];
 
               if (!product) return null;
               const images_path = `${serverApi}/${product.product_images[0]}`;
               return (
                 <div key={item._id} className="mypage-orders-content">
-                  <div className={`mypage-order-item ${order.order_status}`}>
+                  <div
+                    className={`mypage-order-item`}
+                    style={{
+                      height:
+                        order.order_status === "FINISHED" ? "145px" : "230px",
+                    }}
+                  >
                     {/* Order Header */}
                     <div className="order-header">
                       <img src={images_path} className="order-image" />
@@ -171,7 +243,6 @@ const MyPageOrders = () => {
                       </div>
                       <div className="order-total">${item.item_price}</div>
                     </div>
-
                     {/* Progress Bar */}
                     <div className="order-progress">
                       <div className="progress-label">
@@ -186,18 +257,43 @@ const MyPageOrders = () => {
                         />
                       </div>
                     </div>
-
                     {/* Status Badge */}
                     <div className={`order-status-badge ${order.order_status}`}>
                       <span className="status-dot">●</span>
                       <span className="status-text">{order.order_status}</span>
                     </div>
-                    <div className="summary-actions">
-                      <button className="btn btn-outline">
-                        CONTINUE SHOPPING
+                    {order.order_status === "PAUSED" && (
+                      <div className="summary-actions">
+                        <button
+                          value={order._id}
+                          onClick={deleteOrderHandler}
+                          className="btn btn-outline"
+                        >
+                          DELETE
+                        </button>
+                        <button
+                          value={order._id}
+                          onClick={processOrderHandler}
+                          className="btn btn-primary"
+                        >
+                          TO PROCESS
+                        </button>
+                      </div>
+                    )}
+
+                    {order.order_status === "PROCESS" && (
+                      <button
+                        value={order._id}
+                        onClick={finishedOrderHandler}
+                        className="btn btn-primary"
+                         style={{
+                      width:
+                        order.order_status === "PROCESS" ? "245px" : "230px",
+                    }}
+                      >
+                        FINISHED
                       </button>
-                      <button className="btn btn-primary">CHECKOUT</button>
-                    </div>
+                    )}
                   </div>
                 </div>
               );
@@ -205,31 +301,6 @@ const MyPageOrders = () => {
           </div>
         );
       })}
-
-      {currentTabData.order_status.length > 0 && (
-        <div className="order-summary">
-          <h3 className="summary-title">Order Summary</h3>
-
-          <div className="summary-rows">
-            <div className="summary-row">
-              <span className="summary-label">Tax</span>
-              <span className="summary-value">$222</span>
-            </div>
-          </div>
-
-          {/* Total */}
-          <div className="summary-total">
-            <span className="total-label">Total</span>
-            <span className="total-value">$2222</span>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="summary-actions">
-            <button className="btn btn-outline">CONTINUE SHOPPING</button>
-            <button className="btn btn-primary">CHECKOUT</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

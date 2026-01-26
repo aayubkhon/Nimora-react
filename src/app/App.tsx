@@ -16,7 +16,7 @@ function useQuery() {
 function App(props: any) {
   // ** INITIALIZATIONS ** //
   const [virifiedMemberData, setVirifiedMemberData] = useState<Member | null>(
-    null
+    null,
   );
   const query = useQuery();
   const chosen_mb_id: string | null = query.get("mb_id") ?? null;

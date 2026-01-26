@@ -38,7 +38,7 @@ $status-finished: #27ae60;
   border-radius: 16px;
   padding: 24px;
   margin-top: 120px;
-  height: auto;
+  height: 800px;
   box-sizing: border-box;
 }
 
@@ -164,11 +164,11 @@ $status-finished: #27ae60;
 // ========================================
 // CONTENT
 // ========================================
+
 .mypage-orders-content {
   max-height: 450px;
-  overflow-y: auto;
+  overflow: auto;
   padding-right: 8px;
-
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -196,7 +196,7 @@ $status-finished: #27ae60;
   margin-bottom: 12px;
   padding: 12px;
   border-left: 4px solid;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
   @include transition();
   cursor: pointer;
 
@@ -330,7 +330,7 @@ $status-finished: #27ae60;
   height: 100%;
   @include transition(width);
   border-radius: 2px;
-  background-color: $primary-gold
+  background-color: $status-paused;
 }
 
 // ========================================
@@ -469,6 +469,7 @@ $status-finished: #27ae60;
 
 .btn {
   flex: 1;
+  height: 40px;
   padding: 12px 20px;
   border-radius: 8px;
   font-size: 14px;
@@ -496,9 +497,6 @@ $status-finished: #27ae60;
     }
   }
 }
-
-
-
 
 // ========================================
 // RESPONSIVE

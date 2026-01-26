@@ -33,9 +33,11 @@ const Basket = (props: any) => {
   const cartJson: any = localStorage.getItem("cart_data");
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+  const { setOrderRebuild } = props;
+
   const itemsPrice = cartItems.reduce(
     (a: any, c: any) => a + c.price * c.quantity,
-    0
+    0,
   );
   const shippingPrice = itemsPrice > 100 ? 0 : 2;
   const totalPrice = itemsPrice + shippingPrice;
@@ -43,7 +45,7 @@ const Basket = (props: any) => {
 
   const onAdd = (product: Product) => {
     const exist: any = cartItems.find(
-      (item: CartItem) => item._id === product._id
+      (item: CartItem) => item._id === product._id,
     );
     if (exist) {
       const cart_updated = cartItems.map((item: CartItem) =>
@@ -52,7 +54,7 @@ const Basket = (props: any) => {
               ...exist,
               quantity: exist.quantity + 1,
             }
-          : item
+          : item,
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
@@ -71,11 +73,11 @@ const Basket = (props: any) => {
   };
   const onDelete = (item: CartItem) => {
     const item_data: any = cartItems.find(
-      (ele: CartItem) => ele._id === item._id
+      (ele: CartItem) => ele._id === item._id,
     );
     if (item_data.quantity === 1) {
       const cart_updated = cartItems.filter(
-        (ele: CartItem) => ele._id !== item._id
+        (ele: CartItem) => ele._id !== item._id,
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
@@ -83,7 +85,7 @@ const Basket = (props: any) => {
       const cart_updated = cartItems.map((ele: CartItem) =>
         ele._id === item._id
           ? { ...item_data, quantity: item_data.quantity - 1 }
-          : ele
+          : ele,
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
@@ -91,11 +93,11 @@ const Basket = (props: any) => {
   };
   const onRemove = (item: CartItem) => {
     const cart_updated = cartItems.filter(
-      (ele: CartItem) => ele._id !== item._id
+      (ele: CartItem) => ele._id !== item._id,
     );
     setCartItems(cart_updated);
     localStorage.setItem("cart_data", JSON.stringify(cart_updated));
-    window.location.reload()
+    window.location.reload();
   };
 
   const onDeleteAll = () => {
@@ -103,23 +105,19 @@ const Basket = (props: any) => {
     localStorage.removeItem("cart_data");
   };
 
-const processOrderHandler = async () =>{
-  try {
-    assert.ok(localStorage.getItem("member_data"),Definer.auth_err1)
-    const orderModel = new orderApiServices()
-    const order_id = await orderModel.createOrder(cartItems)
-    
-    onDeleteAll()
-    navigate(`/checkout/${order_id}`)
-    
-  } catch (err:any) {
-    console.log(err);
-    sweetErrorHandling(err).then()
-    
-  }
-}
+  const processOrderHandler = async () => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const orderModel = new orderApiServices();
+      const order_id = await orderModel.createOrder(cartItems);
 
- 
+      onDeleteAll();
+      navigate(`/checkout/${order_id}`);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Box className="cart_page">
@@ -195,10 +193,7 @@ const processOrderHandler = async () =>{
                         </Box>
 
                         <Box className="item_actions">
-                          <IconButton
-                            className="action_icon"
-                            // onClick={() => moveToWishlist(item.id)}
-                          >
+                          <IconButton className="action_icon">
                             <FavoriteBorderIcon />
                           </IconButton>
                           <Typography className="action_text">
@@ -211,7 +206,10 @@ const processOrderHandler = async () =>{
                           >
                             <DeleteOutlineIcon />
                           </IconButton>
-                          <Typography className="action_text">
+                          <Typography
+                            onClick={() => onRemove(item)}
+                            className="action_text"
+                          >
                             Remove
                           </Typography>
                         </Box>
@@ -288,9 +286,7 @@ const processOrderHandler = async () =>{
                     className="coupon_input"
                     size="small"
                   />
-                  <Button className="apply_coupon_btn" >
-                    Apply
-                  </Button>
+                  <Button className="apply_coupon_btn">Apply</Button>
                 </Box>
 
                 {/* Checkout Button */}
