@@ -189,7 +189,19 @@ const MemberPost = (props: any) => {
                       }}
                     >
                       <strong>{article?.bo_id}</strong> 
-                      {/* <p>{article?.art_content}</p> */}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        mb: 1,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {article?.art_subject}
                     </Typography>
 
                     <Typography

@@ -13,10 +13,7 @@ import MySettings from "./mySettings";
 import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel } from "@mui/lab";
-import TargetArticles from "../CommunityPage/targetArticles";
 import TuiEditor from "../../components/tuiEditor/tuiEditor";
-import { Definer } from "../../lib/Definer";
-import assert from "assert";
 
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -41,14 +38,15 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
 import MemberApiServices from "../../apiServices/memberApiServices";
-import { verifyMemberData } from "../../apiServices/verify";
 import MemberOrderCards from "./memberOrders";
 import MemberPost from "./memberPost";
 import ArticleViewer from "../../components/tuiEditor/articleViewer";
+import { serverApi } from "../../lib/config";
+import { verifyMemberData } from "../../apiServices/verify";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
-  setChosenMember: (data: Member[]) => dispach(setChosenMember(data)),
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
   setChosenMemberArticles: (data: BoArticle[]) =>
     dispach(setChosenMemberArticles(data)),
   setChosenSingleArticles: (data: BoArticle) =>
@@ -76,21 +74,20 @@ const ChosenSingleArticlesRetriever = createSelector(
 );
 const VisitMyPage = (props: any) => {
   // ** INITIALIZATIONS ** //
-  const { verifyMemberData } = props;
-  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
   const { setChosenMember, setChosenMemberArticles, setChosenSingleArticles } =
     actionDispatch(useDispatch());
   const { chosenMember } = useSelector(ChosenMemberRetriever);
   const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
   const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
+  const [value, setValue] = useState("1");
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
+  const [followRebuild, setfollowRebuild] = useState<boolean>(false);
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
       mb_id: "none",
       page: 1,
       limit: 3,
     });
-  const [value, setValue] = useState("1");
 
   useEffect(() => {
     if (!localStorage.getItem("member_data")) {
@@ -103,14 +100,14 @@ const VisitMyPage = (props: any) => {
       .getMemberCommunityArticle(memberArticleSearchObj)
       .then((data) => {
         setChosenMemberArticles(data);
-        // setValue("9")
       })
       .catch((err) => console.log(err));
+
     memberService
       .getChosenMember(verifyMemberData?._id)
-      .then((data) => setChosenMember([data]))
+      .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, articleRebuild]);
+  }, [memberArticleSearchObj, articleRebuild, followRebuild]);
 
   // ** HANDLERS **//
 
@@ -125,7 +122,7 @@ const VisitMyPage = (props: any) => {
         .getChosenArticle(art_id)
         .then((data) => {
           setChosenSingleArticles(data);
-          // setValue("9");
+          setValue("9");
         })
         .catch((err) => console.log(err));
     } catch (err: any) {
@@ -133,6 +130,7 @@ const VisitMyPage = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
+
   return (
     <div className="MyPage_frame">
       {/* <Box className="bg_mypage">
@@ -156,18 +154,22 @@ const VisitMyPage = (props: any) => {
                 >
                   <Box display="flex">
                     <Avatar
-                      alt={""}
                       sx={{
                         width: "80px",
                         height: "80px",
                         marginLeft: 5,
                         marginTop: 3,
                       }}
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember.mb_image}`
+                          : "/public/auth/default_user.svg"
+                      }
                     />
                     <Box className={"profile_info"}>
-                      <p className="my_name">Leo</p>
-                      <p className="my_phone">+8221312</p>
-                      <p className="user">User</p>
+                      <p className="my_name">{chosenMember?.mb_nick}</p>
+                      <p className="my_phone">{chosenMember?.mb_phone}</p>
+                      <p className="user">{chosenMember?.mb_type ?? "User"}</p>
                     </Box>
                   </Box>
                   <Typography variant="h4" className="tab_another">
@@ -184,29 +186,25 @@ const VisitMyPage = (props: any) => {
                     value="2"
                     icon={<RedeemIcon />}
                     label="My Orders"
-                    className="tab_label"
                   />
                   <Tab
                     iconPosition="start"
                     value="3"
                     icon={<ZoomOutIcon />}
                     label="Recently Visited"
-                    className="tab_label"
                   />
 
                   <Tab
                     iconPosition="start"
                     value="4"
                     icon={<PersonAddAlt1Icon />}
-                    label="My Followers"
-                    className="tab_label"
+                    label={`My Followers ${chosenMember?.mb_subscriber_cnt || 0}`}
                   />
                   <Tab
                     iconPosition="start"
                     value="5"
                     icon={<PersonAddAlt1Icon />}
-                    label="My Followings"
-                    className="tab_label"
+                    label={`My Followings ${chosenMember?.mb_follow_cnt || 0}`}
                   />
                   <p className="tab_title">Community</p>
                   <Tab
@@ -214,14 +212,12 @@ const VisitMyPage = (props: any) => {
                     value="6"
                     icon={<AddCommentIcon />}
                     label="Articles"
-                    className="tab_label"
                   />
                   <Tab
                     iconPosition="start"
                     value="7"
                     icon={<ModeIcon />}
                     label="Write Article"
-                    className="tab_label"
                   />
                   <p className="tab_title">Menage Account</p>
                   <Tab
@@ -229,7 +225,6 @@ const VisitMyPage = (props: any) => {
                     value="8"
                     icon={<AccountCircleIcon />}
                     label="My Profile"
-                    className="tab_label"
                   />
                 </Tabs>
               </Box>
@@ -252,21 +247,31 @@ const VisitMyPage = (props: any) => {
               <Box>
                 <TabPanel value={"4"}>
                   <Box className={"box_frame"}>
-                    <MemberFollow actions_enabled={true} />
+                    <MemberFollow
+                      actions_enabled={true}
+                      mb_id={verifyMemberData?._id}
+                      followRebuild={followRebuild}
+                      setfollowRebuild={setfollowRebuild}
+                    />
                   </Box>
                 </TabPanel>
               </Box>
               <TabPanel value={"5"}>
                 <Box className={"box_frame"}>
-                  <MemberFollowings actions_enabled={true} />
+                  <MemberFollowings
+                    actions_enabled={true}
+                    mb_id={verifyMemberData?._id}
+                    followRebuild={followRebuild}
+                    setfollowRebuild={setfollowRebuild}
+                  />
                 </Box>
               </TabPanel>
               <TabPanel value={"6"}>
                 <Box>
                   <MemberPost
-                    setArticleRebuild={setArticleRebuild}
                     chosenMemberArticles={chosenMemberArticles}
                     renderChosenArticleHandler={renderChosenArticleHandler}
+                    setArticleRebuild={setArticleRebuild}
                   />
                 </Box>
               </TabPanel>
@@ -280,11 +285,11 @@ const VisitMyPage = (props: any) => {
                   <MySettings />
                 </Box>
               </TabPanel>
-                {/* <TabPanel value={"9"}>
+              <TabPanel value={"9"}>
                 <Box className={"box_frame"}>
-                  <ArticleViewer  chosenMemberArticles={chosenMemberArticles} />
+                  <ArticleViewer chosenSingleArticles={chosenSingleArticles} />
                 </Box>
-              </TabPanel> */}
+              </TabPanel>
             </TabContext>
           </Box>
         </div>

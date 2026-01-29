@@ -23,6 +23,7 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
 import { Definer } from "../../lib/Definer";
+import { verifyMemberData } from "../../apiServices/verify";
 const NavbarHome = (props: any) => {
   const basket_countJSON = localStorage.getItem("cart_data") ? localStorage.getItem("cart_data") : "[]"
   const badge_count = JSON.parse(basket_countJSON as string)
@@ -74,7 +75,7 @@ const NavbarHome = (props: any) => {
               )
             );
           })}
-          {props.virifiedMemberData ? (
+          {verifyMemberData ? (
             <Box>
               <NavLink
                 to={"/member"}
@@ -93,7 +94,7 @@ const NavbarHome = (props: any) => {
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
-          {!props.virifiedMemberData ? (
+          {!verifyMemberData ? (
             <Box>
               <Button className="login_btn" onClick={() => navigate("/login")}>
                 Login
@@ -101,7 +102,7 @@ const NavbarHome = (props: any) => {
             </Box>
           ) : (
             <Avatar
-              src={props.virifiedMemberData.mb_image}
+              src={verifyMemberData.mb_image}
               onClick={handleLogOutClick}
               sx={{ width: "30px", height: "30px", cursor: "pointer" }}
             />
