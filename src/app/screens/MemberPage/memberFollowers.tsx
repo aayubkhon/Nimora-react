@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../../../css/followers.scss";
-import { Avatar, Box, Button, Pagination, PaginationItem, Stack } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Pagination,
+  PaginationItem,
+  Stack,
+} from "@mui/material";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -19,6 +26,7 @@ import {
 } from "../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../lib/Definer";
+import { useNavigate } from "react-router-dom";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -37,6 +45,7 @@ const MemberFollow = (props: any) => {
   const { mb_id, followRebuild, setfollowRebuild } = props;
   const { setMemberFollowers } = actionDispatch(useDispatch());
   const { memberFollowers } = useSelector(memberFollowersRetriever);
+  const navigate = useNavigate();
   const [followersSearchObj, setFollowersSearchObj] = useState<FollowSearchObj>(
     {
       page: 1,
@@ -68,9 +77,13 @@ const MemberFollow = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
- const handlePaginatonsChange = (event: any, value: number) => {
+  const handlePaginatonsChange = (event: any, value: number) => {
     followersSearchObj.page = value;
     setFollowersSearchObj({ ...followersSearchObj });
+  };
+
+  const visitMemberHandler = (mb_id: string) => {
+    navigate(`/member-page/other?mb_id=${mb_id}`);
   };
   return (
     <div>
@@ -84,16 +97,20 @@ const MemberFollow = (props: any) => {
               <Box className="followers_box">
                 <Box className="followers_img">
                   <Avatar
+                    onClick={() => visitMemberHandler(follower?.subscriber_id)}
                     alt={""}
                     src={image_url}
-                    sx={{ width: "80px", height: "80px" }}
+                    sx={{ width: "80px", height: "80px", cursor: "pointer" }}
                   />
                 </Box>
                 <div className="followers_container">
                   <h2 className="followers_auth_user">
                     {follower?.subscriber_member_data?.mb_type}
                   </h2>
-                  <p className="followers_title">
+                  <p
+                    className="followers_title"
+                    onClick={() => visitMemberHandler(follower?.subscriber_id)}
+                  >
                     {follower?.subscriber_member_data?.mb_nick}
                   </p>
                 </div>
@@ -125,7 +142,7 @@ const MemberFollow = (props: any) => {
           );
         })}
       </Stack>
-       <Box className="pagination_box">
+      <Box className="pagination_box">
         <Pagination
           count={followersSearchObj.page >= 3 ? followersSearchObj.page + 1 : 3}
           page={followersSearchObj.page}

@@ -26,6 +26,7 @@ import {
 } from "../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../lib/Definer";
+import { useNavigate } from "react-router-dom";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -47,6 +48,7 @@ const MemberFollowings = (props: any) => {
   const { setMemberFollowings } = actionDispatch(useDispatch());
   const { memberFollowings } = useSelector(memberFollowingsRetriever);
   const { mb_id, followRebuild, setfollowRebuild } = props;
+  const navigate = useNavigate();
   const [followingsSearchObj, setFollowingsSearchObj] =
     useState<FollowSearchObj>({
       page: 1,
@@ -81,6 +83,9 @@ const MemberFollowings = (props: any) => {
     followingsSearchObj.page = value;
     setFollowingsSearchObj({ ...followingsSearchObj });
   };
+  const visitMemberHandler = (mb_id: string) => {
+    navigate(`/member-page/other?mb_id=${mb_id}`);
+  };
   return (
     <div>
       <div className="follow_frame">
@@ -93,6 +98,7 @@ const MemberFollowings = (props: any) => {
               <Box key={following._id} className="followers_box">
                 <Box className="followers_img">
                   <Avatar
+                    onClick={() => visitMemberHandler(following?.follow_id)}
                     alt={""}
                     src={image_url}
                     sx={{ width: "80px", height: "80px" }}
@@ -102,7 +108,10 @@ const MemberFollowings = (props: any) => {
                   <span className="followers_auth_user">
                     {following?.follow_member_data?.mb_type}
                   </span>
-                  <span className="followers_title">
+                  <span
+                    className="followers_title"
+                    onClick={() => visitMemberHandler(following?.follow_id)}
+                  >
                     {following?.follow_member_data?.mb_nick}
                   </span>
                 </div>
