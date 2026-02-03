@@ -77,14 +77,14 @@ export const navbar: NavbarObj[] = [
   {
     element: <VisitMyPage />,
     title: "my-account",
-    path: "/member",
+    path: "/member-page",
     private: false,
     hidden: true,
   },
    {
     element: <VisitOtherPage />,
     title: "other-account",
-    path: "/member/:other",
+    path: "/member-page/:other_id",
     private: false,
     hidden: true,
   },

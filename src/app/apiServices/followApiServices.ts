@@ -64,7 +64,7 @@ class FollowApiService {
     }
   }
 
-  public async unsubscriber(mb_id: string): Promise<boolean> {
+  public async unsubscribe(mb_id: string): Promise<boolean> {
     try {
       const result = await axios.post(
         this.path + "/follow/unsubscriber",

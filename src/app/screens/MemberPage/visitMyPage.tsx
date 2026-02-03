@@ -72,7 +72,7 @@ const ChosenSingleArticlesRetriever = createSelector(
     chosenSingleArticles,
   }),
 );
-const VisitMyPage = (props: any) => {
+const VisitMyPage = (props:any) => {
   // ** INITIALIZATIONS ** //
   const { setChosenMember, setChosenMemberArticles, setChosenSingleArticles } =
     actionDispatch(useDispatch());
@@ -82,6 +82,7 @@ const VisitMyPage = (props: any) => {
   const [value, setValue] = useState("1");
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const [followRebuild, setfollowRebuild] = useState<boolean>(false);
+
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
       mb_id: "none",
@@ -248,7 +249,6 @@ const VisitMyPage = (props: any) => {
                 <TabPanel value={"4"}>
                   <Box className={"box_frame"}>
                     <MemberFollow
-                      actions_enabled={true}
                       mb_id={verifyMemberData?._id}
                       followRebuild={followRebuild}
                       setfollowRebuild={setfollowRebuild}
@@ -259,7 +259,6 @@ const VisitMyPage = (props: any) => {
               <TabPanel value={"5"}>
                 <Box className={"box_frame"}>
                   <MemberFollowings
-                    actions_enabled={true}
                     mb_id={verifyMemberData?._id}
                     followRebuild={followRebuild}
                     setfollowRebuild={setfollowRebuild}

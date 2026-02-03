@@ -69,7 +69,7 @@ const MemberFollowings = (props: any) => {
       e.stopPropagation();
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
       const followService = new FollowApiService();
-      await followService.unsubscriber(id);
+      await followService.unsubscribe(id);
       await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
       setfollowRebuild(!followRebuild);
     } catch (err: any) {
@@ -90,7 +90,7 @@ const MemberFollowings = (props: any) => {
               ? `${serverApi}/${following.follow_member_data?.mb_image}`
               : "/auth/default_user.svg";
             return (
-              <Box className="followers_box">
+              <Box key={following._id} className="followers_box">
                 <Box className="followers_img">
                   <Avatar
                     alt={""}

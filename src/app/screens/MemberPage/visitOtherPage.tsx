@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../css/other_page.scss";
 import { Avatar, Box, Tab, Tabs, Typography, Button } from "@mui/material";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
@@ -7,6 +7,23 @@ import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel, TabList } from "@mui/lab";
 import TargetArticles from "../CommunityPage/targetArticles";
+import { useNavigate } from "react-router-dom";
+import { BoArticle, SearchMemberArticlesObj } from "../../types/boArticle";
+import { verifyMemberData } from "../../apiServices/verify";
+import CommunityApiService from "../../apiServices/communityApiServicse";
+import MemberApiServices from "../../apiServices/memberApiServices";
+import ArticleViewer from "../../components/tuiEditor/articleViewer";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../lib/sweetAlert";
+import MemberPost from "./memberPost";
+import { serverApi } from "../../lib/config";
+import assert from "assert";
+import { Definer } from "../../lib/Definer";
+import FollowApiService from "../../apiServices/followApiServices";
+import { Member } from "../../types/user";
+
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -16,7 +33,6 @@ import {
   setChosenMemberArticles,
   setChosenSingleArticles,
 } from "./slice";
-import { Member } from "../../types/user";
 import {
   retrieveChosenMember,
   retrieveChosenMemberArticles,
@@ -25,10 +41,10 @@ import {
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
-  setChosenMember: (data: Member[]) => dispach(setChosenMember(data)),
-  setChosenMemberArticles: (data: Member[]) =>
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
+  setChosenMemberArticles: (data: BoArticle[]) =>
     dispach(setChosenMemberArticles(data)),
-  setChosenSingleArticles: (data: Member[]) =>
+  setChosenSingleArticles: (data: BoArticle) =>
     dispach(setChosenSingleArticles(data)),
 });
 
@@ -37,32 +53,123 @@ const ChosenMemberRetriever = createSelector(
   retrieveChosenMember,
   (chosenMember) => ({
     chosenMember,
-  })
+  }),
 );
 const ChosenMemberArticlesRetriever = createSelector(
   retrieveChosenMemberArticles,
   (chosenMemberArticles) => ({
     chosenMemberArticles,
-  })
+  }),
 );
 const ChosenSingleArticlesRetriever = createSelector(
   retrieveChosenSingleArticles,
   (chosenSingleArticles) => ({
     chosenSingleArticles,
-  })
+  }),
 );
-const VisitOtherPage = () => {
+const VisitOtherPage = (props: any) => {
   // ** INITIALIZATIONS ** //
-  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
-  const { setChosenMember, setChosenMemberArticles, setChosenSingleArticles } =
-    actionDispatch(useDispatch());
+  const {
+    setChosenMember,
+    setChosenMemberArticles,
+    setChosenSingleArticles: setChosenSingleArticle,
+  } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(ChosenMemberRetriever);
   const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
   const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
+  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
   const [value, setValue] = useState("1");
+  const navigate = useNavigate();
+  const { chosen_mb_id, chosen_art_id } = props;
+  const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
+  const [followRebuild, setfollowRebuild] = useState<boolean>(false);
+
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({
+      mb_id: chosen_mb_id,
+      page: 1,
+      limit: 3,
+    });
+  console.log(chosen_mb_id, "chooo");
+
+  useEffect(() => {
+    if (chosen_mb_id === verifyMemberData?._id) {
+      navigate("/member-page");
+    }
+    const communityService = new CommunityApiService();
+    if (chosen_art_id) {
+      communityService
+        .getChosenArticle(chosen_art_id)
+        .then((data) => {
+          setChosenSingleArticle(data);
+          setValue("4");
+        })
+        .catch((err) => console.log(err));
+    }
+    communityService
+      .getMemberCommunityArticle(memberArticleSearchObj)
+      .then((data) => {
+        setChosenMemberArticles(data);
+      })
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj, chosen_mb_id, articleRebuild]);
+
+  useEffect(() => {
+    if (chosen_mb_id === verifyMemberData?._id) {
+      navigate("/member-page");
+    }
+    const memberService = new MemberApiServices();
+    memberService
+      .getChosenMember(memberArticleSearchObj.mb_id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [verifyMemberData, chosen_mb_id, followRebuild]);
+
   // ** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => {
+          setChosenSingleArticle(data);
+          setValue("4");
+        })
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const subscribeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const followService = new FollowApiService();
+      await followService.subscribe(e.target.value);
+      await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);
+      setfollowRebuild(!followRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const unsubscribeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const followService = new FollowApiService();
+      await followService.unsubscribe(e.target.value);
+      await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
+      setfollowRebuild(!followRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -95,11 +202,16 @@ const VisitOtherPage = () => {
                         marginLeft: 5,
                         marginTop: 3,
                       }}
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember.mb_image}`
+                          : "/public/auth/default_user.svg"
+                      }
                     />
                     <Box className={"profile_info"}>
-                      <p className="my_name">Leo</p>
-                      <p className="my_phone">+8221312</p>
-                      <p className="user">User</p>
+                      <p className="my_name">{chosenMember?.mb_nick}</p>
+                      <p className="my_phone">{chosenMember?.mb_phone}</p>
+                      <p className="user">{chosenMember?.mb_type}</p>
                     </Box>
                   </Box>
                   <Box
@@ -111,21 +223,23 @@ const VisitOtherPage = () => {
                       onChange={handleChange}
                       aria-label="lab API tabs example"
                     >
-                      {true ? (
+                      {chosenMember?.me_followed &&
+                      chosenMember?.me_followed[0]?.my_following ? (
                         <Tab
                           style={{ flexDirection: "column" }}
                           value={"4"}
                           component={() => (
                             <Button
+                              value={chosenMember?._id}
                               variant="contained"
-                              onClick={() => setValue("4")}
+                              onClick={unsubscribeHandler}
                               style={{
                                 background: "rgb(20, 0, 0)",
                                 color: "white",
                                 borderRadius: 10,
                               }}
                             >
-                              BEKOR QILISH
+                              UN FOLLOw
                             </Button>
                           )}
                         />
@@ -135,14 +249,15 @@ const VisitOtherPage = () => {
                           value={"4"}
                           component={() => (
                             <Button
+                              value={chosenMember?._id}
                               variant="contained"
-                              onClick={() => setValue("4")}
+                              onClick={subscribeHandler}
                               style={{
                                 background: "#30945E",
                                 borderRadius: 10,
                               }}
                             >
-                              FOLLOW QILISH
+                              FOLLOW
                             </Button>
                           )}
                         />
@@ -157,14 +272,14 @@ const VisitOtherPage = () => {
                     iconPosition="start"
                     value="1"
                     icon={<PersonAddAlt1Icon />}
-                    label="Followers"
+                    label={`Followers ${chosenMember?.mb_subscriber_cnt || 0}`}
                     className="tab_label"
                   />
                   <Tab
                     iconPosition="start"
                     value="2"
                     icon={<PersonAddAlt1Icon />}
-                    label="Followings"
+                    label={`Followings ${chosenMember?.mb_follow_cnt || 0}`}
                     className="tab_label"
                   />
                   <p className="tab_title">Community</p>
@@ -181,20 +296,37 @@ const VisitOtherPage = () => {
                 <TabPanel value={"1"}>
                   <Box className="menu_name">Followers</Box>
                   <Box className={"box_frame"}>
-                    <MemberFollow actions_enabled={false} />
+                    <MemberFollow
+                      mb_id={chosen_mb_id}
+                      followRebuild={followRebuild}
+                      setfollowRebuild={setfollowRebuild}
+                    />
                   </Box>
                 </TabPanel>
               </Box>
               <TabPanel value={"2"}>
                 <Box className="menu_name">Followings</Box>
                 <Box className={"box_frame"}>
-                  <MemberFollowings actions_enabled={false} />
+                  <MemberFollowings
+                    mb_id={chosen_mb_id}
+                    followRebuild={followRebuild}
+                    setfollowRebuild={setfollowRebuild}
+                  />
                 </Box>
               </TabPanel>
               <TabPanel value={"3"}>
                 <Box className="menu_name">Articles</Box>
                 <Box>
-                  <TargetArticles />
+                  <MemberPost
+                    chosenMemberArticles={chosenMemberArticles}
+                    renderChosenArticleHandler={renderChosenArticleHandler}
+                    setArticleRebuild={setArticleRebuild}
+                  />
+                </Box>
+              </TabPanel>
+              <TabPanel value={"4"}>
+                <Box>
+                  <ArticleViewer chosenSingleArticles={chosenSingleArticles} />
                 </Box>
               </TabPanel>
             </TabContext>

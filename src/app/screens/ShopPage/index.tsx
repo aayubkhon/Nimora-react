@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import "../../../css/shop.css";
 import "../../../css/products.scss";
 import { Box, Pagination, PaginationItem, Stack } from "@mui/material";
-
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";

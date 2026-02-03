@@ -78,7 +78,7 @@ const NavbarHome = (props: any) => {
           {verifyMemberData ? (
             <Box>
               <NavLink
-                to={"/member"}
+                to={"/member-page"}
                 className={({ isActive }: { isActive: boolean }) =>
                   `navlink ${isActive ? "active" : ""}`
                 }

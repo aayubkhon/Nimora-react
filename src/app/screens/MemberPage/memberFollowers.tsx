@@ -80,7 +80,7 @@ const MemberFollow = (props: any) => {
             ? `${serverApi}/${follower.subscriber_member_data?.mb_image}`
             : "/auth/default_user.svg";
           return (
-            <div className="follow_frame">
+            <div key={follower._id} className="follow_frame">
               <Box className="followers_box">
                 <Box className="followers_img">
                   <Avatar

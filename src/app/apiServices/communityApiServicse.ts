@@ -48,7 +48,7 @@ class CommunityApiService {
       throw err;
     }
   }
-    public async getChosenArticle(art_id:string) {
+  public async getChosenArticle(art_id: string){
     try {
       let url = `/community/single-article/${art_id}`;
       const result = await axios.get(this.path + url, {
