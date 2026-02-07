@@ -175,21 +175,14 @@ const TargetArticles = (props: any) => {
 
                   {/* Article Content */}
                   <CardContent sx={{ py: 1, px: 2 }}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mb: 1,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      <strong>{article?.art_subject}</strong>{" "}
-                      {article?.art_content}
-                    </Typography>
-
+                    <Box display={"flex"} alignItems={"center"}>
+                      <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                        {article?.bo_id}
+                      </Typography>
+                      <Typography sx={{ marginLeft: "5px" }}>
+                        {article?.art_subject}
+                      </Typography>
+                    </Box>
                     <Typography
                       variant="caption"
                       sx={{ color: "text.secondary", display: "block" }}

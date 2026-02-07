@@ -276,7 +276,9 @@ const VisitMyPage = (props:any) => {
               </TabPanel>
               <TabPanel value={"7"}>
                 <Box className={"box_frame"}>
-                  <TuiEditor />
+                  <TuiEditor setValue={setValue} 
+                  setArticleRebuild={setArticleRebuild}
+                  />
                 </Box>
               </TabPanel>
               <TabPanel value={"8"}>

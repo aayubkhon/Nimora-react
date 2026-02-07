@@ -8,9 +8,9 @@ const ArticleViewer = (props:any) => {
 
   return (
     <Stack>
-   <Stack sx={{height:"600px"}}>
+   <Stack sx={{height:"500px"}}>
      <Stack sx={{ background: "white", mt: "30px", borderRadius: "10px" }}>
-      <Box sx={{ m: "40px" }}>
+      <Box sx={{width:"300px",height:"300px" }}>
         <Viewer // @ts-ignore
           ref={editorRef}
           initialValue={props.chosenSingleArticles?.art_content}

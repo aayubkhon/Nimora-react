@@ -12,6 +12,8 @@ import {
   Badge,
   Checkbox,
   Stack,
+  Pagination,
+  PaginationItem,
 } from "@mui/material";
 import {
   Visibility,
@@ -19,6 +21,8 @@ import {
   Favorite,
   Face,
 } from "@mui/icons-material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import moment from "moment";
 import { BoArticle } from "../../types/boArticle";
 import { serverApi } from "../../lib/config";
@@ -32,11 +36,15 @@ import {
 } from "../../lib/sweetAlert";
 
 const MemberPost = (props: any) => {
-  const { chosenMemberArticles, renderChosenArticleHandler,setArticleRebuild } = props;
+  const {
+    chosenMemberArticles,
+    renderChosenArticleHandler,
+    setArticleRebuild,
+  } = props;
   // ** HANDLERS **/
   const targetLikeHandlers = async (e: any) => {
     try {
-      e.stopPropagation()
+      e.stopPropagation();
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
       const memberService = new MemberApiServices();
       const like_result: any = await memberService.memberLikeTarget({
@@ -62,7 +70,8 @@ const MemberPost = (props: any) => {
               : "/home/new_r.jpeg";
 
             return (
-              <Box onClick={()=>renderChosenArticleHandler(article?._id)}
+              <Box
+                onClick={() => renderChosenArticleHandler(article?._id)}
                 key={article._id}
                 sx={{
                   transition: "all 0.3s ease",
@@ -177,33 +186,14 @@ const MemberPost = (props: any) => {
 
                   {/* Article Content */}
                   <CardContent sx={{ py: 1, px: 2 }}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mb: 1,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      <strong>{article?.bo_id}</strong> 
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mb: 1,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      {article?.art_subject}
-                    </Typography>
-
+                    <Box display={"flex"} alignItems={"center"}>
+                      <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                        {article?.bo_id}
+                      </Typography>
+                      <Typography sx={{ marginLeft: "5px" }}>
+                        {article?.art_subject}
+                      </Typography>
+                    </Box>
                     <Typography
                       variant="caption"
                       sx={{ color: "text.secondary", display: "block" }}

@@ -83,7 +83,7 @@ const MemberFollow = (props: any) => {
   };
 
   const visitMemberHandler = (mb_id: string) => {
-    navigate(`/member-page/other?mb_id=${mb_id}`);
+    navigate(`/member-page/${mb_id}`);
   };
   return (
     <div>

@@ -7,7 +7,7 @@ import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel, TabList } from "@mui/lab";
 import TargetArticles from "../CommunityPage/targetArticles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BoArticle, SearchMemberArticlesObj } from "../../types/boArticle";
 import { verifyMemberData } from "../../apiServices/verify";
 import CommunityApiService from "../../apiServices/communityApiServicse";
@@ -77,23 +77,21 @@ const VisitOtherPage = (props: any) => {
   const { chosenMember } = useSelector(ChosenMemberRetriever);
   const { chosenMemberArticles } = useSelector(ChosenMemberArticlesRetriever);
   const { chosenSingleArticles } = useSelector(ChosenSingleArticlesRetriever);
-  const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
   const [value, setValue] = useState("1");
   const navigate = useNavigate();
   const { chosen_mb_id, chosen_art_id } = props;
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const [followRebuild, setfollowRebuild] = useState<boolean>(false);
-
+  const { other_id } = useParams<{ other_id: string }>();
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
-      mb_id: chosen_mb_id,
+      mb_id: other_id as string,
       page: 1,
       limit: 3,
     });
-  console.log(chosen_mb_id, "chooo");
 
   useEffect(() => {
-    if (chosen_mb_id === verifyMemberData?._id) {
+    if (other_id === verifyMemberData?._id) {
       navigate("/member-page");
     }
     const communityService = new CommunityApiService();
@@ -112,10 +110,10 @@ const VisitOtherPage = (props: any) => {
         setChosenMemberArticles(data);
       })
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, chosen_mb_id, articleRebuild]);
+  }, [memberArticleSearchObj, other_id, articleRebuild]);
 
   useEffect(() => {
-    if (chosen_mb_id === verifyMemberData?._id) {
+    if (other_id === verifyMemberData?._id) {
       navigate("/member-page");
     }
     const memberService = new MemberApiServices();
@@ -123,7 +121,7 @@ const VisitOtherPage = (props: any) => {
       .getChosenMember(memberArticleSearchObj.mb_id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [verifyMemberData, chosen_mb_id, followRebuild]);
+  }, [verifyMemberData, other_id, followRebuild]);
 
   // ** HANDLERS **//
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -227,7 +225,7 @@ const VisitOtherPage = (props: any) => {
                       chosenMember?.me_followed[0]?.my_following ? (
                         <Tab
                           style={{ flexDirection: "column" }}
-                          value={"4"}
+                          value={"1"}
                           component={() => (
                             <Button
                               value={chosenMember?._id}
@@ -246,7 +244,7 @@ const VisitOtherPage = (props: any) => {
                       ) : (
                         <Tab
                           style={{ flexDirection: "column" }}
-                          value={"4"}
+                          value={"2"}
                           component={() => (
                             <Button
                               value={chosenMember?._id}
@@ -297,7 +295,7 @@ const VisitOtherPage = (props: any) => {
                   <Box className="menu_name">Followers</Box>
                   <Box className={"box_frame"}>
                     <MemberFollow
-                      mb_id={chosen_mb_id}
+                      mb_id={other_id}
                       followRebuild={followRebuild}
                       setfollowRebuild={setfollowRebuild}
                     />
@@ -308,7 +306,7 @@ const VisitOtherPage = (props: any) => {
                 <Box className="menu_name">Followings</Box>
                 <Box className={"box_frame"}>
                   <MemberFollowings
-                    mb_id={chosen_mb_id}
+                    mb_id={other_id}
                     followRebuild={followRebuild}
                     setfollowRebuild={setfollowRebuild}
                   />
