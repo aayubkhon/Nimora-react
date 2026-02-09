@@ -27,6 +27,7 @@ import {
 import assert from "assert";
 import { Definer } from "../../lib/Definer";
 import { useNavigate } from "react-router-dom";
+import { verifyMemberData } from "../../apiServices/verify";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -67,7 +68,7 @@ const MemberFollow = (props: any) => {
   const subscribeHandler = async (e: any, id: string) => {
     try {
       e.stopPropagation();
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const followService = new FollowApiService();
       await followService.subscribe(id);
       await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);

@@ -27,6 +27,7 @@ import {
 import MemberApiServices from "../../apiServices/memberApiServices";
 import { Definer } from "../../lib/Definer";
 import assert from "assert";
+import { verifyMemberData } from "../../apiServices/verify";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -60,7 +61,7 @@ const TrabdingProducts = () => {
 
   const targetLikeProducts = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiServices(),
         like_result: any = await memberService.memberLikeTarget({
           like_ref_id: id,

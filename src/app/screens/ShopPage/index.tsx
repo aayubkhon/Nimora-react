@@ -22,6 +22,7 @@ import MemberApiServices from "../../apiServices/memberApiServices";
 import { ProductSearchObj } from "../../types/other";
 import { setAllProducts } from "./slice";
 import { retrieveAllProducts } from "./selector";
+import { verifyMemberData } from "../../apiServices/verify";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -74,7 +75,7 @@ const ShopPage = (props: any) => {
 
   const targetLikeShop = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiServices(),
         like_result: any = await memberService.memberLikeTarget({
           like_ref_id: id,

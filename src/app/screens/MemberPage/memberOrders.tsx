@@ -22,6 +22,7 @@ import {
 import { serverApi } from "../../lib/config";
 import { CartItem } from "../../types/other";
 import { sweetErrorHandling, sweetFailureProvider } from "../../lib/sweetAlert";
+import { verifyMemberData } from "../../apiServices/verify";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -132,7 +133,7 @@ const MyPageOrders = (props: any) => {
     try {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "CANCELLED" };
-      if (!localStorage.getItem("member_data")) {
+      if (!verifyMemberData) {
         sweetFailureProvider("Please login first", true);
       }
       let confirmation = window.confirm("Do you want Delete order?");
@@ -151,7 +152,7 @@ const MyPageOrders = (props: any) => {
     try {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "PROCESS" };
-      if (!localStorage.getItem("member_data")) {
+      if (!verifyMemberData) {
         sweetFailureProvider("Please login first", true);
       }
       let confirmation = window.confirm("Do you confirm order?");
@@ -170,7 +171,7 @@ const MyPageOrders = (props: any) => {
     try {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "FINISHED" };
-      if (!localStorage.getItem("member_data")) {
+      if (!verifyMemberData) {
         sweetFailureProvider("Please login first", true);
       }
       let confirmation = window.confirm("Do you want finished order?");

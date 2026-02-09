@@ -34,6 +34,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
+import { verifyMemberData } from "../../apiServices/verify";
 
 const MemberPost = (props: any) => {
   const {
@@ -45,7 +46,7 @@ const MemberPost = (props: any) => {
   const targetLikeHandlers = async (e: any) => {
     try {
       e.stopPropagation();
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiServices();
       const like_result: any = await memberService.memberLikeTarget({
         like_ref_id: e.target.id,

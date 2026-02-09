@@ -33,6 +33,7 @@ import { Definer } from "../../lib/Definer";
 import assert from "assert";
 import { setChosenProduct } from "./slice";
 import { retrieveChosenProduct } from "./selector";
+import { verifyMemberData } from "../../apiServices/verify";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -120,7 +121,7 @@ const ChoosenProduct = (props: any) => {
 
   const targetLikeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiServices();
       const data = { like_ref_id: chosenProduct?._id, group_type: "product" };
       const like_result: any = await memberService.memberLikeTarget(data);

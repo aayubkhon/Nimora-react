@@ -24,6 +24,7 @@ import assert from "assert";
 import { Definer } from "../../lib/Definer";
 import { sweetErrorHandling } from "../../lib/sweetAlert";
 import orderApiServices from "../../apiServices/orderApiServices";
+import { verifyMemberData } from "../../apiServices/verify";
 
 const Basket = (props: any) => {
   // ** INITIALIZATIONS ** //
@@ -107,7 +108,7 @@ const Basket = (props: any) => {
 
   const processOrderHandler = async () => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const orderModel = new orderApiServices();
       const order_id = await orderModel.createOrder(cartItems);
 

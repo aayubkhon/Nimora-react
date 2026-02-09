@@ -146,7 +146,7 @@ const VisitOtherPage = (props: any) => {
 
   const subscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const followService = new FollowApiService();
       await followService.subscribe(e.target.value);
       await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);
@@ -159,7 +159,7 @@ const VisitOtherPage = (props: any) => {
 
   const unsubscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const followService = new FollowApiService();
       await followService.unsubscribe(e.target.value);
       await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
