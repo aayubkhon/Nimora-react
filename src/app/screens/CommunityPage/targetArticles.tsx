@@ -30,8 +30,11 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
 import { verifyMemberData } from "../../apiServices/verify";
+import { useNavigate } from "react-router-dom";
 
 const TargetArticles = (props: any) => {
+  // ** INITIALIZATIONS ** //
+  const navigate = useNavigate();
   // ** HANDLERS **/
   const targetLikeHandlers = async (e: any) => {
     try {
@@ -50,7 +53,9 @@ const TargetArticles = (props: any) => {
       sweetErrorHandling(err).then();
     }
   };
-
+  const visitMemberHandler = (mb_id: string) => {
+    navigate(`/member-page/${mb_id}`);
+  };
   return (
     <div className="wrapper">
       <div className="target_articles_container">
@@ -100,8 +105,13 @@ const TargetArticles = (props: any) => {
                         height: 32,
                         border: "2px solid white",
                       }}
+                      onClick={() => visitMemberHandler(article.mb_id)}
                     />
-                    <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                    <Typography
+                      onClick={() => visitMemberHandler(article.mb_id)}
+                      variant="subtitle2"
+                      sx={{ fontWeight: 600 }}
+                    >
                       {article?.member_data?.mb_nick || "Anonymous"}
                     </Typography>
                   </CardContent>

@@ -35,7 +35,6 @@ import {
 import {
   sweetErrorHandling,
   sweetFailureProvider,
-  sweetTopSmallSuccessAlert,
 } from "../../lib/sweetAlert";
 import MemberApiServices from "../../apiServices/memberApiServices";
 import MemberOrderCards from "./memberOrders";
@@ -171,6 +170,7 @@ const VisitMyPage = (props:any) => {
                       <p className="my_name">{chosenMember?.mb_nick}</p>
                       <p className="my_phone">{chosenMember?.mb_phone}</p>
                       <p className="user">{chosenMember?.mb_type ?? "User"}</p>
+                      <p className="user">Info:{chosenMember?.mb_description ?? ""}</p>
                     </Box>
                   </Box>
                   <Typography variant="h4" className="tab_another">

@@ -28,7 +28,7 @@ export interface Member {
   mb_password: string;
   mb_type: string;
   mb_status: string;
-  mb_adress?: string;
+  mb_address?: string;
   mb_description?: string;
   mb_image?: string;
   mb_point?: number;
@@ -40,4 +40,12 @@ export interface Member {
   createdAt: Date;
   me_liked: MeLiked[];
   me_followed: MeFollowed[];
+}
+
+export interface MemberUpdateData {
+  mb_nick?: string | null;
+  mb_phone?: string | null;
+  mb_address?: string | null;
+  mb_description?: string | null;
+  mb_image?: string | null;
 }
