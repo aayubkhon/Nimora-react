@@ -34,6 +34,7 @@ import assert from "assert";
 import { setChosenProduct } from "./slice";
 import { retrieveChosenProduct } from "./selector";
 import { verifyMemberData } from "../../apiServices/verify";
+import ProductReview from "./productReview";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -46,7 +47,7 @@ const chosenProductRetriever = createSelector(
   retrieveChosenProduct,
   (chosenProduct) => ({
     chosenProduct,
-  })
+  }),
 );
 
 const ChoosenProduct = (props: any) => {
@@ -64,9 +65,8 @@ const ChoosenProduct = (props: any) => {
   const productRelatedProcess = async () => {
     try {
       const productService = new ProductApiServices();
-      const product: Product = await productService.getChosenProduct(
-        product_id
-      );
+      const product: Product =
+        await productService.getChosenProduct(product_id);
       setChosenProduct(product);
     } catch (err) {
       console.log("ProductRelatedProcess:", err);
@@ -89,7 +89,7 @@ const ChoosenProduct = (props: any) => {
         itemList = JSON.parse(itemListJSON);
       }
       const is_exist = itemList.some(
-        (check_item) => check_item.order_id === product_id
+        (check_item) => check_item.order_id === product_id,
       );
 
       if (!is_exist) {
@@ -159,10 +159,10 @@ const ChoosenProduct = (props: any) => {
                     index === 0
                       ? "first"
                       : index === 1
-                      ? "second"
-                      : index === 2
-                      ? "three"
-                      : index === 3
+                        ? "second"
+                        : index === 2
+                          ? "three"
+                          : index === 3
                   }_img`}
                   src={`${serverApi}/${image}`}
                   alt={`${chosenProduct?.product_name} ${index + 1}`}
@@ -284,14 +284,16 @@ const ChoosenProduct = (props: any) => {
         </Stack>
       </div>
       <div className="map_cont">
-        <iframe
+        <ProductReview/>
+        {/* <iframe
           title="Jewellry"
           style={{ marginTop: "35px", marginLeft: 15 }}
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50627.69730558068!2d126.85207834863277!3d37.526049699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b45c3d89d7801%3A0x7883571cabf15b8b!2sTiffany%20%26%20Co.!5e0!3m2!1sen!2skr!4v1756989543830!5m2!1sen!2skr"
           width={"98%"}
           height={"500"}
           referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        >
+        </iframe> */}
       </div>
     </div>
   );

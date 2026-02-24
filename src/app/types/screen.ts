@@ -2,6 +2,7 @@ import { BoArticle } from "./boArticle";
 import { Follower, Following } from "./follow";
 import { Order } from "./order";
 import { Product } from "./product";
+import { Review } from "./review";
 import { Member } from "./user";
 
 /*REACT APP STATE*/
@@ -26,7 +27,7 @@ export interface ShopPageState {
   allProducts: Product[];
   relatedProducts: Product[];
   chosenProduct: Product | null;
-  //   productReviews: Review[];
+  targetReviews: Review[];
 }
 
 /*ORDERS PAGE*/
@@ -37,7 +38,7 @@ export interface OrdersPageState {
   cancelledOrders: Order[];
   pausedOrders: Order[];
   allOrders: Order[];
-  chosenOrder:Order | null;
+  chosenOrder: Order | null;
 }
 /*COMMUNITY PAGE*/
 

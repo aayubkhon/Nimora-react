@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -6,6 +6,7 @@ import {
   Rating,
   Checkbox,
   Badge,
+  Button,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -15,13 +16,13 @@ import "../../../css/products.scss";
 // ** REDUX */
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const ProductCard = (props: any) => {
   const navigate = useNavigate();
-
   const choosenProductsHandler = (id: string) => {
     navigate(`/shop/${id}`);
   };
+ 
 
   return (
     <div className="productCard_container">
@@ -70,7 +71,10 @@ const ProductCard = (props: any) => {
                     },
                   }}
                 >
-                  <IconButton size="small" className="action_btn quick_view_btn">
+                  <IconButton
+                    size="small"
+                    className="action_btn quick_view_btn"
+                  >
                     <RemoveRedEyeOutlinedIcon
                       style={{
                         fill: product.product_views ? "blue" : "black",
@@ -105,8 +109,8 @@ const ProductCard = (props: any) => {
               </Box>
               {/* Add to Cart Button */}
               <button
+                className={`add_to_cart_btn visible`}
                 onClick={() => choosenProductsHandler(product._id)}
-                className={"add_to_cart_btn"}
               >
                 ADD TO CART
               </button>

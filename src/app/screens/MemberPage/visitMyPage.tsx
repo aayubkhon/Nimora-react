@@ -3,7 +3,6 @@ import "../../../css/my_page.scss";
 import { Avatar, Box, Tab, Tabs, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ZoomOutIcon from "@mui/icons-material/ZoomOut";
 import RedeemIcon from "@mui/icons-material/Redeem";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddCommentIcon from "@mui/icons-material/AddComment";
@@ -122,7 +121,7 @@ const VisitMyPage = (props:any) => {
         .getChosenArticle(art_id)
         .then((data) => {
           setChosenSingleArticles(data);
-          setValue("9");
+          setValue("8");
         })
         .catch((err) => console.log(err));
     } catch (err: any) {
@@ -133,13 +132,6 @@ const VisitMyPage = (props:any) => {
 
   return (
     <div className="MyPage_frame">
-      {/* <Box className="bg_mypage">
-        <div className="bg_box">
-          <h1 className="mypage">My Page</h1>
-          <p className="mypage_navi">Home/My Page</p>
-        </div>
-      </Box> */}
-
       <div className="right_menu">
         <div className="my_container">
           <Box className="tab_cont_frame">
@@ -188,42 +180,36 @@ const VisitMyPage = (props:any) => {
                     icon={<RedeemIcon />}
                     label="My Orders"
                   />
-                  <Tab
-                    iconPosition="start"
-                    value="3"
-                    icon={<ZoomOutIcon />}
-                    label="Recently Visited"
-                  />
 
                   <Tab
                     iconPosition="start"
-                    value="4"
+                    value="3"
                     icon={<PersonAddAlt1Icon />}
                     label={`My Followers ${chosenMember?.mb_subscriber_cnt || 0}`}
                   />
                   <Tab
                     iconPosition="start"
-                    value="5"
+                    value="4"
                     icon={<PersonAddAlt1Icon />}
                     label={`My Followings ${chosenMember?.mb_follow_cnt || 0}`}
                   />
                   <p className="tab_title">Community</p>
                   <Tab
                     iconPosition="start"
-                    value="6"
+                    value="5"
                     icon={<AddCommentIcon />}
                     label="Articles"
                   />
                   <Tab
                     iconPosition="start"
-                    value="7"
+                    value="6"
                     icon={<ModeIcon />}
                     label="Write Article"
                   />
                   <p className="tab_title">Menage Account</p>
                   <Tab
                     iconPosition="start"
-                    value="8"
+                    value="7"
                     icon={<AccountCircleIcon />}
                     label="My Profile"
                   />
@@ -240,13 +226,8 @@ const VisitMyPage = (props:any) => {
                   <MemberOrderCards />
                 </Box>
               </TabPanel>
-              <TabPanel value={"3"}>
-                <Box>
-                  <MySettings />
-                </Box>
-              </TabPanel>
               <Box>
-                <TabPanel value={"4"}>
+                <TabPanel value={"3"}>
                   <Box className={"box_frame"}>
                     <MemberFollow
                       mb_id={verifyMemberData?._id}
@@ -256,7 +237,7 @@ const VisitMyPage = (props:any) => {
                   </Box>
                 </TabPanel>
               </Box>
-              <TabPanel value={"5"}>
+              <TabPanel value={"4"}>
                 <Box className={"box_frame"}>
                   <MemberFollowings
                     mb_id={verifyMemberData?._id}
@@ -265,7 +246,7 @@ const VisitMyPage = (props:any) => {
                   />
                 </Box>
               </TabPanel>
-              <TabPanel value={"6"}>
+              <TabPanel value={"5"}>
                 <Box>
                   <MemberPost
                     chosenMemberArticles={chosenMemberArticles}
@@ -274,19 +255,19 @@ const VisitMyPage = (props:any) => {
                   />
                 </Box>
               </TabPanel>
-              <TabPanel value={"7"}>
+              <TabPanel value={"6"}>
                 <Box className={"box_frame"}>
                   <TuiEditor setValue={setValue} 
                   setArticleRebuild={setArticleRebuild}
                   />
                 </Box>
               </TabPanel>
-              <TabPanel value={"8"}>
+              <TabPanel value={"7"}>
                 <Box className={"box_frame"}>
                   <MySettings />
                 </Box>
               </TabPanel>
-              <TabPanel value={"9"}>
+              <TabPanel value={"8"}>
                 <Box className={"box_frame"}>
                   <ArticleViewer chosenSingleArticles={chosenSingleArticles} />
                 </Box>

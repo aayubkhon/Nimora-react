@@ -4,20 +4,20 @@ import { AppRootState } from "../../types/screen";
 const selectShopPage = (state: AppRootState) => state.shopPage;
 export const retrieveAllProducts = createSelector(
   selectShopPage,
-  (ShopPage) => ShopPage.allProducts
+  (ShopPage) => ShopPage.allProducts,
 );
 
 export const retrieveRelatedProducts = createSelector(
   selectShopPage,
-  (ShopPage) => ShopPage.relatedProducts
+  (ShopPage) => ShopPage.relatedProducts,
 );
 
-// export const retrieveProductReviews = createSelector(
-//   selectShopPage,
-//   (ShopPage) => ShopPage.productReviews
-// );
+export const productReviewRetriever = createSelector(
+  selectShopPage,
+  (ShopPage) => ShopPage.targetReviews,
+);
 
 export const retrieveChosenProduct = createSelector(
   selectShopPage,
-  (ShopPage) => ShopPage.chosenProduct
+  (ShopPage) => ShopPage.chosenProduct,
 );

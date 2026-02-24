@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../../css/target.scss";
 import {
   Card,
@@ -7,22 +7,17 @@ import {
   Box,
   Typography,
   IconButton,
-  TextField,
   Avatar,
   Badge,
   Checkbox,
   Stack,
-  Pagination,
-  PaginationItem,
+ 
 } from "@mui/material";
 import {
   Visibility,
   FavoriteBorder,
   Favorite,
-  Face,
 } from "@mui/icons-material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import moment from "moment";
 import { BoArticle } from "../../types/boArticle";
 import { serverApi } from "../../lib/config";
@@ -191,7 +186,7 @@ const MemberPost = (props: any) => {
                       <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
                         {article?.bo_id}
                       </Typography>
-                      <Typography sx={{ marginLeft: "5px" }}>
+                      <Typography style={{ marginLeft: "5px" }}>
                         {article?.art_subject}
                       </Typography>
                     </Box>
@@ -200,50 +195,6 @@ const MemberPost = (props: any) => {
                       sx={{ color: "text.secondary", display: "block" }}
                     >
                       {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
-                    </Typography>
-                  </CardContent>
-
-                  {/* Comment Section */}
-                  <CardContent
-                    sx={{
-                      display: "flex",
-                      gap: 1,
-                      alignItems: "center",
-                      py: 1,
-                      px: 2,
-                      borderTop: "1px solid #eee",
-                    }}
-                  >
-                    <IconButton size="small">
-                      <Face sx={{ fontSize: 20 }} />
-                    </IconButton>
-                    <TextField
-                      variant="standard"
-                      placeholder="Add a comment…"
-                      size="small"
-                      fullWidth
-                      sx={{
-                        "& .MuiInput-underline:before": {
-                          borderBottomColor: "transparent",
-                        },
-                        "& .MuiInput-underline:hover:before": {
-                          borderBottomColor: "transparent !important",
-                        },
-                      }}
-                      InputProps={{
-                        disableUnderline: true,
-                      }}
-                    />
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        cursor: "pointer",
-                        color: "secondary",
-                        fontWeight: 600,
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      Post
                     </Typography>
                   </CardContent>
                 </Card>

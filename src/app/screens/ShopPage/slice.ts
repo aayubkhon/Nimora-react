@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ShopPageState } from "../../types/screen";
+import { Review } from "../../types/review";
 
 const initialState: ShopPageState = {
   allProducts: [],
   relatedProducts: [],
   chosenProduct: null,
-//   productReviews: [],
+  targetReviews: [],
 };
 
 const ShopPageSlice = createSlice({
@@ -18,9 +19,9 @@ const ShopPageSlice = createSlice({
     setRelatedProducts: (state, action) => {
       state.relatedProducts = action.payload;
     },
-   //  setProductReviews: (state, action) => {
-   //    state.productReviews = action.payload;
-   //  },
+    setProductReviews: (state, action) => {
+      state.targetReviews = action.payload;
+    },
     setChosenProduct: (state, action) => {
       state.chosenProduct = action.payload;
     },
@@ -30,7 +31,7 @@ const ShopPageSlice = createSlice({
 export const {
   setAllProducts,
   setRelatedProducts,
-//   setProductReviews,
+  setProductReviews,
   setChosenProduct,
 } = ShopPageSlice.actions;
 
