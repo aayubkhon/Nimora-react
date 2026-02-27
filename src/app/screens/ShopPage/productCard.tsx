@@ -16,7 +16,6 @@ import "../../../css/products.scss";
 // ** REDUX */
 import { Product } from "../../types/product";
 import { serverApi } from "../../lib/config";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const ProductCard = (props: any) => {
   const navigate = useNavigate();
   const choosenProductsHandler = (id: string) => {
@@ -124,21 +123,6 @@ const ProductCard = (props: any) => {
               >
                 {product.product_name}
               </Typography>
-
-              {/* Rating */}
-              <Box className="rating_container">
-                <Rating
-                  precision={0.5}
-                  size="small"
-                  readOnly
-                  sx={{
-                    "& .MuiRating-iconFilled": {
-                      color: "#FFB800",
-                    },
-                  }}
-                />
-              </Box>
-
               {/* Price */}
               <Box className="price_container">
                 {product.product_discount > 0 ? (

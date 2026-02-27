@@ -8,7 +8,7 @@ import {
   SearchArticlesObj,
   SearchMemberArticlesObj,
 } from "../types/boArticle";
-import { Review, reviewCreateData } from "../types/review";
+import { Review, ReviewCreateData } from "../types/review";
 
 class CommunityApiService {
   private readonly path: string;
@@ -107,7 +107,7 @@ class CommunityApiService {
       throw err;
     }
   }
-  async createReview(data: reviewCreateData): Promise<Review> {
+  async createReview(data: ReviewCreateData): Promise<Review> {
     try {
       const url = `${serverApi}/review/createReview`;
       const result = await axios.post(url, data, { withCredentials: true });

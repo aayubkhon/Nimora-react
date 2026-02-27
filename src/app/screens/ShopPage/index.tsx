@@ -34,7 +34,7 @@ const allProductsRetriever = createSelector(
   retrieveAllProducts,
   (allProducts) => ({
     allProducts,
-  })
+  }),
 );
 const ShopPage = (props: any) => {
   // ** INITIALIZATIONS ** //
@@ -48,13 +48,16 @@ const ShopPage = (props: any) => {
       limit: 12,
       order: "random",
     });
+useEffect(() => {
+ window.scrollTo(0, 0);
+}, [])
+
   useEffect(() => {
     const productService = new ProductApiServices();
     productService
       .getTargetProducts(targetSearchObject)
       .then((data) => setAllProducts(data))
       .catch((err) => console.log(err));
-    window.scrollTo(0, 0);
   }, [targetSearchObject, productRebuild]);
 
   const refs: any = useRef([]);

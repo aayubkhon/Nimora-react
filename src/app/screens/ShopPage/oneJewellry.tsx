@@ -185,7 +185,7 @@ const ChoosenProduct = (props: any) => {
               precision={0.5}
               value={ratingValue} //to do review avarage
             />
-            <Typography margin={2}>2 rewiews</Typography>
+            <Typography margin={2}>{chosenProduct?.product_comments ?? 0} reviews</Typography>
           </Box>
           <Box flexDirection={"column"}>
             <p className="product_price">${chosenProduct?.product_price}</p>
@@ -284,7 +284,7 @@ const ChoosenProduct = (props: any) => {
         </Stack>
       </div>
       <div className="map_cont">
-        <ProductReview/>
+        <ProductReview product_id={product_id} setProductRebuild={setProductRebuild}/>
         {/* <iframe
           title="Jewellry"
           style={{ marginTop: "35px", marginLeft: 15 }}

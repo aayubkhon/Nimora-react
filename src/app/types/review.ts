@@ -15,7 +15,7 @@ export interface Review {
     createdAt: Date;
 }
 
-export interface reviewCreateData {
+export interface ReviewCreateData {
     review_target_id: string;
     review_stars: number;
     review_text: string;

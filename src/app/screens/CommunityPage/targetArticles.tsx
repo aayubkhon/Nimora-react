@@ -42,8 +42,9 @@ const TargetArticles = (props: any) => {
         like_ref_id: e.target.id,
         group_type: "community",
       });
+      console.log(like_result,"asdsa");
+      
       assert.ok(like_result, Definer.general_err1);
-
       await sweetTopSmallSuccessAlert("success", 700, false);
       props.setArticletRebuild(new Date());
     } catch (err: any) {
