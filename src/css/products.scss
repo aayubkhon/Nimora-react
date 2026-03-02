@@ -2,7 +2,6 @@
   height: 2500px;
   margin-top: 40px;
   width: 100%;
-  border: 1px solid red;
 
   .jews_container {
     display: flex;
@@ -554,26 +553,25 @@
 }
 /* PRODUCT CARD STYLES END */
 
-
 /* PRODUCT REVIEW STYLES START */
 
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap");
 
-// ─── Tokens ───────────────────────────────────────────────────────────────────
-$color-bg:        #ffffff;
-$color-border:    #e5e5e5;
-$color-ink:       #1a1a1a;
-$color-ink-mid:   #555555;
+// ─── Tokens ───────
+$color-bg: #ffffff;
+$color-border: #e5e5e5;
+$color-ink: #1a1a1a;
+$color-ink-mid: #555555;
 $color-ink-muted: #888888;
-$color-gold:      #b8a06a;
-$color-btn:       #1a1a1a;
-$color-btn-text:  #ffffff;
+$color-gold: #b8a06a;
+$color-btn: #1a1a1a;
+$color-btn-text: #ffffff;
 
-$font:            'Jost', sans-serif;
-$radius:          4px;
-$ease:            0.2s ease;
+$font: "Jost", sans-serif;
+$radius: 4px;
+$ease: 0.2s ease;
 
-// ─── Section wrapper ──────────────────────────────────────────────────────────
+// ─── Section wrapper ───
 .review-section {
   font-family: $font;
   max-width: 780px;
@@ -581,9 +579,10 @@ $ease:            0.2s ease;
   padding: 64px 24px 80px;
   background: $color-bg;
   color: $color-ink;
+
 }
 
-// ─── Shared headings ──────────────────────────────────────────────────────────
+// ─── Shared headings ─────────
 .section-heading {
   font-family: $font !important;
   font-size: 1.75rem !important;
@@ -602,9 +601,10 @@ $ease:            0.2s ease;
   margin-bottom: 40px !important;
 }
 
-// ─── Review List ──────────────────────────────────────────────────────────────
+// ─── Review List ─────────
 .review-list-wrap {
   margin-bottom: 72px;
+
 }
 
 .review-list {
@@ -626,10 +626,16 @@ $ease:            0.2s ease;
 
 .review-divider {
   border-color: $color-border !important;
-  margin: 0 !important;
+  margin-top: 0px !important;
 }
 
-// ─── Avatar ───────────────────────────────────────────────────────────────────
+.reply_box{
+  margin-left: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Avatar ────────────
 .review-left {
   flex-shrink: 0;
 }
@@ -644,9 +650,10 @@ $ease:            0.2s ease;
   font-weight: 500 !important;
 }
 
-// ─── Review content ───────────────────────────────────────────────────────────
+// ─── Review content ─────
 .review-right {
   flex: 1;
+
 }
 
 .review-meta {
@@ -705,7 +712,7 @@ $ease:            0.2s ease;
   margin-bottom: 14px !important;
 }
 
-// ─── Helpful ──────────────────────────────────────────────────────────────────
+// ─── Helpful ────────────────
 .helpful-row {
   display: flex;
   align-items: center;
@@ -746,13 +753,13 @@ $ease:            0.2s ease;
   }
 }
 
-// ─── Comment Form ─────────────────────────────────────────────────────────────
+// ─── Comment Form ────────
 .comment-form-wrap {
   padding-top: 64px;
   border-top: 1px solid $color-border;
 }
 
-// ─── Star rating row ──────────────────────────────────────────────────────────
+// ─── Star rating row ────────
 .rating-row {
   display: flex;
   align-items: center;
@@ -777,7 +784,7 @@ $ease:            0.2s ease;
   }
 }
 
-// ─── Form fields ──────────────────────────────────────────────────────────────
+// ─── Form fields ─────
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -885,7 +892,9 @@ $ease:            0.2s ease;
   padding: 13px 40px !important;
   border-radius: $radius !important;
   box-shadow: none !important;
-  transition: background $ease, opacity $ease !important;
+  transition:
+    background $ease,
+    opacity $ease !important;
 
   &:hover:not(:disabled) {
     background-color: #333333 !important;
@@ -895,15 +904,25 @@ $ease:            0.2s ease;
     background-color: #cccccc !important;
     color: #ffffff !important;
     opacity: 1 !important;
-    cursor: not-allowed;
+    cursor: pointer !important;
   }
 }
 
+.submit_reply_btn {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #ffff;
+  width: 100px;
+  height: 23px;
+  font-family: Judson;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 8px;
+  letter-spacing: 15%;
+  border-radius: 30px;
+  &:hover:not(:disabled) {
+    background-color: #333333 !important;
+    color: #ffff;
+  }
+}
 
-
-
-
-
-
-
-/* PRODUCT REVIEW STYLES END */
+// /* PRODUCT REVIEW STYLES END */

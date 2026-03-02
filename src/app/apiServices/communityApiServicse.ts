@@ -9,6 +9,7 @@ import {
   SearchMemberArticlesObj,
 } from "../types/boArticle";
 import { Review, ReviewCreateData } from "../types/review";
+import { Member } from "../types/user";
 
 class CommunityApiService {
   private readonly path: string;
@@ -112,6 +113,8 @@ class CommunityApiService {
       const url = `${serverApi}/review/createReview`;
       const result = await axios.post(url, data, { withCredentials: true });
       console.log("createReview state::", result.data.state);
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
       const review: Review = result.data.data;
       return review;
     } catch (err) {
@@ -123,6 +126,8 @@ class CommunityApiService {
     try {
       const url = `${serverApi}/review/getReviews/${product_id}`;
       const result = await axios.get(url, { withCredentials: true });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
       console.log(`getProductReviews state, ${result.data.state}`);
       const reviews: Review[] = result.data.data;
       return reviews;
@@ -130,6 +135,8 @@ class CommunityApiService {
       throw err;
     }
   }
+
+ 
 }
 
 export default CommunityApiService;

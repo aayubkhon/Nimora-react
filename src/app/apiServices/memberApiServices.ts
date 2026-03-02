@@ -4,6 +4,7 @@ import { Definer } from "../lib/Definer";
 import { serverApi } from "../lib/config";
 import { Member, MemberUpdateData } from "../types/user";
 import { MemberLiken } from "../types/other";
+import { Review } from "../types/review";
 class MemberApiServices {
   private readonly path: string;
   constructor() {
@@ -114,6 +115,19 @@ class MemberApiServices {
       return member;
     } catch (err: any) {
       console.log(`ERROR ::: updateMemberData", ${err.message}`);
+      throw err;
+    }
+  }
+   async getMemberReviews(_id: string) {
+    try {
+      const url = `${serverApi}/review/getReviews/${_id}`;
+      const result = await axios.get(url, { withCredentials: true });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
+      console.log(`getMemberReviews state, ${result.data.state}`);
+      const member: Member = result.data.member_data;
+      return member;
+    } catch (err) {
       throw err;
     }
   }

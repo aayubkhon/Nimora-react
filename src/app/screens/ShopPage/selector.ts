@@ -14,10 +14,14 @@ export const retrieveRelatedProducts = createSelector(
 
 export const productReviewRetriever = createSelector(
   selectShopPage,
-  (ShopPage) => ShopPage.targetReviews,
+  (ShopPage) => ShopPage.productReviews,
 );
 
 export const retrieveChosenProduct = createSelector(
   selectShopPage,
   (ShopPage) => ShopPage.chosenProduct,
+);
+export const targetReviewsRetrieve = createSelector(
+  selectShopPage,
+  (ShopPage) => ShopPage.targetReviews,
 );

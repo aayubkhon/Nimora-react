@@ -27,6 +27,7 @@ export interface ShopPageState {
   allProducts: Product[];
   relatedProducts: Product[];
   chosenProduct: Product | null;
+  productReviews: Review[];
   targetReviews: Review[];
 }
 
