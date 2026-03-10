@@ -1,0 +1,405 @@
+/* PRODUCT REVIEW STYLES START */
+
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap");
+
+// ─── Tokens ───────
+$color-bg: #ffffff;
+$color-border: #e5e5e5;
+$color-ink: #1a1a1a;
+$color-ink-mid: #555555;
+$color-ink-muted: #888888;
+$color-gold: #f7ab42;
+$color-btn: #1a1a1a;
+$color-btn-text: #ffffff;
+
+$font: "Jost", sans-serif;
+$radius: 4px;
+$ease: 0.2s ease;
+
+// ─── Section wrapper ───
+.review-section {
+  font-family: $font;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+  background: $color-bg;
+  color: $color-ink;
+  height: auto;
+}
+
+// ─── Shared headings ─────────
+.section-heading {
+  font-family: $font !important;
+  font-size: 1.75rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  text-align: center !important;
+  color: $color-ink !important;
+  margin-bottom: 8px !important;
+}
+
+.section-sub {
+  font-size: 0.82rem !important;
+  color: $color-ink-muted !important;
+  text-align: center !important;
+  letter-spacing: 0.03em !important;
+  margin-bottom: 40px !important;
+}
+
+// ─── Review List ─────────
+.review-list-wrap {
+  margin-bottom: 72px;
+}
+
+.review-list {
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  overflow: hidden;
+}
+
+.review-item {
+  display: flex;
+  gap: 20px;
+  padding: 28px 28px;
+
+
+  @media (max-width: 540px) {
+    flex-direction: column;
+    padding: 20px 16px;
+  }
+}
+
+.review-divider {
+  border-color: $color-border !important;
+  margin-top: 0px !important;
+}
+
+.reply_box {
+  padding: 10px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Avatar ────────────
+.review-left {
+  flex-shrink: 0;
+}
+
+.review-avatar {
+  width: 44px !important;
+  height: 44px !important;
+  background-color: #f2ede4 !important;
+  color: $color-gold !important;
+  font-family: $font !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+}
+
+// ─── Review content ─────
+.review-right {
+  flex: 1;
+
+
+}
+
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.review-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-name {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: $color-ink !important;
+  letter-spacing: 0.02em !important;
+}
+.review_name {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: $color-ink !important;
+  letter-spacing: 0.02em !important;
+  margin-left: 10px !important;
+}
+.reply_text {
+  margin-left: 10px !important;
+  font-size: 13px;
+  font-family:
+    "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif !important;
+  font-weight: 500 !important;
+  line-height: 1.3;
+}
+
+.verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.68rem;
+  font-family: $font;
+  color: $color-gold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.review-date {
+  font-size: 0.75rem !important;
+  color: $color-ink-muted !important;
+  letter-spacing: 0.03em !important;
+}
+
+.review-stars {
+  margin-bottom: 10px !important;
+
+  .MuiRating-iconFilled {
+    color: $color-gold !important;
+  }
+
+  .MuiRating-iconEmpty {
+    color: #ddd !important;
+  }
+}
+
+.review-body {
+  font-size: 0.875rem !important;
+  line-height: 1.75 !important;
+  color: $color-ink-mid !important;
+  margin-bottom: 14px !important;
+}
+
+// ─── Helpful ────────────────
+.helpful-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.helpful-label {
+  font-size: 0.72rem !important;
+  color: $color-ink-muted !important;
+  letter-spacing: 0.03em !important;
+}
+
+.helpful-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  font-family: $font;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  color: $color-ink-muted;
+  cursor: pointer;
+  transition: all $ease;
+
+  &:hover {
+    border-color: $color-ink;
+    color: $color-ink;
+  }
+
+  &.active {
+    border-color: $color-gold;
+    color: $color-gold;
+    background: #faf7f1;
+  }
+}
+
+// ─── Comment Form ────────
+.comment-form-wrap {
+  padding-top: 64px;
+  border-top: 1px solid $color-border;
+}
+
+// ─── Star rating row ────────
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.rating-label {
+  font-size: 0.82rem !important;
+  color: $color-ink-muted !important;
+  letter-spacing: 0.04em !important;
+}
+
+.form-stars {
+  .MuiRating-iconFilled {
+    color: $color-gold !important;
+  }
+
+  .MuiRating-iconEmpty {
+    color: #ddd !important;
+  }
+}
+
+// ─── Form fields ─────
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field {
+  margin-bottom: 0 !important;
+
+  &.form-textarea {
+    margin-bottom: 0 !important;
+  }
+
+  .MuiOutlinedInput-root {
+    font-family: $font !important;
+    font-size: 0.875rem !important;
+    border-radius: $radius !important;
+    color: $color-ink !important;
+    background: #fafafa;
+
+    fieldset {
+      border-color: $color-border !important;
+      transition: border-color $ease;
+    }
+
+    &:hover fieldset {
+      border-color: #aaaaaa !important;
+    }
+
+    &.Mui-focused fieldset {
+      border-color: $color-ink !important;
+      border-width: 1px !important;
+    }
+  }
+
+  .MuiInputBase-input {
+    font-family: $font !important;
+    font-size: 0.875rem !important;
+    color: $color-ink !important;
+    padding: 13px 16px !important;
+
+    &::placeholder {
+      color: #aaaaaa !important;
+      opacity: 1 !important;
+    }
+  }
+
+  .MuiInputBase-inputMultiline {
+    padding: 0 !important;
+  }
+
+  .MuiOutlinedInput-inputMultiline {
+    padding: 13px 16px !important;
+  }
+}
+
+.form-textarea {
+  margin-top: 16px !important;
+  display: block;
+}
+
+// ─── Form note ────────────────────────────────────────────────────────────────
+.form-note {
+  font-size: 0.75rem !important;
+  color: $color-ink-muted !important;
+  letter-spacing: 0.02em !important;
+  margin-top: 14px !important;
+  margin-bottom: 20px !important;
+}
+
+// ─── Footer row ───────────────────────────────────────────────────────────────
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.privacy-check {
+  margin: 0 !important;
+
+  .MuiFormControlLabel-label {
+    font-family: $font !important;
+    font-size: 0.78rem !important;
+    color: $color-ink-muted !important;
+    letter-spacing: 0.03em !important;
+  }
+}
+
+// ─── Submit button ────────────────────────────────────────────────────────────
+.submit-btn {
+  font-family: $font !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  background-color: $color-btn !important;
+  color: $color-btn-text !important;
+  padding: 13px 40px !important;
+  border-radius: $radius !important;
+  box-shadow: none !important;
+  transition:
+    background $ease,
+    opacity $ease !important;
+
+  &:hover:not(:disabled) {
+    background-color: #333333 !important;
+  }
+
+  &.Mui-disabled {
+    background-color: #cccccc !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+  }
+}
+
+.replies-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  .reply-item {
+    display: flex;
+  }
+  .reply-left {
+    display: flex;
+    margin-left: 15px;
+  }
+}
+
+.submit_reply_btn {
+  background-color: #333333 !important;
+  color: #ffff !important;
+  width: 100px;
+  height: 23px;
+  font-family: Judson;
+  font-size: 17px;
+  font-weight: 500 !important;
+  line-height: 8px;
+  letter-spacing: 15%;
+  border-radius: 5px;
+  margin-top: 10px !important;
+  &:hover:not(:disabled) {
+    background-color: #333333 !important;
+    color: #ffff;
+  }
+}
+
+// /* PRODUCT REVIEW STYLES END */

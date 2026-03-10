@@ -60,7 +60,6 @@ const ChoosenProduct = (props: any) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [mainImage, setMainImage] = useState(0);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-  const { cartItems } = props;
   const navigate = useNavigate();
 
   const productRelatedProcess = async () => {
@@ -286,7 +285,7 @@ const ChoosenProduct = (props: any) => {
       </div>
       <div className="map_cont">
         <ProductReview product_id={product_id} setProductRebuild={setProductRebuild}/>
-        {/* <iframe
+        <iframe
           title="Jewellry"
           style={{ marginTop: "35px", marginLeft: 15 }}
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50627.69730558068!2d126.85207834863277!3d37.526049699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b45c3d89d7801%3A0x7883571cabf15b8b!2sTiffany%20%26%20Co.!5e0!3m2!1sen!2skr!4v1756989543830!5m2!1sen!2skr"
@@ -294,7 +293,7 @@ const ChoosenProduct = (props: any) => {
           height={"500"}
           referrerPolicy="no-referrer-when-downgrade"
         >
-        </iframe> */}
+        </iframe>
       </div>
     </div>
   );

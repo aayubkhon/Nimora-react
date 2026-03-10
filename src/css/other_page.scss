@@ -2,14 +2,15 @@
   width: 100%;
   height: 1900px;
   .bg_mypage {
-  background-image: url("../../public/home/goz.jpg");
-  width: 100%;
-  height: 900px;
-  background-size: cover;
-  background-position: center;}
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url("../../public/home/jewell.jpg");
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+  }
 }
-
-
 
 .bg_box {
   display: flex;
@@ -18,15 +19,17 @@
   justify-content: flex-end;
   width: 98%;
   .mypage {
-    color: rgb(20, 0, 0);
-    font-family: Judson;
+    color: #fff;
+    font-family:
+      "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 60px;
     font-weight: 800;
     letter-spacing: 0%;
     text-transform: capitalize;
   }
   .mypage_navi {
-    color: rgb(20, 0, 0);
+    color: #fff;
     font-family: Judson;
     font-size: 22px;
     font-weight: 600;
@@ -55,7 +58,6 @@
     border-radius: 10px;
   }
 }
-
 
 .profile_info {
   flex-direction: column;
@@ -122,8 +124,7 @@
     margin: 5px 12px;
     transition: all 0.25s ease;
     width: 270px;
-      margin-top: 10px;
-
+    margin-top: 10px;
 
     &:hover {
       background-color: rgb(225, 214, 202);
@@ -137,8 +138,8 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
   }
-  .tab_another{
-         color: rgb(141, 72, 50);
+  .tab_another {
+    color: rgb(141, 72, 50);
     font-family: Judson;
     font-size: 20px;
     font-weight: 600;
@@ -160,7 +161,6 @@
   letter-spacing: 15%;
   text-transform: capitalize;
   margin-left: 20px;
-  
 }
 
 .tab_name {

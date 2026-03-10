@@ -6,10 +6,8 @@ import {
   IconButton,
   Pagination,
   PaginationItem,
-  Paper,
   Stack,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import SearchIcon from "@mui/icons-material/Search";
@@ -49,7 +47,7 @@ const ShopPage = (props: any) => {
   const { setAllProducts } = actionDispatch(useDispatch());
   const { allProducts } = useSelector(allProductsRetriever);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-
+  const [activeCollection, setActiveCollection] = useState<string>("");
   const [targetSearchObject, setTargetSearchObject] =
     useState<ProductSearchObj>({
       page: 1,
@@ -76,6 +74,7 @@ const ShopPage = (props: any) => {
     targetSearchObject.page = 1;
     targetSearchObject.product_collection = collection;
     setTargetSearchObject({ ...targetSearchObject });
+    setActiveCollection(collection);
   };
 
   const handlePaginatonsChange = (event: any, value: number) => {
@@ -121,8 +120,6 @@ const ShopPage = (props: any) => {
     <div className="Shop_frame">
       <div className="background_box">
         <div className="background_img">
-          <h1 className="background_title">Shop</h1>
-          <p className="background_subtitle">Home/Shop</p>
         </div>
       </div>
       <div className="cards_container">
@@ -132,36 +129,36 @@ const ShopPage = (props: any) => {
         </div>
         <Stack flexDirection={"row"} className="shop_img_wrapper">
           <Box
-            className="shop_box"
+            className={`shop_box ${activeCollection === "Earing" ? "actives" : ""}`}
             onClick={() => searchCollectionHandler("Earing")}
           >
             <img className="shop_svg" src="/icons/earring.svg" alt="" />
             <p className="shop_img_title">Earrings</p>
           </Box>
           <Box
-            className="shop_box"
+            className={`shop_box ${activeCollection === "Necklace" ? "actives" : ""}`}
             onClick={() => searchCollectionHandler("Necklace")}
           >
             <img className="shop_svg" src="/icons/necklace.svg" alt="" />
             <p className="shop_img_title">Necklace</p>
           </Box>
           <Box
+            className={`shop_box ${activeCollection === "Ring" ? "actives" : ""}`}
             onClick={() => searchCollectionHandler("Ring")}
-            className="shop_box"
           >
             <img className="shop_svg" src="/icons/diamond.svg" alt="" />
             <p className="shop_img_title">Diamond</p>
           </Box>
           <Box
+            className={`shop_box ${activeCollection === "Bracelet" ? "actives" : ""}`}
             onClick={() => searchCollectionHandler("Bracelet")}
-            className="shop_box"
           >
             <img className="shop_svg" src="/icons/pendant.svg" alt="" />
             <p className="shop_img_title">Pendant</p>
           </Box>
           <Box
+            className={`shop_box ${activeCollection === "Etc" ? "actives" : ""}`}
             onClick={() => searchCollectionHandler("Etc")}
-            className="shop_box"
           >
             <img className="shop_svg" src="/icons/gems.svg" alt="" />
             <p className="shop_img_title">Gems</p>

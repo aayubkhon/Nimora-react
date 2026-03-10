@@ -1,0 +1,9 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="200" fill="white"></rect>
+
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Playfair Display, serif" font-size="64" letter-spacing="6" fill="black">
+    NIMORA
+  </text>
+
+  <polygon points="300,40 315,60 300,80 285,60" fill="black"></polygon>
+</svg>

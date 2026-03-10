@@ -22,7 +22,7 @@ const Header = () => {
                  justifyContent={"column"}
                  sx={{ marginTop: "150px", marginLeft: "100px" }}
                >
-                 <img className="header_logo" src="/icons/Clip.svg" alt="" />
+                 <p className="header_logo">NIMORA</p>
                  <p className="header_title">Discover the best products for your lifestyle!</p>
                  <Box sx={{ mt: "20px" }}>
                    <Button onClick={()=>navigate("/shop")}  className="main_btn">Shop now</Button>

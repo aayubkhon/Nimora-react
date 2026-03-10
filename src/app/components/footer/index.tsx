@@ -89,7 +89,7 @@ const Footer = () => {
             {/* Brand Section */}
             <Grid item xs={12} md={4}>
               <Box className="brand_section">
-                <img src="./icons/glamora.svg" alt="" />
+                <img src="./icons/nimora.svg" alt="" style={{width:180}} />
                 <Typography className="brand_description">
                   Duis ornare ipsum vel mollis tempor. Vivamus a elit nunc.
                   Aliquam eu scelerisque.

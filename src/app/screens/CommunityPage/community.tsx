@@ -98,7 +98,7 @@ const CommunityPage = (props: any) => {
                 },
               }}
             >
-              <img src="/icons/glamora.svg" alt="" />
+              <img src="/icons/nimora.svg" alt="" style={{width:300}} />
               <Tab className="tab_br" value={"1"} label="All Blogs" />
               <Tab className="tab_br" value={"2"} label="News" />
               <Tab className="tab_br" value={"3"} label="Humor" />

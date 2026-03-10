@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../../css/products.scss";
+import "../../../css/review.scss";
 import {
   Box,
   Typography,
@@ -31,11 +31,10 @@ import MemberApiServices from "../../apiServices/memberApiServices";
 import { Definer } from "../../lib/Definer";
 import assert from "assert";
 import { setProductReviews, setTargetReviews } from "./slice";
-import { productReviewRetriever, targetReviewsRetrieve } from "./selector";
+import { productReviewRetriever } from "./selector";
 import { verifyMemberData } from "../../apiServices/verify";
 import { Reply, Review, ReviewCreateData } from "../../types/review";
 import CommunityApiService from "../../apiServices/communityApiServicse";
-import { Member } from "../../types/user";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -52,23 +51,15 @@ const createproductReviewRetriever = createSelector(
     productReviews,
   }),
 );
-const createTargetReviewsRetrieve = createSelector(
-  targetReviewsRetrieve,
-  (targetReviews) => ({
-    targetReviews,
-  }),
-);
 
 const ProductReview = (props: any) => {
   // ** INITIALIZATION */
-  const { setProductReviews, setTargetReviews } = actionDispatch(useDispatch());
+  const { setProductReviews } = actionDispatch(useDispatch());
   const { productReviews } = useSelector(createproductReviewRetriever);
-  const { targetReviews } = useSelector(createTargetReviewsRetrieve);
-  const [reviews, setReviews] = useState<Review[]>(productReviews);
   const [agree, setAgree] = useState(false);
   const { product_id, setProductRebuild } = props;
   const [context, setContext] = useState<string>("");
-  const [value, setValue] = useState<number>(2);
+  const [value, setValue] = useState<number>(3);
   const [reviewRebuild, setReviewRebuild] = useState<Date>(new Date());
   const [replyRebuild, setReplyRebuild] = useState<Date>(new Date());
   const [characters, setCharacters] = useState<number>(1500);
@@ -84,8 +75,6 @@ const ProductReview = (props: any) => {
     communityService
       .getProductReviews(product_id)
       .then((data) => {
-        console.log(data, "reply");
-
         setProductReviews(data);
       })
       .catch((err) => console.log(err));
@@ -125,7 +114,7 @@ const ProductReview = (props: any) => {
       const data = {
         like_ref_id: reviewId,
         group_type: "review",
-        review_group: "reply",
+        review_group: "reply_messages",
       };
       const like_result: any = await memberService.memberLikeTarget(data);
       assert.ok(like_result, Definer.general_err1);
@@ -158,6 +147,7 @@ const ProductReview = (props: any) => {
       setReplyText("");
       setReplyreview("");
       setReplyRebuild(new Date());
+      setreplyButtonBox(null);
     } catch (err: any) {
       console.log(err);
       await sweetErrorHandling(err);
@@ -246,6 +236,7 @@ const ProductReview = (props: any) => {
                       </Box>
                     </Box>
                   </Box>
+                  <Divider className="review-divider" />
                   <Box className="reply_box">
                     <Button
                       className="submit_reply_btn"
@@ -276,34 +267,43 @@ const ProductReview = (props: any) => {
                         </Button>
                       </form>
                     )}
+
                     {/* ── Reply Reviews Display ──*/}
                     {review.reply_messages &&
                       review.reply_messages.length > 0 &&
                       review.reply_messages.map((reply: Reply) => {
-                        
+                        let reply_image_url = reply.member_data?.mb_image
+                          ? `${serverApi}/${reply.member_data.mb_image}`
+                          : "/pictures/auth/default_user.svg";
                         return (
                           <Box key={reply._id} className="replies-wrapper">
+                            <Divider className="review-divider" />
                             <Box className="reply-item">
                               <Box className="reply-left">
                                 <Avatar
-                                  src={image_url}
+                                  src={reply_image_url}
                                   className="reply-avatar"
                                   sx={{ width: 32, height: 32 }}
                                 />
                               </Box>
                               <Box className="reply-content">
                                 <Box className="review-meta-top">
-                                  <Typography className="review-name">
-                                    {reply.member_data.mb_nick}
+                                  <Typography className="review_name">
+                                    {reply.member_data?.mb_nick ?? "Anonymous"}
                                   </Typography>
-                                  {reply.mb_id && (
-                                    <span className="verified-pill">
-                                      <VerifiedIcon sx={{ fontSize: 11 }} />{" "}
-                                      Verified
-                                    </span>
-                                  )}
+
+                                  {reply.mb_id &&
+                                    reply.member_data && ( // ✅ check qo'shing
+                                      <span className="verified-pill">
+                                        <VerifiedIcon sx={{ fontSize: 11 }} />{" "}
+                                        Verified
+                                      </span>
+                                    )}
+                                  <Typography className="review-date">
+                                    {moment(reply.createdAt).fromNow()}
+                                  </Typography>
                                 </Box>
-                                <Typography className="reply-text">
+                                <Typography className="reply_text">
                                   {reply.review_text}
                                 </Typography>
                                 <Box className="reply-actions">
@@ -314,29 +314,24 @@ const ProductReview = (props: any) => {
                                       "& .MuiBadge-badge": {
                                         backgroundColor: "#FF3040",
                                         color: "white",
-                                        fontSize: "10px",
                                         fontWeight: "bold",
-                                        padding: "0 4px",
                                       },
                                     }}
                                   >
                                     <Checkbox
-                                      id={`reply-`}
+                                      id={reply._id}
                                       onClick={(e) =>
                                         targetLikeHandlers(e, reply._id)
                                       }
                                       size="small"
                                       icon={
                                         <ThumbUpOutlinedIcon
-                                          sx={{ color: "#999", fontSize: 16 }}
+                                          sx={{ color: "#424141" }}
                                         />
                                       }
                                       checkedIcon={
                                         <ThumbUpIcon
-                                          sx={{
-                                            color: "#FF3040",
-                                            fontSize: 16,
-                                          }}
+                                          sx={{ color: "#FF3040" }}
                                         />
                                       }
                                       checked={
@@ -345,7 +340,6 @@ const ProductReview = (props: any) => {
                                           ? true
                                           : false
                                       }
-                                      sx={{ padding: "2px" }}
                                     />
                                   </Badge>
                                 </Box>
@@ -370,7 +364,7 @@ const ProductReview = (props: any) => {
             <Typography className="rating-label">Your Rating *</Typography>
             <Rating
               defaultValue={value}
-              value={reviews.length > 0 ? reviews[0].review_stars : value}
+              value={value}
               onChange={(e: any, newValue: number | null) => {
                 setValue(newValue ?? 0);
               }}

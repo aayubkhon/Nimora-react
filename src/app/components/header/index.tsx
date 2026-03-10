@@ -16,7 +16,6 @@ import { navbar } from "../../lib/navbar";
 import "../../../css/navbar.scss";
 import Footer from "../footer";
 import { Logout } from "@mui/icons-material";
-import PersonIcon from "@mui/icons-material/Person";
 import MemberApiServices from "../../apiServices/memberApiServices";
 import {
   sweetFailureProvider,
@@ -56,7 +55,8 @@ const NavbarHome = (props: any) => {
     <>
       <div className="navbar_container">
         <Box className="logo_section" onClick={() => navigate("/")}>
-          <img className="logo" src="/icons/glamora.svg" alt="Glamora" />
+          {/* <img className="logo" src="/icons/nimora.svg" alt="Glamora" /> */}
+          <img src="/icons/nimora.svg" style={{ width: "180px" }} />
         </Box>
 
         <Box className="navbar_section desktop_nav">

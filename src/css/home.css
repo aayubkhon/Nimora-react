@@ -30,10 +30,11 @@
   height: 15.76px;
 }
 
-.header_logo {
-  position: relative;
-  width: 606px;
-  text-align: center;
+.header_logo{
+  font-family: 'Alex Brush', cursive;
+  font-size: 120px;
+  color: black;
+  font-weight: 400;
 }
 
 .header .header_title {
@@ -496,11 +497,6 @@
   text-align: center;
 }
 
-/* .RecentProducts_frame .product_btn:focus {
-background: rgb(75, 61, 57);
-  color: rgb(255, 255, 255);
- 
-} */
 
 .RecentProducts_frame .active:focus {
   background: rgb(75, 61, 57);

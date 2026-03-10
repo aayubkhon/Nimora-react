@@ -6,7 +6,6 @@ import AddCommentIcon from "@mui/icons-material/AddComment";
 import MemberFollow from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import { TabContext, TabPanel, TabList } from "@mui/lab";
-import TargetArticles from "../CommunityPage/targetArticles";
 import { useNavigate, useParams } from "react-router-dom";
 import { BoArticle, SearchMemberArticlesObj } from "../../types/boArticle";
 import { verifyMemberData } from "../../apiServices/verify";
@@ -292,7 +291,6 @@ const VisitOtherPage = (props: any) => {
               </Box>
               <Box>
                 <TabPanel value={"1"}>
-                  <Box className="menu_name">Followers</Box>
                   <Box className={"box_frame"}>
                     <MemberFollow
                       mb_id={other_id}
@@ -303,7 +301,6 @@ const VisitOtherPage = (props: any) => {
                 </TabPanel>
               </Box>
               <TabPanel value={"2"}>
-                <Box className="menu_name">Followings</Box>
                 <Box className={"box_frame"}>
                   <MemberFollowings
                     mb_id={other_id}
@@ -313,7 +310,6 @@ const VisitOtherPage = (props: any) => {
                 </Box>
               </TabPanel>
               <TabPanel value={"3"}>
-                <Box className="menu_name">Articles</Box>
                 <Box>
                   <MemberPost
                     chosenMemberArticles={chosenMemberArticles}

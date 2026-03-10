@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Typography,
   IconButton,
-  Rating,
   Checkbox,
   Badge,
-  Button,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -21,7 +19,6 @@ const ProductCard = (props: any) => {
   const choosenProductsHandler = (id: string) => {
     navigate(`/shop/${id}`);
   };
- 
 
   return (
     <div className="productCard_container">
@@ -32,12 +29,11 @@ const ProductCard = (props: any) => {
           <Box className="product_card">
             {/* Badges */}
             <Box className="badges">
-              {product.createdAt && <Box className="badge new_badge">NEW</Box>}
-              {product.product_discount > 0 && (
-                <Box className="badge discount_badge">
-                  -{product.product_discount}%
-                </Box>
-              )}
+              {product.createdAt &&
+                new Date().getTime() - new Date(product.createdAt).getTime() <
+                  7 * 24 * 60 * 60 * 1000 && (
+                  <Box className="badge new_badge">NEW</Box>
+                )}
             </Box>
 
             {/* Image Container */}
