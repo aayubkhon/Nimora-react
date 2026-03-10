@@ -18,6 +18,7 @@ export interface ProductSearchObj {
   order: string;
   shop_mb_id?: string;
   product_collection?: string;
+  search?: string;
 }
 
 export interface MemberLiken {

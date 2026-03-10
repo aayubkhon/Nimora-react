@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const DiamondCollection = () => {
   const brands = [
@@ -8,9 +9,11 @@ const DiamondCollection = () => {
     { name: "Soager", logo: "/icons/soager.svg" },
     { name: "Luxiva", logo: "/icons/luxia.svg" },
     { name: "Catalena", logo: "/icons/caterene.svg" },
-    { name: "Columbia", logo: "/icons/columbia.svg" }
+    { name: "Columbia", logo: "/icons/columbia.svg" },
   ];
   const duplicatedBrands = [...brands, ...brands];
+    const navigate = useNavigate()
+  
   return (
     <div className="DiamondCollection_frame">
       <div className="container">
@@ -20,7 +23,7 @@ const DiamondCollection = () => {
             <p className="img_about">
               New Dôme pieces are here to define your summer palette
             </p>
-            <Button className="btn_dome" variant="outlined">
+            <Button onClick={()=>navigate("/shop")} className="btn_dome" variant="outlined">
               Shop Dome
             </Button>
           </div>
@@ -31,24 +34,24 @@ const DiamondCollection = () => {
             <p className="img_about">
               Our most-loved Stevie Hoops, now in new colors.
             </p>
-            <Button className="btn_dome" variant="outlined">
+            <Button onClick={()=>navigate("/shop")} className="btn_dome" variant="outlined">
               Shop Stevie
             </Button>
           </div>
         </div>
       </div>
       <Box className="animation_frame">
-      <Box className="scroller">
-        <Box className="scroller-inner">
-          {duplicatedBrands.map((brand, index) => (
-            <Box key={index} className="scroller_item">
-              <img src={brand.logo} alt={brand.name} />
-            </Box>
-          ))}
+        <Box className="scroller">
+          <Box className="scroller-inner">
+            {duplicatedBrands.map((brand, index) => (
+              <Box key={index} className="scroller_item">
+                <img src={brand.logo} alt={brand.name} />
+              </Box>
+            ))}
+          </Box>
         </Box>
+        <Box className="vector" />
       </Box>
-      <Box className="vector" />
-    </Box>
     </div>
   );
 };

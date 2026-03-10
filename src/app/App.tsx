@@ -6,7 +6,8 @@ import NotFound from "./screens/NotFound";
 import { navbar } from "./lib/navbar";
 
 import "./apiServices/verify";
-
+import { verifyMemberData } from "./apiServices/verify";
+import Chatting from "./components/features/chattingModal";
 function useQuery() {
   const { search } = useLocation();
   return React.useMemo(() => new URLSearchParams(search), [search]);
@@ -23,6 +24,9 @@ function App(props: any) {
   return (
     <>
       <div>
+             {
+        verifyMemberData && verifyMemberData._id ? <Chatting /> : null
+      }
         <Routes>
           <Route
             element={

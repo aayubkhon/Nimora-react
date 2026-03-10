@@ -3,8 +3,10 @@ import { Stack, Box, Button} from "@mui/material";
 
 
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate()
   return (
     <div className="header">
       <Stack>
@@ -23,7 +25,7 @@ const Header = () => {
                  <img className="header_logo" src="/icons/Clip.svg" alt="" />
                  <p className="header_title">Discover the best products for your lifestyle!</p>
                  <Box sx={{ mt: "20px" }}>
-                   <Button  className="main_btn ">Shop now</Button>
+                   <Button onClick={()=>navigate("/shop")}  className="main_btn">Shop now</Button>
                  </Box>
                </Stack>
              </Stack>

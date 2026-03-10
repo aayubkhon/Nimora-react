@@ -33,14 +33,15 @@ import assert from "assert";
 import { setProductReviews, setTargetReviews } from "./slice";
 import { productReviewRetriever, targetReviewsRetrieve } from "./selector";
 import { verifyMemberData } from "../../apiServices/verify";
-import { Review } from "../../types/review";
+import { Reply, Review, ReviewCreateData } from "../../types/review";
 import CommunityApiService from "../../apiServices/communityApiServicse";
 import { Member } from "../../types/user";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setProductReviews: (data: Review[]) => dispatch(setProductReviews(data)),
-  setTargetReviews: (data: Member) => dispatch(setTargetReviews(data)),
+  setTargetReviews: (data: ReviewCreateData[]) =>
+    dispatch(setTargetReviews(data)),
 });
 
 // ** REDUX SELECTOR */
@@ -51,7 +52,7 @@ const createproductReviewRetriever = createSelector(
     productReviews,
   }),
 );
-const targetMemberReviewRetriever = createSelector(
+const createTargetReviewsRetrieve = createSelector(
   targetReviewsRetrieve,
   (targetReviews) => ({
     targetReviews,
@@ -62,7 +63,7 @@ const ProductReview = (props: any) => {
   // ** INITIALIZATION */
   const { setProductReviews, setTargetReviews } = actionDispatch(useDispatch());
   const { productReviews } = useSelector(createproductReviewRetriever);
-  const { targetReviews } = useSelector(targetMemberReviewRetriever);
+  const { targetReviews } = useSelector(createTargetReviewsRetrieve);
   const [reviews, setReviews] = useState<Review[]>(productReviews);
   const [agree, setAgree] = useState(false);
   const { product_id, setProductRebuild } = props;
@@ -73,23 +74,19 @@ const ProductReview = (props: any) => {
   const [characters, setCharacters] = useState<number>(1500);
   const [replyButtonBox, setreplyButtonBox] = useState<string | null>(null);
   const [replytext, setReplyText] = useState<string>("");
+  const [replyreview, setReplyreview] = useState<string>("");
   const refs: any = useRef([]);
   useEffect(() => {
     if (!verifyMemberData) {
       sweetFailureProvider("Please login first!", true, true);
     }
     const communityService = new CommunityApiService();
-    const memberService = new MemberApiServices();
     communityService
       .getProductReviews(product_id)
       .then((data) => {
+        console.log(data, "reply");
+
         setProductReviews(data);
-      })
-      .catch((err) => console.log(err));
-    memberService
-      .getMemberReviews(verifyMemberData?._id)
-      .then((data) => {
-        setTargetReviews(data);
       })
       .catch((err) => console.log(err));
   }, [reviewRebuild, replyRebuild]);
@@ -125,7 +122,11 @@ const ProductReview = (props: any) => {
     try {
       assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiServices();
-      const data = { like_ref_id: reviewId, group_type: "review" };
+      const data = {
+        like_ref_id: reviewId,
+        group_type: "review",
+        review_group: "reply",
+      };
       const like_result: any = await memberService.memberLikeTarget(data);
       assert.ok(like_result, Definer.general_err1);
       await sweetTopSmallSuccessAlert("success", 700, false);
@@ -140,24 +141,22 @@ const ProductReview = (props: any) => {
     setreplyButtonBox((prev) => (prev === reviewId ? null : reviewId));
     setReplyText("");
   };
-  async function targetSubmitReplyHandler(_id: string) {
+  async function targetSubmitReplyHandler(cooment_id: string) {
     try {
       if (!replytext) {
         throw new Error(Definer.input_err1);
       }
-
       assert.ok(verifyMemberData, Definer.auth_err1);
-      const memberService = new MemberApiServices();
-      await memberService.getMemberReviews(verifyMemberData?._id);
       const communityServiceApi = new CommunityApiService();
       await communityServiceApi.createReview({
         review_stars: value,
         review_text: replytext,
-        review_target_id: _id,
-        review_group: "review",
+        review_target_id: cooment_id,
+        review_group: "reply",
       });
       await sweetTopSmallSuccessAlert("Successfully posted!", 300, false);
       setReplyText("");
+      setReplyreview("");
       setReplyRebuild(new Date());
     } catch (err: any) {
       console.log(err);
@@ -264,13 +263,12 @@ const ProductReview = (props: any) => {
                           multiline
                           rows={2}
                           className="form-field form-textarea"
+                          ref={(ele) => (refs.current["context"] = ele)}
                           onChange={(e) => setReplyText(e.target.value)}
                           value={replytext}
                         />
                         <Button
-                          onClick={() =>
-                            targetSubmitReplyHandler(review._id)
-                          }
+                          onClick={() => targetSubmitReplyHandler(review._id)}
                           variant="contained"
                           className="submit_reply_btn"
                         >
@@ -278,7 +276,84 @@ const ProductReview = (props: any) => {
                         </Button>
                       </form>
                     )}
-                    {/* {review.reply_data &&} */}
+                    {/* ── Reply Reviews Display ──*/}
+                    {review.reply_messages &&
+                      review.reply_messages.length > 0 &&
+                      review.reply_messages.map((reply: Reply) => {
+                        
+                        return (
+                          <Box key={reply._id} className="replies-wrapper">
+                            <Box className="reply-item">
+                              <Box className="reply-left">
+                                <Avatar
+                                  src={image_url}
+                                  className="reply-avatar"
+                                  sx={{ width: 32, height: 32 }}
+                                />
+                              </Box>
+                              <Box className="reply-content">
+                                <Box className="review-meta-top">
+                                  <Typography className="review-name">
+                                    {reply.member_data.mb_nick}
+                                  </Typography>
+                                  {reply.mb_id && (
+                                    <span className="verified-pill">
+                                      <VerifiedIcon sx={{ fontSize: 11 }} />{" "}
+                                      Verified
+                                    </span>
+                                  )}
+                                </Box>
+                                <Typography className="reply-text">
+                                  {reply.review_text}
+                                </Typography>
+                                <Box className="reply-actions">
+                                  <Badge
+                                    badgeContent={reply?.review_likes || 0}
+                                    color="error"
+                                    sx={{
+                                      "& .MuiBadge-badge": {
+                                        backgroundColor: "#FF3040",
+                                        color: "white",
+                                        fontSize: "10px",
+                                        fontWeight: "bold",
+                                        padding: "0 4px",
+                                      },
+                                    }}
+                                  >
+                                    <Checkbox
+                                      id={`reply-`}
+                                      onClick={(e) =>
+                                        targetLikeHandlers(e, reply._id)
+                                      }
+                                      size="small"
+                                      icon={
+                                        <ThumbUpOutlinedIcon
+                                          sx={{ color: "#999", fontSize: 16 }}
+                                        />
+                                      }
+                                      checkedIcon={
+                                        <ThumbUpIcon
+                                          sx={{
+                                            color: "#FF3040",
+                                            fontSize: 16,
+                                          }}
+                                        />
+                                      }
+                                      checked={
+                                        reply?.me_liked &&
+                                        reply?.me_liked[0]?.my_favorite
+                                          ? true
+                                          : false
+                                      }
+                                      sx={{ padding: "2px" }}
+                                    />
+                                  </Badge>
+                                </Box>
+                              </Box>
+                            </Box>
+                          </Box>
+                        );
+                      })}
                   </Box>
                   <Divider className="review-divider" />
                 </Box>

@@ -1,10 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../../../css/shop.css";
 import "../../../css/products.scss";
-import { Box, Pagination, PaginationItem, Stack } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Pagination,
+  PaginationItem,
+  Paper,
+  Stack,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import SearchIcon from "@mui/icons-material/Search";
 import ProductCard from "../ShopPage/productCard";
 import {
   sweetErrorHandling,
@@ -48,9 +56,9 @@ const ShopPage = (props: any) => {
       limit: 12,
       order: "random",
     });
-useEffect(() => {
- window.scrollTo(0, 0);
-}, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const productService = new ProductApiServices();
@@ -61,8 +69,7 @@ useEffect(() => {
   }, [targetSearchObject, productRebuild]);
 
   const refs: any = useRef([]);
-  const navigate = useNavigate();
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("");
   // ** HANDLES ** //
 
   const searchCollectionHandler = (collection: string) => {
@@ -92,6 +99,24 @@ useEffect(() => {
       sweetErrorHandling(err).then();
     }
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value;
+    setValue(text);
+    setTargetSearchObject((prev) => ({
+      ...prev,
+      page: 1,
+      search: text,
+    }));
+  };
+
+  const handleSearchSubmit = () => {
+    setTargetSearchObject((prev) => ({
+      ...prev,
+      page: 1,
+      search: value,
+    }));
+  };
+
   return (
     <div className="Shop_frame">
       <div className="background_box">
@@ -143,7 +168,31 @@ useEffect(() => {
           </Box>
         </Stack>
       </div>
-      <ProductCard allProducts={allProducts} targetLikeShop={targetLikeShop} />
+      <Stack className="search_container">
+        <Box className="search_box">
+          <input
+            className="search_input"
+            placeholder="Search..."
+            type="text"
+            value={value}
+            onChange={handleChange}
+            onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
+          />
+          <IconButton
+            onClick={handleSearchSubmit}
+            type="submit"
+            className="search_btn"
+            aria-label="delete"
+          >
+            <SearchIcon />
+          </IconButton>
+        </Box>
+      </Stack>
+      <ProductCard
+        allProducts={allProducts}
+        targetLikeShop={targetLikeShop}
+        value={value}
+      />
       <Box className="pagination_box">
         <Pagination
           count={targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3}

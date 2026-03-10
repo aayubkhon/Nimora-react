@@ -118,18 +118,6 @@ class MemberApiServices {
       throw err;
     }
   }
-   async getMemberReviews(_id: string) {
-    try {
-      const url = `${serverApi}/review/getReviews/${_id}`;
-      const result = await axios.get(url, { withCredentials: true });
-      assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data.state !== "fail", result?.data?.message);
-      console.log(`getMemberReviews state, ${result.data.state}`);
-      const member: Member = result.data.member_data;
-      return member;
-    } catch (err) {
-      throw err;
-    }
-  }
+ 
 }
 export default MemberApiServices;

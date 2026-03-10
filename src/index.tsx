@@ -8,8 +8,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './app/MaterialTheme';
 import { BrowserRouter } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
+import { socket, socketContext } from "./app/components/context/socket_io"
 const container = document.getElementById("root")!;
-
 const root = createRoot(container);
 
 
@@ -19,7 +19,9 @@ root.render(
     <ThemeProvider theme={theme}>
     <BrowserRouter>
     <CssBaseline />
+    <socketContext.Provider value={socket}>
       <App />
+    </socketContext.Provider>
     </BrowserRouter>
       </ThemeProvider>
     </Provider>
