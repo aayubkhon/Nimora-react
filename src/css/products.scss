@@ -315,11 +315,6 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #ffffff;
   }
-
-  .discount_badge {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: #ffffff;
-  }
 }
 
 /* Image Container */
@@ -376,7 +371,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  opacity: 1;
   transform: translateX(20px);
   transition: all 0.3s ease;
   &:hover .action_hover_box {
@@ -389,6 +383,7 @@
     color: #2e2e2e;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    border: 1px solid red;
     &:hover {
       background: #2e2e2e;
       color: #ffffff;
@@ -553,4 +548,3 @@
   }
 }
 /* PRODUCT CARD STYLES END */
-

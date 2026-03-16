@@ -119,8 +119,7 @@ const ShopPage = (props: any) => {
   return (
     <div className="Shop_frame">
       <div className="background_box">
-        <div className="background_img">
-        </div>
+        <div className="background_img"></div>
       </div>
       <div className="cards_container">
         <div className="shop_center">

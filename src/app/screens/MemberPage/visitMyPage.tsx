@@ -217,7 +217,7 @@ const VisitMyPage = (props:any) => {
               </Box>
 
               <TabPanel value={"1"}>
-                <Box className={"box_frame"}>
+                <Box className={"box_frame_favorite"}>
                   <MyFavorites />
                 </Box>
               </TabPanel>

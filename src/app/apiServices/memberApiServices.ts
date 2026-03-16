@@ -5,6 +5,7 @@ import { serverApi } from "../lib/config";
 import { Member, MemberUpdateData } from "../types/user";
 import { MemberLiken } from "../types/other";
 import { Review } from "../types/review";
+import { Product } from "../types/product";
 class MemberApiServices {
   private readonly path: string;
   constructor() {
@@ -118,6 +119,19 @@ class MemberApiServices {
       throw err;
     }
   }
- 
+  public async getLikedProducts(): Promise<Product[]> {
+    try {
+      const result = await axios.get(this.path + "/member/liked-products", {
+        withCredentials: true,
+      });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", result?.data?.message);
+      const products: Product[] = result.data.data;
+      return products;
+    } catch (err: any) {
+      console.log(`ERROR ::: getLikedProducts", ${err.message}`);
+      throw err;
+    }
+  }
 }
 export default MemberApiServices;

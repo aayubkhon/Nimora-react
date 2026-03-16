@@ -3,12 +3,7 @@
   height: 700px;
 }
 
-.bg_mypage {
-  // background-image: url("../../public/home/panoramic.jpeg");
-  width: 100%;
-  // background-size: cover;
-  // background-position: center;
-}
+
 
 .bg_box {
   display: flex;
@@ -171,6 +166,12 @@
 }
 
 .box_frame {
+  margin-top: 110px;
+}
+
+.box_frame_favorite{
+    display: flex;
+  flex-direction: row;
   margin-top: 110px;
 }
 
