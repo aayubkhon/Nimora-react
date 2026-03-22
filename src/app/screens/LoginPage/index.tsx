@@ -28,30 +28,36 @@ import { Definer } from "../../lib/Definer";
 import MemberApiServices from "../../apiServices/memberApiServices";
 
 const LoginPage = () => {
+  // ** INITIALIZATIONS ** //
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
-
-  // ** INITIALIZATIONS ** //
-  let mb_nick: string = "",
-    mb_phone: number = 0,
-    mb_password: string = "";
-
+  const [mb_nick, set_mb_nick] = useState<string>("");
+  const [mb_phone, set_mb_phone] = useState<number>(0);
+  const [mb_password, set_mb_password] = useState<string>("");
   // ** HEANDLERS ** //
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
   };
 
   const handleUsername = (e: any) => {
-    mb_nick = e.target.value;
+    set_mb_nick(e.target.value);
   };
   const handlePhone = (e: any) => {
-    mb_phone = e.target.value;
+    set_mb_phone(e.target.value);
   };
   const handlePassword = (e: any) => {
-    mb_password = e.target.value;
+    set_mb_password(e.target.value);
   };
-
+  const passwordKeyDownHandler = (e: any, mode: "login" | "signup") => {
+    if (e.key === "Enter") {
+      if (mode === "signup") {
+        handleSignUpRequest();
+      } else {
+        handleLoginRequest();
+      }
+    }
+  };
   // ** SignUp Process ** //
 
   const handleSignUpRequest = async () => {
@@ -66,7 +72,7 @@ const LoginPage = () => {
       };
       const memberApiService = new MemberApiServices();
       await memberApiService.signupRequest(signup_data);
-      navigate("/")
+      navigate("/");
       window.location.reload();
       sweetTopSmallSuccessAlert("SignUp Success", 1000, true);
     } catch (err) {
@@ -75,7 +81,7 @@ const LoginPage = () => {
     }
   };
   // ** Login Process ** //
-  const handleLoginRequest = async (props: any) => {
+  const handleLoginRequest = async () => {
     try {
       const is_fulfiled = mb_nick !== "" && mb_password !== "";
       assert.ok(is_fulfiled, Definer.input_err1);
@@ -85,7 +91,7 @@ const LoginPage = () => {
       };
       const memberApiService = new MemberApiServices();
       await memberApiService.loginRequest(login_data);
-      navigate("/")
+      navigate("/");
       window.location.reload();
       sweetTopSmallSuccessAlert("Login Success", 1000, true);
     } catch (err) {
@@ -164,6 +170,7 @@ const LoginPage = () => {
                   variant="outlined"
                   className="form_input"
                   onChange={handlePassword}
+                  onKeyDown={(e) => passwordKeyDownHandler(e, "login")}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -267,6 +274,7 @@ const LoginPage = () => {
                   variant="outlined"
                   className="form_input"
                   onChange={handlePassword}
+                  onKeyDown={(e) => passwordKeyDownHandler(e, "signup")}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">

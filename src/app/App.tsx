@@ -24,14 +24,12 @@ function App(props: any) {
   return (
     <>
       <div>
-             {
-        verifyMemberData && verifyMemberData._id ? <Chatting /> : null
-      }
+        <Chatting />
         <Routes>
           <Route
             element={
               <NavbarHome
-              chosen_mb_id={chosen_mb_id}
+                chosen_mb_id={chosen_mb_id}
                 chosen_art_id={chosen_art_id}
               />
             }
