@@ -18,7 +18,7 @@ const MySettings = () => {
   const [memberUpdate, setMemberUpdate] = useState<MemberUpdateData>({
     mb_nick: "",
     mb_phone: "",
-    mb_address: "",
+    mb_adress: "",
     mb_description: "",
     mb_image: "",
   });
@@ -32,7 +32,7 @@ const MySettings = () => {
     setMemberUpdate({ ...memberUpdate });
   };
   const changeMemberAdressHandler = (e: any) => {
-    memberUpdate.mb_address = e.target.value;
+    memberUpdate.mb_adress = e.target.value;
     setMemberUpdate({ ...memberUpdate });
   };
   const changeMemberDescriptionHandler = (e: any) => {
@@ -129,7 +129,7 @@ const MySettings = () => {
                 className="spec_short_input mb_address"
                 type="text"
                 placeholder={verifyMemberData?.mb_adress ?? "No Adress"}
-                name="mb_address"
+                name="mb_adress"
                 onChange={changeMemberAdressHandler}
               />
             </div>

@@ -97,7 +97,7 @@ class MemberApiServices {
       let formData = new FormData();
       formData.append("mb_nick", data.mb_nick || "");
       formData.append("mb_phone", data.mb_phone || "");
-      formData.append("mb_adress", data.mb_address || "");
+      formData.append("mb_adress", data.mb_adress || "");
       formData.append("mb_description", data.mb_description || "");
       formData.append("mb_image", data.mb_image || "");
       const result = await axios(`${this.path}/member/update`, {

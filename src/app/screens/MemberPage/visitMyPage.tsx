@@ -88,6 +88,10 @@ const VisitMyPage = (props:any) => {
       limit: 3,
     });
 
+       useEffect(() => {
+          window.scrollTo(0, 0);
+        }, []);
+
   useEffect(() => {
     if (!verifyMemberData) {
       sweetFailureProvider("Please login first!", true, true);
@@ -132,6 +136,15 @@ const VisitMyPage = (props:any) => {
 
   return (
     <div className="MyPage_frame">
+      <Box className="store_hero">
+              <Box className="store_hero_inner">
+                <Typography className="store_hero_label">My Page</Typography>
+                <Typography className="store_hero_title">
+                  Discover Nimora<br />Jewellery My Page
+                </Typography>
+                <Box className="store_hero_line" />
+              </Box>
+            </Box>
       <div className="right_menu">
         <div className="my_container">
           <Box className="tab_cont_frame">
@@ -159,8 +172,8 @@ const VisitMyPage = (props:any) => {
                       }
                     />
                     <Box className={"profile_info"}>
-                      <p className="my_name">{chosenMember?.mb_nick}</p>
-                      <p className="my_phone">{chosenMember?.mb_phone}</p>
+                      <p className="my_name">name:{chosenMember?.mb_nick}</p>
+                      <p className="my_phone">phone:{chosenMember?.mb_phone}</p>
                       <p className="user">{chosenMember?.mb_type ?? "User"}</p>
                       <p className="user">Info:{chosenMember?.mb_description ?? ""}</p>
                     </Box>

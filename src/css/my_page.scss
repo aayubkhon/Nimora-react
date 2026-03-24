@@ -3,8 +3,6 @@
   height: 700px;
 }
 
-
-
 .bg_box {
   display: flex;
   flex-direction: column;
@@ -60,7 +58,7 @@
   .my_name {
     color: rgb(20, 0, 0);
     font-family: Judson;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 8px;
     letter-spacing: 15%;
@@ -70,7 +68,7 @@
   .my_phone {
     color: rgb(20, 0, 0);
     font-family: Judson;
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 600;
     line-height: 8px;
     letter-spacing: 15%;
@@ -80,7 +78,7 @@
   .user {
     color: rgb(20, 0, 0);
     font-family: Judson;
-    font-size: 22px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 8px;
     letter-spacing: 15%;
@@ -141,7 +139,6 @@
     margin-top: 25px;
     opacity: 0.7;
   }
-
 }
 
 .tab_title {
@@ -166,16 +163,14 @@
 }
 
 .box_frame {
-  margin-top: 110px;
+  margin-top: 120px;
 }
 
-.box_frame_favorite{
-    display: flex;
+.box_frame_favorite {
+  display: flex;
   flex-direction: row;
   margin-top: 110px;
 }
-
-
 
 // My Setting //
 

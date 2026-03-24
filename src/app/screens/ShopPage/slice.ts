@@ -40,5 +40,5 @@ export const {
   setTargetReviews
 } = ShopPageSlice.actions;
 
-const shopPageReducer = ShopPageSlice.reducer;
-export default shopPageReducer;
+const ShopPageReducer = ShopPageSlice.reducer;
+export default ShopPageReducer;

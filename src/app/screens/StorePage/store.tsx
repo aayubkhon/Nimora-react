@@ -1,153 +1,165 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Typography, Button, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "../../../css/store.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { Shop } from "../../types/user";
+import { setStoreShops } from "./slice";
+import { retrieveStoreShop } from "./selector";
+import ShopApiServices from "../../apiServices/shopApiService";
+import { serverApi } from "../../lib/config";
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setStoreShops: (data: Shop[]) => dispatch(setStoreShops(data)),
+});
+
+const storeShopRetriever = createSelector(retrieveStoreShop, (storeShops) => ({
+  storeShops,
+}));
 
 const Store = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
+  const { setStoreShops } = actionDispatch(useDispatch());
+  const { storeShops } = useSelector(storeShopRetriever);
 
-  const stories = [
-    {
-      id: 1,
-      date: "FEB 02 2023",
-      title: "The Key To Unmatched Sophistication",
-      description:
-        "There Are Many Variations Of Passages Lorem Ipsum Available, But The Majority Have Suffered.",
-      image: "/home/new_r.jpeg",
-    },
-    {
-      id: 2,
-      date: "FEB 02 2023",
-      title: "Embrace The Unseen Magic Uniqueness",
-      description:
-        "There Are Many Variations Of Passages Lorem Ipsum Available, But The Majority Have Suffered.",
-      image: "/home/new_r.jpeg",
-    },
-    {
-      id: 3,
-      date: "FEB 02 2023",
-      title: "Redefining Elegance Unique Charms",
-      description:
-        "There Are Many Variations Of Passages Lorem Ipsum Available, But The Majority Have Suffered.",
-      image: "/home/new_r.jpeg",
-    },
-     {
-      id: 4,
-      date: "FEB 02 2023",
-      title: "The Key To Unmatched Sophistication",
-      description:
-        "There Are Many Variations Of Passages Lorem Ipsum Available, But The Majority Have Suffered.",
-      image: "/home/new_r.jpeg",
-    },
-    {
-      id: 5,
-      date: "FEB 02 2023",
-      title: "Embrace The Unseen Magic Uniqueness",
-      description:
-        "There Are Many Variations Of Passages Lorem Ipsum Available, But The Majority Have Suffered.",
-      image: "/home/new_r.jpeg",
-    },
-    {
-      id: 6,
-      date: "FEB 02 2023",
-      title: "Redefining Elegance Unique Charms",
-      description:
-        "There Are Many Variations Of Passages Lorem Ipsum Available, But The Majority Have Suffered.",
-      image: "/home/new_r.jpeg",
-    },
-  ];
+  useEffect(() => {
+    const shopService = new ShopApiServices();
+    shopService
+      .getTopStoreShops()
+      .then((data) => setStoreShops(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <Box className="featured_stories_section">
+    <Box className="store_page">
+      {/* ── Hero Banner ── */}
+      <Box className="store_hero">
+        <Box className="store_hero_inner">
+          <Typography className="store_hero_label">Our Boutiques</Typography>
+          <Typography className="store_hero_title">
+            Discover Nimora<br />Jewellery Stores
+          </Typography>
+          <Box className="store_hero_line" />
+        </Box>
+      </Box>
+
       <Container maxWidth="xl">
-        {/* Section Header */}
-        <Box className="section_header">
-          <Box className="header_left">
-            <Typography className="section_subtitle">POPULAR POST</Typography>
-            <Typography className="section_title">
-              Featured Stories About
-              <br />
-              Jewellery
+        {/* ── Section Header ── */}
+        <Box className="store_header">
+          <Box className="store_header_left">
+            <Typography className="store_section_label">FEATURED STORIES</Typography>
+            <Typography className="store_section_title">
+              Stories About<br />Fine Jewellery
             </Typography>
           </Box>
-          <Box className="header_right">
-            <Typography className="header_description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
+          <Box className="store_header_right">
+            <Typography className="store_section_desc">
+              Explore our curated collection of jewellery boutiques, each
+              offering a unique experience crafted with passion and precision.
             </Typography>
-            <Button
-              className="view_all_btn"
-              onClick={() => navigate("/stories")}
-            >
-              VIEW ALL
+            <Button className="store_view_all_btn" onClick={() => navigate("/stories")}>
+              View All Stores
+              <span className="btn_arrow">→</span>
             </Button>
           </Box>
         </Box>
 
-        {/* Stories Grid */}
-        <Grid container spacing={3} className="stories_grid">
-          {stories.map((story) => (
-            <Grid item xs={12} md={4} key={story.id}>
-              <Box className="story_card">
-                {/* Image Section */}
+        {/* ── Store Cards Grid ── */}
+        <Grid container spacing={4} className="store_grid">
+          {storeShops.map((shop: Shop, index: number) => {
+            const image_path = shop.mb_image
+              ? `${serverApi}/${shop.mb_image}`
+              : "/pictures/auth/default_user.svg";
+
+            return (
+              <Grid item xs={12} md={4} key={shop._id}>
                 <Box
-                  className="story_image"
-                  sx={{ backgroundImage: `url(${story.image})` }}
-                  onClick={() => navigate(`/story/${story.id}`)}
+                  className="store_card"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <Box className="read_more_overlay">
-                    <Typography className="read_more_text">
-                      ← Read More →
+                  {/* Image */}
+                  <Box className="store_card_img_wrap">
+                    <Box
+                      className="store_card_img"
+                      style={{ backgroundImage: `url(${image_path})` }}
+                    />
+                    <Box className="store_card_overlay">
+                      <Button
+                        className="store_overlay_btn"
+                        onClick={() => navigate(`/store/${shop._id}`)}
+                      >
+                        Visit Store
+                      </Button>
+                    </Box>
+                    {/* Index badge */}
+                    <Box className="store_card_index">
+                      {String(index + 1).padStart(2, "0")}
+                    </Box>
+                  </Box>
+
+                  {/* Content */}
+                  <Box className="store_card_content">
+                    <Box className="store_card_top">
+                      <Typography className="store_card_nick">
+                        {shop.mb_nick}
+                      </Typography>
+                      <Box className="store_card_divider" />
+                    </Box>
+                    <Typography className="store_card_address">
+                      📍 {shop.mb_adress || "Address not specified"}
                     </Typography>
+                    <Typography className="store_card_phone">
+                      📞 {shop.mb_phone || "—"}
+                    </Typography>
+                    {shop.mb_description && (
+                      <Typography className="store_card_desc">
+                        {shop.mb_description}
+                      </Typography>
+                    )}
+                    <Button
+                      className="store_card_btn"
+                      onClick={() => navigate(`/shop`)}
+                    >
+                      Shop Now
+                    </Button>
                   </Box>
                 </Box>
+              </Grid>
+            );
+          })}
 
-                {/* Content Section */}
-                <Box className="story_content">
-                  <Typography className="story_date">{story.date}</Typography>
-                  <Typography className="story_title">{story.title}</Typography>
-                  <Typography className="story_description">
-                    {story.description}
-                  </Typography>
-                  <Button
-                    className="story_btn"
-                    onClick={() => navigate(`/story/${story.id}`)}
-                  >
-                    SHOP NOW
-                  </Button>
-                </Box>
+          {/* Bo'sh holat */}
+          {storeShops.length === 0 && (
+            <Grid item xs={12}>
+              <Box className="store_empty">
+                <Typography>No stores available yet.</Typography>
               </Box>
             </Grid>
-          ))}
+          )}
         </Grid>
 
-        {/* Pagination */}
-        <Box className="pagination_container">
-          <Box className="pagination">
-            {[...Array(totalPages)].map((_, index) => (
-              <Button
-                key={index + 1}
-                className={`page_btn ${
-                  currentPage === index + 1 ? "active" : ""
-                }`}
-                onClick={() => setCurrentPage(index + 1)}
-              >
-                {index + 1}
-              </Button>
-            ))}
+        {/* ── Pagination ── */}
+        <Box className="store_pagination">
+          {[...Array(totalPages)].map((_, index) => (
             <Button
-              className="next_btn"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
+              key={index + 1}
+              className={`store_page_btn ${currentPage === index + 1 ? "active" : ""}`}
+              onClick={() => setCurrentPage(index + 1)}
             >
-              →
+              {index + 1}
             </Button>
-          </Box>
+          ))}
+          <Button
+            className="store_next_btn"
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          >
+            →
+          </Button>
         </Box>
       </Container>
     </Box>

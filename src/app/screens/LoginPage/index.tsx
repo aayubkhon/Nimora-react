@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -35,6 +35,9 @@ const LoginPage = () => {
   const [mb_nick, set_mb_nick] = useState<string>("");
   const [mb_phone, set_mb_phone] = useState<number>(0);
   const [mb_password, set_mb_password] = useState<string>("");
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   // ** HEANDLERS ** //
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
@@ -106,7 +109,7 @@ const LoginPage = () => {
       <Box className="login_hero">
         <Box className="hero_overlay" />
         <Container maxWidth="lg" className="hero_content">
-          <Typography className="hero_title">Welcome to Glamora</Typography>
+          <Typography className="hero_title">Welcome to Nimora</Typography>
           <Typography className="hero_subtitle">
             Discover Timeless Elegance
           </Typography>

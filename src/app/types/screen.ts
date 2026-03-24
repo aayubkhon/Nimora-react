@@ -3,13 +3,14 @@ import { Follower, Following } from "./follow";
 import { Order } from "./order";
 import { Product } from "./product";
 import { Review } from "./review";
-import { Member } from "./user";
+import { Member, Shop } from "./user";
 
 /*REACT APP STATE*/
 
 export interface AppRootState {
   homePage: HomePageState;
   shopPage: ShopPageState;
+  storePage:StorePageState;
   boArticles: BoArticle;
   ordersPage: OrdersPageState;
   communityPage: CommunityPageState;
@@ -55,4 +56,9 @@ export interface MemberPageState {
   memberFollowers: Follower[];
   memberFollowings: Following[];
   myFavorite: [] | null;
+}
+
+/*STORE PAGE*/
+export interface StorePageState{
+  storeShops: Shop[]
 }
