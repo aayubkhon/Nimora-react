@@ -78,37 +78,39 @@ export function HelpPage() {
   };
   return (
     <div className="help_page">
-      <Box className="bg_help">
-        <div className="help_box">
-          <h1 className="help">CS</h1>
-          <p className="help_title">Home/Costumer-Services</p>
-        </div>
+      <Box className="store_hero">
+        <Box className="store_hero_inner">
+          <Typography className="store_hero_label">Our Costumer Services</Typography>
+          <Typography className="store_hero_title">
+            Discover Nimora
+            <br />
+            Jewellery CS Center
+          </Typography>
+          <Box className="store_hero_line" />
+        </Box>
       </Box>
       <Box className={"cs_title"}>
         <div className="bg_patern">
-          <h1 className="support">Glamora Support</h1>
+          <h1 className="support">Nimora Support</h1>
           <p className="title">
             Your inquiries deserve nothing less than excellence
           </p>
         </div>
         <TabContext value={value}>
-        <Box className={"help_menu"} >
-            <Tabs  value={value}  onChange={handleChange} sx={{"& button.Mui-selected":{backgroundColor:"white",color:"black"}}}>
-              <Tab
-                className="help_tab"
-                label="Notice"
-                value={"1"}
-              />
-              <Tab
-                className="help_tab"
-                label="FAQ"
-                value={"2"}
-              />
-              <Tab
-                className="help_tab"
-                label="Contact Us"
-                value={"3"}
-              />
+          <Box className={"help_menu"}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              sx={{
+                "& button.Mui-selected": {
+                  backgroundColor: "white",
+                  color: "black",
+                },
+              }}
+            >
+              <Tab className="help_tab" label="Notice" value={"1"} />
+              <Tab className="help_tab" label="FAQ" value={"2"} />
+              <Tab className="help_tab" label="Contact Us" value={"3"} />
             </Tabs>
           </Box>
           <Container>
@@ -121,7 +123,7 @@ export function HelpPage() {
                   <Box className="theRules_frame">
                     {notice.map((ele, number) => {
                       return (
-                        <Accordion>
+                        <Accordion key={number}>
                           <AccordionSummary
                             expandIcon={<ExpandMore />}
                             aria-controls="panella-content"
@@ -144,9 +146,9 @@ export function HelpPage() {
               </TabPanel>
               <TabPanel value="2">
                 <Stack className="accordian_menu">
-                  {FAQ.map((ele) => {
+                  {FAQ.map((ele, id) => {
                     return (
-                      <Accordion>
+                      <Accordion key={id}>
                         <AccordionSummary
                           expandIcon={<ExpandMore />}
                           aria-controls="panella-content"

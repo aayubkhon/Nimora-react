@@ -1,7 +1,29 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const story = [
+    {
+      id: "1",
+      img: "/home/store1.jpeg",
+      service: "Our Stores",
+      title: "Your new favorite space to shop, stack, and stay a while.",
+    },
+    {
+      id: "2",
+      img: "/home/store3.jpeg",
+      service: "Visit Our Stores",
+      title: "Your new favorite space to shop, stack, and stay a while.",
+    },
+    {
+      id: "3",
+      img: "/home/store2.jpeg",
+      service: "Our Stores",
+      title: "Your new favorite space to shop, stack, and stay a while.",
+    },
+  ];
+  const navigate = useNavigate();
   return (
     <div className="Services_frame">
       <Container>
@@ -13,30 +35,21 @@ const Services = () => {
           </p>
         </Box>
         <div className="store_wrapper">
-          <div className="store_frame">
-            <img className="store_img" src="/home/store1.jpeg" alt="" />
-            <h3 className="store_title">Our Stores</h3>
-            <p className="store_subtitle">
-              Your new favorite space to shop, stack, and stay a while.
-            </p>
-            <Button className="store_click">Visit Our Stores</Button>
-          </div>
-          <div className="store_frame">
-            <img className="store_img" src="/home/store3.jpeg" alt="" />
-            <h3 className="store_title">Our Stores</h3>
-            <p className="store_subtitle">
-              Your new favorite space to shop, stack, and stay a while.
-            </p>
-            <Button className="store_click">Visit Our Stores</Button>
-          </div>
-          <div className="store_frame">
-            <img className="store_img" src="/home/store2.jpeg" alt="" />
-            <h3 className="store_title">Our Stores</h3>
-            <p className="store_subtitle">
-              Your new favorite space to shop, stack, and stay a while.
-            </p>
-                        <Button className="store_click">Visit Our Stores</Button>
-          </div>
+          {story.map((store) => {
+            return (
+              <div key={store.id} className="store_frame">
+                <img className="store_img" src={store.img} alt="" />
+                <h3 className="store_title">{store.service}</h3>
+                <p className="store_subtitle">{store.title}</p>
+                <button
+                  onClick={() => navigate("/store")}
+                  className="store_click"
+                >
+                  Visit Our Stores
+                </button>
+              </div>
+            );
+          })}
         </div>
       </Container>
     </div>

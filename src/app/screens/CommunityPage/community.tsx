@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../../../css/community.scss";
-import { Box, Pagination, PaginationItem, Tab, Tabs, Typography } from "@mui/material";
+import {
+  Box,
+  Pagination,
+  PaginationItem,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
 import TargetArticles from "./targetArticles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -24,7 +31,7 @@ const tergetBoArticlesRetriever = createSelector(
   retrieveTargetBoArticles,
   (tergetBoArticles) => ({
     tergetBoArticles,
-  })
+  }),
 );
 const CommunityPage = (props: any) => {
   // ** INITIALIZATIONS ** //
@@ -37,7 +44,7 @@ const CommunityPage = (props: any) => {
       bo_id: "all",
       page: 1,
       limit: 6,
-    }
+    },
   );
   const [value, setValue] = useState("1");
 
@@ -77,11 +84,13 @@ const CommunityPage = (props: any) => {
   };
   return (
     <div className="Community_frame">
-    <Box className="store_hero">
+      <Box className="store_hero">
         <Box className="store_hero_inner">
           <Typography className="store_hero_label">Our Community</Typography>
           <Typography className="store_hero_title">
-            Discover Nimora<br />Jewellery Community
+            Discover Nimora
+            <br />
+            Jewellery Community
           </Typography>
           <Box className="store_hero_line" />
         </Box>
@@ -101,7 +110,7 @@ const CommunityPage = (props: any) => {
                 },
               }}
             >
-              <img src="/icons/nimora.svg" alt="" style={{width:300}} />
+              <img src="/icons/nimora.svg" alt="" style={{ width: 300 }} />
               <Tab className="tab_br" value={"1"} label="All Blogs" />
               <Tab className="tab_br" value={"2"} label="News" />
               <Tab className="tab_br" value={"3"} label="Humor" />

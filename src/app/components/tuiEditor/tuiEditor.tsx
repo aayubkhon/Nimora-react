@@ -106,10 +106,10 @@ const TuiEditor = (props: any) => {
                 inputProps={{ "aria-label": "Without label" }}
                 onChange={changeCategoryHandler}
               >
-                <MenuItem value={"All blogs"}>All Blogs</MenuItem>
-                <MenuItem value={"News"}>News</MenuItem>
-                <MenuItem value={"Humor"}>Humor</MenuItem>
-                <MenuItem value={"Recommendation"}>Recommendation</MenuItem>
+                <MenuItem value={"all blogs"}>All Blogs</MenuItem>
+                <MenuItem value={"news"}>News</MenuItem>
+                <MenuItem value={"humor"}>Humor</MenuItem>
+                <MenuItem value={"recommendation"}>Recommendation</MenuItem>
               </Select>
             </FormControl>
           </Box>

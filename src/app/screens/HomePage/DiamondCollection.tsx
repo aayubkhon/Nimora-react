@@ -12,8 +12,8 @@ const DiamondCollection = () => {
     { name: "Columbia", logo: "/icons/columbia.svg" },
   ];
   const duplicatedBrands = [...brands, ...brands];
-    const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   return (
     <div className="DiamondCollection_frame">
       <div className="container">
@@ -23,7 +23,11 @@ const DiamondCollection = () => {
             <p className="img_about">
               New Dôme pieces are here to define your summer palette
             </p>
-            <Button onClick={()=>navigate("/shop")} className="btn_dome" variant="outlined">
+            <Button
+              onClick={() => navigate("/shop")}
+              className="btn_dome"
+              variant="outlined"
+            >
               Shop Dome
             </Button>
           </div>
@@ -34,7 +38,11 @@ const DiamondCollection = () => {
             <p className="img_about">
               Our most-loved Stevie Hoops, now in new colors.
             </p>
-            <Button onClick={()=>navigate("/shop")} className="btn_dome" variant="outlined">
+            <Button
+              onClick={() => navigate("/shop")}
+              className="btn_dome"
+              variant="outlined"
+            >
               Shop Stevie
             </Button>
           </div>
@@ -43,8 +51,8 @@ const DiamondCollection = () => {
       <Box className="animation_frame">
         <Box className="scroller">
           <Box className="scroller-inner">
-            {duplicatedBrands.map((brand, index) => (
-              <Box key={index} className="scroller_item">
+            {duplicatedBrands.map((brand, id) => (
+              <Box key={id} className="scroller_item">
                 <img src={brand.logo} alt={brand.name} />
               </Box>
             ))}

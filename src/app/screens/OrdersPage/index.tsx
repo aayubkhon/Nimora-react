@@ -49,7 +49,7 @@ const chosenOrderRetriever = createSelector(
   retrieveChosenOrder,
   (chosenOrder) => ({
     chosenOrder,
-  })
+  }),
 );
 
 const OrdersPage = (props: any) => {
@@ -66,11 +66,13 @@ const OrdersPage = (props: any) => {
     const orderService = new orderApiServices();
     orderService
       .getMyOrders({
-      order_id:  order_id as string,
+        order_id: order_id as string,
       })
-      .then((data) => {setChosenOrder(data[0])
-        console.log(data,"chosen order");
-      }).catch((err) => console.log(err));
+      .then((data) => {
+        setChosenOrder(data[0]);
+        console.log(data, "chosen order");
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const steps = ["Shipping", "Payment", "Review"];
@@ -92,7 +94,7 @@ const OrdersPage = (props: any) => {
 
   const subtotal = orderItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
   const shipping = shippingMethod === "express" ? 250 : 150;
   const tax = subtotal * 0.08;
@@ -337,11 +339,6 @@ const OrdersPage = (props: any) => {
                       control={<Radio />}
                       label="PayPal"
                     />
-                    <img
-                      src="/icons/paypal.svg"
-                      alt="PayPal"
-                      className="paypal_icon"
-                    />
                   </Box>
 
                   <Box className="payment_option">
@@ -402,8 +399,8 @@ const OrdersPage = (props: any) => {
                     {paymentMethod === "card"
                       ? "Credit Card ending in ••••1234"
                       : paymentMethod === "paypal"
-                      ? "PayPal"
-                      : "Cash on Delivery"}
+                        ? "PayPal"
+                        : "Cash on Delivery"}
                   </Typography>
                 </Box>
 
@@ -440,7 +437,7 @@ const OrdersPage = (props: any) => {
               {/* Order Items */}
               {chosenOrder?.order_items.map((order) => {
                 const product: Product = chosenOrder.product_data.filter(
-                  (ele) => ele._id === order.product_id
+                  (ele) => ele._id === order.product_id,
                 )[0];
                 const images_path = `${serverApi}/${product.product_images[0]}`;
                 return (
@@ -457,9 +454,7 @@ const OrdersPage = (props: any) => {
                       </Box>
                       <Typography className="summary_item_price">
                         $
-                        {(
-                          order.item_price * order.item_price
-                        ).toLocaleString()}
+                        {(order.item_price * order.item_price).toLocaleString()}
                       </Typography>
                     </Box>
                   </Box>

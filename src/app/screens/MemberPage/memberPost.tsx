@@ -186,7 +186,7 @@ const MemberPost = (props: any) => {
                       <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
                         {article?.bo_id}
                       </Typography>
-                      <Typography style={{ marginLeft: "5px" }}>
+                      <Typography style={{ marginLeft: "5px",border:"1px solid red",width:"100%" }}>
                         {article?.art_subject}
                       </Typography>
                     </Box>

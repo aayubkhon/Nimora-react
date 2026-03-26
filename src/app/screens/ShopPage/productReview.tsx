@@ -293,7 +293,7 @@ const ProductReview = (props: any) => {
                                   </Typography>
 
                                   {reply.mb_id &&
-                                    reply.member_data && ( // ✅ check qo'shing
+                                    reply.member_data && ( 
                                       <span className="verified-pill">
                                         <VerifiedIcon sx={{ fontSize: 11 }} />{" "}
                                         Verified

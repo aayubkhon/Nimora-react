@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  IconButton,
-  Checkbox,
-  Badge,
-} from "@mui/material";
+import { Box, Typography, IconButton, Checkbox, Badge } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
@@ -26,7 +20,7 @@ const ProductCard = (props: any) => {
         const images_path = `${serverApi}/${product.product_images[0]}`;
         const second_img_path = `${serverApi}/${product.product_images[1]}`;
         return (
-          <Box className="product_card">
+          <Box key={product._id} className="product_card">
             {/* Badges */}
             <Box className="badges">
               {product.createdAt &&
