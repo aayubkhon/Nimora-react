@@ -10,6 +10,7 @@ import {
   Avatar,
   Badge,
   Checkbox,
+  Divider,
 } from "@mui/material";
 import { Visibility, FavoriteBorder, Favorite } from "@mui/icons-material";
 import moment from "moment";
@@ -88,6 +89,7 @@ const TargetArticles = (props: any) => {
                     width: 294,
                     borderRadius: "20px",
                     overflow: "hidden",
+                    height: "100%",
                   }}
                 >
                   {/* Header with Avatar and Name */}
@@ -115,7 +117,7 @@ const TargetArticles = (props: any) => {
                     <Typography
                       onClick={() => visitMemberHandler(article.mb_id)}
                       variant="subtitle2"
-                      sx={{ fontWeight: 600, }}
+                      sx={{ fontWeight: 600 }}
                     >
                       {article?.member_data?.mb_nick || "Anonymous"}
                     </Typography>
@@ -131,6 +133,8 @@ const TargetArticles = (props: any) => {
                   />
 
                   {/* Like and View Icons */}
+                  <Divider className="summary_divider" />
+
                   <CardContent
                     sx={{
                       display: "flex",
@@ -191,20 +195,18 @@ const TargetArticles = (props: any) => {
 
                   {/* Article Content */}
                   <CardContent sx={{ py: 1, px: 2 }}>
-                    <Box display={"flex"} alignItems={"center"}>
-                      <Typography variant="body2" sx={{ fontWeight: "bolder", }}>
-                        {article?.bo_id}:
-                      </Typography>
-                      <Typography sx={{ marginLeft: "5px", }}>
+                    <Box className="card_subject_wrap">
+                      <p className="card_bo_id">{article?.bo_id}:</p>
+                      <p
+                        className="subject_title"
+                        style={{ marginLeft: "5px" }}
+                      >
                         {article?.art_subject}
-                      </Typography>
+                      </p>
                     </Box>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: "text.secondary", display: "block" }}
-                    >
-                      {moment(article?.createdAt).fromNow()}
-                    </Typography>
+                    <span className="card_time">
+                      {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
+                    </span>
                   </CardContent>
                 </Card>
               </Box>

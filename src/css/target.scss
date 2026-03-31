@@ -64,8 +64,55 @@
   text-transform: capitalize;
   margin: 20px 10px;
   height: auto;
+
 }
 
+.card_subject_wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 16px 12px;
+}
+
+.card_bo_id {
+  font-family: Judson, serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  background: rgba(220, 151, 14, 0.08);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: 2px;
+  padding: 2px 8px;
+  line-height: 1.8;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.subject_title {
+  font-family: Judson, serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #2c1810;
+  line-height: 1.4;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.card_time {
+  font-family: Judson, serif;
+  font-size: 12px;
+  color: #9b8577;
+  letter-spacing: 0.5px;
+  padding: 0 16px 12px;
+  display: block;
+}
 // ArticleViewer.scss
 // Nimora luxury jewelry — editorial article viewer
 

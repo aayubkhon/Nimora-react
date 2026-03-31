@@ -11,13 +11,9 @@ import {
   Badge,
   Checkbox,
   Stack,
- 
+  Divider,
 } from "@mui/material";
-import {
-  Visibility,
-  FavoriteBorder,
-  Favorite,
-} from "@mui/icons-material";
+import { Visibility, FavoriteBorder, Favorite } from "@mui/icons-material";
 import moment from "moment";
 import { BoArticle } from "../../types/boArticle";
 import { serverApi } from "../../lib/config";
@@ -122,6 +118,8 @@ const MemberPost = (props: any) => {
                   />
 
                   {/* Like and View Icons */}
+                  <Divider className="summary_divider" />
+
                   <CardContent
                     sx={{
                       display: "flex",
@@ -182,20 +180,18 @@ const MemberPost = (props: any) => {
 
                   {/* Article Content */}
                   <CardContent sx={{ py: 1, px: 2 }}>
-                    <Box display={"flex"} alignItems={"center"}>
-                      <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                        {article?.bo_id}
-                      </Typography>
-                      <Typography style={{ marginLeft: "5px",width:"100%" }}>
+                    <Box className="card_subject_wrap">
+                      <p className="card_bo_id">{article?.bo_id}:</p>
+                      <p
+                        className="subject_title"
+                        style={{ marginLeft: "5px" }}
+                      >
                         {article?.art_subject}
-                      </Typography>
+                      </p>
                     </Box>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: "text.secondary", display: "block" }}
-                    >
+                    <span className="card_time">
                       {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
-                    </Typography>
+                    </span>
                   </CardContent>
                 </Card>
               </Box>

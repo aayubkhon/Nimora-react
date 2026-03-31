@@ -40,8 +40,6 @@ const TuiEditor = (props: any) => {
     try {
       const communityService = new CommunityApiService();
       const image_name = await communityService.uploadImageToServer(image);
-      console.log("sadsa", image_name);
-
       communityArticleData.art_image = image_name;
       setCommunityArticleData({ ...communityArticleData });
       const source = `${serverApi}/${image_name}`;
