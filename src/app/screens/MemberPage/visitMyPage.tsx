@@ -85,7 +85,7 @@ const VisitMyPage = (props:any) => {
     useState<SearchMemberArticlesObj>({
       mb_id: "none",
       page: 1,
-      limit: 3,
+      limit: 6,
     });
 
        useEffect(() => {

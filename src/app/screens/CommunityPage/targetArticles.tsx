@@ -11,11 +11,7 @@ import {
   Badge,
   Checkbox,
 } from "@mui/material";
-import {
-  Visibility,
-  FavoriteBorder,
-  Favorite,
-} from "@mui/icons-material";
+import { Visibility, FavoriteBorder, Favorite } from "@mui/icons-material";
 import moment from "moment";
 import { BoArticle } from "../../types/boArticle";
 import { serverApi } from "../../lib/config";
@@ -29,21 +25,29 @@ import {
 } from "../../lib/sweetAlert";
 import { verifyMemberData } from "../../apiServices/verify";
 import { useNavigate } from "react-router-dom";
+import CommunityApiService from "../../apiServices/communityApiServicse";
+import ArticleViewer from "../../components/tuiEditor/articleViewer";
 
 const TargetArticles = (props: any) => {
+  const {
+    chosenMemberArticles,
+    renderChosenArticleHandler,
+    setArticleRebuild,
+  } = props;
   // ** INITIALIZATIONS ** //
   const navigate = useNavigate();
   // ** HANDLERS **/
   const targetLikeHandlers = async (e: any) => {
     try {
+      e.stopPropagation();
       assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiServices();
       const like_result: any = await memberService.memberLikeTarget({
         like_ref_id: e.target.id,
         group_type: "community",
       });
-      console.log(like_result,"asdsa");
-      
+      console.log(like_result, "asdsa");
+
       assert.ok(like_result, Definer.general_err1);
       await sweetTopSmallSuccessAlert("success", 700, false);
       props.setArticletRebuild(new Date());
@@ -55,6 +59,7 @@ const TargetArticles = (props: any) => {
   const visitMemberHandler = (mb_id: string) => {
     navigate(`/member-page/${mb_id}`);
   };
+
   return (
     <div className="wrapper">
       <div className="target_articles_container">
@@ -66,6 +71,7 @@ const TargetArticles = (props: any) => {
 
             return (
               <Box
+                onClick={() => renderChosenArticleHandler(article._id)}
                 key={article._id}
                 sx={{
                   transition: "all 0.3s ease",
@@ -109,7 +115,7 @@ const TargetArticles = (props: any) => {
                     <Typography
                       onClick={() => visitMemberHandler(article.mb_id)}
                       variant="subtitle2"
-                      sx={{ fontWeight: 600 }}
+                      sx={{ fontWeight: 600, }}
                     >
                       {article?.member_data?.mb_nick || "Anonymous"}
                     </Typography>
@@ -186,10 +192,10 @@ const TargetArticles = (props: any) => {
                   {/* Article Content */}
                   <CardContent sx={{ py: 1, px: 2 }}>
                     <Box display={"flex"} alignItems={"center"}>
-                      <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                        {article?.bo_id}
+                      <Typography variant="body2" sx={{ fontWeight: "bolder", }}>
+                        {article?.bo_id}:
                       </Typography>
-                      <Typography sx={{ marginLeft: "5px" }}>
+                      <Typography sx={{ marginLeft: "5px", }}>
                         {article?.art_subject}
                       </Typography>
                     </Box>

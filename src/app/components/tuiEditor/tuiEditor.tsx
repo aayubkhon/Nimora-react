@@ -40,6 +40,7 @@ const TuiEditor = (props: any) => {
     try {
       const communityService = new CommunityApiService();
       const image_name = await communityService.uploadImageToServer(image);
+      console.log("sadsa", image_name);
 
       communityArticleData.art_image = image_name;
       setCommunityArticleData({ ...communityArticleData });
@@ -56,31 +57,40 @@ const TuiEditor = (props: any) => {
   };
 
   const changeTitleHandler = useCallback(
-    (e: any) => {
-      communityArticleData.art_subject = e.target.value;
-      setCommunityArticleData({ ...communityArticleData });
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setCommunityArticleData((prev) => ({
+        ...prev,
+        art_subject: e.target.value,
+      }));
     },
-    [communityArticleData.art_subject],
+    [],
   );
 
   const handleRegisterButoon = async () => {
     try {
       const editor: any = editorRef.current;
       const art_content = editor?.getInstance().getHTML();
-      communityArticleData.art_content = art_content;
+
+      // Direct mutation emas, yangi state yarating
+      const articleToSubmit = {
+        ...communityArticleData,
+        art_content,
+      };
+
       assert.ok(
-        communityArticleData.art_content !== "" &&
-          communityArticleData.bo_id !== "" &&
-          communityArticleData.art_subject !== "",
+        articleToSubmit.art_content !== "" &&
+          articleToSubmit.bo_id !== "" &&
+          articleToSubmit.art_subject !== "",
         Definer.input_err1,
       );
+
       const communityService = new CommunityApiService();
-      communityService.createArticlle(communityArticleData);
-      await sweetTopSmallSuccessAlert("Article is created sucessfully!");
+      await communityService.createArticlle(articleToSubmit);
+      await sweetTopSmallSuccessAlert("Article is created successfully!");
       props.setArticleRebuild(new Date());
-      props.setValue("1")
+      props.setValue("1");
     } catch (err) {
-      console.log("ERROR ::: handleRegisterButoon", err);
+      console.log("ERROR ::: handleRegisterButton", err);
       sweetErrorHandling(err).then();
     }
   };
@@ -106,7 +116,10 @@ const TuiEditor = (props: any) => {
                 inputProps={{ "aria-label": "Without label" }}
                 onChange={changeCategoryHandler}
               >
-                <MenuItem value={"all blogs"}>All Blogs</MenuItem>
+                <MenuItem value="">
+                  <p>Choose Catagory</p>
+                </MenuItem>
+                <MenuItem value={"all"}>All Blogs</MenuItem>
                 <MenuItem value={"news"}>News</MenuItem>
                 <MenuItem value={"humor"}>Humor</MenuItem>
                 <MenuItem value={"recommendation"}>Recommendation</MenuItem>
@@ -132,9 +145,9 @@ const TuiEditor = (props: any) => {
         <Editor
           ref={editorRef}
           placeholder="Type here"
+          initialValue="Type here"
           previewStyle="vertical"
           height="640px"
-          initialValue="Type here"
           initialEditType="WYSIWYG"
           toolbarItems={[
             ["heading", "bold", "italic", "strike"],

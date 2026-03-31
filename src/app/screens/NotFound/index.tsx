@@ -13,7 +13,7 @@ const NotFound = () => {
 
     <h1 className="title">OOPS!</h1>
     <h2 className="subtitle">404 Error Not Found</h2>
-
+    <h1 className="subtitle_mobile">Mobile Version is on Proccessing</h1>
     <p className="desc">
       It is a long established fact that a reader will be distracted by the
       readable content of a page when looking at its layout.

@@ -12,6 +12,8 @@ import { TabContext, TabPanel } from "@mui/lab";
 import TargetArticles from "./targetArticles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArticleViewer from "../../components/tuiEditor/articleViewer";
+
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -39,6 +41,7 @@ const CommunityPage = (props: any) => {
   const [articleREbuild, setArticletRebuild] = useState<Date>(new Date());
   const { setTargetBoArticles } = actionDispatch(useDispatch());
   const { tergetBoArticles } = useSelector(tergetBoArticlesRetriever);
+  const [chosenArticle, setChosenArticle] = useState<BoArticle | null>(null);
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
     {
       bo_id: "all",
@@ -81,6 +84,16 @@ const CommunityPage = (props: any) => {
   const handlePaginationChange = (event: any, value: number) => {
     searchArticlesObj.page = value;
     setSearchArticlesObj({ ...searchArticlesObj });
+  };
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      const data = await communityService.getChosenArticle(art_id);
+      setChosenArticle(data);
+      setValue("5"); 
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="Community_frame">
@@ -127,6 +140,7 @@ const CommunityPage = (props: any) => {
             <TargetArticles
               tergetBoArticles={tergetBoArticles}
               setArticletRebuild={setArticletRebuild}
+              renderChosenArticleHandler={renderChosenArticleHandler} // ✅
             />
           </TabPanel>
           <TabPanel value={"2"}>
@@ -139,6 +153,7 @@ const CommunityPage = (props: any) => {
             <TargetArticles
               tergetBoArticles={tergetBoArticles}
               setArticletRebuild={setArticletRebuild}
+              renderChosenArticleHandler={renderChosenArticleHandler} // ✅
             />
           </TabPanel>
           <TabPanel value={"3"}>
@@ -151,6 +166,7 @@ const CommunityPage = (props: any) => {
             <TargetArticles
               tergetBoArticles={tergetBoArticles}
               setArticletRebuild={setArticletRebuild}
+              renderChosenArticleHandler={renderChosenArticleHandler} // ✅
             />
           </TabPanel>
           <TabPanel value={"4"}>
@@ -163,8 +179,14 @@ const CommunityPage = (props: any) => {
             <TargetArticles
               tergetBoArticles={tergetBoArticles}
               setArticletRebuild={setArticletRebuild}
+              renderChosenArticleHandler={renderChosenArticleHandler} 
             />
           </TabPanel>
+         <Box sx={{height:"800px"}}>
+           <TabPanel value={"5"}>
+            <ArticleViewer chosenSingleArticles={chosenArticle} />
+          </TabPanel>
+         </Box>
         </TabContext>
       </Box>
       <Box className="pagination_box">

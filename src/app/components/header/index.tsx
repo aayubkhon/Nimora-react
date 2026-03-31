@@ -9,8 +9,13 @@ import {
   Menu,
   MenuItem,
   ListItem,
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { navbar } from "../../lib/navbar";
 import "../../../css/navbar.scss";
@@ -24,8 +29,10 @@ import {
 import { Definer } from "../../lib/Definer";
 import { verifyMemberData } from "../../apiServices/verify";
 const NavbarHome = (props: any) => {
-  const basket_countJSON = localStorage.getItem("cart_data") ? localStorage.getItem("cart_data") : "[]"
-  const badge_count = JSON.parse(basket_countJSON as string)
+  const basket_countJSON = localStorage.getItem("cart_data")
+    ? localStorage.getItem("cart_data")
+    : "[]";
+  const badge_count = JSON.parse(basket_countJSON as string);
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -53,9 +60,121 @@ const NavbarHome = (props: any) => {
 
   return (
     <>
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawer}
+        PaperProps={{
+          sx: {
+            width: 260,
+            background: "#2c1810",
+            padding: "20px 0",
+          },
+        }}
+      >
+        {/* Close button */}
+        <Box sx={{ display: "flex", justifyContent: "flex-end", px: 2, mb: 2 }}>
+          <IconButton onClick={handleDrawer} sx={{ color: "#d4a853" }}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        {/* Logo */}
+        <Box sx={{ px: 3, mb: 3 }}>
+          <img src="/icons/nimora.svg" style={{ width: "140px" }} />
+        </Box>
+
+        {/* Nav links */}
+        <List>
+          {navbar.map(({ title, path, hidden }, id) =>
+            !hidden ? (
+              <ListItemButton
+                key={id}
+                component={NavLink}
+                to={"*"}
+                onClick={handleDrawer}
+                sx={{
+                  color: "#fff",
+                  fontFamily: "Judson",
+                  "&.active": { color: "#d4a853" },
+                  "&:hover": { color: "#d4a853", background: "transparent" },
+                }}
+              >
+                <ListItemText
+                  primary={title}
+                  primaryTypographyProps={{
+                    fontFamily: "Judson",
+                    fontSize: "16px",
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                  }}
+                />
+              </ListItemButton>
+            ) : null,
+          )}
+
+          {verifyMemberData && (
+            <ListItemButton
+              component={NavLink}
+              to="/member-page"
+              onClick={handleDrawer}
+              sx={{
+                color: "#fff",
+                "&.active": { color: "#d4a853" },
+                "&:hover": { color: "#d4a853", background: "transparent" },
+              }}
+            >
+              <ListItemText
+                primary="My Page"
+                primaryTypographyProps={{
+                  fontFamily: "Judson",
+                  fontSize: "16px",
+                  letterSpacing: "2px",
+                  textTransform: "uppercase",
+                }}
+              />
+            </ListItemButton>
+          )}
+        </List>
+
+        {/* Login / Logout */}
+        <Box sx={{ px: 3, mt: "auto", pt: 3 }}>
+          {!verifyMemberData ? (
+            <Button
+              fullWidth
+              onClick={() => {
+                navigate("/login");
+                handleDrawer();
+              }}
+              sx={{
+                border: "1px solid #d4a853",
+                color: "#d4a853",
+                fontFamily: "Judson",
+                letterSpacing: "2px",
+              }}
+            >
+              Login
+            </Button>
+          ) : (
+            <Button
+              fullWidth
+              onClick={handleLogOutRequest}
+              startIcon={<Logout />}
+              sx={{
+                border: "1px solid #ff6b6b",
+                color: "#ff6b6b",
+                fontFamily: "Judson",
+                letterSpacing: "2px",
+              }}
+            >
+              Logout
+            </Button>
+          )}
+        </Box>
+      </Drawer>
       <div className="navbar_container">
         <Box className="logo_section" onClick={() => navigate("/")}>
-          {/* <img className="logo" src="/icons/nimora.svg" alt="Glamora" /> */}
           <img src="/icons/nimora.svg" style={{ width: "180px" }} />
         </Box>
 
@@ -112,13 +231,12 @@ const NavbarHome = (props: any) => {
             open={open}
             onClose={handleCloseLogOut}
             onClick={handleCloseLogOut}
-            
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem onClick={handleLogOutRequest} >
+            <MenuItem onClick={handleLogOutRequest}>
               <ListItem>
-                <Logout  fontSize="small" style={{ color: "blue" }} />
+                <Logout fontSize="small" style={{ color: "blue" }} />
                 Logout
               </ListItem>
             </MenuItem>

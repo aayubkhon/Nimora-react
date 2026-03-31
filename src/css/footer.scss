@@ -360,6 +360,17 @@
     font-weight: 500;
   }
 
+  .subtitle_mobile {
+    font-size: 26px;
+    font-family: serif;
+    margin-bottom: 25px;
+    font-weight: 500;
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+      color: #2c1810;
+    }
+  }
   .desc {
     max-width: 520px;
     margin: 0 auto 35px;

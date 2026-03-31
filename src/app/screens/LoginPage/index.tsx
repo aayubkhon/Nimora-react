@@ -123,7 +123,7 @@ const LoginPage = () => {
           <Box className="form_image_section">
             <img
               src="/home/22.jpeg"
-              alt="Glamora Jewelry"
+              alt="Nimora Jewelry"
               className="form_image"
             />
             <Box className="image_overlay">
@@ -249,7 +249,7 @@ const LoginPage = () => {
               <Box component="form" className="form_content">
                 <Typography className="form_title">Create Account</Typography>
                 <Typography className="form_subtitle">
-                  Join Glamora family today
+                  Join Nimora family today
                 </Typography>
 
                 <TextField

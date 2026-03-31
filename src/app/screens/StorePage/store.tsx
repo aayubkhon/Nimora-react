@@ -41,7 +41,9 @@ const Store = () => {
         <Box className="store_hero_inner">
           <Typography className="store_hero_label">Our Boutiques</Typography>
           <Typography className="store_hero_title">
-            Discover Nimora<br />Jewellery Stores
+            Discover Nimora
+            <br />
+            Jewellery Stores
           </Typography>
           <Box className="store_hero_line" />
         </Box>
@@ -51,9 +53,13 @@ const Store = () => {
         {/* ── Section Header ── */}
         <Box className="store_header">
           <Box className="store_header_left">
-            <Typography className="store_section_label">FEATURED STORIES</Typography>
+            <Typography className="store_section_label">
+              FEATURED STORIES
+            </Typography>
             <Typography className="store_section_title">
-              Stories About<br />Fine Jewellery
+              Stories About
+              <br />
+              Fine Jewellery
             </Typography>
           </Box>
           <Box className="store_header_right">
@@ -61,7 +67,10 @@ const Store = () => {
               Explore our curated collection of jewellery boutiques, each
               offering a unique experience crafted with passion and precision.
             </Typography>
-            <Button className="store_view_all_btn" onClick={() => navigate("/stories")}>
+            <Button
+              className="store_view_all_btn"
+              onClick={() => navigate("/stories")}
+            >
               View All Stores
               <span className="btn_arrow">→</span>
             </Button>
@@ -90,7 +99,7 @@ const Store = () => {
                     <Box className="store_card_overlay">
                       <Button
                         className="store_overlay_btn"
-                        onClick={() => navigate(`/store/${shop._id}`)}
+                        onClick={() => navigate(`/shop`)}
                       >
                         Visit Store
                       </Button>
@@ -155,7 +164,9 @@ const Store = () => {
           ))}
           <Button
             className="store_next_btn"
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
             disabled={currentPage === totalPages}
           >
             →

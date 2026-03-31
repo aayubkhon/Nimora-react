@@ -288,6 +288,21 @@
   }
 }
 
+.mobile_menu_btn {
+  display: none !important;
+
+  @media (max-width: 768px) {
+    display: flex !important;
+    color: #2c1810;
+  }
+}
+
+.desktop_nav {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1200px) {
   .navbar_container {
