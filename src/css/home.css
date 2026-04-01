@@ -1,7 +1,7 @@
 /* Header Start */
 .header {
   width: 100%;
-  height: 600px;
+  height: 700px;
 }
 .header .anim_ring {
   position: absolute;
@@ -9,13 +9,14 @@
   left: 60%;
   height: 60%;
   transform-origin: top center;
+
 }
 
 .header .head_information_second {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 750px;
+  height: 630px;
 }
 
 .icon {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Box, Button} from "@mui/material";
+import { Stack, Box, Button, Divider} from "@mui/material";
 
 
 import { motion } from "framer-motion";
@@ -30,7 +30,9 @@ const Header = () => {
                </Stack>
              </Stack>
            </Stack>
+ <Divider className="summary_divider" />
     </div>
+    
   );
 };
 export default Header;
