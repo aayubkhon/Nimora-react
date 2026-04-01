@@ -5,7 +5,7 @@ git checkout master
 git reset --hard
 git pull origin master
 
-nmp i yarn -g
+nmp i -g yarn
 yarn global add serve
 yarn
 yarn run build
