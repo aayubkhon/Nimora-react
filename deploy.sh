@@ -5,10 +5,11 @@ git checkout master
 git reset --hard
 git pull origin master
 
-npm i -g yarn
-yarn global add serve
-yarn
-yarn run build
+npm install -g yarn
+npm install -g serve
+
+yarn install
+yarn build
 pm2 start "yarn run start:prod" --name=NIMORA-REACT
 
 # DEVELOPMENT
