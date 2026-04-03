@@ -38,7 +38,6 @@ class CommunityApiService {
     try {
       let formData = new FormData();
       formData.append("community_image", image);
-      console.log(image);
       const result = await axios(`${this.path}/community/image`, {
         method: "POST",
         data: formData,

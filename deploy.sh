@@ -4,7 +4,6 @@
 git checkout master
 git reset --hard
 git pull origin master
-
 npm i yarn -g 
 npm install -g serve
 yarn

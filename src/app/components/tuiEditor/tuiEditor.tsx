@@ -41,7 +41,10 @@ const TuiEditor = (props: any) => {
       const communityService = new CommunityApiService();
       const image_name = await communityService.uploadImageToServer(image);
       communityArticleData.art_image = image_name;
-      setCommunityArticleData({ ...communityArticleData });
+      setCommunityArticleData((prev) => ({
+        ...prev,
+        art_image: image_name,
+      }));
       const source = `${serverApi}/${image_name}`;
       return source;
     } catch (err) {
@@ -50,8 +53,10 @@ const TuiEditor = (props: any) => {
   };
 
   const changeCategoryHandler = (e: any) => {
-    communityArticleData.bo_id = e.target.value;
-    setCommunityArticleData({ ...communityArticleData });
+    setCommunityArticleData((prev) => ({
+      ...prev,
+      bo_id: e.target.value,
+    }));
   };
 
   const changeTitleHandler = useCallback(
@@ -68,20 +73,18 @@ const TuiEditor = (props: any) => {
     try {
       const editor: any = editorRef.current;
       const art_content = editor?.getInstance().getHTML();
-
-      // Direct mutation emas, yangi state yarating
+      const cleanContent = art_content.replace(/<[^>]*>/g, "").trim();
       const articleToSubmit = {
         ...communityArticleData,
         art_content,
       };
 
       assert.ok(
-        articleToSubmit.art_content !== "" &&
-          articleToSubmit.bo_id !== "" &&
-          articleToSubmit.art_subject !== "",
+        cleanContent !== "" &&
+          articleToSubmit.bo_id.trim() !== "" &&
+          articleToSubmit.art_subject.trim() !== "",
         Definer.input_err1,
       );
-
       const communityService = new CommunityApiService();
       await communityService.createArticlle(articleToSubmit);
       await sweetTopSmallSuccessAlert("Article is created successfully!");

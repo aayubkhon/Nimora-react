@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ShopPageState } from "../../types/screen";
-import { Review } from "../../types/review";
 
 const initialState: ShopPageState = {
   allProducts: [],
