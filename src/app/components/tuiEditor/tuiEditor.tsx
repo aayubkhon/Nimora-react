@@ -1,5 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
+// @ts-ignore
 import "@toast-ui/editor/dist/toastui-editor.css";
+// @ts-ignore
 import "../../../css/my_page.scss";
 import { Editor } from "@toast-ui/react-editor";
 import {
@@ -38,6 +40,7 @@ const TuiEditor = (props: any) => {
   // ** HANDLERS **//
   const uploadImage = async (image: any) => {
     try {
+        console.log("serverApi:", serverApi);
       const communityService = new CommunityApiService();
       const image_name = await communityService.uploadImageToServer(image);
       communityArticleData.art_image = image_name;
@@ -46,6 +49,7 @@ const TuiEditor = (props: any) => {
         art_image: image_name,
       }));
       const source = `${serverApi}/${image_name}`;
+
       return source;
     } catch (err) {
       console.log("ERROR ::: uploadImage", err);
@@ -74,11 +78,15 @@ const TuiEditor = (props: any) => {
       const editor: any = editorRef.current;
       const art_content = editor?.getInstance().getHTML();
       const cleanContent = art_content.replace(/<[^>]*>/g, "").trim();
+      const fixedContent = art_content.replace(
+        /http:\/\/localhost:3003/g,
+        serverApi,
+      );
+
       const articleToSubmit = {
         ...communityArticleData,
-        art_content,
+        art_content: fixedContent, // ✅ fixed content
       };
-
       assert.ok(
         cleanContent !== "" &&
           articleToSubmit.bo_id.trim() !== "" &&
